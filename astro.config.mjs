@@ -7,6 +7,8 @@ export default defineConfig({
     output: 'server',
     adapter: netlify(),
     integrations: [
-        tailwind()
+        tailwind({
+            config: { applyBaseStyles: false },
+        })
     ],
 });

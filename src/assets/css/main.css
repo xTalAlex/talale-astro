@@ -1,0 +1,6 @@
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+@import "./cookiebot.css";
+
+@import "tailwindcss/utilities";

@@ -1,0 +1,93 @@
+---
+import "../assets/css/embla.css";
+
+import projects from "../data/projects.js";
+
+const sortedProjects = projects.reverse();
+---
+
+<div class="embla relative p-5" id="main-carousel">
+    <div class="embla__viewport">
+        <div class="embla__container -ml-3">
+            {
+                sortedProjects.map(project => 
+                    <div class="embla__slide pl-3 relative min-w-full">
+                        <div class="md:h-96 relative overflow-hidden">
+                            <img class="w-auto object-cover" src={ "/images/projects/" + project.screenshot } />
+                        </div>
+                    </div>
+                )
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Thumbs -->
+<div class="embla relative p-5 pt-0 -mt-3" id="thumb-carousel">
+    <div class="embla__viewport">
+        <div class="embla__container -ml-3 cursor-default">
+            {
+                sortedProjects.map(project =>
+                    <div class="embla__slide pl-3 relative min-w-[50%] md:min-w-[20%]">
+                        <button
+                            class="h-24 touch-manipulation w-full bg-transparent relative block overflow-hidden m-0 p-0 cursor-pointer border-none outline-none"
+                            type="button"
+                        >
+                            <img
+                                class="embla__slide__thumbnail opacity-20"
+                                src={ "images/projects/" + project.screenshot }
+                            />
+                        </button>
+                    </div>
+                )
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    import EmblaCarousel from "embla-carousel";
+
+    const onThumbClick = (mainCarousel, thumbCarousel, index) => () => {
+        if(thumbCarousel.clickAllowed()) mainCarousel.scrollTo(index);
+    };
+
+    const followMainCarousel = (mainCarousel, thumbCarousel) => () => {
+        thumbCarousel.scrollTo(mainCarousel.selectedScrollSnap());
+        selectThumbBtn(mainCarousel, thumbCarousel);
+    };
+
+    const selectThumbBtn = (mainCarousel, thumbCarousel) => {
+        const previous = mainCarousel.previousScrollSnap();
+        const selected = mainCarousel.selectedScrollSnap();
+        thumbCarousel.slideNodes()[previous].querySelector(".embla__slide__thumbnail").classList.remove("opacity-1");
+        thumbCarousel.slideNodes()[previous].querySelector(".embla__slide__thumbnail").classList.add("opacity-20");
+        thumbCarousel.slideNodes()[selected].querySelector(".embla__slide__thumbnail").classList.add("opacity-1");
+        thumbCarousel.slideNodes()[selected].querySelector(".embla__slide__thumbnail").classList.remove("opacity-20");
+    };
+
+    const mainCarouselWrap = document.getElementById("main-carousel");
+    const mainCarouselView = mainCarouselWrap.querySelector(".embla__viewport");
+    const mainCarousel = EmblaCarousel(mainCarouselView, {
+        selectedClass: "",
+        loop: false,
+        skipSnaps: false,
+    });
+
+    const thumbCarouselWrap = document.getElementById("thumb-carousel");
+    const thumbCarouselView = thumbCarouselWrap.querySelector(".embla__viewport");
+    const thumbCarousel = EmblaCarousel(thumbCarouselView, {
+        selectedClass: "",
+        containScroll: "keepSnaps",
+        dragFree: true,
+    });
+
+    thumbCarousel.slideNodes().forEach((thumbNode, index) => {
+        const onClick = onThumbClick(mainCarousel, thumbCarousel, index);
+        thumbNode.addEventListener("click", onClick, false);
+    });
+
+    const syncThumbCarousel = followMainCarousel(mainCarousel, thumbCarousel);
+    mainCarousel.on("select", syncThumbCarousel);
+    thumbCarousel.on("init", syncThumbCarousel);
+</script>
