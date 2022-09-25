@@ -3,9 +3,13 @@ import Layout from "../layouts/Layout.astro";
 import Config from "../site.config.js";
 import Hero from "../components/Hero.astro";
 import Frameworks from "../components/Frameworks.astro";
+import Biography from "../components/Biography.astro";
 ---
 
 <Layout title={Config.title}>
 	<Hero />
-	<Frameworks />
+	<div class="mx-auto md:max-w-5xl">
+		<Frameworks />
+		<Biography />
+	</div>
 </Layout>
