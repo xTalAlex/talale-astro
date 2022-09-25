@@ -1,0 +1,23 @@
+---
+import FrameworkCard from "./FrameworkCard.astro";
+
+import frameworks from "../data/frameworks.js";
+---
+
+<div class="">
+    <div class="card py-12 mx-auto">
+        <div
+            class="card-body grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-6"
+        >
+            {
+                frameworks.map((framework) => (
+                    <FrameworkCard
+                        name={framework.name}
+                        icon={framework.icon}
+                        link={new URL(framework.link)}
+                    />
+                ))
+            }
+        </div>
+    </div>
+</div>

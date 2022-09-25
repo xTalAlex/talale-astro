@@ -1,0 +1,24 @@
+---
+export interface Props {
+	name: String,
+    icon: String
+    link: URL,
+}
+
+const { name, icon, link } = Astro.props;
+
+const srcAttribute = "/images/icons/" + icon;
+const altAttribute = name + " icon";
+---
+
+<div class="card card-compact justify-center items-center grayscale-0">
+    <figure>
+        <img class="h-12"
+            src={ srcAttribute }
+            alt={ altAttribute }
+        />
+    </figure>
+    <div class="card-body">
+        <a href={link} target="_blank" class="link link-hover">{name}</a>
+    </div>
+</div>

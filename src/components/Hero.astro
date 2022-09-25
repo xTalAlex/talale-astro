@@ -1,0 +1,39 @@
+---
+import Config from "../site.config.js";
+---
+<div id="heroContainer"
+    class="hero min-h-screen"
+    style={`background-image: url(images/castelia-city-day.jfif);`}
+>
+    <div class="hero-overlay bg-opacity-60"></div>
+    <div class="hero-content text-left text-neutral-content">
+        <div class="max-w-full">
+            <h1 class="mb-2 text-5xl font-bold">{Config.title}</h1>
+            <h2 class="mb-5 text-2xl font-semibold">{Config.subtitle}</h2>
+            <p class="mb-5">
+                {Config.description}
+            </p>
+            <a href="#contatti" class="btn btn-primary">{Config.cta}</a>
+        </div>
+    </div>
+</div>
+
+<script>
+const morningBG = "images/castelia-city-morning.jfif";
+const dayBG = "images/castelia-city-day.jfif";
+const eveningBG = "images/castelia-city-evening.jfif";
+const nightBG = "images/castelia-city-night.jfif";
+
+const container = document.getElementById("heroContainer");
+const currentTime = (new Date()).getHours();
+
+if(currentTime >= 6 && currentTime < 12)
+    container.style.backgroundImage = `url(${morningBG})`;
+else if(currentTime >= 12 && currentTime < 17)
+    container.style.backgroundImage = `url(${dayBG})`;
+else if(currentTime >= 17 && currentTime < 20)
+    container.style.backgroundImage = `url(${eveningBG})`;
+else if(currentTime >= 20 && currentTime < 6)
+    container.style.backgroundImage = `url(${nightBG})`;
+
+</script>

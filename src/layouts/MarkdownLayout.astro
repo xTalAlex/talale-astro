@@ -1,0 +1,13 @@
+---
+import Layout from "./Layout.astro";
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title}>
+    <div class="pt-20 card">
+        <div class="card-body mx-auto prose md:max-w-5xl">
+            <slot />
+        </div>
+    </div>
+</Layout>
