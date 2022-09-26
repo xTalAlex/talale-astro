@@ -10,20 +10,22 @@ import Features from "../components/Features.astro";
 import MessageBox from "../components/MessageBox.astro";
 import Contacts from "../components/Contacts.astro";
 import FeaturedImages from "../components/FeaturedImages.astro";
+import Prices from "../components/Prices.astro";
 ---
 
 <Layout title={Config.title}>
 	<Hero />
 	<div class="px-5 md:mx-auto container max-w-5xl space-y-12 pt-12">
 		<Introduction />
-		<Frameworks />
 		<Features />
+		<Prices />
 		<h2 class="text-3xl font-semibold">I miei progetti</h2>
 		<div class="mockup-window bg-neutral text-neutral-content">
 			<div class="px-4 border-t border-neutral">
 				<ProjectsCarousel />
 			</div>
 		</div>
+		<Frameworks />
 		<div class="">
 			<FeaturedImages />
 		</div>
