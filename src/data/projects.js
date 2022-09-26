@@ -1,7 +1,7 @@
 export default [
     {
         title: "Roberto Talamona",
-        description: "Sito Web in Wordpress che funge sia da blog che da sito personale",
+        description: "Sito Web in Wordpress che fa sia da blog che da sito personale",
         link: "https://robertotalamona.it/",
         screenshot: "robertotalamona.png",
         completed: true,

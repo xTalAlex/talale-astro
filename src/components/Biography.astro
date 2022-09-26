@@ -3,11 +3,11 @@ import Config from "../site.config.js";
 import profilePic from "../assets/images/IoTramonto.jpg";
 ---
 
-<div class="card md:card-side bg-neutral text-neutral-content shadow-xl">
+<div class="card md:card-side bg-neutral shadow-xl w-fit mx-auto">
     <div class="card-body flex-none mx-auto">
         <img class="mask mask-squircle w-40 md:w-48" src={ profilePic } alt="Alessandro Talamona" />
     </div>
-    <div class="card-body pt-0 md:card-body">
-        <p>{ Config.biography }</p>
+    <div class="card-body pt-0 md:card-body prose text-neutral-content">
+        <p class="">{ Config.biography }</p>
     </div>
 </div>

@@ -1,0 +1,14 @@
+---
+import features from "../data/features.js";
+import Config from "../site.config.js";
+---
+<div class="mockup-code before:content-none space-y-2">
+    {
+        features.map( feature => 
+            <pre 
+                data-prefix={ feature.prefix ?? Config.defaultCodePrefix } 
+                class={ feature.color }
+                ><code>{ feature.text }</code></pre> 
+        )
+    }
+</div>

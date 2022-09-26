@@ -4,7 +4,7 @@ import Config from "../site.config.js";
 
 <div
     id="heroContainer"
-    class="hero min-h-screen"
+    class="hero min-h-screen relative max-w-none"
     style={`background-image: url(images/castelia-city-day.jfif);`}
 >
     <div class="hero-overlay bg-opacity-60"></div>
@@ -17,8 +17,8 @@ import Config from "../site.config.js";
             </p>
             <a href="#contatti" class="btn btn-primary">{Config.cta}</a>
         </div>
-        <div class="tooltip tooltip-right absolute bottom-6 left-6 cursor-help" 
-            data-tip="Lo sfondo cambia durante la giornata"
+        <div class="tooltip tooltip-right absolute bottom-2 left-2 md:bottom-6 md:left-6 cursor-help" 
+            data-tip={Config.heroTooltip}
         >
             <svg
                 xmlns="http://www.w3.org/2000/svg"

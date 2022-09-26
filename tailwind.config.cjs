@@ -12,9 +12,7 @@ module.exports = {
   daisyui: {
     themes: [
       "halloween",
-      "coffee",
-      "forest",
-      "autumn"
+      "emerald"
     ],
   },
 };

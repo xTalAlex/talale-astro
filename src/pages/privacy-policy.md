@@ -1,5 +1,5 @@
 ---
-layout: '../layouts/MarkdownLayout.astro'
+layout: '../layouts/ProseLayout.astro'
 title: 'Privacy Policy'
 ---
 Informativa sulla Privacy
