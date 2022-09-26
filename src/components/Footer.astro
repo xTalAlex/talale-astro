@@ -1,32 +1,8 @@
 ---
 import Config from "../site.config.js";
-import Contacts from "./Contacts.astro";
 ---
 
 <footer class="footer footer-center p-10">
-    <div class="my-10">
-        <Contacts />
-    </div>
-    <div
-        tabindex="0"
-        class="collapse collapse-close collapse-plus cursor-pointer"
-        onclick="this.classList.toggle('collapse-close')"
-    >
-        <div class="collapse-title text-left font-medium">
-            Referral
-        </div>
-        <div class="collapse-content">
-            <a
-                href="https://www.digitalocean.com/?refcode=4c50de6f8f9f&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge"
-                target="_blank"
-            >
-                <img
-                    src="https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%202.svg"
-                    alt="DigitalOcean Referral Badge"
-                />
-            </a>
-        </div>
-    </div>
     <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
         <a
             href="https://www.iubenda.com/privacy-policy/89896072"
@@ -52,6 +28,24 @@ import Contacts from "./Contacts.astro";
         <a href="/privacy-policy.html" target="_blank">Privacy Policy Custom</a>
         <a href="/cookie-policy.html" target="_blank">Cookie Policy</a>
         <a href="javascript: Cookiebot.renew()">Impostazioni Cookie</a>
+    </div>
+    <div
+        tabindex="0"
+        class="collapse collapse-close collapse-plus cursor-pointer"
+        onclick="this.classList.toggle('collapse-close')"
+    >
+        <div class="collapse-title text-left font-medium">Referral</div>
+        <div class="collapse-content">
+            <a
+                href="https://www.digitalocean.com/?refcode=4c50de6f8f9f&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge"
+                target="_blank"
+            >
+                <img
+                    src="https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%202.svg"
+                    alt="DigitalOcean Referral Badge"
+                />
+            </a>
+        </div>
     </div>
     <div class="items-center grid-flow-col">
         <svg

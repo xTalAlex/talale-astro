@@ -2,17 +2,53 @@
 import Config from "../site.config.js";
 ---
 
-<div class="card bg-neutral text-neutral-content">
+<div class="card bg-neutral text-neutral-content h-full w-full">
     <div class="card-body">
-        <form netlify name="messagebox" method="POST" action="/messaggio-inviato">
+        <form
+            netlify
+            name="messagebox"
+            method="POST"
+            action="/messaggio-inviato"
+        >
+            <input type="hidden" name="form-name" value="messagebox" />
             <textarea
-                class="textarea textarea-secondary bg-neutral text-neutral-content w-full resize-none h-32 max-h-32"
+                class="textarea textarea-secondary bg-neutral text-neutral-content w-full resize-none min-h-32"
                 name="message"
                 maxlength="300"
                 placeholder={Config.messageBoxPlaceholder}></textarea>
             <div class="card-actions justify-end mt-2">
-                <button type="submit" class="btn btn-secondary">Invia</button>
+                <button type="submit" class="btn btn-secondary"
+                    >Invia</button
+                >
             </div>
         </form>
     </div>
 </div>
+
+<script>
+    // header con "Content-Type": "application/x-www-form-urlencoded"
+    function encode(data) {
+        return Object.keys(data)
+            .map(
+                (key) =>
+                    encodeURIComponent(key) +
+                    "=" +
+                    encodeURIComponent(data[key])
+            )
+            .join("&");
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: encode({
+                "form-name": event.target.getAttribute("name"),
+                ...name,
+            }),
+        })
+            .then(() => navigate("/thank-you/"))
+            .catch((error) => alert(error));
+    };
+</script>

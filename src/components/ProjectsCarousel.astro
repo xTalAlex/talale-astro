@@ -52,8 +52,13 @@ const sortedProjects = projects.reverse();
 <script>
     import EmblaCarousel from "embla-carousel";
 
+    let curIndex = null;
+
     const onThumbClick = (mainCarousel, thumbCarousel, index) => () => {
-        if(thumbCarousel.clickAllowed()) mainCarousel.scrollTo(index);
+        if(thumbCarousel.clickAllowed()){ 
+            mainCarousel.scrollTo(index);
+            curIndex = index;
+        }
     };
 
     const followMainCarousel = (mainCarousel, thumbCarousel) => () => {
@@ -94,4 +99,17 @@ const sortedProjects = projects.reverse();
     const syncThumbCarousel = followMainCarousel(mainCarousel, thumbCarousel);
     mainCarousel.on("select", syncThumbCarousel);
     thumbCarousel.on("init", syncThumbCarousel);
+
+    const checkKey = (e) => {
+        e = e || window.event;
+        if (e.keyCode == '37') {
+            onThumbClick(mainCarousel, thumbCarousel, 0 );
+            syncThumbCarousel;
+        }
+        else if (e.keyCode == '39') {
+            onThumbClick(mainCarousel, thumbCarousel, 1 );
+            syncThumbCarousel;
+        }
+    };
+    document.onkeydown = checkKey;
 </script>

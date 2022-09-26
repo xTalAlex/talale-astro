@@ -8,11 +8,13 @@ import ProjectsCarousel from "../components/ProjectsCarousel.astro";
 import Introduction from "../components/Introduction.astro";
 import Features from "../components/Features.astro";
 import MessageBox from "../components/MessageBox.astro";
+import Contacts from "../components/Contacts.astro";
+import FeaturedImage from "../components/FeaturedImage.astro";
 ---
 
 <Layout title={Config.title}>
 	<Hero />
-	<div class="px-5 md:mx-auto container space-y-12 pt-12">
+	<div class="px-5 md:mx-auto container max-w-5xl space-y-12 pt-12">
 		<Introduction />
 		<Frameworks />
 		<Features />
@@ -22,9 +24,18 @@ import MessageBox from "../components/MessageBox.astro";
 				<ProjectsCarousel />
 			</div>
 		</div>
-		<MessageBox />
-		<div class="pt-12">
+		<div class="py-12">
+			<FeaturedImage />
+		</div>
+		<div class="pt-12 w-fit mx-auto">
 			<Biography />
+			<div class="mt-5 w-full">
+				<MessageBox />
+			</div>
+		</div>
+
+		<div class="my-10">
+			<Contacts />
 		</div>
 	</div>
 </Layout>

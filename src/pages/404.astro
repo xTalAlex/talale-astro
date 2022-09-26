@@ -1,7 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import monster from "../assets/images/monster404.png";
 ---
 
 <Layout title="404 | Pagina non trovata">
-
+    <div class="container mx-auto pt-20">
+        <div class="card">
+            <div class="card-body">
+                <img class="h-[60vh] w-auto object-contain" src={monster}>
+            </div>
+        </div>
+    </div>
 </Layout>
