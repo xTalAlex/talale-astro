@@ -2,20 +2,39 @@
 import FrameworkCard from "./FrameworkCard.astro";
 
 import frameworks from "../data/frameworks.js";
+
 ---
 
-<div class="card mx-auto">
+<div class="embla relative" id="frameworks-carousel">
     <div
-        class="card-body grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-6 px-0"
+        class="embla__viewport"
     >
+        <div class="embla__container">
         {
             frameworks.map((framework) => (
-                <FrameworkCard
-                    name={framework.name}
-                    icon={framework.icon}
-                    link={new URL(framework.link)}
-                />
+                <div class="embla__slide relative min-w-[50%] sm:min-w-[33%] md:min-w-[20%]">
+                    <FrameworkCard
+                        name={framework.name}
+                        icon={framework.icon}
+                        link={new URL(framework.link)}
+                    />
+                </div>
             ))
         }
+        </div>
     </div>
 </div>
+
+<script>
+    import EmblaCarousel from "embla-carousel";
+    import Autoplay from 'embla-carousel-autoplay';
+
+    const thumbCarouselWrap = document.getElementById("frameworks-carousel");
+    const thumbCarouselView = thumbCarouselWrap.querySelector(".embla__viewport");
+    const autoplay = Autoplay({delay:1000}, thumbCarouselView.parentElement);
+    const thumbCarousel = EmblaCarousel(thumbCarouselView, {
+        dragFree: true,
+        loop: true,
+        speed: 0.2,
+    },[autoplay]);
+</script>

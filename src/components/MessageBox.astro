@@ -47,29 +47,31 @@ import Config from "../site.config.js";
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        document.getElementById("message").disabled = true;
-        document.getElementById("submitButton").disabled = true;
-        document.getElementById("submitButton").classList.add("loading");
-        fetch("/", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: encode( new FormData(document.forms[0]) ),
-        })
-        .then( res => {
-            document.getElementById("alertContainer").classList.add("alert-success");
-            document.getElementById("alertContainer").classList.remove("hidden");
-            document.getElementById("alertText").innerHTML = "Messaggio inviato!";
-            document.getElementById("message").value = "";
-            document.getElementById("submitButton").classList.remove("loading");
-        })
-        .catch( error => {
-            document.getElementById("alertContainer").classList.add("alert-error");
-            document.getElementById("alertContainer").classList.remove("hidden");
-            document.getElementById("alertText").innerHTML = "Si è verificato un errore!";
-            document.getElementById("message").disabled = false;
-            document.getElementById("submitButton").disabled = false;
-            document.getElementById("submitButton").classList.remove("loading");
-        });
+        if(document.getElementById("message").value.trim() != ""){
+            document.getElementById("message").disabled = true;
+            document.getElementById("submitButton").disabled = true;
+            document.getElementById("submitButton").classList.add("loading");
+            fetch("/", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: encode( new FormData(document.forms[0]) ),
+            })
+            .then( res => {
+                document.getElementById("alertContainer").classList.add("alert-success");
+                document.getElementById("alertContainer").classList.remove("hidden");
+                document.getElementById("alertText").innerHTML = "Messaggio inviato!";
+                document.getElementById("message").value = "";
+                document.getElementById("submitButton").classList.remove("loading");
+            })
+            .catch( error => {
+                document.getElementById("alertContainer").classList.add("alert-error");
+                document.getElementById("alertContainer").classList.remove("hidden");
+                document.getElementById("alertText").innerHTML = "Si è verificato un errore!";
+                document.getElementById("message").disabled = false;
+                document.getElementById("submitButton").disabled = false;
+                document.getElementById("submitButton").classList.remove("loading");
+            });
+        }
     };
 
     document.forms[0].onsubmit = handleSubmit;

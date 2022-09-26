@@ -1,6 +1,7 @@
 @import "tailwindcss/base";
 
 @import "tailwindcss/components";
+@import "./embla.css";
 @import "./cookiebot.css";
 
 @import "tailwindcss/utilities";
