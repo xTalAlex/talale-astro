@@ -9,7 +9,7 @@ import Introduction from "../components/Introduction.astro";
 import Features from "../components/Features.astro";
 import MessageBox from "../components/MessageBox.astro";
 import Contacts from "../components/Contacts.astro";
-import FeaturedImage from "../components/FeaturedImage.astro";
+import FeaturedImages from "../components/FeaturedImages.astro";
 ---
 
 <Layout title={Config.title}>
@@ -24,10 +24,10 @@ import FeaturedImage from "../components/FeaturedImage.astro";
 				<ProjectsCarousel />
 			</div>
 		</div>
-		<div class="py-12">
-			<FeaturedImage />
+		<div class="">
+			<FeaturedImages />
 		</div>
-		<div class="pt-12 w-fit mx-auto">
+		<div class="md:pt-12 w-fit mx-auto">
 			<Biography />
 			<div class="mt-5 w-full">
 				<MessageBox />
