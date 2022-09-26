@@ -15,7 +15,7 @@ import Config from "../site.config.js";
             <div id="alertContainer" class="hidden alert shadow-lg cursor-pointer mb-2" onclick="this.classList.add('hidden')">
                 <div>
                     <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    <span id="alertText">Messaggio inviato!</span>
+                    <span id="alertText"></span>
                 </div>
             </div>
             <textarea
@@ -34,6 +34,8 @@ import Config from "../site.config.js";
 </div>
 
 <script>
+    import Config from "../site.config.js";
+    
     const encode = (data) => {
         return Object.keys(data)
             .map(
@@ -59,14 +61,14 @@ import Config from "../site.config.js";
             .then( res => {
                 document.getElementById("alertContainer").classList.add("alert-success");
                 document.getElementById("alertContainer").classList.remove("hidden");
-                document.getElementById("alertText").innerHTML = "Messaggio inviato!";
+                document.getElementById("alertText").innerHTML = Config.messageBoxSuccess;
                 document.getElementById("message").value = "";
                 document.getElementById("submitButton").classList.remove("loading");
             })
             .catch( error => {
                 document.getElementById("alertContainer").classList.add("alert-error");
                 document.getElementById("alertContainer").classList.remove("hidden");
-                document.getElementById("alertText").innerHTML = "Si è verificato un errore!";
+                document.getElementById("alertText").innerHTML = Config.messageBoxError;
                 document.getElementById("message").disabled = false;
                 document.getElementById("submitButton").disabled = false;
                 document.getElementById("submitButton").classList.remove("loading");

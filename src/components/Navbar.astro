@@ -1,11 +1,15 @@
 ---
 import ThemeSwitcher from "./ThemeSwitcher.astro";
 import Config from "../site.config.js";
+import icon from "../assets/images/icon.png";
 ---
 
 <div class="navbar bg-base-300/50 backdrop-blur fixed z-50 h-16">
     <div class="flex-1">
-        <a href="/" class="btn btn-ghost normal-case text-xl">{Config.title}</a>
+        <a href="/" class="btn btn-ghost normal-case text-xl">
+            <img class="h-5 mr-2" src={ icon } />
+            {Config.title}
+        </a>
     </div>
     <div class="flex-none px-4">
         <ThemeSwitcher />

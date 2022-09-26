@@ -1,4 +1,5 @@
 export default {
+    url: "https://talale.it",
     title: "Alessandro Talamona",
     subtitle: "Sviluppatore Web Freelance",
     description: "Realizzazione e ristrutturazione di Siti Web, ECommerce ed Applicazioni Web.",
@@ -7,4 +8,6 @@ export default {
     biography: "Sono nato nel 1993, abito in provincia di Varese e sono laureato in Informatica Musicale. Oltre a occuparmi di programmazione, sono appassionato di musica e videogiochi.",
     defaultCodePrefix: ">",
     messageBoxPlaceholder: "Lascia un messaggio",
+    messageBoxSuccess: "Messaggio inviato!",
+    messageBoxError: "Si è verificato un errore!",
 };
