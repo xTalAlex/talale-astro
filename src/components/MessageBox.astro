@@ -1,0 +1,18 @@
+---
+import Config from "../site.config.js";
+---
+
+<div class="card bg-neutral text-neutral-content">
+    <div class="card-body">
+        <form netlify name="messagebox" method="POST" action="/messaggio-inviato">
+            <textarea
+                class="textarea textarea-secondary bg-neutral text-neutral-content w-full resize-none h-32 max-h-32"
+                name="message"
+                maxlength="300"
+                placeholder={Config.messageBoxPlaceholder}></textarea>
+            <div class="card-actions justify-end mt-2">
+                <button type="submit" class="btn btn-secondary">Invia</button>
+            </div>
+        </form>
+    </div>
+</div>
