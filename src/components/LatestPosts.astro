@@ -10,8 +10,8 @@ import { formatDate } from "../utils";
             {
                 posts.map( post => 
                     <li class="mt-6">
-                        <div class="flex flex-row space-x-4 items-center">
-                            <div class="badge badge-secondary badge-outline">{ formatDate(post.date) }</div>
+                        <div class="flex flex-col md:flex-row md:space-x-4 md:items-center">
+                            <div class="badge badge-secondary badge-outline place-self-end md:place-self-auto">{ formatDate(post.date) }</div>
                             <a href={`/blog/${ post.slug }`}><div class="link text-lg text-primary" set:html={ post.title }></div></a>
                         </div>
                         <div class="ml-4" set:html={ post.excerpt }></div>

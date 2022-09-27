@@ -47,31 +47,42 @@ import Config from "../site.config.js";
             .join("&");
     };
 
+    const handleError = (res) => {
+        document.getElementById("alertContainer").classList.add("alert-error");
+        document.getElementById("alertContainer").classList.remove("hidden");
+        document.getElementById("alertText").innerHTML = Config.messageBoxError;
+        document.getElementById("message").disabled = false;
+        document.getElementById("submitButton").disabled = false;
+        document.getElementById("submitButton").classList.remove("loading");
+    };
+
+    const handleSuccess = (res) => {
+        document.getElementById("alertContainer").classList.add("alert-success");
+        document.getElementById("alertContainer").classList.remove("hidden");
+        document.getElementById("alertText").innerHTML = Config.messageBoxSuccess;
+        document.getElementById("message").value = "";
+        document.getElementById("submitButton").classList.remove("loading");
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
         if(document.getElementById("message").value.trim() != ""){
+            let data = new FormData(document.forms[0]);
+            data.set("message",document.getElementById("message").value.trim());
             document.getElementById("message").disabled = true;
             document.getElementById("submitButton").disabled = true;
             document.getElementById("submitButton").classList.add("loading");
             fetch("/", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: encode( new FormData(document.forms[0]) ),
+                body: new URLSearchParams( data ).toString(),
             })
             .then( res => {
-                document.getElementById("alertContainer").classList.add("alert-success");
-                document.getElementById("alertContainer").classList.remove("hidden");
-                document.getElementById("alertText").innerHTML = Config.messageBoxSuccess;
-                document.getElementById("message").value = "";
-                document.getElementById("submitButton").classList.remove("loading");
+                if(res.status == 200)handleSuccess(res);
+                else handleError(res);
             })
             .catch( error => {
-                document.getElementById("alertContainer").classList.add("alert-error");
-                document.getElementById("alertContainer").classList.remove("hidden");
-                document.getElementById("alertText").innerHTML = Config.messageBoxError;
-                document.getElementById("message").disabled = false;
-                document.getElementById("submitButton").disabled = false;
-                document.getElementById("submitButton").classList.remove("loading");
+                handleError(error)
             });
         }
     };
