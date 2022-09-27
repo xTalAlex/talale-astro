@@ -1,0 +1,41 @@
+---
+import ProseLayout from "../../layouts/ProseLayout.astro";
+
+import { posts } from "../../data/posts";
+
+export async function getStaticPaths({ paginate }) {
+    return posts.map((post, id) => {
+        return {
+            params: { slug: post.slug },
+            props: {
+                post,
+                previousPost:
+                    id > 0
+                        ? {
+                              title: posts[id - 1].title,
+                              slug: posts[id - 1].slug,
+                          }
+                        : null,
+                nextPost:
+                    id + 1 < posts.length
+                        ? {
+                              title: posts[id + 1].title,
+                              slug: posts[id + 1].slug,
+                          }
+                        : null,
+            },
+        };
+    });
+}
+
+const { post, previousPost, nextPost } = Astro.props;
+---
+
+<ProseLayout title={post.title}>
+    <img
+        class="h-96"
+        src={post.featuredImage.sourceUrl}
+        alt={post.featuredImage.alt}
+    />
+    <div set:html={post.content}></div>
+</ProseLayout>

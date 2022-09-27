@@ -1,5 +1,7 @@
 export default {
     url: "https://talale.it",
+    blogURL: "https://talale.altervista.org",
+    blogCategory: "Informatica",
     title: "Alessandro Talamona",
     subtitle: "Sviluppatore Web Freelance",
     description: "Realizzazione e ristrutturazione di Siti Web, ECommerce ed Applicazioni Web.",

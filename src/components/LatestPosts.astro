@@ -1,0 +1,24 @@
+---
+import { posts } from "../data/posts";
+import { formatDate } from "../utils";
+---
+<div class="card">
+    <div class="card-body">
+        <div class="card-title">Dal Blog</div>
+        <div>
+            <ul>
+            {
+                posts.map( post => 
+                    <li class="mt-6">
+                        <div class="flex flex-row space-x-4 items-center">
+                            <div class="badge badge-secondary badge-outline">{ formatDate(post.date) }</div>
+                            <a href={`/blog/${ post.slug }`}><div class="link text-lg text-primary" set:html={ post.title }></div></a>
+                        </div>
+                        <div class="ml-4" set:html={ post.excerpt }></div>
+                    </li>
+                )
+            }
+            </ul>
+        </div>
+    </div>
+</div>
