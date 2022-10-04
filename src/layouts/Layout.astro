@@ -22,20 +22,25 @@ const canonical = Astro.url.href;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 
-		<SEO 
-			title={title}
-			description={description}
-			canonical={canonical}
-		/>
+		<SEO title={title} description={description} canonical={canonical} />
 
 		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+		<script
+			id="Cookiebot"
+			src="https://consent.cookiebot.com/uc.js"
+			data-cbid="19b88f49-c060-4e64-b540-e2356b7d55a8"
+			type="text/javascript"
+			data-blockingmode="auto"
+		></script>
 
 		<!-- Google tag (gtag.js) -->
 		<script
 			async
 			src="https://www.googletagmanager.com/gtag/js?id=G-9WYY21B3RR"
+			data-cookieconsent="statistics"
 		></script>
-		<script>
+		<script data-cookieconsent="statistics">
 			window.dataLayer = window.dataLayer || [];
 			function gtag() {
 				dataLayer.push(arguments);
@@ -44,7 +49,6 @@ const canonical = Astro.url.href;
 
 			gtag("config", "G-9WYY21B3RR");
 		</script>
-		
 	</head>
 	<body>
 		<Navbar />
@@ -54,7 +58,7 @@ const canonical = Astro.url.href;
 		<Footer />
 
 		<!--Tawk.to Script-->
-		<script type="text/javascript">
+		<script type="text/javascript" data-cookieconsent="preferences, statistics">
 			var Tawk_API = Tawk_API || {},
 				Tawk_LoadStart = new Date();
 			(function () {
