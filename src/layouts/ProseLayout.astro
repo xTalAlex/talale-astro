@@ -11,3 +11,14 @@ const { title } = Astro.props.frontmatter || Astro.props;
         </div>
     </div>
 </Layout>
+
+<script>
+    const codeTags = [...document.getElementsByTagName('code')];
+    codeTags.forEach(code => {
+        const aTags = [...code.getElementsByTagName('a')];
+        aTags.forEach(a => {
+            console.log(a.classList);
+            a.classList.add('link','link-secondary');
+        });
+    });
+</script>
