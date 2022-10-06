@@ -35,6 +35,7 @@ async function getPosts(perPage, page) {
             featuredImage {
               node {
                 sourceUrl
+                title
                 altText
               }
             }

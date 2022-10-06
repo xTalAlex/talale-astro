@@ -1,6 +1,6 @@
 ---
 import ProseLayout from "../../layouts/ProseLayout.astro";
-
+import { htmlToText } from "html-to-text";
 import { posts } from "../../data/posts";
 
 export async function getStaticPaths({ paginate }) {
@@ -31,12 +31,18 @@ export async function getStaticPaths({ paginate }) {
 const { post, previousPost, nextPost } = Astro.props;
 ---
 
-<ProseLayout title={post.title}>
+<ProseLayout 
+    title={post.title}
+    description={htmlToText(post.excerpt)}
+    ogType="article"
+    ogImage={post.featuredImage.sourceUrl}
+    ogImageAlt={post.featuredImage.altText ?? post.featuredImage.title}
+>
     <div class="h-96 bg-white">
         <img
             class="m-auto h-full w-auto object-contain"
             src={post.featuredImage.sourceUrl}
-            alt={post.featuredImage.alt}
+            alt={post.featuredImage.altText ?? post.featuredImage.title}
         />
     </div>
     <div set:html={post.content}></div>

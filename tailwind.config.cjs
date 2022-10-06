@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   content: [
     "./public/**/*.html",
@@ -5,6 +7,15 @@ module.exports = {
   ],
   safelist: [
   ],
+  theme: {
+    extend: {
+      fontFamily: {
+        'sans': [...defaultTheme.fontFamily.sans],
+        'serif': [...defaultTheme.fontFamily.serif],
+        'mono': [...defaultTheme.fontFamily.mono],
+      }
+    }
+  },
   plugins: [
     require('@tailwindcss/typography'),
     require("daisyui"), 

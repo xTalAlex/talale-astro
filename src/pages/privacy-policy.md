@@ -1,6 +1,7 @@
 ---
-layout: '../layouts/ProseLayout.astro'
-title: 'Privacy Policy'
+layout: "../layouts/ProseLayout.astro"
+title: "Privacy Policy"
+description: "Privacy Policy"
 ---
 Informativa sulla Privacy
 =========================
