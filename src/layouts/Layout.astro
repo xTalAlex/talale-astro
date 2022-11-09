@@ -4,6 +4,7 @@ import Config from "../site.config";
 import { SEO } from "astro-seo";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
+import Modal from "../components/vue/Modal.vue";
 
 export interface Props {
 	title?: string;
@@ -77,6 +78,8 @@ const openGraph = {
 			<slot />
 		</main>
 		<Footer />
+
+		<Modal client:only="vue"/>
 
 		<!--Tawk.to Script-->
 		<script type="text/javascript" data-cookieconsent="preferences, statistics">

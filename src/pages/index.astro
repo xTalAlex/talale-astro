@@ -13,6 +13,7 @@ import FeaturedImages from "../components/FeaturedImages.astro";
 import Prices from "../components/Prices.astro";
 import LatestPosts from "../components/LatestPosts.astro";
 import ScreenSizes from "../components/ScreenSizes.astro";
+import LaravelDailyTips from "../components/vue/LaravelDailyTips.vue";
 ---
 
 <Layout>
@@ -32,6 +33,7 @@ import ScreenSizes from "../components/ScreenSizes.astro";
 			<FeaturedImages />
 		</div>
 		<LatestPosts />
+		<LaravelDailyTips client:only="vue"/>
 		<ScreenSizes />
 		<div class="w-fit mx-auto">
 			<Biography />
