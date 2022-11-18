@@ -2,6 +2,7 @@
 layout: "../layouts/ProseLayout.astro"
 title: "Privacy Policy"
 description: "Privacy Policy"
+noindex: true
 ---
 Informativa sulla Privacy
 =========================

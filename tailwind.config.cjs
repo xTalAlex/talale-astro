@@ -21,6 +21,7 @@ module.exports = {
     require("daisyui"), 
   ],
   daisyui: {
+    logs: false,
     themes: [
       "halloween",
       "emerald"
