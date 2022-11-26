@@ -51,7 +51,7 @@ export default [
     {
         title: "TALLCommerce",
         description: "Demo di un ECommerce di cui si può provare il pannello di controllo",
-        link: "https://tallcommerce.herokuapp.com/",
+        link: "https://github.com/xTalAlex/TALLCommerce#readme",
         screenshot: "tallcommerce.png",
         completed: true,
     },

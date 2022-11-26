@@ -78,7 +78,7 @@ import Config from "../site.config.js";
                 body: new URLSearchParams( data ).toString(),
             })
             .then( res => {
-                if(res.status == 200)handleSuccess(res);
+                if(res.status == 200) handleSuccess(res);
                 else handleError(res);
             })
             .catch( error => {
