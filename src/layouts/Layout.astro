@@ -12,9 +12,10 @@ export interface Props {
 	ogType?: string;
 	ogImage?: string;
 	ogImageAlt?: string;
+	noindex?: boolean;
 }
 
-const { title = null , description = Config.description, ogType = "website", ogImage = Config.url + "/images/homepreview.png", ogImageAlt = "Website Header" } = Astro.props;
+const { title = null , description = Config.description, ogType = "website", ogImage = Config.url + "/images/homepreview.png", ogImageAlt = "Website Header", noindex = false } = Astro.props;
 
 const canonical = Astro.url.href;
 const fullTitle = title ? (ogType == "article" ? title + " | " + Config.title : Config.title + " | " + title ) : Config.title + " | " + Config.description;
@@ -44,6 +45,7 @@ const openGraph = {
 			description={description} 
 			canonical={canonical}
 			openGraph={openGraph} 
+			noindex={noindex}
 		/>
 
 		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
