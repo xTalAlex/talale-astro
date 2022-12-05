@@ -14,6 +14,7 @@ import Prices from "../components/Prices.astro";
 import LatestPosts from "../components/LatestPosts.astro";
 import ScreenSizes from "../components/ScreenSizes.astro";
 import LaravelDailyTips from "../components/vue/LaravelDailyTips.vue";
+import Minesweeper from "../components/Minesweeper.astro";
 ---
 
 <Layout>
@@ -35,6 +36,9 @@ import LaravelDailyTips from "../components/vue/LaravelDailyTips.vue";
 		<LatestPosts />
 		<LaravelDailyTips client:only="vue"/>
 		<ScreenSizes />
+		<div class="flex justify-center items-center my-12">
+			<Minesweeper />
+		</div>
 		<div class="w-fit mx-auto">
 			<Biography />
 			<div class="mt-5 w-full">
