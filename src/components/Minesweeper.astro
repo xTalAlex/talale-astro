@@ -1,24 +1,23 @@
 ---
-import bomb from "../assets/images/bomb.png";
-import electrode from "../assets/audio/electrode.mp3";
+import electrodeCry from "../assets/audio/electrode.mp3";
+import itemFoundFanfare from "../assets/audio/pokemon_rby_item_found_fanfare.mp3";
 
-var table = new Array(10);
-for (var i = 0; i < table.length; i++) {
-    table[i] = new Array(10).fill(0);
-}
+const boardSize = 10;
+var table = new Array(boardSize);
+for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
 ---
 
 <div class="">
-    <div class="flex border-4 border-primary relative" id="board">
+
+    <div class="flex border-4 border-accent relative">
         {
             table.map((col, colId) => {
                 return (
-                    <div class="text-black">
+                    <div class="text-neutral-content">
                         {table.map((row, rowId) => {
                             return (
-                                <div
-                                    id={colId + "" + rowId}
-                                    class="mine-cell font-black h-8 w-8 md:h-10 md:pt-1.5 md:w-10 z-10 text-center border-2 border-gray-500 bg-gray-400 shadow-inner hover:shadow-none hover:bg-gray-200 cursor-pointer"
+                                <div class="mine-cell select-none bg-neutral hover:bg-accent-focus border-neutral-content font-black h-8 w-8 md:h-10 md:pt-1.5 md:w-10 z-10 text-center border-2 shadow-inner hover:shadow-none cursor-pointer"
+                                    id={ (colId * boardSize) + rowId }   
                                 />
                             );
                         })}
@@ -26,196 +25,170 @@ for (var i = 0; i < table.length; i++) {
                 );
             })
         }
-        <img class=" h-full w-full object-cover bg-error hidden" id="gameOver" src={bomb} />
     </div>
 
-    <audio id="electrode" class="hidden" src={electrode}></audio>
+    <audio class="hidden" 
+        id="electrodeCry" 
+        src={electrodeCry}
+    ></audio>
+    <audio class="hidden" 
+        id="itemFoundFanfare" 
+        src={itemFoundFanfare}
+    ></audio>
 
     <div class="mt-6 text-center">
-        <button id="refresh" class="btn btn-secondary">New Game</button>
+        <button class="btn btn-accent" 
+            id="refresh"
+        >Refresh
+            <svg class="ml-1 w-4 h-4 stroke-current fill-none stroke-2" 
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+            </svg>               
+        </button>
     </div>
 </div>
 
 <script>
-    import bomb from "../assets/images/bomb.png";
+    import confetti from 'canvas-confetti';
+    import { adjacentCells } from "../utils";
+    const electrode = "https://img.pokemondb.net/sprites/ruby-sapphire/normal/electrode.png";
+    const magnet = "https://raw.githubusercontent.com/msikma/pokesprite/master/items-outline/hold-item/magnet.png";
 
-    const nBombs = 10;
-    const boardSize = 10;
-
+    var nBombs = 10;
+    var boardSize = 10;
     var gameOver = false;
     var checkedCtr = 0;
-
-    var table = new Array(boardSize);
-        for (var i = 0; i < table.length; i++) {
-            table[i] = new Array(boardSize).fill(0);
-        }
     var bombs = new Array(0);
+    var table = new Array(boardSize);
+    for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
+    const colorsTable = {
+        0: "text-transparent",
+        1: "text-info",
+        2: "text-warning",
+        3: "text-error"
+    }
 
-    function init() {
+    const cells = document.querySelectorAll(".mine-cell");
+    const refresh = document.getElementById("refresh");
+    const itemFoundFanfare = document.getElementById("itemFoundFanfare");
+    const electrodeCry = document.getElementById("electrodeCry");
+
+    const init = () => {
         gameOver = false;
         checkedCtr = 0;
-
-        table = new Array(boardSize);
-        for (var i = 0; i < table.length; i++) {
-            table[i] = new Array(boardSize).fill(0);
-        }
         bombs = new Array(0);
+        table = new Array(boardSize);
+        for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
+        cells.forEach( (cell) => {
+            cell.innerHTML = "";
+            cell.classList.remove("bg-gray-200","text-info","text-warning","text-error","text-gray-300");
+            cell.classList.add("bg-gray-400");
+        });
         getBombs();
         getHints();
     }
 
+    const getCoordinates = (id) => {
+        return {
+            col: Math.floor(id / boardSize),
+            row: id % boardSize
+        }
+    }
+
+    const getBombs = () => {
+        while(bombs.length < nBombs) {
+            var id = Math.floor(Math.random() * (boardSize * boardSize));
+            if (bombs.indexOf(id) === -1) {
+                bombs.push(id);
+                table[getCoordinates(id).col][getCoordinates(id).row] = 'X';
+            }
+        }
+    }
+
+    const getHints = () => {
+        bombs.forEach((id) => {
+            var cells = adjacentCells( getCoordinates(id).col, getCoordinates(id).row, boardSize );
+            cells.forEach( (cell) => table[cell.col][cell.row] != 'X' && table[cell.col][cell.row]++ );
+        });
+    }
+
     init();
 
-    function getBombs() {
-        while (bombs.length < nBombs) {
-            var r = Math.floor(Math.random() * 100);
-            if (bombs.indexOf(r) === -1) {
-                bombs.push(r);
-                table[Math.floor(r / 10)][r % 10] = "X";
-            }
-        }
-    }
-
-    function getAdjacentCells(col, row) {
-        var cells = Array();
-        var startCol = col - 1 >= 0 ? col - 1 : 0;
-        var endCol = col + 1 < boardSize ? col + 1 : col;
-        var startRow = row - 1 >= 0 ? row - 1 : 0;
-        var endRow = row + 1 < boardSize ? row + 1 : row;
-        for (let colId = startCol; colId < endCol + 1; colId++)
-            for (let rowId = startRow; rowId < endRow + 1; rowId++)
-                if (!(rowId == row && colId == col))
-                    cells.push({
-                        col: colId,
-                        row: rowId,
-                    });
-        return cells;
-    }
-
-    function getHints() {
-        bombs.forEach((bomb) => {
-            var adjacentCells = getAdjacentCells(
-                Math.floor(bomb / boardSize),
-                bomb % boardSize
-            );
-            adjacentCells.forEach(
-                (cell) =>
-                    table[cell.col][cell.row] != "X" &&
-                    table[cell.col][cell.row]++
-            );
-        });
-    }
-
-    function checkWin() {
-        if(checkedCtr == (boardSize*boardSize - nBombs) ){
-            alert('VITTORIA');
-            gameOver = true;
-        }
-        console.log(checkedCtr);
-    }
-
-    function getColor(n) {
-        var color = "text-gray-300";
-        switch (true) {
-            case n == 1:
-                color = "text-info";
-                break;
-            case n == 2:
-                color = "text-warning";
-                break;
-            case n >= 3:
-                color = "text-error";
-                break;
-            default:
-                color = "text-gray-300";
-                break;
-        }
-        return color;
-    }
-
-    const checkAdjacentEmpty = (col, row) => {
-        var cells = getAdjacentCells(col, row);
-        cells.forEach((cell) => {
-            if (
-                document.getElementById(cell.col + "" + cell.row).innerHTML ==
-                    "" &&
-                table[cell.col][cell.row] != "X"
-            ) {
-                checkCell(cell.col * 10 + cell.row);
-            }
-        });
-    };
-
     const checkCell = (id) => {
-        if (!gameOver) {
-            var newCheck = document.getElementById(
-                    Math.floor(id / 10) + "" + (id % 10)
-                ).innerHTML == '';
-            if (table[Math.floor(id / 10)][id % 10] == "X") {
-                document.getElementById(
-                    Math.floor(id / 10) + "" + (id % 10)
-                ).innerHTML = `<img class="h-8 w-8 md:h-10 md:w-10 md:-mt-1.5" src='https://img.pokemondb.net/sprites/ruby-sapphire/normal/electrode.png'/>`;
-                gameOver = true;
-                document.getElementById("electrode").play();
-            } else {
-                document.getElementById(
-                    Math.floor(id / 10) + "" + (id % 10)
-                ).innerHTML = table[Math.floor(id / 10)][id % 10];
-                document
-                    .getElementById(Math.floor(id / 10) + "" + (id % 10))
-                    .classList.add(
-                        getColor(table[Math.floor(id / 10)][id % 10])
-                    );
-            }
-            if( newCheck ) {
-                checkedCtr++;
-                checkWin();
-            }
-            document
-                .getElementById(Math.floor(id / 10) + "" + (id % 10))
-                .classList.remove("bg-gray-400");
-            document
-                .getElementById(Math.floor(id / 10) + "" + (id % 10))
-                .classList.add("bg-gray-200");
-            
-            if (table[Math.floor(id / 10)][id % 10] == 0)
-                checkAdjacentEmpty(Math.floor(id / 10), id % 10);
+        if(gameOver || document.getElementById(id).innerHTML != '' ) return;
+        var cell = document.getElementById(id);
+        var coordinates = getCoordinates(id);
+        if(table[coordinates.col][coordinates.row] == 'X') {
+            cell.innerHTML = `<img class="h-8 w-8 md:h-10 md:w-10 md:-mt-1.5" src='${electrode}'/>`;
+            gameOver = true;
+            electrodeCry.play();
+            return;
+        } 
+        else{
+            cell.innerHTML = table[coordinates.col][coordinates.row];
+            cell.classList.add( table[coordinates.col][coordinates.row] > 3 ? colorsTable[3] : colorsTable[table[coordinates.col][coordinates.row]] );
+        }
+        checkedCtr++;
+        cell.classList.remove("bg-gray-400");
+        cell.classList.add("bg-gray-200");
+        checkWin();
+        if (table[coordinates.col][coordinates.row] == 0){
+            adjacentCells(coordinates.col, coordinates.row, boardSize).forEach((cell) => {
+                if( document.getElementById((cell.col * boardSize) + cell.row).innerHTML == "" && table[cell.col][cell.row] != 'X' ) 
+                {
+                    checkCell((cell.col * boardSize) + cell.row);
+                }
+            });
         }
     };
 
-    const click = (event) => {
-        if(event.target.tagName != "IMG") checkCell(event.target.id);
+    const checkWin = () => {
+        if( checkedCtr == (boardSize * boardSize - nBombs) ){
+            gameOver = true;
+            itemFoundFanfare.play();
+            fire(0.25, {
+                spread: 26,
+                startVelocity: 55,
+            });
+            fire(0.2, {
+             spread: 60,
+            });
+            fire(0.35, {
+                spread: 100,
+                decay: 0.91,
+                scalar: 0.8
+            });
+            fire(0.1, {
+                spread: 120,
+                startVelocity: 25,
+                decay: 0.92,
+                scalar: 1.2
+            });
+            fire(0.1, {
+                spread: 120,
+                startVelocity: 45,
+            });
+        }
     };
 
-    const cells = document.querySelectorAll(".mine-cell");
+    const fire = (particleRatio, opts) => {
+        confetti(Object.assign({}, { origin: { y: 0.7 } }, opts, {
+            particleCount: Math.floor(200 * particleRatio)
+        }));
+    }
+
+    refresh.onclick = init;
     cells.forEach((cell) => {
-        cell.onclick = click
+        cell.onclick = (event) => {
+            if(event.target.tagName != "IMG") checkCell(event.target.id);
+        };
         cell.oncontextmenu = (e) => {
             e.preventDefault();
             if(!gameOver){
-                var el = e.target;
-                if(el.innerHTML == ''){
-                    el.innerHTML = "<img class='h-8 w-8 md:h-10 md:w-10 md:-mt-1.5' src='https://raw.githubusercontent.com/msikma/pokesprite/master/items-outline/hold-item/magnet.png'/>";
-                    //checkedCtr++;
-                    //checkWin();
-                }
-                if(el.tagName == "IMG" && el.getAttribute('src') == 'https://raw.githubusercontent.com/msikma/pokesprite/master/items-outline/hold-item/magnet.png' ){
-                    el.remove();
-                    //checkedCtr --;
-                }   
+                if(e.target.innerHTML == '') e.target.innerHTML = `<img class='h-8 w-8 md:h-10 md:w-10 md:-mt-1.5' src='${magnet}'/>`;
+                if(e.target.tagName == "IMG" && e.target.getAttribute('src') == magnet ) e.target.remove();   
             }
-        }
+        };
     });
-
-    const reset = () => {
-        init();
-        cells.forEach( (cell) => {
-            cell.innerHTML = ''
-            cell.classList.remove('bg-gray-200','text-info','text-warning','text-error','text-gray-300');
-            cell.classList.add('bg-gray-400')
-        });
-        document.getElementById('gameOver').classList.add('hidden');
-    };
-    document.getElementById('refresh').onclick = reset;
 
 </script>

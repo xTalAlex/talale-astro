@@ -13,7 +13,15 @@ module.exports = {
         'sans': [...defaultTheme.fontFamily.sans],
         'serif': [...defaultTheme.fontFamily.serif],
         'mono': [...defaultTheme.fontFamily.mono],
-      }
+      },
+      animation: {
+        shine: "shine 1s",
+      },
+      keyframes: {
+        shine: {
+          "100%": { left: "125%" },
+        },
+      },
     }
   },
   plugins: [

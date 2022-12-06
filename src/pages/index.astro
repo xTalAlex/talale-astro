@@ -36,8 +36,22 @@ import Minesweeper from "../components/Minesweeper.astro";
 		<LatestPosts />
 		<LaravelDailyTips client:only="vue"/>
 		<ScreenSizes />
-		<div class="flex justify-center items-center my-12">
-			<Minesweeper />
+		<div class="card card-compact">
+			<div class="card-body">
+				<div class="card-title">
+					<h2 class="text-2xl font-semibold"
+						id="minesweeper"
+					>
+						Electrode Minesweeper
+						<img class="inline -ml-2 -mt-1" 
+							alt="Electrode"
+							src="https://img.pokemondb.net/sprites/ruby-sapphire/normal/electrode.png"/>
+					</h2>
+				</div>
+				<div class="flex justify-center items-center mt-6 pb-12">
+					<Minesweeper />
+				</div>
+			</div>
 		</div>
 		<div class="w-fit mx-auto">
 			<Biography />
