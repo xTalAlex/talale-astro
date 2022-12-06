@@ -59,12 +59,10 @@ const openGraph = {
 		></script>
 
 		<!-- Google tag (gtag.js) -->
-		<script
-			async
-			src="https://www.googletagmanager.com/gtag/js?id=G-9WYY21B3RR"
+		<script src="https://www.googletagmanager.com/gtag/js?id=G-9WYY21B3RR" async></script>
+		<script type="text/plain"
 			data-cookieconsent="statistics"
-		></script>
-		<script data-cookieconsent="statistics">
+		>
 			window.dataLayer = window.dataLayer || [];
 			function gtag() {
 				dataLayer.push(arguments);
@@ -84,7 +82,7 @@ const openGraph = {
 		<Modal client:only="vue"/>
 
 		<!--Tawk.to Script-->
-		<script type="text/javascript" data-cookieconsent="preferences, statistics">
+		<script type="text/plain" data-cookieconsent="preferences, statistics">
 			var Tawk_API = Tawk_API || {},
 				Tawk_LoadStart = new Date();
 			(function () {

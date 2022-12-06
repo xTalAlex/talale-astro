@@ -36,13 +36,13 @@ const { post, previousPost, nextPost } = Astro.props;
     description={htmlToText(post.excerpt)}
     ogType="article"
     ogImage={post.featuredImage.sourceUrl}
-    ogImageAlt={post.featuredImage.altText ?? post.featuredImage.title}
+    ogImageAlt={post.featuredImage.altText?.length ? post.featuredImage.altText : post.featuredImage.title}
 >
     <div class="h-96 bg-white">
         <img
             class="m-auto h-full w-auto object-contain"
             src={post.featuredImage.sourceUrl}
-            alt={post.featuredImage.altText ?? post.featuredImage.title}
+            alt={post.featuredImage.altText?.length ? post.featuredImage.altText : post.featuredImage.title}
         />
     </div>
     <div set:html={post.content}></div>
