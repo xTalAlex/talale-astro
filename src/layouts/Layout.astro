@@ -17,7 +17,7 @@ import Modal from "../components/vue/Modal.vue";
 
 const { title = null , description = Config.description, ogType = "website", ogImage = Config.url + "/images/homepreview.png", ogImageAlt = "Website Header", noindex = false } = Astro.props;
 
-const {COOKIEBOT_ID, GOOGLE_ANALYTICS_ID, TAWKTO_WIDGET_URL } = import.meta.env;
+const {COOKIEBOT_ID, GOOGLE_SEARCH_CONSOLE_ID, GOOGLE_ANALYTICS_ID, TAWKTO_WIDGET_URL } = import.meta.env;
 const canonical = Astro.url.href;
 const fullTitle = title ? (ogType == "article" ? title + " | " + Config.title : Config.title + " | " + title ) : Config.title + " | " + Config.description;
 
@@ -59,6 +59,12 @@ const openGraph = {
 					data-cbid={`${COOKIEBOT_ID}`}
 					async
 				></script>
+			)
+		}
+
+		{
+			GOOGLE_SEARCH_CONSOLE_ID && (
+				<meta name="google-site-verification" content={GOOGLE_SEARCH_CONSOLE_ID}/>
 			)
 		}
 
