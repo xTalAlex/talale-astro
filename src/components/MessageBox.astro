@@ -9,7 +9,6 @@ import Config from "../site.config.js";
             netlify
             name="messagebox"
             method="POST"
-            action="/messaggio-inviato"
         >
             <input type="hidden" name="form-name" value="messagebox" />
             <div id="alertContainer" class="hidden alert shadow-lg cursor-pointer mb-2" onclick="this.classList.add('hidden')">
@@ -26,8 +25,7 @@ import Config from "../site.config.js";
                 placeholder={Config.messageBoxPlaceholder}></textarea>
             <div class="card-actions justify-end mt-2">
                 <button id="submitButton" type="submit" class="btn btn-secondary"
-                    >Invia</button
-                >
+                >Invia</button>
             </div>
         </form>
     </div>
