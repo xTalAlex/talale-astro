@@ -54,7 +54,7 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
     const electrode = "https://img.pokemondb.net/sprites/ruby-sapphire/normal/electrode.png";
     const magnet = "https://raw.githubusercontent.com/msikma/pokesprite/master/items-outline/hold-item/magnet.png";
 
-    var nBombs = 10;
+    var nBombs = 15;
     var boardSize = 10;
     var gameOver = false;
     var checkedCtr = 0;
@@ -122,6 +122,7 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
             cell.innerHTML = `<img class="h-8 w-8 md:h-10 md:w-10 md:-mt-1.5" src='${electrode}'/>`;
             gameOver = true;
             electrodeCry.play();
+            setTimeout(showBombs(id), 2000);
             return;
         } 
         else{
@@ -140,6 +141,14 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
                 }
             });
         }
+    };
+
+    const showBombs = (excludeId) => {
+        bombs.filter( id => id != excludeId ).forEach( (id,i) => {
+            setTimeout( () => {
+                document.getElementById(id).innerHTML = `<img class="h-8 w-8 md:h-10 md:w-10 md:-mt-1.5" src='${electrode}'/>`
+            }, i * 200 );
+        });
     };
 
     const checkWin = () => {
