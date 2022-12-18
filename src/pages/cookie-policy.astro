@@ -1,5 +1,7 @@
 ---
 import ProseLayout from "../layouts/ProseLayout.astro";
+
+const {COOKIEBOT_ID } = import.meta.env;
 ---
 
 <ProseLayout 
@@ -7,5 +9,11 @@ import ProseLayout from "../layouts/ProseLayout.astro";
     description="Cookie Policy"
     noindex={true}
 >
-    <script id="CookieDeclaration" src="https://consent.cookiebot.com/19b88f49-c060-4e64-b540-e2356b7d55a8/cd.js" type="text/javascript" async></script>
+
+    <script  type="text/javascript"
+        src={`https://consent.cookiebot.com/${COOKIEBOT_ID}/cd.js`} 
+        id="CookieDeclaration"  
+        async
+    ></script>
+
 </ProseLayout>
