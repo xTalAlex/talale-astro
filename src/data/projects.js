@@ -37,7 +37,7 @@ export default [
     {
         title: "A força da partilha",
         description: "Ristrutturazione e restyling di un sito web per una Organizzazione di Volontariato",
-        link: "https://laforzadellacondivisione.it/",
+        link: "https://laforzadellacondivisione.netlify.app/",
         screenshot: "laforzadellacondivisione.png",
         completed: true,
     },
@@ -60,6 +60,13 @@ export default [
         description: "Il blog della giornalista Paola Guidi",
         link: "https://lacasadipaola.it/",
         screenshot: "lacasadipaola.png",
+        completed: true,
+    },
+    {
+        title: "ColomboFood",
+        description: "Ecommerce B2B per un distributore di prodotti alimentari di Milano",
+        link: "https://www.colombofood.it/",
+        screenshot: "colombofood.png",
         completed: true,
     },
 ];
