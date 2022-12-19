@@ -37,7 +37,7 @@ export default [
     {
         title: "A força da partilha",
         description: "Ristrutturazione e restyling di un sito web per una Organizzazione di Volontariato",
-        link: "https://laforzadellacondivisione.it/",
+        link: "https://laforzadellacondivisione.netlify.app/",
         screenshot: "laforzadellacondivisione.png",
         completed: true,
     },
