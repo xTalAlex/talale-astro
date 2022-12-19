@@ -144,9 +144,12 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
     };
 
     const showBombs = (excludeId) => {
-        bombs.filter( id => id != excludeId ).forEach( (id,i) => {
+        refresh.disabled = true;
+        var remainingBombs =  bombs.filter( id => id != excludeId );
+        remainingBombs.forEach( (id,i) => {
             setTimeout( () => {
-                document.getElementById(id).innerHTML = `<img class="h-8 w-8 md:h-10 md:w-10 md:-mt-1.5" src='${electrode}'/>`
+                document.getElementById(id).innerHTML = `<img class="h-8 w-8 md:h-10 md:w-10 md:-mt-1.5" src='${electrode}'/>`;
+                if(i == remainingBombs.length-1) refresh.disabled = false;
             }, i * 200 );
         });
     };
