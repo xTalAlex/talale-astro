@@ -62,4 +62,11 @@ export default [
         screenshot: "lacasadipaola.png",
         completed: true,
     },
+    {
+        title: "ColomboFood",
+        description: "Ecommerce B2B per un distributore di prodotti alimentari di Milano",
+        link: "https://www.colombofood.it/",
+        screenshot: "colombofood.png",
+        completed: true,
+    },
 ];

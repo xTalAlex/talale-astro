@@ -1,0 +1,148 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const url = new URL("https://id.twitch.tv/oauth2/token");
+url.searchParams.append('client_id', import.meta.env.IGDB_CLIENT);
+url.searchParams.append('client_secret', import.meta.env.IGDB_SECRET);
+url.searchParams.append('grant_type','client_credentials');
+const response = await fetch(url, {
+    method: 'POST'
+});
+const auth = await response.json();
+
+const platforms = await fetch(import.meta.env.IGDB_ENDPOINT + "/platforms", {
+    method: 'POST',
+    headers: {
+        'Client-ID': import.meta.env.IGDB_CLIENT,
+        'Authorization':'Bearer ' + auth.access_token,
+    },
+    body: `
+        fields *;
+        where name = "Nintendo Switch";
+        limit 1;
+    `
+}).then( (response) => response.json() );
+
+const games = await fetch(import.meta.env.IGDB_ENDPOINT + "/games", {
+    method: 'POST',
+    headers: {
+        'Client-ID': import.meta.env.IGDB_CLIENT,
+        'Authorization':'Bearer ' + auth.access_token,
+    },
+    body: `
+        fields *,
+            websites.*, release_dates.*, game_modes.*, genres.*, themes.*, similar_games.*,
+            cover.*, artworks.*, screenshots.*, 
+            involved_companies.*, involved_companies.company.*, involved_companies.company.logo.*, involved_companies.company.websites.*;
+        sort created_at desc;
+        where platforms = (${platforms[0].id}) & cover != null;
+        limit 50;
+        offset 0;
+    `
+}).then( (response) => response.json() );
+
+//search endpoint
+// character + mug shot
+// 4 requests per second
+---
+
+<Layout>
+
+    <h1 class="text-center py-10 text-4xl font-semibold">IGDB - Nintendo Switch</h1>
+
+    <div class="mt-12 grid px-6 mx-auto sm:grid-cols-2 lg:grid-cols-3 place-items-center h-max gap-6">
+        {
+            games.map( (game) => (
+            <div class="card card-compact w-full bg-base-100 shadow-xl h-full">
+                {
+                    (game.cover || game.screenshots) && 
+                        <figure>
+                            <div class="swiper h-64 w-full">
+                                <div class="swiper-wrapper">
+                                {
+                                    game.cover &&
+                                    <div class="swiper-slide">
+                                        <img  class="h-64 w-full object-cover" src={game.cover.url.replace('t_thumb','t_cover_big')} alt={game.name} />
+                                    </div>
+                                }
+                                {
+                                    game.screenshots && game.screenshots.map( (screenshot,id) => (
+                                        <div class="swiper-slide">
+                                            <img class="h-full w-full object-cover" src={screenshot.url.replace('t_thumb','t_screenshot_big')} />
+                                        </div> 
+                                    ))
+                                }
+                                </div>
+                                <div class="swiper-pagination"></div>
+                                <div class="swiper-button-prev"></div>
+                                <div class="swiper-button-next"></div>
+                            </div>
+                        </figure>
+                }
+                <div class="card-body">
+                    <h2 class="card-title" id={game.name}>
+                        {
+                            game.websites && <a href={game.websites[0].url} class="link l" target="_blank">{game.name}</a>
+                        }
+                        {
+                            !game.websites && <span>{game.name}</span>
+                        }
+                        {Math.round(game.total_rating)}
+                        {
+                            game.platforms?.length==1 && <div class="badge badge-accent">Exclusive</div>
+                        }
+                    </h2>
+                    <div class="w-full flex justify-end">
+                        {   
+                            game.release_dates &&
+                            <div class="badge badge-ghost">{new Date(game.release_dates[0].date * 1000).toLocaleDateString()}</div> 
+                        }    
+                    </div>
+                    <p class="h-32 overflow-y-auto my-6">{game.summary}</p>
+                    <div class="flex flex-col space-y-2">
+                        <div class="space-x-2 h-12 overflow-x-auto">
+                            {   
+                                game.genres?.map( (genre) => (
+                                    <div class="badge badge-primary">{genre.name}</div>
+                                ))
+                            }
+                        </div>
+                        <div class="space-x-2 h-12 overflow-x-auto">
+                            {   
+                                game.themes?.map( (theme) => (
+                                    <div class="badge badge-secondary">{theme.name}</div>
+                                ))
+                            }
+                        </div>
+                        <div class="flex space-x-2 h-12 overflow-x-auto justify-end">
+                            {   
+                                game.involved_companies?.map( (company) => company.company.logo && (
+                                    <a href={company.company.websites && company.company.websites[0].url} target="_blank">
+                                        <img class="h-10 object-fill rounded" alt={company.company.name} src={company.company.logo && company.company.logo.url}/>
+                                    </a>
+                                ))
+                            }
+                        </div>    
+                    </div>
+                </div>
+            </div>
+            ))
+        }
+    </div>
+
+    <script>
+        import Swiper, { Navigation, Pagination } from "swiper";
+        const swipers = new Swiper(".swiper", {
+            modules: [Navigation, Pagination ],
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
+    
+</Layout>
