@@ -1,6 +1,8 @@
 ---
 import ProseLayout from "../../layouts/ProseLayout.astro";
+import { formatDate } from "../../utils";
 import { htmlToText } from "html-to-text";
+import getReadingTime from "reading-time";
 import { posts } from "../../data/posts";
 
 export async function getStaticPaths({ paginate }) {
@@ -9,14 +11,15 @@ export async function getStaticPaths({ paginate }) {
             params: { slug: post.slug },
             props: {
                 post,
-                previousPost:
+                readingTime: getReadingTime(post.content),
+                nextPost:
                     id > 0
                         ? {
                               title: posts[id - 1].title,
                               slug: posts[id - 1].slug,
                           }
                         : null,
-                nextPost:
+                previousPost:
                     id + 1 < posts.length
                         ? {
                               title: posts[id + 1].title,
@@ -28,22 +31,69 @@ export async function getStaticPaths({ paginate }) {
     });
 }
 
-const { post, previousPost, nextPost } = Astro.props;
+const { post, readingTime, previousPost, nextPost } = Astro.props;
 ---
 
-<ProseLayout 
+<ProseLayout
     title={post.title}
     description={htmlToText(post.excerpt)}
     ogType="article"
     ogImage={post.featuredImage.sourceUrl}
-    ogImageAlt={post.featuredImage.altText?.length ? post.featuredImage.altText : post.featuredImage.title}
+    ogImageAlt={post.featuredImage.altText?.length
+        ? post.featuredImage.altText
+        : post.featuredImage.title}
 >
     <div class="h-96 bg-white">
         <img
             class="m-auto h-full w-auto object-contain"
             src={post.featuredImage.sourceUrl}
-            alt={post.featuredImage.altText?.length ? post.featuredImage.altText : post.featuredImage.title}
+            alt={post.featuredImage.altText?.length
+                ? post.featuredImage.altText
+                : post.featuredImage.title}
         />
     </div>
-    <div set:html={post.content}></div>
+    <div class="flex flex-col mt-2 mb-6">
+        <h1 class="w-full">{post.title}</h1>
+        <div class="flex space-x-2 justify-end">
+            <div
+                class="cursor-default flex-none badge badge-accent badge-outline"
+            >
+                {Math.round(readingTime.minutes)}
+                {Math.round(readingTime.minutes) == 1 ? "minuto" : "minuti"}
+            </div>
+            <div
+                class="cursor-default flex-none badge badge-primary badge-outline"
+            >
+                {formatDate(post.date)}
+            </div>
+        </div>
+    </div>
+    <div set:html={post.content} />
+    <div class="divider"></div>
+    <div class="flex flex-col sm:flex-row sm:justify-between space-y-4 sm:space-y-0">
+        { previousPost ?
+            <div class="tooltip" data-tip={previousPost.title}>
+                <div class="btn btn-ghost justify-start sm:space-x-2 w-full sm:w-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                    <a class="link whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis" href={`/blog/${previousPost.slug}`}>{previousPost.title}</a>
+                </div>
+            </div>
+            :
+            <div></div>
+        }
+        { nextPost ?
+            <div class="tooltip" data-tip={nextPost.title}>
+                <div class="btn btn-ghost justify-end sm:space-x-2 w-full sm:w-auto">
+                    <a class="link whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis" href={`/blog/${nextPost.slug}`}>{nextPost.title}</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                </div>
+            </div>
+            :
+            <div></div>
+        }
+    </div>
 </ProseLayout>

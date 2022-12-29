@@ -3,5 +3,8 @@
 @import "tailwindcss/components";
 @import "./embla.css";
 @import "./cookiebot.css";
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
 
 @import "tailwindcss/utilities";
