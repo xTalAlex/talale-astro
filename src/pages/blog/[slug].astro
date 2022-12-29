@@ -73,24 +73,24 @@ const { post, readingTime, previousPost, nextPost } = Astro.props;
     <div class="flex flex-col sm:flex-row sm:justify-between space-y-4 sm:space-y-0">
         { previousPost ?
             <div class="tooltip" data-tip={previousPost.title}>
-                <div class="btn btn-ghost justify-start sm:space-x-2 w-full sm:w-auto">
+                <a href={`/blog/${previousPost.slug}`} class="btn btn-ghost justify-start sm:space-x-2 w-full sm:w-auto">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                     </svg>
-                    <a class="link whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis" href={`/blog/${previousPost.slug}`}>{previousPost.title}</a>
-                </div>
+                    <span class="link whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis" >{previousPost.title}</span>
+                </a>
             </div>
             :
             <div></div>
         }
         { nextPost ?
             <div class="tooltip" data-tip={nextPost.title}>
-                <div class="btn btn-ghost justify-end sm:space-x-2 w-full sm:w-auto">
-                    <a class="link whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis" href={`/blog/${nextPost.slug}`}>{nextPost.title}</a>
+                <a  href={`/blog/${nextPost.slug}`} class="btn btn-ghost justify-end sm:space-x-2 w-full sm:w-auto">
+                    <span class="link whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis">{nextPost.title}</a>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                     </svg>
-                </div>
+                </a>
             </div>
             :
             <div></div>

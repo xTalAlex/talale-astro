@@ -36,7 +36,7 @@ const games = await fetch(import.meta.env.IGDB_ENDPOINT + "/games", {
             involved_companies.*, involved_companies.company.*, involved_companies.company.logo.*, involved_companies.company.websites.*;
         sort created_at desc;
         where platforms = (${platforms[0].id}) & cover != null;
-        limit 500;
+        limit 50;
         offset 0;
     `
 }).then( (response) => response.json() );
