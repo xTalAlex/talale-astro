@@ -33,7 +33,6 @@ const { title, description, ogType, ogImage, ogImageAlt, noindex = false } = Ast
     codeTags.forEach(code => {
         const aTags = [...code.getElementsByTagName('a')];
         aTags.forEach(a => {
-            console.log(a.classList);
             a.classList.add('link','link-secondary');
         });
     });

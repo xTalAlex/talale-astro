@@ -86,7 +86,7 @@ const { post, readingTime, previousPost, nextPost } = Astro.props;
         { nextPost ?
             <div class="tooltip" data-tip={nextPost.title}>
                 <a  href={`/blog/${nextPost.slug}`} class="btn btn-ghost justify-end sm:space-x-2 w-full sm:w-auto">
-                    <span class="link whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis">{nextPost.title}</a>
+                    <span class="link whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis">{nextPost.title}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                     </svg>
