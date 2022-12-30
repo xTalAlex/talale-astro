@@ -2,32 +2,38 @@ import { getGames, getNintentoSwitch } from "../lib/igdb";
 
 const nintendoSwitch = await getNintentoSwitch();
 
-let games = [];
-let newGames = [];
-let limit = 500;
-let offset = 0;
+var games = [];
+var newGames = [];
+var limit = 500;
+var offset = 0;
 
-console.log(new Date().toLocaleTimeString());
+var start_time;
+var end_time;
+
+start_time = Date.now();
 
 do{
     let query = `
-        fields *,
+        fields name, slug, version_title, category, status, storyline, summary, total_rating, total_rating_count, url, created_at, first_release_date, 
             websites.*, release_dates.*, game_modes.*, genres.*, themes.*, similar_games.*,
             cover.*, artworks.*, screenshots.*, videos.*,
             involved_companies.*, involved_companies.company.*, involved_companies.company.logo.*, involved_companies.company.websites.*;
         sort first_release_date desc;
         where platforms = (${nintendoSwitch.id}) 
-                & cover != null 
-                & (first_release_date != null & first_release_date >= ${Math.floor(new Date('2017.03.03').getTime() / 1000)} );
+                & cover != null
+                & ( status = 0 | status = null )
+                & ( first_release_date = null | first_release_date > ${Math.floor(new Date('2017.03.03').getTime() / 1000)} )
+                & category = (0,4,8,9,10,11);
         limit ${limit};
         offset ${offset};
     `;
     newGames = await getGames(query);
-    games = newGames;
+    games = games.concat(newGames);
     offset += limit;
-    console.log(offset);
 }while(newGames.length == limit);
 
-console.log(new Date().toLocaleTimeString());
+end_time = Date.now();
+
+console.log('Fetched ' + games.length + ' games in ' + Math.round( (end_time-start_time)/1000 ) + 's');
 
 export { games };

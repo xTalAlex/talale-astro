@@ -23,7 +23,7 @@ const { page } = Astro.props;
                     {
                         (game.cover || game.screenshots) && 
                             <figure>
-                                <div class="swiper h-64 w-full">
+                                <div class="swiper h-64 max-w-xs md:w-full">
                                     <div class="swiper-wrapper">
                                     {
                                         game.cover &&
