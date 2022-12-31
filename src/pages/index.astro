@@ -15,6 +15,7 @@ import LatestPosts from "../components/LatestPosts.astro";
 import ScreenSizes from "../components/ScreenSizes.astro";
 import LaravelDailyTips from "../components/vue/LaravelDailyTips.vue";
 import Minesweeper from "../components/Minesweeper.astro";
+import GamesSearchbar from "../components/GamesSearchbar.astro";
 ---
 
 <Layout>
@@ -34,22 +35,47 @@ import Minesweeper from "../components/Minesweeper.astro";
 			<FeaturedImages />
 		</div>
 		<LatestPosts />
-		<LaravelDailyTips client:only="vue"/>
+		<LaravelDailyTips client:only="vue" />
 		<ScreenSizes />
 		<div class="card card-compact">
 			<div class="card-body">
 				<div class="card-title">
-					<h2 class="text-2xl font-semibold -mt-20 pt-20"
+					<h2
+						class="text-2xl font-semibold -mt-20 pt-20"
 						id="minesweeper"
 					>
 						Electrode Minesweeper
-						<img class="inline -ml-2 -mt-1" 
+						<img
+							class="inline -ml-2 -mt-1"
 							alt="Electrode"
-							src="https://img.pokemondb.net/sprites/ruby-sapphire/normal/electrode.png"/>
+							src="https://img.pokemondb.net/sprites/ruby-sapphire/normal/electrode.png"
+						/>
 					</h2>
 				</div>
 				<div class="flex justify-center items-center mt-6 pb-12">
 					<Minesweeper />
+				</div>
+			</div>
+		</div>
+		<div class="hero pb-12">
+			<div class="hero-content flex-col lg:flex-row-reverse">
+				<div class="text-center lg:text-left lg:ml-10">
+					<h1 class="text-5xl font-bold">Catalogo Nintendo Switch</h1>
+					<p class="py-6 prose">
+						Esplora il catalogo con tutti i giochi per Nintendo Switch contente le informazioni messe
+						a disposizione dalle API di <a class="link" href="https://igdb.com" target="_blank">IGDB</a>.
+					</p>
+				</div>
+				<div
+					class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100"
+				>
+					<div class="card-body">
+						<GamesSearchbar />
+						<div class="divider"></div>
+						<div class="form-control mt-6">
+							<a href="/nintendo-switch/1" class="btn btn-primary">Vai al Catalogo</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

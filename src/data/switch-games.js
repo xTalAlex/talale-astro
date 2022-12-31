@@ -6,7 +6,7 @@ var games = [];
 var newGames = [];
 var limit = 500;
 var offset = 0;
-
+var today = new Date();
 var start_time;
 var end_time;
 
@@ -22,8 +22,9 @@ do{
         where platforms = (${nintendoSwitch.id}) 
                 & cover != null
                 & ( status = 0 | status = null )
-                & ( first_release_date = null | first_release_date > ${Math.floor(new Date('2017.03.03').getTime() / 1000)} )
-                & category = (0,4,8,9,10,11);
+                & first_release_date > ${Math.floor(new Date('2017.03.03').getTime() / 1000)}
+                & first_release_date < ${Math.floor(today.setMonth(today.getMonth() + 1) / 1000)}
+                & category = (0,8,9);
         limit ${limit};
         offset ${offset};
     `;

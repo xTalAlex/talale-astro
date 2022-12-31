@@ -1,0 +1,41 @@
+<button
+    class="btn btn-ghost hidden fixed bottom-4 left-2 md:left-8 z-50 btn-circle"
+    id="backToTop"
+    title="Torna in cima"
+>
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-6 h-6"
+    >
+        <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M9 9l6-6m0 0l6 6m-6-6v12a6 6 0 01-12 0v-3"
+        >
+        </path>
+    </svg>
+</button>
+
+<script>
+    let backToTopButton = document.getElementById("backToTop");
+
+    function checkScroll() {
+        if (document.querySelector("html").scrollTop > 100) {
+            if (backToTopButton.classList.contains("hidden"))
+                backToTopButton.classList.remove("hidden");
+        } else {
+            backToTopButton.classList.add("hidden");
+        }
+    }
+
+    function goTop() {
+        document.querySelector("html").scrollTop = 0;
+    }
+
+    window.addEventListener("scroll", checkScroll);
+    backToTopButton.onclick = goTop;
+</script>

@@ -1,28 +1,38 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import { games } from "../../data/switch-games";
+import GamesSearchbar from "../../components/GamesSearchbar.astro";
 
 export async function getStaticPaths({ paginate }) {
-    return paginate(games, { pageSize: 30 });
+    return paginate(games, { pageSize: 36 });
 }
 const { page } = Astro.props;
-
-// console.log(page.data.filter(game => game.status != 0 ).length);
-// console.log(page.data.map(game => game.first_release_date ));
 ---
 
-<Layout>
+<Layout
+    title={`Catalogo Nintendo Switch - Pagina ${page.currentPage}`}
+    description="Catalogo con le informazioni su tutti i giochi per Nintendo Switch messe a disposizione da IGDB.com"
+>
 
     <div class="px-5 md:mx-auto container max-w-5xl">
-        <h1 class="text-center py-10 text-4xl font-semibold">Nintendo Switch | Pagina {page.currentPage}</h1>
 
-        <div class="mt-12 mx-auto grid sm:grid-cols-2 lg:grid-cols-3 place-items-center h-max gap-6">
+        <h1 class="text-center pt-12 text-4xl font-bold">Catalogo Nintendo Switch</h1>
+
+        <div class="mt-4 text-2xl text-center font-semibold">Pagina {page.currentPage}</div>
+
+        <div class="my-12 w-full">
+            <GamesSearchbar />
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="mt-12 mx-auto w-full grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 place-items-center h-max gap-6">
             {
                 page.data.map( (game) => (
-                <div class="card card-compact w-full bg-base-100 shadow-xl h-full">
+                <div class="card card-compact w-full bg-base-100 shadow-xl h-full" id={game.slug}>
                     {
                         (game.cover || game.screenshots) && 
-                            <figure>
+                            <figure >
                                 <div class="swiper h-64 max-w-xs md:w-full">
                                     <div class="swiper-wrapper">
                                     {
@@ -45,7 +55,7 @@ const { page } = Astro.props;
                                 </div>
                             </figure>
                     }
-                    <div class="card-body">
+                    <div class="card-body w-full">
                         <h2 class="card-title" id={game.name}>
                             {
                                 game.websites && <a href={game.websites[0].url} class="link l" target="_blank">{game.name}</a>
@@ -54,7 +64,7 @@ const { page } = Astro.props;
                                 !game.websites && <span>{game.name}</span>
                             }
                         </h2>
-                        <div class="w-full flex justify-between">
+                        <div class="flex justify-between">
                             <div>
                                 {
                                     game.platforms?.length==1 && <div class="badge badge-accent">Exclusive</div>
@@ -109,14 +119,14 @@ const { page } = Astro.props;
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                     </svg>
-                    <span class="link whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis" >Prec.</span>
+                    <span class="whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis" >Prec.</span>
                 </a>
                 :
                 <div></div>
             }
             { page.url.next ?
                 <a  href={page.url.next} class="btn btn-ghost justify-end sm:space-x-2 w-full sm:w-auto">
-                    <span class="link whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis">Succ.</span>
+                    <span class="whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis">Succ.</span>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                     </svg>

@@ -4,10 +4,10 @@ const formatDate = (date, format) => {
     return DateTime.fromISO(new Date(date).toISOString())
         .setLocale('it')
         .toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY);
-}; 
+};
 
 const adjacentCells = (col, row, maxCol, maxRow) => {
-    if(!maxRow) maxRow = maxCol;
+    if (!maxRow) maxRow = maxCol;
     var cells = Array();
     var startCol = col - 1 >= 0 ? col - 1 : 0;
     var endCol = col + 1 < maxCol ? col + 1 : col;
@@ -23,4 +23,16 @@ const adjacentCells = (col, row, maxCol, maxRow) => {
     return cells;
 }
 
-export { formatDate, adjacentCells };
+const delayFunction = (fn, ms) => {
+    let timer = 0;
+    return function (...args) {
+        clearTimeout(timer);
+        timer = setTimeout(fn.bind(this, ...args), ms || 0);
+    };
+};
+
+const toTrimmedAlphanumeric = (inputString) => {
+    return inputString.replace(/[^a-zA-Z0-9 ]/g, '').trim();
+}
+
+export { formatDate, adjacentCells, delayFunction, toTrimmedAlphanumeric };

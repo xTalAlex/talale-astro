@@ -42,7 +42,7 @@ export async function authenticate() {
         const error = await res.json();
 
         throw new Error(
-            '!Errore WP API: ' + query + ' [ ' + error.message + ' ] \n ' + error.Docs
+            '!Errore WP API: authenticate [ ' + error.message + ' ] \n ' + error.Docs
         );
     }
 }

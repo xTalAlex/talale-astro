@@ -1,0 +1,83 @@
+---
+import { games } from "../data/switch-games";
+---
+
+<div class="form-control mx-auto w-full relative">
+    <div class="input-group">
+        <input type="text" id="search-input" placeholder="" class="input input-bordered w-full" />
+        <button class="btn btn-error btn-square" id="clear-button">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <button class="btn btn-primary btn-square" id="search-button">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+        </button>
+    </div>
+</div>
+
+<div class="mt-12 flex w-full h-24 justify-center items-center" id="search-results">
+    <div class="cursor-default stats shadow bg-primary text-primary-content">
+        <div class="stat">
+          <div class="stat-title font-semibold">Numero di titoli</div>
+          <div class="stat-value">{games.length}</div>
+          <div class="stat-desc font-semibold">Aggiornati il {new Date().toLocaleDateString()}</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    import Fuse from "fuse.js";
+    import { searchOptions } from "../fuse-helpers.js";
+    import { delayFunction, toTrimmedAlphanumeric } from "../utils.js";
+    var response = await fetch("/searchindex.json");
+    const data = await response.json();
+    const fuse = new Fuse(data, searchOptions);
+    
+    const search = async () => {
+        var query = toTrimmedAlphanumeric(document.getElementById('search-input').value);
+        if(query.length > 2){
+            const res = fuse.search(query);
+            var html = '';
+            if(res.length){
+                html += '<div class="flex space-x-3 h-full justify-start items-center overflow-x-auto overflow-y-hidden">';
+                for (let i = 0; i < res.length; i++) {
+                    html+= `
+                        <a href="/nintendo-switch/${Math.ceil(res[i].refIndex/60)}#${res[i].item.slug}" >
+                            <div class="whitespace-nowrap badge badge-lg badge-primary font-semibold badge-outline">${res[i].item.name}</div>    
+                        </a>
+                    `;
+                }
+                html += '</div>'
+            }
+            else{
+                html = `
+                    <div>
+                        <img class="h-24" src="/images/gargoyles.png" />
+                        <h4 class='text-center text-lg'> <b>Nessun risultato</b> </h4>
+                    </div>
+                `;
+            }
+            document.getElementById('search-results').innerHTML = html;
+        }
+    };
+
+    const clear = () => {
+        document.getElementById('search-input').value = "";
+        document.getElementById('search-results').innerHTML = `
+            <div class="cursor-default stats shadow bg-primary text-primary-content">
+                <div class="stat">
+                <div class="stat-title font-semibold">Numero di titoli</div>
+                <div class="stat-value">${data.length}</div>
+                <div class="stat-desc font-semibold">Aggiornati il ${new Date().toLocaleDateString()}</div>
+                </div>
+            </div>
+        `;
+    };
+
+    document.getElementById('search-input').onkeyup = delayFunction(search, 300);
+    document.getElementById('search-button').onclick = search;
+    document.getElementById('clear-button').onclick = clear;
+</script>
