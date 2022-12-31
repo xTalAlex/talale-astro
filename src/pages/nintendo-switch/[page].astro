@@ -2,9 +2,12 @@
 import Layout from "../../layouts/Layout.astro";
 import { games } from "../../data/switch-games";
 import GamesSearchbar from "../../components/GamesSearchbar.astro";
+import Config from "../../site.config";
+import Pagination from "../../components/Pagination.astro";
+import { formatDate } from "../../utils";
 
 export async function getStaticPaths({ paginate }) {
-    return paginate(games, { pageSize: 36 });
+    return paginate(games, { pageSize: Config.gamesPerPage });
 }
 const { page } = Astro.props;
 ---
@@ -14,7 +17,7 @@ const { page } = Astro.props;
     description="Catalogo con le informazioni su tutti i giochi per Nintendo Switch messe a disposizione da IGDB.com"
 >
 
-    <div class="px-5 md:mx-auto container max-w-5xl">
+    <div class="px-5 md:mx-auto container w-full max-w-5xl">
 
         <h1 class="text-center pt-12 text-4xl font-bold">Catalogo Nintendo Switch</h1>
 
@@ -26,25 +29,25 @@ const { page } = Astro.props;
 
         <div class="divider"></div>
 
-        <div class="mt-12 mx-auto w-full grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 place-items-center h-max gap-6">
+        <div class="mt-12 mx-auto grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 place-items-center h-max gap-6">
             {
                 page.data.map( (game) => (
                 <div class="card card-compact w-full bg-base-100 shadow-xl h-full" id={game.slug}>
                     {
                         (game.cover || game.screenshots) && 
                             <figure >
-                                <div class="swiper h-64 max-w-xs md:w-full">
+                                <div class="swiper h-48 max-w-xs md:w-full">
                                     <div class="swiper-wrapper">
                                     {
                                         game.cover &&
-                                        <div class="swiper-slide">
-                                            <img  class="h-64 w-full object-cover" src={game.cover.url.replace('t_thumb','t_cover_big')} alt={game.name} />
+                                        <div class="swiper-slide bg-neutral">
+                                            <img  class="h-full object-cover mx-auto" src={game.cover.url.replace('t_thumb','t_cover_big')} alt={game.name} />
                                         </div>
                                     }
                                     {
                                         game.screenshots && game.screenshots.map( (screenshot,id) => (
                                             <div class="swiper-slide">
-                                                <img class="h-full w-full object-cover" src={screenshot.url.replace('t_thumb','t_screenshot_big')} />
+                                                <img class="w-full object-cover" src={screenshot.url.replace('t_thumb','t_screenshot_big')} />
                                             </div> 
                                         ))
                                     }
@@ -55,51 +58,67 @@ const { page } = Astro.props;
                                 </div>
                             </figure>
                     }
-                    <div class="card-body w-full">
-                        <h2 class="card-title" id={game.name}>
+                    <div class="card-body max-w-xs md:w-full mx-auto">
+                        <h2 class="card-title text-base" id={game.name}>
                             {
-                                game.websites && <a href={game.websites[0].url} class="link l" target="_blank">{game.name}</a>
+                                game.websites && 
+                                    <a href={game.websites[0].url} class="link l" target="_blank">
+                                        {game.name}
+                                        <span>
+                                        {
+                                            game.platforms?.length==1 && <div class="badge badge-xs badge-accent">Exclusive</div>
+                                        }
+                                        </span>
+                                    </a>
                             }
                             {
-                                !game.websites && <span>{game.name}</span>
+                                !game.websites && 
+                                
+                                <span>
+                                    {game.name}
+                                    <span>
+                                        {
+                                        game.platforms?.length==1 && <div class="badge badge-xs badge-accent">Exclusive</div>
+                                    }
+                                    </span>
+                                </span>
                             }
                         </h2>
                         <div class="flex justify-between">
                             <div>
-                                {
-                                    game.platforms?.length==1 && <div class="badge badge-accent">Exclusive</div>
-                                }
-                            </div>
                             {
                                 game.total_rating &&
-                                <div class="badge badge-primary">{Math.round(game.total_rating)}</div>
+                                <div class="badge badge-primary font-bold">{Math.round(game.total_rating)}</div>
                             }
+                            </div>
+                            <div>
                             {   
                                 game.first_release_date &&
-                                <div class="badge badge-ghost">{new Date(game.first_release_date * 1000).toLocaleDateString()}</div> 
-                            }    
+                                <div class="badge badge-xs badge-ghost">{formatDate(new Date(game.first_release_date * 1000))}</div> 
+                            }   
+                            </div> 
                         </div>
-                        <p class="h-32 overflow-y-auto my-6">{game.summary}</p>
+                        <p class="h-32 overflow-y-auto my-6 text-xs">{game.summary}</p>
                         <div class="flex flex-col space-y-1">
                             <div class="w-full  flex flex-nowrap space-x-2 h-12 overflow-x-auto overflow-y-hidden">
                                 {   
                                     game.genres?.map( (genre) => (
-                                        <div class="badge whitespace-nowrap badge-primary">{genre.name}</div>
+                                        <div class="badge badge-sm font-semibold whitespace-nowrap badge-primary">{genre.name}</div>
                                     ))
                                 }
                             </div>
                             <div class="w-full flex flex-nowrap space-x-2 h-12 overflow-x-auto overflow-y-hidden">
                                 {   
                                     game.themes?.map( (theme) => (
-                                        <div class="badge whitespace-nowrap badge-secondary">{theme.name}</div>
+                                        <div class="badge badge-sm font-semibold whitespace-nowrap badge-secondary">{theme.name}</div>
                                     ))
                                 }
                             </div>
-                            <div class="flex space-x-2 h-12 overflow-x-auto justify-end overflow-y-hidden">
+                            <div class="flex space-x-2 h-8 overflow-x-auto justify-center overflow-y-hidden">
                                 {   
                                     game.involved_companies?.map( (company) => company.company.logo && company.company.websites && (
                                         <a href={company.company.websites && company.company.websites[0].url} target="_blank">
-                                            <img class="h-10 object-fill rounded-full" alt={company.company.name} src={company.company.logo && company.company.logo.url}/>
+                                            <img class="h-6 object-fill rounded-full" alt={company.company.name} src={company.company.logo && company.company.logo.url}/>
                                         </a>
                                     ))
                                 }
@@ -113,28 +132,14 @@ const { page } = Astro.props;
 
         <div class="divider"></div>
 
-        <div class="flex flex-col sm:flex-row sm:justify-between space-y-4 sm:space-y-0">
-            { page.url.prev ?
-                <a href={page.url.prev} class="btn btn-ghost justify-start sm:space-x-2 w-full sm:w-auto">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                    </svg>
-                    <span class="whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis" >Prec.</span>
-                </a>
-                :
-                <div></div>
-            }
-            { page.url.next ?
-                <a  href={page.url.next} class="btn btn-ghost justify-end sm:space-x-2 w-full sm:w-auto">
-                    <span class="whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis">Succ.</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                    </svg>
-                </a>
-                :
-                <div></div>
-            }
+        <div class="mx-auto flex justify-center">
+            <Pagination
+                currentPage={page.currentPage}
+                lastPage={page.lastPage}
+                url="/nintendo-switch"
+            />
         </div>
+
     </div>
 
     <script>

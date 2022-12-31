@@ -4,7 +4,7 @@ import { games } from "../data/switch-games";
 
 <div class="form-control mx-auto w-full relative">
     <div class="input-group">
-        <input type="text" id="search-input" placeholder="" class="input input-bordered w-full" />
+        <input type="text" id="search-input" placeholder="[Focus:Ctrl+C / Clear:Ctrl+X]" class="input input-bordered w-full" />
         <button class="btn btn-error btn-square" id="clear-button">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -32,6 +32,7 @@ import { games } from "../data/switch-games";
     import Fuse from "fuse.js";
     import { searchOptions } from "../fuse-helpers.js";
     import { delayFunction, toTrimmedAlphanumeric } from "../utils.js";
+    import Config from "../site.config";
     var response = await fetch("/searchindex.json");
     const data = await response.json();
     const fuse = new Fuse(data, searchOptions);
@@ -45,7 +46,7 @@ import { games } from "../data/switch-games";
                 html += '<div class="flex space-x-3 h-full justify-start items-center overflow-x-auto overflow-y-hidden">';
                 for (let i = 0; i < res.length; i++) {
                     html+= `
-                        <a href="/nintendo-switch/${Math.ceil(res[i].refIndex/60)}#${res[i].item.slug}" >
+                        <a href="/nintendo-switch/${Math.ceil(res[i].refIndex/Config.gamesPerPage)}#${res[i].item.slug}" >
                             <div class="whitespace-nowrap badge badge-lg badge-primary font-semibold badge-outline">${res[i].item.name}</div>    
                         </a>
                     `;
@@ -61,6 +62,7 @@ import { games } from "../data/switch-games";
                 `;
             }
             document.getElementById('search-results').innerHTML = html;
+            window.history.replaceState(null,'','?query=' + encodeURIComponent(query));
         }
     };
 
@@ -75,9 +77,33 @@ import { games } from "../data/switch-games";
                 </div>
             </div>
         `;
+        window.history.replaceState(null,'', window.location.pathname );
     };
 
     document.getElementById('search-input').onkeyup = delayFunction(search, 300);
     document.getElementById('search-button').onclick = search;
     document.getElementById('clear-button').onclick = clear;
+
+    document.addEventListener('keyup', (event) => {
+      if (event.ctrlKey && event.key === 'c') {
+        event.preventDefault();
+        document.getElementById('search-input').focus();
+      }
+    });
+    document.addEventListener('keyup', (event) => {
+      if (event.ctrlKey && event.key === 'x') {
+        event.preventDefault();
+        clear();
+      }
+    });
+
+    var params = (new URL(document.location)).searchParams;
+    var query = params.get('query');
+    if(query) {
+        document.getElementById('search-input').value = decodeURIComponent(query);
+        search();
+    }
+    else if(document.getElementById('search-input').value) {
+        search();
+    }
 </script>

@@ -1,0 +1,73 @@
+---
+export interface Props {
+	currentPage: number;
+    lastPage: number;
+    url: string;
+}
+
+const { currentPage, lastPage, size = 5, url } = Astro.props;
+
+const leftOffset = currentPage - Math.floor(size / 2 );
+const rightOffset = currentPage + Math.floor(size / 2 );
+
+var leftEdge = leftOffset > 1 ? leftOffset : 1; 
+var rightEdge = rightOffset < lastPage ? rightOffset : lastPage;
+
+if(rightEdge - leftEdge < Math.floor(size / 2 ) * 2){
+    if(leftOffset < 1) rightEdge = Math.min( lastPage, rightEdge + (-(leftOffset-1)) );
+    if(rightOffset > lastPage ) leftEdge = Math.max( 1, leftEdge - (rightOffset - lastPage) );
+}
+---
+
+<div class="btn-group">
+
+    {  leftEdge > 1 &&
+        <a class={`btn md:btn-lg`}
+            href={`${url}/1`}
+        >
+            <svg class="stroke-current w-6 h-6"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5" />
+            </svg>
+        </a> 
+    }
+
+    <!-- {  leftEdge > 1 &&
+        <a class={`btn md:btn-lg hidden md:flex`}
+            href={`${url}/${leftEdge - 1}`}
+        >
+            <svg class="stroke-current w-6 h-6"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+            </svg>
+        </a> 
+    } -->
+
+    { Array.from({length: (rightEdge - leftEdge + 1) }).map( (item,index) => 
+        <a class={`btn md:btn-lg ${ currentPage == leftEdge + index ? 'btn-active' : '' }`}
+            href={`${url}/${ leftEdge + index }`}
+        >{  leftEdge + index }</a>   
+    )}
+
+    <!-- {  rightEdge < lastPage &&
+        <a class={`btn md:btn-lg hidden md:flex`}
+            href={`${url}/${rightEdge + 1}`}
+        >
+            <svg class="stroke-current w-6 h-6"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+        </a> 
+    } -->
+
+    {  rightEdge < lastPage &&
+        <a class={`btn md:btn-lg`}
+            href={`${url}/${lastPage}`}
+        >
+            <svg class="stroke-current w-6 h-6"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
+            </svg>
+        </a> 
+    }
+</div>

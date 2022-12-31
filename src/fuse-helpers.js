@@ -4,7 +4,7 @@ const searchOptions = {
     shouldSort: true,
     minMatchCharLength: 3,
     ignoreLocation: true,
-    threshold: 0.4,
+    threshold: 0.3,
     keys: [
         { name: "name", weight: 4 },
     ],
