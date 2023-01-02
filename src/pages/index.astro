@@ -58,23 +58,15 @@ import GamesSearchbar from "../components/GamesSearchbar.astro";
 			</div>
 		</div>
 		<div class="hero pb-12">
-			<div class="hero-content flex-col lg:flex-row-reverse">
-				<div class="text-center lg:text-left lg:ml-10">
+			<div class="hero-content flex-col">
+				<div class="text-center">
 					<h1 class="text-5xl font-bold">Catalogo Nintendo Switch</h1>
 					<p class="py-6 prose">
 						Esplora il catalogo con tutti i giochi per Nintendo Switch contente le informazioni messe
 						a disposizione dalle API di <a class="link" href="https://igdb.com" target="_blank">IGDB</a>.
 					</p>
-				</div>
-				<div
-					class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100"
-				>
-					<div class="card-body">
-						<GamesSearchbar />
-						<div class="divider"></div>
-						<div class="form-control mt-6">
-							<a href="/nintendo-switch/1" class="btn btn-primary font-semibold">Vai al Catalogo</a>
-						</div>
+					<div class="form-control">
+						<a href="/nintendo-switch/1" class="btn btn-primary font-semibold w-full max-w-xs mx-auto">Vai al Catalogo</a>
 					</div>
 				</div>
 			</div>

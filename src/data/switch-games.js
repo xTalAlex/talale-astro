@@ -12,14 +12,21 @@ var end_time;
 
 start_time = Date.now();
 
+/** 
+ * 
+ * Additional fields: 
+ *  version_title, total_rating_count, storyline, created_at
+ *  websites.url, video.video_id, similar_games.slug,
+ *  game_modes.name,
+ * */
 do{
     let query = `
-        fields name, slug, version_title, category, status, storyline, summary, total_rating, total_rating_count, url, created_at, first_release_date, 
-            websites.*, release_dates.*, game_modes.*, genres.*, themes.*, similar_games.*,
-            cover.*, artworks.*, screenshots.*, videos.*,
-            involved_companies.*, involved_companies.company.*, involved_companies.company.logo.*, involved_companies.company.websites.*;
+        fields 
+            name, slug, category, status, summary, total_rating, url, first_release_date,  
+            genres.name, themes.name, cover.url, artworks.url, screenshots.url,
+            involved_companies.company.name, involved_companies.company.logo.url, involved_companies.company.websites.url;
         sort first_release_date desc;
-        where platforms = (${nintendoSwitch.id}) 
+        where platforms = (${nintendoSwitch.id})
                 & cover != null
                 & ( status = 0 | status = null )
                 & first_release_date > ${Math.floor(new Date('2017.03.03').getTime() / 1000)}
@@ -35,6 +42,8 @@ do{
 
 end_time = Date.now();
 
-console.log('Fetched ' + games.length + ' games in ' + Math.round( (end_time-start_time)/1000 ) + 's');
+const gamesCount = games.length
 
-export { games };
+console.log('Fetched ' + gamesCount + ' games in ' + Math.round( (end_time-start_time)/1000 ) + 's');
+
+export { games, gamesCount };

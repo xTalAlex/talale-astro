@@ -45,6 +45,13 @@ const { page } = Astro.props;
                                         </div>
                                     }
                                     {
+                                        game.artworks && game.artworks.map( (artwork,id) => (
+                                            <div class="swiper-slide">
+                                                <img class="w-full object-cover" src={artwork.url.replace('t_thumb','t_screenshot_big')} />
+                                            </div> 
+                                        ))
+                                    }
+                                    {
                                         game.screenshots && game.screenshots.map( (screenshot,id) => (
                                             <div class="swiper-slide">
                                                 <img class="w-full object-cover" src={screenshot.url.replace('t_thumb','t_screenshot_big')} />
@@ -61,8 +68,8 @@ const { page } = Astro.props;
                     <div class="card-body max-w-xs md:w-full mx-auto">
                         <h2 class="card-title text-base" id={game.name}>
                             {
-                                game.websites && 
-                                    <a href={game.websites[0].url} class="link l" target="_blank">
+                                game.url && 
+                                    <a href={game.url} class="link l" target="_blank">
                                         {game.name}
                                         <span>
                                         {
@@ -72,7 +79,7 @@ const { page } = Astro.props;
                                     </a>
                             }
                             {
-                                !game.websites && 
+                                !game.url && 
                                 
                                 <span>
                                     {game.name}
@@ -98,7 +105,7 @@ const { page } = Astro.props;
                             }   
                             </div> 
                         </div>
-                        <p class="h-32 overflow-y-auto my-6 text-xs">{game.summary}</p>
+                        <p class="h-28 overflow-y-auto my-6 text-xs">{game.summary}</p>
                         <div class="flex flex-col space-y-1">
                             <div class="w-full  flex flex-nowrap space-x-2 h-12 overflow-x-auto overflow-y-hidden">
                                 {   
@@ -114,12 +121,14 @@ const { page } = Astro.props;
                                     ))
                                 }
                             </div>
-                            <div class="flex space-x-2 h-8 overflow-x-auto justify-center overflow-y-hidden">
+                            <div class="flex space-x-2 justify-center h-8">
                                 {   
                                     game.involved_companies?.map( (company) => company.company.logo && company.company.websites && (
-                                        <a href={company.company.websites && company.company.websites[0].url} target="_blank">
-                                            <img class="h-6 object-fill rounded-full" alt={company.company.name} src={company.company.logo && company.company.logo.url}/>
-                                        </a>
+                                        <div class="tooltip tooltip-top z-50" data-tip={company.company.name}>
+                                            <a href={company.company.websites && company.company.websites[0].url} target="_blank">
+                                                <img class="h-6 object-fill rounded-full" alt={company.company.name} src={company.company.logo && company.company.logo.url}/>
+                                            </a>
+                                        </div>
                                     ))
                                 }
                             </div>    

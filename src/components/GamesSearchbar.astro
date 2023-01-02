@@ -1,5 +1,6 @@
 ---
-import { games } from "../data/switch-games";
+import { gamesCount } from "../data/switch-games";
+import { formatDate } from "../utils";
 ---
 
 <div class="form-control mx-auto w-full relative">
@@ -22,8 +23,8 @@ import { games } from "../data/switch-games";
     <div class="cursor-default stats shadow bg-primary text-primary-content">
         <div class="stat">
           <div class="stat-title font-semibold">Numero di titoli</div>
-          <div class="stat-value">{games.length}</div>
-          <div class="stat-desc font-semibold">Aggiornati il {new Date().toLocaleDateString()}</div>
+          <div class="stat-value">{gamesCount}</div>
+          <div class="stat-desc font-semibold">Ultimo aggiornamento { formatDate(new Date()) }</div>
         </div>
     </div>
 </div>
@@ -31,7 +32,7 @@ import { games } from "../data/switch-games";
 <script>
     import Fuse from "fuse.js";
     import { searchOptions } from "../fuse-helpers.js";
-    import { delayFunction, toTrimmedAlphanumeric } from "../utils.js";
+    import { delayFunction, toTrimmedAlphanumeric, formatDate } from "../utils.js";
     import Config from "../site.config";
     var response = await fetch("/searchindex.json");
     const data = await response.json();
@@ -73,7 +74,7 @@ import { games } from "../data/switch-games";
                 <div class="stat">
                 <div class="stat-title font-semibold">Numero di titoli</div>
                 <div class="stat-value">${data.length}</div>
-                <div class="stat-desc font-semibold">Aggiornati il ${new Date().toLocaleDateString()}</div>
+                <div class="stat-desc font-semibold">Ultimo aggiornamento ${formatDate(new Date())}</div>
                 </div>
             </div>
         `;
