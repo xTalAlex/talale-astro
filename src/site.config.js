@@ -12,5 +12,5 @@ export default {
     messageBoxPlaceholder: "Lascia un messaggio",
     messageBoxSuccess: "Messaggio inviato!",
     messageBoxError: "Si è verificato un errore!",
-    gamesPerPage: 36,
+    gamesPerPage: 24,
 };
