@@ -1,11 +1,10 @@
 ---
 import { games } from "../data/switch-games";
-import { formatDate } from "../utils";
 ---
 
 <div class="form-control mx-auto w-full relative">
     <div class="input-group">
-        <input type="text" id="search-input" placeholder="[Focus:Ctrl+C / Clear:Ctrl+X]" class="input input-bordered w-full" />
+        <input type="text" id="search-input" placeholder="Focus: ctrl+c | Clear: ctrl+x" class="placeholder:text-xs input input-bordered w-full" />
         <button class="btn btn-error btn-square" id="clear-button">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -24,7 +23,7 @@ import { formatDate } from "../utils";
         <div class="stat">
           <div class="stat-title font-semibold">Numero di titoli</div>
           <div class="stat-value">{games.length}</div>
-          <div class="stat-desc font-semibold">Ultimo aggiornamento { formatDate(new Date()) }</div>
+          <div class="stat-desc font-semibold">Aggiornati il {new Date().toLocaleDateString()}</div>
         </div>
     </div>
 </div>
@@ -32,7 +31,7 @@ import { formatDate } from "../utils";
 <script>
     import Fuse from "fuse.js";
     import { searchOptions } from "../fuse-helpers.js";
-    import { delayFunction, toTrimmedAlphanumeric, formatDate } from "../utils.js";
+    import { delayFunction, toTrimmedAlphanumeric } from "../utils.js";
     import Config from "../site.config";
     var response = await fetch("/searchindex.json");
     const data = await response.json();
@@ -74,7 +73,7 @@ import { formatDate } from "../utils";
                 <div class="stat">
                 <div class="stat-title font-semibold">Numero di titoli</div>
                 <div class="stat-value">${data.length}</div>
-                <div class="stat-desc font-semibold">Ultimo aggiornamento ${formatDate(new Date())}</div>
+                <div class="stat-desc font-semibold">Aggiornati il ${new Date().toLocaleDateString()}</div>
                 </div>
             </div>
         `;
