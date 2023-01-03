@@ -1,12 +1,12 @@
 import { getGames, getNintentoSwitch } from "../lib/igdb";
 
 const nintendoSwitch = await getNintentoSwitch();
+const today = new Date();
 
 var games = [];
 var newGames = [];
 var limit = 500;
 var offset = 0;
-var today = new Date();
 var start_time;
 var end_time;
 

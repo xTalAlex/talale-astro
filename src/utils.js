@@ -1,5 +1,7 @@
 import { DateTime } from "luxon";
 
+const lastDeployDate = new Date();
+
 const formatDate = (date, format) => {
     return DateTime.fromISO(new Date(date).toISOString())
         .setLocale('it')
@@ -47,4 +49,4 @@ const slugify = ( text ) => {
         .replace(/\-\-+/g, '-'); 
 };
 
-export { formatDate, adjacentCells, delayFunction, toTrimmedAlphanumeric };
+export { lastDeployDate, formatDate, adjacentCells, delayFunction, toTrimmedAlphanumeric };
