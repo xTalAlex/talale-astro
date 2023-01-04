@@ -1,84 +1,61 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Config from "../site.config.js";
-import Hero from "../components/Hero.astro";
-import Frameworks from "../components/Frameworks.astro";
-import Biography from "../components/Biography.astro";
-import ProjectsCarousel from "../components/ProjectsCarousel.astro";
-import Introduction from "../components/Introduction.astro";
-import Features from "../components/Features.astro";
-import MessageBox from "../components/MessageBox.astro";
-import Contacts from "../components/Contacts.astro";
-import FeaturedImages from "../components/FeaturedImages.astro";
-import Prices from "../components/Prices.astro";
-import LatestPosts from "../components/LatestPosts.astro";
-import ScreenSizes from "../components/ScreenSizes.astro";
-import LaravelDailyTips from "../components/vue/LaravelDailyTips.vue";
-import Minesweeper from "../components/Minesweeper.astro";
-import GamesSearchbar from "../components/GamesSearchbar.astro";
+import Layout from "@layouts/Layout.astro";
+import Hero from "@components/Hero.astro";
+import Frameworks from "@components/Frameworks.astro";
+import Biography from "@components/Biography.astro";
+import ProjectsCarousel from "@components/ProjectsCarousel.astro";
+import Introduction from "@components/Introduction.astro";
+import Features from "@components/Features.astro";
+import MessageBox from "@components/MessageBox.astro";
+import Contacts from "@components/Contacts.astro";
+import FeaturedImages from "@components/FeaturedImages.astro";
+import Prices from "@components/Prices.astro";
+import LatestPosts from "@components/LatestPosts.astro";
+import ScreenSizes from "@components/ScreenSizes.astro";
+import LaravelDailyTips from "@components/vue/LaravelDailyTips.vue";
+import Minesweeper from "@components/Minesweeper.astro";
+import NintendoSwitchCTA from "@components/NintendoSwitchCTA.astro";
+import Metabee from "@components/Metabee.astro";
 ---
 
 <Layout>
 	<Hero />
 	<div class="px-5 md:mx-auto container max-w-5xl space-y-12 pt-12">
+
 		<Introduction />
+
 		<Features />
+
 		<Prices />
-		<h2 class="text-3xl font-semibold">I miei progetti</h2>
-		<div class="mockup-window bg-neutral text-neutral-content">
-			<div class="px-4 border-t border-neutral">
-				<ProjectsCarousel />
-			</div>
-		</div>
+
+		<ProjectsCarousel />
+
 		<Frameworks />
-		<div class="">
-			<FeaturedImages />
-		</div>
+
+		<FeaturedImages />
+
 		<LatestPosts />
+
 		<LaravelDailyTips client:only="vue" />
+
 		<ScreenSizes />
-		<div class="card card-compact">
-			<div class="card-body">
-				<div class="card-title">
-					<h2
-						class="text-2xl font-semibold -mt-20 pt-20"
-						id="minesweeper"
-					>
-						Electrode Minesweeper
-						<img
-							class="inline -ml-2 -mt-1"
-							alt="Electrode"
-							src="https://img.pokemondb.net/sprites/ruby-sapphire/normal/electrode.png"
-						/>
-					</h2>
-				</div>
-				<div class="flex justify-center items-center mt-6 pb-12">
-					<Minesweeper />
-				</div>
-			</div>
-		</div>
-		<div class="hero pb-12">
-			<div class="hero-content flex-col">
-				<div class="text-center">
-					<h1 class="text-5xl font-bold">Catalogo Nintendo Switch</h1>
-					<p class="py-6 prose">
-						Esplora il catalogo con tutti i giochi per Nintendo Switch contente le informazioni messe
-						a disposizione dalle API di <a class="link" href="https://igdb.com" target="_blank">IGDB</a>.
-					</p>
-					<div class="form-control">
-						<a href="/nintendo-switch/1" class="btn btn-primary font-semibold w-full max-w-xs mx-auto">Vai al Catalogo</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="w-fit mx-auto">
+
+		<Minesweeper />
+
+		<NintendoSwitchCTA />
+
+		<Metabee />
+
+		<div class="w-fit mx-auto space-y-5">
 			<Biography />
-			<div class="mt-5 w-full">
+			<div class="pt-12 w-full" id="messagebox">
 				<MessageBox />
 			</div>
 		</div>
+
 		<div class="my-10">
 			<Contacts />
 		</div>
+
 	</div>
 </Layout>

@@ -49,4 +49,4 @@ const slugify = ( text ) => {
         .replace(/\-\-+/g, '-'); 
 };
 
-export { lastDeployDate, formatDate, adjacentCells, delayFunction, toTrimmedAlphanumeric };
+export { lastDeployDate, formatDate, adjacentCells, delayFunction, toTrimmedAlphanumeric, slugify };

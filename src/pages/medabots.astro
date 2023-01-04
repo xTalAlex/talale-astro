@@ -1,0 +1,46 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { episodes } from "@data/medabots";
+
+const title = "Medabots - Tutti gli Episodi";
+---
+
+<Layout
+    title={title}
+    description="Tutti gli episodi di Medabots, uno dei primi anime trasmessi su Rai2 nel 2001 che racconta delle avventure di Ikki e Metabee"
+    ogImage="/images/medabotspreview.jpg"
+    ogImageAlt="Medabots - Ikki e Metabee"
+>
+    <div class="px-5 md:mx-auto container w-full max-w-5xl">
+        <h1 class="text-center py-12 text-4xl font-bold">{title}</h1>
+
+        <div class="">
+            <table class="table-auto w-full max-w-2xl mx-auto">
+                <thead class="bg-neutral text-neutral-content">
+                    <tr>
+                        <th class="">Episodio</th>
+                        <th class="sr-only hidden sm:block">Preview</th>
+                        <th class="">Titolo</th>
+                        <th class="sr-only">Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        episodes.map( episode => (
+                            <tr class="even:bg-base-200 min-h-full h-16">
+                                <td class="text-center font-bold px-2">{episode.number}</td>
+                                <td class="text-center font-bold px-2 hidden sm:block">
+                                    <a href={`https://img.youtube.com/vi/${episode.video_id}/0.jpg`}>
+                                        <img class="h-20 aspect-square" src={`https://img.youtube.com/vi/${episode.video_id}/0.jpg`} />
+                                    </a>
+                                </td>
+                                <td class="font-semibold italic px-2">"{episode.title}"</td>
+                                <td><a class="link link-primary px-2" href={`/medabots/${episode.season}/${episode.number}`}>Guarda</a></td>
+                            </tr>
+                        ))
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</Layout>

@@ -1,0 +1,94 @@
+---
+import { episodes } from "@data/medabots";
+import { slugify } from "../../../utils";
+
+import Layout from "@layouts/Layout.astro";
+import Breadcrumbs from "@components/Breadcrumbs.astro";
+
+export async function getStaticPaths({ paginate }) {
+    return episodes.map((episode, id) => {
+        return {
+            params: { 
+                season: episode.season,
+                episode: episode.number
+            },
+            props: {
+                episode,
+                previousEpisode:
+                    id > 0
+                        ? {
+                              title: episodes[id - 1].title,
+                              season: episodes[id - 1].season,
+                              number: episodes[id - 1].number,
+                          }
+                        : null,
+                nextEpisode:
+                    id + 1 < episodes.length
+                        ? {
+                              title: episodes[id + 1].title,
+                              season: episodes[id + 1].season,
+                              number: episodes[id + 1].number,
+                          }
+                        : null,
+            },
+        };
+    });
+}
+
+const { episode, previousEpisode, nextEpisode } = Astro.props;
+
+const title = 'Medabots - Epispodio ' + episode.number;
+---
+
+<Layout
+    title={title}
+    description={episode.title}
+    ogImage={`https://img.youtube.com/vi/${episode.video_id}/0.jpg`}
+    ogImageAlt={episode.title}
+>
+    <div class="px-5 md:mx-auto container w-full max-w-5xl">
+
+        <h1 class="text-center mt-12 text-4xl font-bold">{title}</h1>
+        <h2 class="text-center mt-6 text-2xl font-semibold">{episode.title}</h2>
+
+        <div class="w-full h-full grid place-items-center mt-12">
+            <iframe class="aspect-video w-full h-[30rem]" 
+                src={`https://www.youtube.com/embed/${episode.video_id}`}
+                allow="picture-in-picture" 
+                allowfullscreen
+                id="youtube-player"
+            ></iframe>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="flex flex-col sm:flex-row sm:justify-between space-y-4 sm:space-y-0">
+            { previousEpisode ?
+                <a href={`/medabots/${previousEpisode.season}/${previousEpisode.number}`} title={previousEpisode.title} class="btn btn-ghost justify-start sm:space-x-2 w-full sm:w-auto">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                    <span class="whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis" >Episodio {previousEpisode.number}</span>
+                </a>
+                :
+                <div></div>
+            }
+            { nextEpisode ?
+                <a  href={`/medabots/${nextEpisode.season}/${nextEpisode.number}`} title={nextEpisode.title} class="btn btn-ghost justify-end sm:space-x-2 w-full sm:w-auto">
+                    <span class="whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis">Episodio {nextEpisode.number}</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                </a>
+                :
+                <div></div>
+            }
+        </div>
+
+    </div>
+
+    <script>
+        const player = document.querySelector('#youtube-player');
+        console.log(player);
+    </script>
+</Layout>

@@ -1,4 +1,4 @@
-import { getGames, getNintentoSwitch } from "../lib/igdb";
+import { getGames, getNintentoSwitch } from "@lib/igdb";
 
 const nintendoSwitch = await getNintentoSwitch();
 const today = new Date();
@@ -30,7 +30,7 @@ do{
                 & cover != null
                 & ( status = 0 | status = null )
                 & first_release_date > ${Math.floor(new Date('2017.03.03').getTime() / 1000)}
-                & first_release_date < ${Math.floor(today.setMonth(today.getMonth() + 1) / 1000)}
+                & first_release_date < ${Math.floor(today.setMonth(today.getMonth() + 3) / 1000)}
                 & category = (0,8,9);
         limit ${limit};
         offset ${offset};

@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card-body">
-      <div class="card-title flex justify-between">
+      <div class="card-title flex justify-between -mt-20 pt-20" id="laravel-tips">
         Laravel Daily Tips
         <div
           class="tooltip tooltip-left"

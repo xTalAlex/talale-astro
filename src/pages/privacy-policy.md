@@ -1,5 +1,5 @@
 ---
-layout: "../layouts/ProseLayout.astro"
+layout: "@layouts/ProseLayout.astro"
 title: "Privacy Policy"
 description: "Privacy Policy"
 noindex: true

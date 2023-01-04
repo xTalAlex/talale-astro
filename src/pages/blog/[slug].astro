@@ -1,9 +1,9 @@
 ---
-import ProseLayout from "../../layouts/ProseLayout.astro";
+import ProseLayout from "@layouts/ProseLayout.astro";
 import { formatDate } from "../../utils";
 import { htmlToText } from "html-to-text";
 import getReadingTime from "reading-time";
-import { posts } from "../../data/posts";
+import { posts } from "@data/posts";
 
 export async function getStaticPaths({ paginate }) {
     return posts.map((post, id) => {
@@ -12,14 +12,14 @@ export async function getStaticPaths({ paginate }) {
             props: {
                 post,
                 readingTime: getReadingTime(post.content),
-                nextPost:
+                previousPost:
                     id > 0
                         ? {
                               title: posts[id - 1].title,
                               slug: posts[id - 1].slug,
                           }
                         : null,
-                previousPost:
+                nextPost:
                     id + 1 < posts.length
                         ? {
                               title: posts[id + 1].title,

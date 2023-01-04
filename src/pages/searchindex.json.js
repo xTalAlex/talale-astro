@@ -1,4 +1,4 @@
-import { games } from "../data/switch-games.js";
+import { games } from "@data/switch-games.js";
 
 export async function get() {
     return {

@@ -1,48 +1,53 @@
 ---
-import projects from "../data/projects.js";
+import projects from "@data/projects.js";
 
 const sortedProjects = projects.reverse();
 ---
 
-<div class="embla relative p-5" id="main-carousel">
-    <div class="embla__viewport">
-        <div class="embla__container -ml-3">
-            {
-                sortedProjects.map(project => 
-                    <div class="embla__slide pl-3 relative min-w-full my-auto space-y-2">
-                        <div class="text-lg font-black" >{ project.title }</div>
-                        <p class="pr-5" >{ project.description }</p>
-                        <div class="h-48 md:h-96 relative overflow-hidden">
-                            <a href={ project.link } target="_blank">
-                                <img class="h-full w-full object-top object-cover my-auto" src={ "/images/projects/" + project.screenshot } />
-                            </a>
-                        </div>
-                    </div>
-                )
-            }
+<h2 class="text-3xl font-semibold">I miei progetti</h2>
+<div class="mockup-window bg-neutral text-neutral-content">
+    <div class="px-4 border-t border-neutral">
+        <div class="embla relative p-5" id="main-carousel">
+            <div class="embla__viewport">
+                <div class="embla__container -ml-3">
+                    {
+                        sortedProjects.map(project => 
+                            <div class="embla__slide pl-3 relative min-w-full my-auto space-y-2">
+                                <div class="text-lg font-black" >{ project.title }</div>
+                                <p class="pr-5" >{ project.description }</p>
+                                <div class="h-48 md:h-96 relative overflow-hidden">
+                                    <a href={ project.link } target="_blank">
+                                        <img class="h-full w-full object-top object-cover my-auto" src={ "/images/projects/" + project.screenshot } />
+                                    </a>
+                                </div>
+                            </div>
+                        )
+                    }
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-
-<!-- Thumbs -->
-<div class="embla relative p-5 pt-0 -mt-3" id="thumb-carousel">
-    <div class="embla__viewport">
-        <div class="embla__container -ml-3 cursor-default">
-            {
-                sortedProjects.map(project =>
-                    <div class="embla__slide pl-3 relative min-w-[50%] sm:min-w-[33%] md:min-w-[20%]">
-                        <button
-                            class="h-24 touch-manipulation w-full bg-transparent relative block overflow-hidden m-0 p-0 cursor-pointer border-none outline-none"
-                            type="button"
-                        >
-                            <img
-                                class="embla__slide__thumbnail opacity-20"
-                                src={ "images/projects/" + project.screenshot }
-                            />
-                        </button>
-                    </div>
-                )
-            }
+        
+        <!-- Thumbs -->
+        <div class="embla relative p-5 pt-0 -mt-3" id="thumb-carousel">
+            <div class="embla__viewport">
+                <div class="embla__container -ml-3 cursor-default">
+                    {
+                        sortedProjects.map(project =>
+                            <div class="embla__slide pl-3 relative min-w-[50%] sm:min-w-[33%] md:min-w-[20%]">
+                                <button
+                                    class="h-24 touch-manipulation w-full bg-transparent relative block overflow-hidden m-0 p-0 cursor-pointer border-none outline-none"
+                                    type="button"
+                                >
+                                    <img
+                                        class="embla__slide__thumbnail opacity-20"
+                                        src={ "images/projects/" + project.screenshot }
+                                    />
+                                </button>
+                            </div>
+                        )
+                    }
+                </div>
+            </div>
         </div>
     </div>
 </div>
