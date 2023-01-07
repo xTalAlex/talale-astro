@@ -52,13 +52,15 @@ const title = 'Medabots - Epispodio ' + episode.number;
         <h2 class="text-center mt-6 text-2xl font-semibold">{episode.title}</h2>
 
         <div class="w-full h-full grid place-items-center mt-12">
-            <iframe class="aspect-video w-full h-[30rem]" 
-                src={`https://www.youtube.com/embed/${episode.video_id}`}
-                allow="picture-in-picture" 
+            <iframe type="text/html" class="aspect-video w-full h-[30rem]" 
+                src={`https://www.youtube.com/embed/${episode.video_id}?enablejsapi=1`}
+                allow="" 
                 allowfullscreen
-                id="youtube-player"
+                id="player"
             ></iframe>
         </div>
+
+        <button class="btn btn-neutral rounded-t-none mb-12 w-full" id="skip-intro">Salta Intro</button>
 
         <div class="divider"></div>
 
@@ -87,8 +89,32 @@ const title = 'Medabots - Epispodio ' + episode.number;
 
     </div>
 
-    <script>
-        const player = document.querySelector('#youtube-player');
-        console.log(player);
+    <script src="https://www.youtube.com/iframe_api" is:inline></script>
+    <script is:inline>
+
+        const skipIntroButton = document.querySelector('#skip-intro');
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player',{
+                events: {
+                    onStateChange : toggleSkipIntroButton
+                }
+            });
+        }
+
+        const toggleSkipIntroButton = ()  => {
+            if(player.getCurrentTime() < 105)
+                skipIntroButton.classList.remove('hidden');
+            else
+                skipIntroButton.classList.add('hidden');
+        }
+
+        const skipIntro = () => {
+            if(player.getCurrentTime() < 105) player.seekTo(105);
+            toggleSkipIntroButton();
+            setTimeout(() => player.playVideo(), 500);
+        };
+
+        skipIntroButton.onclick = skipIntro;
     </script>
 </Layout>
