@@ -32,7 +32,7 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
                                 <div class="text-neutral-content">
                                     {table.map((row, rowId) => {
                                         return (
-                                            <div class="mine-cell select-none bg-neutral hover:bg-accent-focus border-neutral-content font-black h-8 w-8 md:h-10 md:pt-1.5 md:w-10 z-10 text-center border-2 shadow-inner hover:shadow-none cursor-pointer"
+                                            <div class="grid place-items-center mine-cell select-none bg-neutral hover:border-accent-focus border-neutral-content font-black h-8 w-8 md:h-10 md:w-10 z-10 text-center border-2 shadow-inner active:shadow-none cursor-pointer"
                                                 id={ (colId * boardSize) + rowId }   
                                             />
                                         );
@@ -70,8 +70,9 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
 <script>
     import confetti from 'canvas-confetti';
     import { adjacentCells } from "../utils";
-    const electrode = "https://img.pokemondb.net/sprites/ruby-sapphire/normal/electrode.png";
+    const electrode = "https://img.pokemondb.net/sprites/black-white/anim/normal/electrode.gif";
     const magnet = "https://raw.githubusercontent.com/msikma/pokesprite/master/items-outline/hold-item/magnet.png";
+    const unownQuestion = "https://img.pokemondb.net/sprites/black-white/anim/normal/unown-qm.gif";
 
     var nBombs = 15;
     var boardSize = 10;
@@ -138,7 +139,7 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
         var cell = document.getElementById(id);
         var coordinates = getCoordinates(id);
         if(table[coordinates.col][coordinates.row] == 'X') {
-            cell.innerHTML = `<img class="h-8 w-8 md:h-10 md:w-10 md:-mt-1.5" src='${electrode}'/>`;
+            cell.innerHTML = `<img class="h-5 w-5 md:h-6 md:w-6" src='${electrode}'/>`;
             gameOver = true;
             electrodeCry.play();
             setTimeout(showBombs(id), 2000);
@@ -167,7 +168,7 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
         var remainingBombs =  bombs.filter( id => id != excludeId );
         remainingBombs.forEach( (id,i) => {
             setTimeout( () => {
-                document.getElementById(id).innerHTML = `<img class="h-8 w-8 md:h-10 md:w-10 md:-mt-1.5" src='${electrode}'/>`;
+                document.getElementById(id).innerHTML = `<img class="h-5 w-5 md:h-6 md:w-6" src='${electrode}'/>`;
                 if(i == remainingBombs.length-1) refresh.disabled = false;
             }, i * 200 );
         });
@@ -216,8 +217,9 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
         cell.oncontextmenu = (e) => {
             e.preventDefault();
             if(!gameOver){
-                if(e.target.innerHTML == '') e.target.innerHTML = `<img class='h-8 w-8 md:h-10 md:w-10 md:-mt-1.5' src='${magnet}'/>`;
-                if(e.target.tagName == "IMG" && e.target.getAttribute('src') == magnet ) e.target.remove();   
+                if(e.target.innerHTML == '') e.target.innerHTML = `<img class='h-8 w-8 md:h-10 md:w-10' src='${magnet}'/>`;
+                if(e.target.tagName == "IMG" && e.target.getAttribute('src') == magnet ) e.target.parentElement.innerHTML = `<img class="h-5 w-5 md:h-6 md:w-6" src='${unownQuestion}'/>`;   
+                if(e.target.tagName == "IMG" && e.target.getAttribute('src') == unownQuestion ) e.target.remove();  
             }
         };
     });
