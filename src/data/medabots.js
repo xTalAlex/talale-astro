@@ -30,7 +30,7 @@ const episodes = [
         season: 1,
         number: 4,
         title: "Il leggendario master dei Medarot",
-        video_id: "ow5Y0fhTLWE",
+        video_id: "CFjgftuhkT0&t",
         summary: null
     },
     {
