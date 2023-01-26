@@ -15,10 +15,11 @@ import Navbar from "@components/Navbar.astro";
 import Footer from "@components/Footer.astro";
 import Modal from "@components/vue/Modal.vue";
 import BackToTop from "@components/BackToTop.astro";
+import IubendaCookieSolution from "@components/IubendaCookieSolution.astro";
 
 const { title = null , description = Config.description, ogType = "website", ogImage = Config.url + "/images/homepreview.png", ogImageAlt = "Website Header", noindex = false } = Astro.props;
 
-const {COOKIEBOT_ID, GOOGLE_SEARCH_CONSOLE_ID, GOOGLE_ANALYTICS_ID, TAWKTO_WIDGET_URL } = import.meta.env;
+const {COOKIEBOT_ID, IUBENDA_SITE_ID, IUBENDA_POLICY_ID, GOOGLE_SEARCH_CONSOLE_ID, GOOGLE_ANALYTICS_ID, TAWKTO_WIDGET_URL } = import.meta.env;
 const canonical = Astro.url.href;
 const fullTitle = title ? (ogType == "article" ? title + " | " + Config.title : Config.title + " | " + title ) : Config.title + " | " + Config.description;
 
@@ -60,6 +61,15 @@ const openGraph = {
 					data-cbid={`${COOKIEBOT_ID}`}
 					async
 				></script>
+			)
+		}
+
+		{
+			(IUBENDA_SITE_ID && IUBENDA_POLICY_ID) && (
+				<IubendaCookieSolution
+					siteId={IUBENDA_SITE_ID}
+					policyId={IUBENDA_POLICY_ID}
+				/>
 			)
 		}
 
