@@ -81,15 +81,14 @@ const openGraph = {
 
 		{
 			GOOGLE_ANALYTICS_ID && (
-				<script type={`${COOKIEBOT_ID ? 'text/plain' : 'text/javascript'}`}
+				<script type={`${(COOKIEBOT_ID || IUBENDA_SITE_ID) ? 'text/plain' : 'text/javascript'}`}
+					class="_iub_cs_activate"
 					async
 					src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
 					data-cookieconsent="statistics"
+					data-iub-purposes="4"
 				></script>
-				<script  type={`${COOKIEBOT_ID ? 'text/plain' : 'text/javascript'}`}
-					data-gaid={GOOGLE_ANALYTICS_ID}
-					data-cookieconsent="statistics"
-				>
+				<script data-gaid={GOOGLE_ANALYTICS_ID}>
 					window.dataLayer = window.dataLayer || [];
 					function gtag() {
 						dataLayer.push(arguments);
@@ -114,8 +113,10 @@ const openGraph = {
 
 		{
 			TAWKTO_WIDGET_URL && (
-				<script type={`${COOKIEBOT_ID ? 'text/plain' : 'text/javascript'}`}
+				<script type={`${(COOKIEBOT_ID || IUBENDA_SITE_ID) ? 'text/plain' : 'text/javascript'}`}
+					class="_iub_cs_activate-inline"
 					data-cookieconsent="preferences, statistics"
+					data-iub-purposes="2,4"
 					data-url={TAWKTO_WIDGET_URL}
 				>
 					var Tawk_API = Tawk_API || {},

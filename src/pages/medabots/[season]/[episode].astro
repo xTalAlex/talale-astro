@@ -54,7 +54,7 @@ const title = 'Medabots - Epispodio ' + episode.number;
         <div class="w-full h-full grid place-items-center mt-12">
             <iframe type="text/html" class="aspect-video w-full h-[30rem]" 
                 src={`https://www.youtube-nocookie.com/embed/${episode.video_id}?enablejsapi=1`}
-                allow="" 
+                allow="picture-in-picture; autoplay" 
                 allowfullscreen
                 id="player"
             ></iframe>
