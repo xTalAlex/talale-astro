@@ -13,7 +13,7 @@ export default defineConfig({
         applyBaseStyles: false
       }
     }), 
-    vue(), 
+    vue({ appEntrypoint: '/src/_app' }), 
     sitemap({
       filter: (page) => 
         page !== 'https://talale.it/privacy-policy/' && 

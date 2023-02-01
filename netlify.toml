@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/nintendo-switch/"
+  to = "/nintendo-switch/1"
+  status = 301
+  force = true
