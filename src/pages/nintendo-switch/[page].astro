@@ -128,7 +128,7 @@ const { page } = Astro.props;
                             <div class="flex space-x-2 justify-center h-8">
                                 {   
                                     game.involved_companies?.map( (company) => company.company.logo && company.company.websites && (
-                                        <div class="tooltip tooltip-top z-50" data-tip={company.company.name}>
+                                        <div class="tooltip tooltip-top" data-tip={company.company.name}>
                                             <a href={company.company.websites && company.company.websites[0].url} target="_blank">
                                                 <img class="h-6 object-fill rounded-full" alt={company.company.name} src={company.company.logo && company.company.logo.url}/>
                                             </a>

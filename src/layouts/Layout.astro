@@ -16,6 +16,7 @@ import Footer from "@components/Footer.astro";
 import Modal from "@components/vue/Modal.vue";
 import BackToTop from "@components/BackToTop.astro";
 import IubendaCookieSolution from "@components/IubendaCookieSolution.astro";
+import Alert from "@components/Alert.astro";
 
 const { title = null , description = Config.description, ogType = "website", ogImage = Config.url + "/images/homepreview.png", ogImageAlt = "Website Header", noindex = false } = Astro.props;
 
@@ -103,6 +104,7 @@ const openGraph = {
 	<body>
 		<Navbar />
 		<main class="mb-12 font-sans pt-16">
+			<Alert/>
 			<slot />
 		</main>
 		<Footer />

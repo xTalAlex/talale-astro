@@ -8,7 +8,7 @@
                 />
                 <button class="btn glass btn-xs absolute -right-1 -top-1 z-10"
                     @click="removeWishlistItem(item)"
-                >x</button>
+                >&times</button>
             </div>
         </div>
     </div>

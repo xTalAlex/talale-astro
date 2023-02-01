@@ -1,0 +1,81 @@
+---
+---
+
+<div class="hidden alert flex-row shadow-lg alert-info text-info-content fixed top-16 bg-opacity-50 backdrop-blur z-50 inset-x-0 rounded-none justify-between items-center "
+    id="alert"
+>
+    <div>
+        <svg xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            class="stroke-current flex-shrink-0 w-6 h-6"
+        >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5" />
+        </svg>
+    </div>
+    <div class="max-w-xs">
+        <div class="w-full text-center">
+            <h3 class="font-bold" id="alert-title"></h3>
+            <div class="text-base font-semibold" id="alert-message">Messaggio</div>
+        </div>
+    </div>
+    <div class="flex-none">
+        <button class="btn btn-sm btn-ghost" id="alert-close">&times</button>
+    </div>
+</div>
+
+<script>
+    const alert = document.querySelector('#alert');
+    const alertTitle = document.querySelector('#alert-title');
+    const alertMessage = document.querySelector('#alert-message');
+    const alertCloseButton = document.querySelector('#alert-close');
+
+    const setStyle = (style) => {
+        alert.classList.forEach( (classItem,i) => {
+                if(classItem.startsWith('alert-')) alert.classList.remove(classItem);
+            }
+        );
+
+        switch(style){
+            case('success'): 
+                alert.classList.add('alert-success','text-success-content');
+                break;
+            case('error'): 
+                alert.classList.add('alert-error','text-error-content');
+                break;
+            case('warning'): 
+                alert.classList.add('alert-warning','text-warning-content');
+                break;
+            default: 
+                alert.classList.add('alert-info','text-info-content');
+                break;
+        }
+    };
+
+    alertCloseButton.addEventListener('click', () => {
+        alert.classList.add('hidden');
+    });
+
+    window.notify = (message : string, title : string | null, style : string | null) => {
+        document.dispatchEvent(
+            new CustomEvent("notify", { detail: {
+                title: title,
+                message: message,
+                style: style?.toLowerCase()
+            } })
+        );
+    }
+
+    document.addEventListener('notify', (event) => {
+        if(event.detail && event.detail.message) {
+            if(event.detail.title) { 
+                alertTitle.innerHTML = event.detail.title;
+                alertTitle.classList.remove('hidden');
+            }
+            else alertTitle.classList.add('hidden');
+            alertMessage.innerHTML = event.detail.message;
+            if(event.detail.style) setStyle(event.detail.style);
+            alert.classList.remove('hidden');
+        }
+    })
+</script>

@@ -1,9 +1,11 @@
 <template>
-    <button class="btn btn-xs w-6 font-bold"
-        :class="isWishlisted ? 'btn-neutral' : 'btn-accent'"
-        @click="toggleItem()"
-        v-text="isWishlisted ? '-' : '+'"
-    ></button>
+    <div class="tooltip tooltip-top" :data-tip="isWishlisted ? 'Rimuovi' : 'Salva'">
+        <button class="btn btn-xs w-6 font-bold"
+            :class="isWishlisted ? 'btn-neutral' : 'btn-accent'"
+            @click="toggleItem()"
+            v-text="isWishlisted ? '-' : '+'"
+        ></button>
+    </div>
 </template>
 
 <script setup>
