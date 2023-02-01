@@ -5,6 +5,8 @@ import GamesSearchbar from "@components/GamesSearchbar.astro";
 import Config from "../../site.config";
 import Pagination from "@components/Pagination.astro";
 import { formatDate } from "../../utils";
+import AddToWishlist from "@components/vue/AddToWishlist.vue";
+import Wishlist from "@components/vue/Wishlist.vue";
 
 export async function getStaticPaths({ paginate }) {
     return paginate(games, { pageSize: Config.gamesPerPage });
@@ -26,6 +28,8 @@ const { page } = Astro.props;
         <div class="my-12 w-full">
             <GamesSearchbar />
         </div>
+
+        <Wishlist client:only="vue"></Wishlist>
 
         <div class="divider"></div>
 
@@ -132,6 +136,13 @@ const { page } = Astro.props;
                                     ))
                                 }
                             </div>    
+                        </div>
+                        <div class="card-actions justify-end">
+                            <AddToWishlist client:only="vue"
+                                id={game.slug}
+                                name={game.name} 
+                                imgSrc={game.cover?.url}
+                            ></AddToWishlist>
                         </div>
                     </div>
                 </div>
