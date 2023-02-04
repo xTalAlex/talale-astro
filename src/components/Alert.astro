@@ -15,8 +15,8 @@
     </div>
     <div class="max-w-xs">
         <div class="w-full text-center">
-            <h3 class="font-bold" id="alert-title"></h3>
-            <div class="text-base font-semibold" id="alert-message">Messaggio</div>
+            <h3 class="font-bold text-base" id="alert-title"></h3>
+            <div class="mt-1 text-sm font-semibold" id="alert-message">Messaggio</div>
         </div>
     </div>
     <div class="flex-none">
@@ -24,7 +24,7 @@
     </div>
 </div>
 
-<script>
+<script client:visible>
     const alert = document.querySelector('#alert');
     const alertTitle = document.querySelector('#alert-title');
     const alertMessage = document.querySelector('#alert-message');
@@ -56,7 +56,7 @@
         alert.classList.add('hidden');
     });
 
-    window.notify = (message : string, title : string | null, style : string | null) => {
+    window.notify = (message, title = null, style = null) => {
         document.dispatchEvent(
             new CustomEvent("notify", { detail: {
                 title: title,

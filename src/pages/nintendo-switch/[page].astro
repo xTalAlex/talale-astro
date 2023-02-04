@@ -161,20 +161,19 @@ const { page } = Astro.props;
         </div>
 
     </div>
-
-    <script>
-        import Swiper, { Navigation, Pagination } from "swiper";
-        const swipers = new Swiper(".swiper", {
-            modules: [Navigation, Pagination ],
-            loop: true,
-            pagination: {
-                el: ".swiper-pagination",
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-        });
-    </script>
-    
 </Layout>
+
+<script>
+    import Swiper, { Navigation, Pagination } from "swiper";
+    const swipers = new Swiper(".swiper", {
+        modules: [Navigation, Pagination ],
+        loop: true,
+        pagination: {
+            el: ".swiper-pagination",
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+</script>

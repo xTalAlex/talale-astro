@@ -3,7 +3,6 @@ import { episodes } from "@data/medabots";
 import { slugify } from "../../../utils";
 
 import Layout from "@layouts/Layout.astro";
-import Breadcrumbs from "@components/Breadcrumbs.astro";
 
 export async function getStaticPaths({ paginate }) {
     return episodes.map((episode, id) => {
@@ -88,33 +87,51 @@ const title = 'Medabots - Episodio ' + episode.number;
         </div>
 
     </div>
+</Layout>
 
-    <script src="https://www.youtube.com/iframe_api" is:inline></script>
-    <script is:inline>
+<script src="https://www.youtube.com/iframe_api" is:inline></script>
+<script is:inline data-episode={JSON.stringify(episode)} data-next-episode={JSON.stringify(nextEpisode)}>
 
-        const skipIntroButton = document.querySelector('#skip-intro');
-        var player;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player',{
-                events: {
-                    onStateChange : toggleSkipIntroButton
-                }
-            });
+    const skipIntroButton = document.querySelector('#skip-intro');
+    const episode = JSON.parse(document.currentScript.dataset.episode);
+    const nextEpisode = JSON.parse(document.currentScript.dataset.nextEpisode);
+    var player;
+    
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player',{
+            events: {
+                onStateChange : checkState
+            }
+        });
+        skipIntroButton.classList.remove('hidden');
+    }
+
+    const checkState = ({target, data}) => {
+        toggleSkipIntroButton();
+        if(data === 0){
+            localStorage.setItem('keepwatching', JSON.stringify(nextEpisode));
         }
+        else if(data == 1){
+            localStorage.setItem('keepwatching', JSON.stringify(episode));
+        }
+    };
 
-        const toggleSkipIntroButton = ()  => {
+    const toggleSkipIntroButton = ()  => {
+        if(player){
             if(player.getCurrentTime() < 105)
                 skipIntroButton.classList.remove('hidden');
             else
                 skipIntroButton.classList.add('hidden');
         }
+    }
 
-        const skipIntro = () => {
+    const skipIntro = () => {
+        if(player){
             if(player.getCurrentTime() < 105) player.seekTo(105);
             toggleSkipIntroButton();
             setTimeout(() => player.playVideo(), 500);
-        };
+        }
+    };
 
-        skipIntroButton.onclick = skipIntro;
-    </script>
-</Layout>
+    skipIntroButton.onclick = skipIntro;
+</script>
