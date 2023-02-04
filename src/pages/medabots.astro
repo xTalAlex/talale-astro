@@ -51,6 +51,6 @@ const title = "Medabots - Tutti gli Episodi";
         var episode = JSON.parse(keepwatching);
         var title = "Continua da dove sei rimasto";
         var message = `Episodio ${episode.number} "${episode.title}" <a class="underline" href="/medabots/${episode.season}/${episode.number}">Vai</a>`;
-        window.notify(message, title, 'info');
+        window.notify(message, title, 'accent');
     }
 </script>
