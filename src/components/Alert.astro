@@ -1,7 +1,7 @@
 ---
 ---
 
-<div class="hidden alert flex-row shadow-lg alert-info text-info-content fixed top-16 bg-opacity-50 backdrop-blur z-50 inset-x-0 rounded-none justify-between items-center "
+<div class="hidden transition duration-500 ease-in-out alert flex-row shadow-lg alert-info text-info-content fixed top-16 bg-opacity-50 backdrop-blur-2xl z-50 inset-x-0 rounded-none justify-between items-center "
     id="alert"
 >
     <div>
@@ -46,14 +46,33 @@
             case('warning'): 
                 alert.classList.add('alert-warning','text-warning-content');
                 break;
+            case('primary'): 
+                alert.classList.add('bg-primary','text-primary-content');
+                break;
+            case('secondary'): 
+                alert.classList.add('bg-secondary','text-secondary-content');
+                break;
+            case('accent'): 
+                alert.classList.add('bg-accent','text-accent-content');
+                break;
             default: 
                 alert.classList.add('alert-info','text-info-content');
                 break;
         }
     };
 
+    const close = () => {
+        setTimeout( () => {
+            alert.classList.add('opacity-0');
+        }, 1000);
+        setTimeout( () => {
+            alert.classList.add('hidden');
+            alert.classList.remove('opacity-0');
+        }, 1500);
+    };
+
     alertCloseButton.addEventListener('click', () => {
-        alert.classList.add('hidden');
+        close();
     });
 
     window.notify = (message, title = null, style = null) => {
@@ -77,5 +96,6 @@
             if(event.detail.style) setStyle(event.detail.style);
             alert.classList.remove('hidden');
         }
+        setTimeout( close , 10000 );
     })
 </script>
