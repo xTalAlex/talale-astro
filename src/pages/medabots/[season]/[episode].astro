@@ -92,6 +92,7 @@ const title = 'Medabots - Episodio ' + episode.number;
 <script src="https://www.youtube.com/iframe_api" is:inline></script>
 <script is:inline data-episode={JSON.stringify(episode)} data-next-episode={JSON.stringify(nextEpisode)}>
 
+    const startFrom = 107;
     const skipIntroButton = document.querySelector('#skip-intro');
     const episode = JSON.parse(document.currentScript.dataset.episode);
     const nextEpisode = JSON.parse(document.currentScript.dataset.nextEpisode);
@@ -118,7 +119,7 @@ const title = 'Medabots - Episodio ' + episode.number;
 
     const toggleSkipIntroButton = ()  => {
         if(player){
-            if(player.getCurrentTime() < 105)
+            if(player.getCurrentTime() < startFrom)
                 skipIntroButton.classList.remove('hidden');
             else
                 skipIntroButton.classList.add('hidden');
@@ -127,7 +128,7 @@ const title = 'Medabots - Episodio ' + episode.number;
 
     const skipIntro = () => {
         if(player){
-            if(player.getCurrentTime() < 105) player.seekTo(105);
+            if(player.getCurrentTime() < startFrom) player.seekTo(startFrom);
             toggleSkipIntroButton();
             setTimeout(() => player.playVideo(), 500);
         }
