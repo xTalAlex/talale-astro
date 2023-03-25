@@ -10,8 +10,14 @@ export default defineConfig({
   site: Config.url,
   integrations: [
     NetlifyCMS({
+      adminPath: '/admin',
       config: {
+        site_url: Config.url,
+        display_url: Config.url,
+        logo_url: Config.url + '/icon.png',
         locale: 'it',
+        media_folder: "src/assets/uploads",
+        public_folder: "/assets/uploads",
         backend: {
           name: 'git-gateway',
           branch: 'master'
@@ -25,6 +31,9 @@ export default defineConfig({
                 name: 'site_config',
                 label: 'Configurazione Sito',
                 file: 'src/site_config.json',
+                editor: {
+                  preview: false,
+                },
                 fields: [
                   { label: "URL", name: "url", widget: "string" },
                   { label: "Titolo", name: "title", widget: "string" },
@@ -43,6 +52,20 @@ export default defineConfig({
               },
             ],
           },
+          {
+            name: 'posts',
+            label: 'Posts',
+            folder: 'src/content/posts',
+            preview_path: 'posts/{{slug}}',
+            create: true,
+            fields: [
+              { label: "Titolo", name: "title", widget: "string" },
+              { label: "Data", name: "date", widget: "datetime"},
+              { label: "Immagine in Evidenza", name: "featuredImage", widget: "image" },
+              { label: "Contenuto", name: "body", widget: "markdown" },
+              { label: "Galleria", name: "gallery", widget: "list", summary: '{{fields.image}}', field: { label: "Immagine", name: "image", widget: "image"} }
+            ]
+          }
         ],
       },
     }),

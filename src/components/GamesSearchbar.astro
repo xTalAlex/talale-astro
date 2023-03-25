@@ -22,9 +22,9 @@ import { lastDeployDate, formatDate } from "../utils";
 <div class="mt-12 flex w-full h-24 justify-center items-center" id="search-results">
     <div class="cursor-default stats shadow bg-primary text-primary-content">
         <div class="stat">
-          <div class="stat-title font-semibold">Numero di titoli</div>
+          <div class="stat-title font-semibold text-primary-content">Numero di titoli</div>
           <div class="stat-value">{gamesCount}</div>
-          <div class="stat-desc font-semibold">Ultimo aggiornamento { formatDate(lastDeployDate) }</div>
+          <div class="stat-desc font-semibold text-primary-content">Ultimo aggiornamento { formatDate(lastDeployDate) }</div>
         </div>
     </div>
 </div>
@@ -84,9 +84,9 @@ import { lastDeployDate, formatDate } from "../utils";
         document.getElementById('search-results').innerHTML = `
             <div class="cursor-default stats shadow bg-primary text-primary-content">
                 <div class="stat">
-                <div class="stat-title font-semibold">Numero di titoli</div>
+                <div class="stat-title font-semibold text-primary-content">Numero di titoli</div>
                 <div class="stat-value">${data.length}</div>
-                <div class="stat-desc font-semibold">Ultimo aggiornamento ${formatDate(lastDeployDate)}</div>
+                <div class="stat-desc font-semibold text-primary-content">Ultimo aggiornamento ${formatDate(lastDeployDate)}</div>
                 </div>
             </div>
         `;
