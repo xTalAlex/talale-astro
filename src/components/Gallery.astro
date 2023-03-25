@@ -1,0 +1,26 @@
+---
+import img1 from '../../src/assets/images/bomb.png';
+import img2 from '../../src/assets/images/IoTramonto.jpg';
+---
+<div>
+    <div id="my-gallery" class="flex">
+        <a href={img1}>
+            <img class="h-64 w-64 object-contain" src={img1}/>
+        </a>
+        <a href={img2}>
+            <img class="h-64 w-64 object-contain" src={img2}/>
+        </a>
+    </div>
+</div>
+
+<script>
+    import PhotoSwipeLightbox from 'photoswipe/lightbox';
+    import 'photoswipe/style.css';
+
+    const lightbox = new PhotoSwipeLightbox({
+        gallery: '#my-gallery',
+        children: 'a',
+        pswpModule: () => import('photoswipe')
+    });
+    lightbox.init();
+</script>

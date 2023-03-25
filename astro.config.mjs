@@ -14,7 +14,7 @@ export default defineConfig({
       config: {
         site_url: Config.url,
         display_url: Config.url,
-        logo_url: Config.url + '/icon.png',
+        // logo_url: Config.url + '/icon.png',
         locale: 'it',
         media_folder: "src/assets/uploads",
         public_folder: "/assets/uploads",
