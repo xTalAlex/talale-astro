@@ -33,7 +33,7 @@ import { lastDeployDate, formatDate } from "../utils";
     import Fuse from "fuse.js";
     import { searchOptions } from "../fuse-helpers.js";
     import { lastDeployDate, delayFunction, toTrimmedAlphanumeric, formatDate } from "../utils.js";
-    import Config from "../site.config";
+    import Config from "../site_config.json";
     var response = await fetch("/searchindex.json");
     const data = await response.json();
     const fuse = new Fuse(data, searchOptions);

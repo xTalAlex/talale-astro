@@ -1,5 +1,5 @@
-import Config from "../site.config";
-const API_URL = Config.blogURL + '/graphql';
+import Config from "../site_config.json";
+const API_URL = Config.blogUrl + '/graphql';
 
 async function fetchAPI(query, { variables } = {}) {
 
