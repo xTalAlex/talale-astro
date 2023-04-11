@@ -4,6 +4,8 @@ import IubendaPolicy from "./IubendaPolicy.astro";
 import IubendaLogo from "@assets/images/iubenda-logo.png";
 import AmazonPrimeLogo from "@assets/images/amazon-prime-logo.png";
 
+const curYear = new Date().getFullYear();
+
 const { COOKIEBOT_ID, IUBENDA_POLICY_ID } = import.meta.env;
 ---
 
@@ -76,6 +78,6 @@ const { COOKIEBOT_ID, IUBENDA_POLICY_ID } = import.meta.env;
         <p class="font-bold">
             {Config.title} | {Config.subtitle}
         </p>
-        <p>Copyright © 2022 - tutti i diritti riservati</p>
+        <p>Copyright © {curYear} - tutti i diritti riservati</p>
     </div>
 </footer>
