@@ -3,6 +3,7 @@ import Config from '../site_config.json';
 import { getCollection } from 'astro:content';
 
 export async function get(context) {
+    // getCollection('nomeCartellaInPages')
     const blog = await getCollection('blog');
     return rss({
         title: Config.title,
