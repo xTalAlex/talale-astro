@@ -32,7 +32,7 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
                                 <div class="text-neutral-content">
                                     {table.map((row, rowId) => {
                                         return (
-                                            <div class="grid place-items-center mine-cell select-none bg-neutral hover:border-accent-focus border-neutral-content font-black h-8 w-8 md:h-10 md:w-10 z-10 text-center border-2 shadow-inner active:shadow-none cursor-pointer"
+                                            <div class="grid place-items-center mine-cell select-none hover:border-accent-focus border-neutral-content font-black h-8 w-8 md:h-10 md:w-10 z-10 text-center border-2 shadow-inner active:shadow-none cursor-pointer"
                                                 id={ (colId * boardSize) + rowId }   
                                             />
                                         );
