@@ -7,7 +7,7 @@
           class="tooltip tooltip-left"
           :data-tip="refreshing ? 'Refresh in cooldown' : 'Refresh'"
         >
-          <button
+          <button aria-label="Refresh"
             class="btn btn-sm btn-circle btn-secondary"
             :disabled="refreshing"
             @click="fetchTips"

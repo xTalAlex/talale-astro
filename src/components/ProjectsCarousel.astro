@@ -17,7 +17,7 @@ const sortedProjects = projects.reverse();
                                 <p class="pr-5" >{ project.description }</p>
                                 <div class="h-48 md:h-96 relative overflow-hidden">
                                     <a href={ project.link } target="_blank">
-                                        <img class="h-full w-full object-top object-cover my-auto" src={ "/images/projects/" + project.screenshot } />
+                                        <img class="h-full w-full object-top object-cover my-auto" src={ "/images/projects/" + project.screenshot } alt={ project.title } />
                                     </a>
                                 </div>
                             </div>
@@ -34,13 +34,14 @@ const sortedProjects = projects.reverse();
                     {
                         sortedProjects.map(project =>
                             <div class="embla__slide pl-3 relative min-w-[50%] sm:min-w-[33%] md:min-w-[20%]">
-                                <button
+                                <button aria-label={ project.title }
                                     class="h-24 touch-manipulation w-full bg-transparent relative block overflow-hidden m-0 p-0 cursor-pointer border-none outline-none"
                                     type="button"
                                 >
                                     <img
                                         class="embla__slide__thumbnail opacity-20"
                                         src={ "images/projects/" + project.screenshot }
+                                        alt={  project.title  + " thumbnail" }
                                     />
                                 </button>
                             </div>
