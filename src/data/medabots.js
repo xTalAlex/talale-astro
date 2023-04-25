@@ -190,15 +190,15 @@ const episodes = [
     {
         season: 1,
         number: 27,
-        title: "Il piano dello gnocco di polpo",
-        video_id: "j8I_swR8f6w",
+        title: "Fresco di stampa, la classifica nazionale",
+        video_id: "SN0I0W4q8HU",
         summary: null,
     },
     {
         season: 1,
         number: 28,
-        title: "Fresco di stampa, la classifica nazionale",
-        video_id: "SN0I0W4q8HU",
+        title: "Il piano dello gnocco di polpo",
+        video_id: "j8I_swR8f6w",
         summary: null,
     },
     {
