@@ -344,7 +344,7 @@ const episodes = [
     {
         season: 1,
         number: 49,
-        title: "La fnale della Coppa del Mondo",
+        title: "La finale della Coppa del Mondo",
         video_id: "iBg0CNj7od8",
         summary: null,
     },
