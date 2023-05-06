@@ -15,11 +15,16 @@ module.exports = {
       },
       animation: {
         shine: "shine 1s",
+        wiggle: 'wiggle 2s ease-in-out infinite',
       },
       keyframes: {
         shine: {
           "100%": { left: "125%" },
         },
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(0deg)' },
+          '50%': { transform: 'rotate(3deg)' },
+        }
       },
     }
   },
