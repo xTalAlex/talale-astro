@@ -1,5 +1,7 @@
 ---
 import Config from "../site_config.json";
+
+import mascotte from "@assets/images/mascotte.svg";
 ---
 
 <div
@@ -9,9 +11,18 @@ import Config from "../site_config.json";
 >
     <div class="hero-overlay bg-opacity-60"></div>
     <div class="hero-content text-left text-neutral-content">
-        <div class="max-w-full pl-5 md:pl-0">
-            <h1 class="mb-2 text-5xl font-bold">{Config.title}</h1>
-            <p class="mb-5 text-2xl font-semibold">{Config.subtitle}</p>
+        <div class="max-w-full pl-5 md:pl-0 ">
+            <div class="max-w-max md:pt-0">
+                <div class="flex flex-col md:flex-row md:justify-start mb-2">
+                    <img src={mascotte} class="h-24 md:h-32 mb-2 place-self-start"/>
+                    <div class="font-bold -ml-4">
+                        <div class="ml-6 text-4xl md:text-5xl md:mt-4 mb-1">Alessandro</div>
+                        <div class="text-5xl md:text-6xl ml-1">Talamona</div>
+                    </div>
+                </div>
+                <p class="mb-5 text-2xl font-semibold md:text-center">{Config.subtitle}</p>
+            </div>
+            <!-- <h1 class="text-5xl font-bold inline mb-2">{Config.title}</h1> -->
             <p class="mb-5">
                 {Config.description}
             </p>

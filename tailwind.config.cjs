@@ -10,9 +10,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'sans': [...defaultTheme.fontFamily.sans],
-        'serif': [...defaultTheme.fontFamily.serif],
-        'mono': [...defaultTheme.fontFamily.mono],
+        'sans': ["Tomorrow",...defaultTheme.fontFamily.sans],
+        'serif': ["Rokkitt",...defaultTheme.fontFamily.serif],
       },
       animation: {
         shine: "shine 1s",
@@ -32,7 +31,12 @@ module.exports = {
     logs: false,
     themes: [
       "halloween",
-      "emerald"
+      {
+        "halloween-light": {
+          ...require("daisyui/src/colors/themes")["[data-theme=halloween]"],
+          "base-100": "#FFF",
+        },
+      },
     ],
   },
 };
