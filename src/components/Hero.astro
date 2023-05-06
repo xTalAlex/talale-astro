@@ -2,6 +2,8 @@
 import Config from "../site_config.json";
 
 import mascotte from "@assets/images/mascotte.svg";
+
+const titleParts = Config.title.split(" ");
 ---
 
 <div
@@ -16,8 +18,12 @@ import mascotte from "@assets/images/mascotte.svg";
                 <div class="flex flex-col md:flex-row md:justify-start mb-2">
                     <img src={mascotte} class="h-24 md:h-32 mb-2 place-self-start"/>
                     <div class="font-bold -ml-4">
-                        <div class="ml-6 text-4xl md:text-5xl md:mt-4 mb-1">Alessandro</div>
-                        <div class="text-5xl md:text-6xl ml-1">Talamona</div>
+                        {
+                            titleParts.length > 1 ?
+                            <div class="ml-6 text-4xl md:text-5xl md:mt-4 mb-1">{ titleParts[0] }</div>
+                            <div class="text-5xl md:text-6xl ml-1">{ titleParts[1] }</div> :
+                            <div class="text-5xl md:text-6xl md:mt-14 ml-4 md:ml-4">{ titleParts[0] }</div>
+                        }   
                     </div>
                 </div>
                 <p class="mb-5 text-2xl font-semibold md:text-center">{Config.subtitle}</p>

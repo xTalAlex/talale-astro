@@ -18,7 +18,7 @@ import BackToTop from "@components/BackToTop.astro";
 import IubendaCookieSolution from "@components/IubendaCookieSolution.astro";
 import Alert from "@components/Alert.astro";
 
-const { title = null , description = Config.description, ogType = "website", ogImage = Config.url + "/images/homepreview.png", ogImageAlt = "Website Header", noindex = false } = Astro.props;
+const { title = null , description = Config.description, ogType = "website", ogImage = Config.url + "/images/sharepreview.png", ogImageAlt = "Website Header", noindex = false } = Astro.props;
 
 const {COOKIEBOT_ID, IUBENDA_SITE_ID, IUBENDA_POLICY_ID, GOOGLE_SEARCH_CONSOLE_ID, GOOGLE_ANALYTICS_ID, TAWKTO_WIDGET_URL } = import.meta.env;
 const canonical = Astro.url.href;
