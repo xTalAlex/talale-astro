@@ -1,6 +1,7 @@
 ---
 import electrodeCry from "@assets/audio/electrode.mp3";
 import itemFoundFanfare from "@assets/audio/pokemon_rby_item_found_fanfare.mp3";
+import Title from "./Title.astro";
 
 const boardSize = 10;
 var table = new Array(boardSize);
@@ -10,17 +11,14 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
 <div class="card card-compact">
     <div class="card-body">
         <div class="card-title">
-            <h2
-                class="text-2xl font-semibold -mt-20 pt-20"
-                id="minesweeper"
-            >
+            <Title id="minesweeper">
                 Electrode Minesweeper
                 <img
                     class="inline -ml-2 -mt-1"
                     alt="Electrode"
                     src="https://img.pokemondb.net/sprites/ruby-sapphire/normal/electrode.png"
                 />
-            </h2>
+            </Title>
         </div>
         <div class="flex justify-center items-center mt-6 pb-12">
             <div class="">
