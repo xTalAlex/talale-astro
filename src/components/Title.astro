@@ -5,13 +5,13 @@ const { id, linkable = true } = Astro.props
 ---
 
 <h2 class="text-2xl font-semibold -mt-20 pt-20" id={id}>
-    <span>
+    <a class="cursor-pointer" href={ "#" + id }>
         <slot />
         { 
             linkable &&
-                <a href={ "#" + id } class="opacity-50 hover:opacity-100 link" >
+                <span class="hidden sm:inline-block opacity-50 hover:opacity-100" >
                     <Icon class="inline h-8" name="pixelarticons:link"/>
-                </a>
+                </span>
         }
-    </span>
+    </a>
 </h2>

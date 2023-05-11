@@ -10,7 +10,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'sans': ["Tomorrow",...defaultTheme.fontFamily.sans],
+        'sans': ["Chakra Petch",...defaultTheme.fontFamily.sans],
         'serif': ["Rokkitt",...defaultTheme.fontFamily.serif],
       },
       animation: {

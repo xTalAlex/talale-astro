@@ -1,4 +1,6 @@
 ---
+import MinesweeperRanking from "@components/vue/MinesweeperRanking.vue";
+
 import electrodeCry from "@assets/audio/electrode.mp3";
 import itemFoundFanfare from "@assets/audio/pokemon_rby_item_found_fanfare.mp3";
 import Title from "./Title.astro";
@@ -20,6 +22,7 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
                 />
             </Title>
         </div>
+
         <div class="flex justify-center items-center mt-6 pb-12">
             <div class="">
 
@@ -62,12 +65,16 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
                 </div>
             </div>
         </div>
+
+        <MinesweeperRanking client:only="vue"/>
+
     </div>
 </div>
 
 <script>
     import confetti from 'canvas-confetti';
     import { adjacentCells } from "../utils";
+
     const electrode = "https://img.pokemondb.net/sprites/black-white/anim/normal/electrode.gif";
     const magnet = "https://raw.githubusercontent.com/msikma/pokesprite/master/items-outline/hold-item/magnet.png";
     const unownQuestion = "https://img.pokemondb.net/sprites/black-white/anim/normal/unown-qm.gif";
@@ -139,6 +146,7 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
         if(table[coordinates.col][coordinates.row] == 'X') {
             cell.innerHTML = `<img class="h-5 w-5 md:h-6 md:w-6" src='${electrode}'/>`;
             gameOver = true;
+            storeResult(false);
             electrodeCry.play();
             setTimeout(showBombs(id), 2000);
             return;
@@ -178,6 +186,7 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
     const checkWin = () => {
         if( checkedCtr == (boardSize * boardSize - nBombs) ){
             gameOver = true;
+            storeResult(true);
             itemFoundFanfare.play();
             fire(0.25, {
                 spread: 26,
@@ -224,5 +233,19 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
             }
         };
     });
+
+    const storeResult = async ( victory: boolean ) => {
+        if(window.netlifyIdentity.currentUser()){
+            const response = await fetch('/.netlify/functions/player-update', {
+                method: "POST", 
+                headers: {
+                    "Content-Type": "application/json",
+                    authorization: `Bearer ${window.netlifyIdentity.currentUser().token.access_token}`
+                },body: JSON.stringify({
+                    victory : victory
+                }),
+            });
+        }
+    }
 
 </script>

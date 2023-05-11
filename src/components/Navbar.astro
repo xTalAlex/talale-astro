@@ -2,6 +2,7 @@
 import ThemeSwitcher from "./ThemeSwitcher.astro";
 import Config from "../site_config.json";
 import icon from "@assets/images/icon.png";
+import { Icon } from "astro-icon";
 ---
 
 <div class="navbar bg-base-300/50 backdrop-blur-2xl fixed z-50 h-16 font-semibold">
@@ -89,5 +90,16 @@ import icon from "@assets/images/icon.png";
 
     <div class="navbar-end">
         <ThemeSwitcher />
+        <div class="dropdown dropdown-end">
+            <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+                <div class="w-6 rounded-full">
+                    <Icon name="pixelarticons:user" />
+                </div>
+            </label>
+            <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                <li data-netlify-identity-button></li>
+            </ul>
+        </div>
+
     </div>
 </div>
