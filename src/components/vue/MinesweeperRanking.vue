@@ -12,7 +12,7 @@
                 > 
                   <progress class="progress progress-primary w-56"></progress>
                 </div>
-                <table class="table w-full"
+                <table class="table table-zebra w-full"
                   v-else-if="players.length"
                 >
                     <thead>
@@ -24,8 +24,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(player,index) in players" class="bg-primary">
-                            <th>{{ index + 1 }}</th>
+                        <tr v-for="(player,index) in players">
+                            <td>{{ index + 1 }}</td>
                             <td>{{ player.name }}</td>
                             <td>{{ player.streak_record }}</td>
                             <td>{{ player.cur_streak }}</td>
@@ -35,11 +35,10 @@
                 <div class="my-4" v-else>
                   <p>Ancora nessun giocatore. Sii il primo!</p>
                 </div>
-
-                <div class="mt-4 flex justify-end text-warning text-xs">
-                  <div class="">Per classificarti devi essere loggato</div>
-                </div>
-
+            </div>
+            
+            <div class="mt-4 flex justify-start text-warning text-xs">
+              <div class="">Per classificarti devi essere loggato</div>
             </div>
         </div>
     </div>
