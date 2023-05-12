@@ -29,17 +29,22 @@ const $isLogged = useStore(isLogged);
 const $userInfo = useStore(userInfo);
 
 const avatar = computed(() => {
-    return $isLogged.value ? 'https://robohash.org/' + encodeURIComponent($userInfo.value.email) + '.png?bgset=bg1' : null;
+    if(!$isLogged.value) 
+        return null;
+    else
+        return $userInfo.value.avatar ? $userInfo.value.avatar : 'https://robohash.org/' + encodeURIComponent($userInfo.value.email) + '.png?bgset=bg1';
 })
 
 onMounted(() => {
-    netlifyIdentity.on('init', user => {
+    netlifyIdentity.on('init', async user => {
         if(user)
         {
+            await user.jwt();
             isLogged.set(true);
             userInfo.setKey("name", user.user_metadata?.full_name);
             userInfo.setKey("email", user.email);
             userInfo.setKey("isAdmin", user.app_metadata?.roles?.includes('admin'));
+            userInfo.setKey("avatar", user.app_metadata?.avatar_url);
         }
     });
     netlifyIdentity.on('login', user => {
@@ -49,6 +54,7 @@ onMounted(() => {
             userInfo.setKey("name", user.user_metadata?.full_name);
             userInfo.setKey("email", user.email);
             userInfo.setKey("isAdmin", user.app_metadata?.roles?.includes('admin'));
+            userInfo.setKey("avatar", user.app_metadata?.avatar_url);
             netlifyIdentity.close();
         }
     });
@@ -57,6 +63,7 @@ onMounted(() => {
         userInfo.setKey("name", null);
         userInfo.setKey("email", null);
         userInfo.setKey("isAdmin", false);
+        userInfo.setKey("avatar", null);
         netlifyIdentity.close();
     });
     netlifyIdentity.init({
