@@ -10,7 +10,7 @@ const handler: Handler = withPlanetscale(
 
         console.log('Fetching Ranks');
 
-        const res = await connection.execute("SELECT * FROM players ORDER BY streak_record LIMIT 10");
+        const res = await connection.execute("SELECT * FROM players ORDER BY streak_record DESC LIMIT 10");
         statusCode = 200;
 
         return {
