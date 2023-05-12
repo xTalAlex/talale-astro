@@ -1,6 +1,7 @@
 <template>
     <div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box" ref="toggle"
-        @click="close"
+      	:class="{ 'collapse-open' : open  , 'collapse-close' : !open }"
+        @click="collapse"
     >
         <div class="collapse-title text-xl font-medium">
             Mostra classifica
@@ -48,7 +49,12 @@
 import { ref, onMounted } from "vue";
 
 let players = ref(null);
+let open = ref(false);
 const toggle = ref(null);
+
+function collapse(){
+  open.value = !open.value;
+}
 
 function fetchRanks() {
   fetch(
@@ -65,7 +71,15 @@ function fetchRanks() {
 }
 
 onMounted(() => {
+  fetchRanks();
+  document.refreshRanking = function refreshRanking() {
+    document.dispatchEvent(
+      new CustomEvent("refreshRanking")
+    );
+  };
+  document.addEventListener("refreshRanking", () => {
     fetchRanks();
+  });
 });
 
 </script>

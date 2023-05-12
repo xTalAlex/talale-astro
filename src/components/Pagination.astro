@@ -1,4 +1,6 @@
 ---
+import { Icon } from "astro-icon";
+
 export interface Props {
 	currentPage: number;
     lastPage: number;
@@ -25,10 +27,7 @@ if(rightEdge - leftEdge < Math.floor(size / 2 ) * 2){
         <a class={`btn md:btn-lg`}
             href={`${url}/1`}
         >
-            <svg class="stroke-current w-6 h-6"
-                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M18.75 19.5l-7.5-7.5 7.5-7.5m-6 15L5.25 12l7.5-7.5" />
-            </svg>
+            <Icon class="stroke-current w-6 h-6" name="pixelarticons:chevron-left" />
         </a> 
     }
 
@@ -64,10 +63,7 @@ if(rightEdge - leftEdge < Math.floor(size / 2 ) * 2){
         <a class={`btn md:btn-lg`}
             href={`${url}/${lastPage}`}
         >
-            <svg class="stroke-current w-6 h-6"
-                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
-            </svg>
+            <Icon class="stroke-current w-6 h-6" name="pixelarticons:chevron-right" />
         </a> 
     }
 </div>

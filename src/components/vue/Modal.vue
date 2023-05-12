@@ -7,20 +7,7 @@
           class="btn btn-sm btn-circle absolute right-2 top-2"
           @click="open = false"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="w-6 h-6"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-current fill-current" viewBox="0 0 24 24"><path d="M5 5h2v2H5V5zm4 4H7V7h2v2zm2 2H9V9h2v2zm2 0h-2v2H9v2H7v2H5v2h2v-2h2v-2h2v-2h2v2h2v2h2v2h2v-2h-2v-2h-2v-2h-2v-2zm2-2v2h-2V9h2zm2-2v2h-2V7h2zm0 0V5h2v2h-2z"/></svg>
         </span>
         <h3 class="font-bold text-lg" v-if="title" v-text="title"></h3>
         <img class="w-full py-4" v-if="image" :src="image" />
