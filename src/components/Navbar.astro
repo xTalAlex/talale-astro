@@ -62,11 +62,8 @@ import { Icon } from "astro-icon";
 
     <div class="navbar-end">
        <ThemeSwitcher />
-       <UserMenu >
-            <template #guesticon>
-                <Icon class="w-6 h-6 fill-current" name="pixelarticons:user" />
-            </template>
-            <li data-netlify-identity-button></li>
+       <UserMenu client:only="vue">
+        <Icon class="w-6 h-6 fill-current" name="pixelarticons:user" />
        </UserMenu>
     </div>
 </div>

@@ -25,7 +25,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(player,index) in players">
+                        <tr v-for="(player,index) in players"
+                          :class="{ 'font-bold' : index < 3 }"
+                        >
                             <td>{{ index + 1 }}</td>
                             <td>{{ player.name }}</td>
                             <td>{{ player.streak_record }}</td>
@@ -38,8 +40,10 @@
                 </div>
             </div>
             
-            <div class="mt-4 flex justify-start text-warning text-xs">
-              <div class="">Per classificarti devi essere loggato</div>
+            <div class="mt-4 flex justify-start text-warning"
+              v-if="!$isLogged"
+            >
+              <a class="link" @click="login">Per classificarti devi essere loggato</a>
             </div>
         </div>
     </div>
@@ -47,13 +51,21 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
+import { useStore } from '@nanostores/vue';
+import { isLogged } from "@lib/authStore";
 
 let players = ref(null);
 let open = ref(false);
 const toggle = ref(null);
 
+const $isLogged = useStore(isLogged);
+
 function collapse(){
   open.value = !open.value;
+}
+
+function login(){
+  netlifyIdentity.open();
 }
 
 function fetchRanks() {
