@@ -13,7 +13,7 @@ locale: "it"
 
 collections:
   - name: "settings"
-    label: "Impostazioni" # Used in the UI
+    label: "Impostazioni"
     files:
       - name: "site_config"
         label: "Configurazione Sito"
@@ -35,7 +35,7 @@ collections:
           - { label: "MessageBox - Errore", name: "messageBoxError", widget: "string" }
           - { label: "Giochi per Pagina", name: "gamesPerPage", widget: "number", value_type: "int", min: 1 }
   - name: "posts"
-    label: "Posts"
+    label: "Post"
     folder: "src/content/posts"
     preview_path: "posts/{{slug}}"
     create: true
