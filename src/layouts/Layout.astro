@@ -104,6 +104,7 @@ const openGraph = {
 		<script>
 			import netlifyIdentity from "netlify-identity-widget";
 			window.netlifyIdentity = netlifyIdentity;
+			document.dispatchEvent(new Event("identityLoaded"));
 		</script>
 
 	</head>

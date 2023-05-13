@@ -21,6 +21,8 @@ const handler: Handler = async ( event, context ) => {
     const hash = Base64.stringify(hmacSHA256(email, key));
     statusCode = 200;
 
+    console.log(email,'-',hash)
+
     return {
         statusCode: statusCode,
         body: JSON.stringify({

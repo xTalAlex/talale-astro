@@ -1,9 +1,10 @@
 <template>
     <div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box" ref="toggle"
       	:class="{ 'collapse-open' : open  , 'collapse-close' : !open }"
-        @click="collapse"
     >
-        <div class="collapse-title text-xl font-medium">
+        <div class="collapse-title text-xl font-medium"
+          @click="collapse"
+        >
             Mostra classifica
         </div>
         <div class="collapse-content">
@@ -34,7 +35,7 @@
                             <td>
                               
                               <div class="tooltip tooltip-left" 
-                                :data-tip="lastGameLabel(player.updated_at)"
+                                :data-tip="lastUpdateLabel(player.updated_at)"
                               >
                                 {{ player.cur_streak }}
                               </div>
@@ -76,8 +77,8 @@ function login(){
   netlifyIdentity.open();
 }
 
-function lastGameLabel(date){
-  return "Ultima partita: " + formatDate(date)
+function lastUpdateLabel(date){
+  return "Ultimo aggiornamento: " + formatDate(date)
 }
 
 function fetchRanks() {
