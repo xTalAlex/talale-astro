@@ -1,7 +1,7 @@
 <template>
     <div class="dropdown dropdown-end">
         <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-            <div class="w-10 rounded-full"  
+            <div class="w-9 rounded-full"  
                 v-if="avatar"
             >
                 <img :src="avatar" />
@@ -44,7 +44,7 @@ onMounted(() => {
             userInfo.setKey("name", user.user_metadata?.full_name);
             userInfo.setKey("email", user.email);
             userInfo.setKey("isAdmin", user.app_metadata?.roles?.includes('admin'));
-            userInfo.setKey("avatar", user.app_metadata?.avatar_url);
+            userInfo.setKey("avatar", user.user_metadata?.avatar_url);
         }
     });
     netlifyIdentity.on('login', user => {
@@ -54,8 +54,14 @@ onMounted(() => {
             userInfo.setKey("name", user.user_metadata?.full_name);
             userInfo.setKey("email", user.email);
             userInfo.setKey("isAdmin", user.app_metadata?.roles?.includes('admin'));
-            userInfo.setKey("avatar", user.app_metadata?.avatar_url);
+            userInfo.setKey("avatar", user.user_metadata?.avatar_url);
             netlifyIdentity.close();
+            if(window.Tawk_API){
+                window.Tawk_API.setAttributes({
+                    name : $userInfo.value.name,
+                    email: $userInfo.value.email
+                });
+            }
         }
     });
     netlifyIdentity.on('logout', () => {
@@ -68,7 +74,7 @@ onMounted(() => {
     });
     netlifyIdentity.init({
         locale: 'it'
-    })
+    });
 });
 
 </script>

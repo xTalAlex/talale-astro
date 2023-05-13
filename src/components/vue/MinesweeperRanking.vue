@@ -20,7 +20,7 @@
                         <tr>
                             <th></th>
                             <th>Nome</th>
-                            <th>Record</th>
+                            <th>Record Win Streak</th>
                             <th>Attuale</th>
                         </tr>
                     </thead>
@@ -31,7 +31,14 @@
                             <td>{{ index + 1 }}</td>
                             <td>{{ player.name }}</td>
                             <td>{{ player.streak_record }}</td>
-                            <td>{{ player.cur_streak }}</td>
+                            <td>
+                              
+                              <div class="tooltip tooltip-left" 
+                                :data-tip="lastGameLabel(player.updated_at)"
+                              >
+                                {{ player.cur_streak }}
+                              </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -53,6 +60,7 @@
 import { ref, onMounted } from "vue";
 import { useStore } from '@nanostores/vue';
 import { isLogged } from "@lib/authStore";
+import { formatDate } from "../../utils";
 
 let players = ref(null);
 let open = ref(false);
@@ -66,6 +74,10 @@ function collapse(){
 
 function login(){
   netlifyIdentity.open();
+}
+
+function lastGameLabel(date){
+  return "Ultima partita:" + formatDate(date)
 }
 
 function fetchRanks() {
