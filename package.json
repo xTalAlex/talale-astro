@@ -25,6 +25,7 @@
     "astro-icon": "^0.8.0",
     "astro-seo": "^0.7.*",
     "canvas-confetti": "^1.6.0",
+    "crypto-js": "^4.1.1",
     "daisyui": "^2.31.0",
     "embla-carousel": "^7.0.3",
     "embla-carousel-autoplay": "^7.0.3",

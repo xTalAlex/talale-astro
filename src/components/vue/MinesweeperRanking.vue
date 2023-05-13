@@ -77,7 +77,7 @@ function login(){
 }
 
 function lastGameLabel(date){
-  return "Ultima partita:" + formatDate(date)
+  return "Ultima partita: " + formatDate(date)
 }
 
 function fetchRanks() {

@@ -28,6 +28,18 @@ import { isLogged, userInfo } from "@lib/authStore";
 const $isLogged = useStore(isLogged);
 const $userInfo = useStore(userInfo);
 
+async function getTawktoHash(email) {
+    const data = await fetch('/.netlify/functions/tawkto-hash', {
+        method: "POST", 
+        headers: {
+            "Content-Type": "application/json",
+        },body: JSON.stringify({
+            email : email
+        }),
+    }).then( response => response.json());
+    return data;
+}
+
 const avatar = computed(() => {
     if(!$isLogged.value) 
         return null;
@@ -56,12 +68,6 @@ onMounted(() => {
             userInfo.setKey("isAdmin", user.app_metadata?.roles?.includes('admin'));
             userInfo.setKey("avatar", user.user_metadata?.avatar_url);
             netlifyIdentity.close();
-            if(window.Tawk_API){
-                window.Tawk_API.setAttributes({
-                    name : $userInfo.value.name,
-                    email: $userInfo.value.email
-                });
-            }
         }
     });
     netlifyIdentity.on('logout', () => {
@@ -74,6 +80,18 @@ onMounted(() => {
     });
     netlifyIdentity.init({
         locale: 'it'
+    });
+
+    document.addEventListener("tawktoLoaded", (e) => {
+        getTawktoHash($userInfo.value.email).then(
+            data => {
+                window.Tawk_API.setAttributes({
+                    name : $userInfo.value.name,
+                    email: $userInfo.value.email,
+                    hash: data.hash
+                });
+            }
+        );
     });
 });
 
