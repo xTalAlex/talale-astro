@@ -82,8 +82,8 @@ const openGraph = {
 
 		{
 			GOOGLE_ANALYTICS_ID && (
-				<script type={`${(COOKIEBOT_ID || IUBENDA_SITE_ID) ? 'text/plain' : 'text/javascript'}`}
-					class="_iub_cs_activate"
+				<script class="_iub_cs_activate"
+					type={`${(COOKIEBOT_ID || IUBENDA_SITE_ID) ? 'text/plain' : 'text/javascript'}`}
 					async
 					src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
 					data-cookieconsent="statistics"
@@ -121,19 +121,19 @@ const openGraph = {
 
 		{
 			TAWKTO_WIDGET_URL && (
-				<script type={`${(COOKIEBOT_ID || IUBENDA_SITE_ID) ? 'text/plain' : 'text/javascript'}`}
-					class="_iub_cs_activate-inline"
+				<script class="_iub_cs_activate"
+					type={`${(COOKIEBOT_ID || IUBENDA_SITE_ID) ? 'text/plain' : 'text/javascript'}`}
 					data-cookieconsent="preferences, statistics"
 					data-iub-purposes="2,4"
-					data-url={TAWKTO_WIDGET_URL}
+					data-widget={TAWKTO_WIDGET_URL}
 				>
-					var Tawk_API = Tawk_API || {},
-						Tawk_LoadStart = new Date();
+					var Tawk_API=Tawk_API||{};
+					var Tawk_LoadStart=new Date();
 					(function () {
 						var s1 = document.createElement("script"),
 							s0 = document.getElementsByTagName("script")[0];
 						s1.async = true;
-						s1.src = document.currentScript.dataset.url;
+						s1.src = document.currentScript.dataset.widget;
 						s1.charset = "UTF-8";
 						s1.setAttribute("crossorigin", "*");
 						s0.parentNode.insertBefore(s1, s0);
