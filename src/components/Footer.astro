@@ -66,6 +66,21 @@ const { COOKIEBOT_ID, IUBENDA_POLICY_ID } = import.meta.env;
             </a>
         </div>
     </div>
+    <div id="donate-button-container">
+        <div id="donate-button"></div>
+        <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+        <script>
+            PayPal.Donation.Button({
+            env:'production',
+            hosted_button_id:'QUKYU3LA5B3DU',
+            image: {
+            src:'https://www.paypalobjects.com/it_IT/IT/i/btn/btn_donate_LG.gif',
+            alt:'Fai una donazione con il pulsante PayPal',
+            title:'PayPal - The safer, easier way to pay online!',
+            }
+            }).render('#donate-button');
+        </script>
+    </div>
     <div class="items-center grid-flow-col">
         <img src={mascotte} class="h-8 w-8 object-cover object-left inline-block" />
         <p class="font-bold"> 
