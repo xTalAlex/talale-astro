@@ -63,6 +63,7 @@ function loadIdentity() {
             {
                 await user.jwt();
                 loginUser(user);
+                setTawktoIdentity();
             }
             else{
                 isTawktoIdentified.value = false;
@@ -73,6 +74,7 @@ function loadIdentity() {
             {
                 loginUser(user);
                 netlifyIdentity.close();
+                setTawktoIdentity();
             }
             else{
                 isTawktoIdentified.value = false;
@@ -87,7 +89,6 @@ function loadIdentity() {
             locale: 'it'
         });
         loaded.value = true;
-        setTawktoIdentity();
     }
 }
 
