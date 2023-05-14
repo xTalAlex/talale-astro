@@ -1,8 +1,6 @@
 import { atom, map } from 'nanostores';
 
-export const isLogged = atom(true);
-
-export const isTawktoIdentified = atom(false);
+export const isLogged = atom(false);
 
 export const userInfo = map({
     name: null, // user.user_metadata.full_name

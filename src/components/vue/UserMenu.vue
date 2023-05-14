@@ -23,12 +23,13 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import { useStore } from '@nanostores/vue';
-import { isLogged, userInfo, loginUser, logoutUser, isTawktoIdentified } from "@lib/authStore";
+import { isLogged, userInfo, loginUser, logoutUser } from "@lib/authStore";
+import { useStorage } from "@lib/useStorage";
 
 let loaded = ref(false);
 const $isLogged = useStore(isLogged);
 const $userInfo = useStore(userInfo);
-const $isTawktoIdentified = useStore(isTawktoIdentified);
+const isTawktoIdentified = useStorage('isTawktoIdentified', false);
 
 async function getTawktoHash(email) {
     const data = await fetch('/.netlify/functions/tawkto-hash', {
@@ -50,8 +51,7 @@ function setTawktoAttributes(){
                 email: $userInfo.value.email,
                 hash: data.hash
             });
-            isTawktoIdentified.set(true);
-            console.log('tawkto identity loaded');
+            isTawktoIdentified.value = true;
         }
     );
 }
@@ -64,6 +64,9 @@ function loadIdentity() {
                 await user.jwt();
                 loginUser(user);
             }
+            else{
+                isTawktoIdentified.value = false;
+            }
         });
         netlifyIdentity.on('login', user => {
             if(user)
@@ -71,31 +74,32 @@ function loadIdentity() {
                 loginUser(user);
                 netlifyIdentity.close();
             }
+            else{
+                isTawktoIdentified.value = false;
+            }
         });
         netlifyIdentity.on('logout', () => {
             logoutUser();
             netlifyIdentity.close();
+            isTawktoIdentified.value = false;
         });
         netlifyIdentity.init({
             locale: 'it'
         });
         loaded.value = true;
-        console.log('netlify identity loaded');
         setTawktoIdentity();
     }
 }
 
 function setTawktoIdentity(){
     if(isTawktoIdentified.value){
-        console.log('tawkto identity already loaded');
+        return
     }
     if(window.Tawk_API && window.Tawk_API.setAttributes){
-        console.log('tawkto identity loading');
         setTawktoAttributes();
     }
     else{
         document.addEventListener("tawktoLoaded", (e) => {
-            console.log('tawkto identity loading through event');
             setTawktoAttributes();
         });
     }
@@ -103,11 +107,9 @@ function setTawktoIdentity(){
 
 onMounted(() => {
     if(window.netlifyIdentity){
-        console.log('netlify identity loading');
         loadIdentity();
     }
     else {
-        console.log('netlify identity loading through event');
         document.addEventListener("identityLoaded", (e) => {
             loadIdentity();
         });
