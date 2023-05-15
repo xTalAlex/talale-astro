@@ -70,6 +70,7 @@ const toggle = ref(null);
 const $isLogged = useStore(isLogged);
 
 function collapse(){
+  if(!open.value) fetchRanks(); 
   open.value = !open.value;
 }
 
@@ -83,7 +84,7 @@ function lastUpdateLabel(date){
 
 function fetchRanks() {
   fetch(
-    "/.netlify/functions/player-ranking"
+    "/.netlify/functions/players-ranking"
   ).then((response) => {
     if(response.ok){
       response.json().then((data) => {
@@ -96,14 +97,13 @@ function fetchRanks() {
 }
 
 onMounted(() => {
-  fetchRanks();
   document.refreshRanking = function refreshRanking() {
     document.dispatchEvent(
       new CustomEvent("refreshRanking")
     );
   };
   document.addEventListener("refreshRanking", () => {
-    fetchRanks();
+    if(open.value) fetchRanks();
   });
 });
 
