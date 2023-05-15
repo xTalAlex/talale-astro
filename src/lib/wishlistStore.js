@@ -18,6 +18,7 @@ export function addWishlistItem(item) {;
         wishlist.set(wishlist.get());
         wishlist.setKey("updated_at", Date.now());
         localStorage.setItem('wishlist', JSON.stringify(wishlist.get()));
+        storeAsUserMetadata({ wishlist : wishlist.value });
         return true;
     }
     return false;
@@ -28,6 +29,7 @@ export function removeWishlistItem(item) {;
         wishlist.setKey("items", wishlist.get()["items"].filter( g => g.id != item.id ));
         wishlist.setKey("updated_at", Date.now());
         localStorage.setItem('wishlist', JSON.stringify(wishlist.get()));
+        storeAsUserMetadata({ wishlist : wishlist.value });
         return true;
     }
     return false;
@@ -36,3 +38,23 @@ export function removeWishlistItem(item) {;
 export function wishlistContains(item) {
     return wishlist.get()["items"].find( g => g.id == item.id ) != undefined; 
 }
+
+const storeAsUserMetadata = (data) => {
+    if(window.netlifyIdentity && netlifyIdentity.currentUser()){
+        netlifyIdentity.currentUser().update({
+            data : data
+        });
+    }
+};
+
+const setWishlist = () => {
+    if(netlifyIdentity.currentUser().user_metadata.wishlist){
+        wishlist.set(netlifyIdentity.currentUser().user_metadata.wishlist);
+        localStorage.setItem('wishlist', JSON.stringify(netlifyIdentity.currentUser().user_metadata.wishlist));
+    }
+};
+
+document.addEventListener("userLoaded", (e) => {
+    console.log('setto la wishlist');
+    setWishlist();
+});
