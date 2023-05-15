@@ -59,15 +59,16 @@ function setTawktoAttributes(){
 function loadIdentity() {
     if(!loaded.value){
         netlifyIdentity.on('init', async user => {
-            if(user)
-            {
-                await user.jwt();
+            if(user){
+                await netlifyIdentity.refresh(true);
                 loginUser(user);
-                setTawktoIdentity();
             }
             else{
+                logoutUser();
                 isTawktoIdentified.value = false;
+                document.dispatchEvent(new Event("notLogged"));
             }
+            
         });
         netlifyIdentity.on('login', user => {
             if(user)
@@ -79,6 +80,7 @@ function loadIdentity() {
             else{
                 isTawktoIdentified.value = false;
             }
+            document.dispatchEvent(new Event("userLoaded"));
         });
         netlifyIdentity.on('logout', () => {
             logoutUser();

@@ -109,9 +109,19 @@ const title = 'Medabots - Episodio ' + episode.number;
         toggleSkipIntroButton();
         if(data === 0){
             localStorage.setItem('keepwatching', JSON.stringify(nextEpisode));
+            storeAsUserMetadata({ keepwatching : nextEpisode });
         }
         else if(data == 1){
             localStorage.setItem('keepwatching', JSON.stringify(episode));
+            storeAsUserMetadata({ keepwatching : episode });
+        }
+    };
+
+    const storeAsUserMetadata = (data) => {
+        if(window.netlifyIdentity && netlifyIdentity.currentUser()){
+            netlifyIdentity.currentUser().update({
+                data : data
+            });
         }
     };
 

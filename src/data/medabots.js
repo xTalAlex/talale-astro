@@ -218,7 +218,7 @@ const episodes = [
     {
         season: 1,
         number: 31,
-        title: "Ecco Rinato",
+        title: "Ecco Rintaro",
         video_id: "Nr143rDvAaI",
         summary: null,
     },
