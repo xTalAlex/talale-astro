@@ -1,7 +1,7 @@
 <template>
     <div class="dropdown dropdown-end">
         <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-            <div class="w-9 rounded-full"  
+            <div class="w-8 h-8 rounded-full"  
                 v-if="$userInfo.avatar"
             >
                 <img :src="$userInfo.avatar" />

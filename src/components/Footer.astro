@@ -82,7 +82,9 @@ const { COOKIEBOT_ID, IUBENDA_POLICY_ID } = import.meta.env;
         </script>
     </div>
     <div class="items-center grid-flow-col">
-        <img src={mascotte} class="h-8 w-8 object-cover object-left inline-block" />
+        <div class="h-6 w-8 mr-1 -mt-1 overflow-hidden inline-block">            
+            <img class="h-14 w-8 object-cover object-left" src={mascotte} />
+        </div>
         <p class="font-bold"> 
             {Config.title} | {Config.subtitle}
         </p>

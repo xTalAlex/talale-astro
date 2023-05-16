@@ -2,7 +2,7 @@
 import UserMenu from "@components/vue/UserMenu.vue";
 import ThemeSwitcher from "./ThemeSwitcher.astro";
 import Config from "../site_config.json";
-import icon from "@assets/images/icon.png";
+import mascotte from "@assets/images/mascotte.svg";
 import { Icon } from "astro-icon";
 ---
 
@@ -36,7 +36,9 @@ import { Icon } from "astro-icon";
             </ul>
         </div>
         <a href="/" class="hidden lg:flex btn btn-ghost normal-case text-xl">
-            <img class="h-6 mr-2" src={icon} />
+            <div class="h-6 w-8 mr-1 -mt-1 overflow-hidden">            
+                <img class="h-14 w-8 object-cover object-left" src={mascotte} />
+            </div>
             <span class="">{Config.title}</span>
         </a>
     </div>
