@@ -44,9 +44,10 @@ const handler: Handler = withPlanetscale(
             else{
                 let cur_streak = victory ? res['rows'][0]['cur_streak'] + 1 : 0;
                 let streak_record = res['rows'][0]['streak_record'] > cur_streak ? res['rows'][0]['streak_record'] : cur_streak;
-                await connection.execute("UPDATE players SET cur_streak = ?, streak_record = ? WHERE email = ?", [
+                await connection.execute("UPDATE players SET cur_streak = ?, streak_record = ?, name = ? WHERE email = ?", [
                     cur_streak,
                     streak_record,
+                    name,
                     email
                 ]);
                 statusCode = 204;
