@@ -61,7 +61,7 @@ function loadIdentity() {
         netlifyIdentity.on('init', async user => {
             if(user){
                 await netlifyIdentity.refresh(true);
-                loginUser(user);
+                loginUser(await user.update({}));
             }
             else{
                 logoutUser();
