@@ -2,14 +2,15 @@
 import Layout from "@layouts/Layout.astro";
 import UserCard from "@components/vue/UserCard.vue";
 
-const title = "Informazioni Account";
+const title = "Pagina Profilo";
 ---
 
 <Layout
     title={title}   
-    description="Visualizza e gestisci le informazioni sul tuo account personale"
+    description="Visualizza e gestisci le informazioni del tuo profilo"
 >
     <div class="px-5 md:mx-auto container w-full max-w-5xl">
+
         <h1 class="text-center py-12 text-4xl font-bold">{title}</h1>
 
         <UserCard client:only="vue"/>

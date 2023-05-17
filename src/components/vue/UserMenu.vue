@@ -13,7 +13,7 @@
             </div>
         </label>
         <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-300 rounded-box w-52">
-            <li v-if="$isLogged"><a href="/account">Account</a></li>
+            <li v-if="$isLogged"><a href="/profile">Profilo</a></li>
             <li v-if="$isLogged && $userInfo.isAdmin"><a href="/admin">Admin</a></li>
             <li data-netlify-identity-button></li>
         </ul>
@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, onMounted } from "vue";
 import { useStore } from '@nanostores/vue';
 import { isLogged, userInfo, loginUser, logoutUser } from "@lib/authStore";
 import { useStorage } from "@lib/useStorage";

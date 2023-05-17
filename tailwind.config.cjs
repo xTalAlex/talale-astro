@@ -1,4 +1,4 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+const defaultTheme = require("tailwindcss/defaultTheme")
 
 module.exports = {
   content: [
@@ -10,26 +10,26 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'sans': ["Chakra Petch",...defaultTheme.fontFamily.sans],
-        'serif': ["Rokkitt",...defaultTheme.fontFamily.serif],
+        "sans": ["Chakra Petch",...defaultTheme.fontFamily.sans],
+        "serif": ["Rokkitt",...defaultTheme.fontFamily.serif],
       },
       animation: {
         shine: "shine 1s",
-        wiggle: 'wiggle 2s ease-in-out infinite',
+        wiggle: "wiggle 2s ease-in-out infinite",
       },
       keyframes: {
         shine: {
           "100%": { left: "125%" },
         },
         wiggle: {
-          '0%, 100%': { transform: 'rotate(0deg)' },
-          '50%': { transform: 'rotate(3deg)' },
-        }
+          "0%, 100%": { transform: "rotate(0deg)" },
+          "50%": { transform: "rotate(3deg)" },
+        },
       },
     }
   },
   plugins: [
-    require('@tailwindcss/typography'),
+    require("@tailwindcss/typography"),
     require("daisyui"), 
   ],
   daisyui: {
