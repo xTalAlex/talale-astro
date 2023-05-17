@@ -55,6 +55,5 @@ const setWishlist = () => {
 };
 
 document.addEventListener("userLoaded", (e) => {
-    console.log('setto la wishlist');
     setWishlist();
 });

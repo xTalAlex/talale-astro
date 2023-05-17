@@ -55,3 +55,7 @@ export function logoutUser() {
     userInfo.setKey("avatar", null );
     userInfo.setKey("isAdmin", false);  
 }
+
+export function loadUser() {
+    if(window.netlifyIdentity.currentUser()) loginUser(window.netlifyIdentity.currentUser());
+}

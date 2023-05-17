@@ -33,7 +33,7 @@
                     Ultima Modifica: {{ formatDate($userInfo.updated_at) }}
                 </div>
             </div>
-            <div class="mt-2 badge badge-accent badge-lg font-bold py-4 cursor-default tracking-wide">
+            <div class="mt-2 badge badge-accent badge-sm font-bold py-4 cursor-default tracking-wide">
                 {{ $userInfo.isAdmin ? 'ADMIN' : 'UTENTE' }}
             </div>
         </div>
@@ -44,7 +44,7 @@
                         <UserInfo />
                     </Tab>
                     <Tab title="Modifica">
-                        <UserUpdate />
+                        <UserUpdate :defaultName="$userInfo.name" :defaultEmail="$userInfo.email" @userUpdated="loadUser"/>
                     </Tab>
                 </Tabs>
             </div>
@@ -61,7 +61,7 @@ import Tab from "@components/vue/common/Tab.vue";
 import UserUpdate from "@components/vue/UserUpdate.vue";
 import UserInfo from "@components/vue/UserInfo.vue";
 import { useStore } from '@nanostores/vue';
-import { isLogged, userInfo } from "@lib/authStore";
+import { isLogged, userInfo, loadUser } from "@lib/authStore";
 import { formatDate } from "src/utils";
 
 const $isLogged = useStore(isLogged);
