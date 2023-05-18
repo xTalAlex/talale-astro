@@ -21,37 +21,35 @@ const handler: Handler = withPlanetscale(
             };
         }
 
-        const name = user?.user_metadata?.full_name ?? "Ospite";
-        const email = user?.email;
         const { victory } = JSON.parse(body);
 
-        console.log( email + '(' + name + ') ' + ( victory ? 'WIN' : 'LOSS') );
+        console.log( user.email + '(' + user.user_metadata.full_name + ' / ' + user.sub + ' ) ' + ( victory ? 'WIN' : 'LOSS') );
 
-        if(email){
-            const res = await connection.execute("SELECT * FROM players WHERE email = ?", [
-                email
+        const res = await connection.execute("SELECT * FROM players WHERE user_id = ?", [
+                user.sub
             ]);
 
-            if(!res['rows'].length){
-                await connection.execute("INSERT INTO players (name, email, cur_streak, streak_record) VALUES ( ? , ? , ? , ? )", [
-                    name,
-                    email,
-                    victory,
-                    victory
-                ]);
-                statusCode = 201;
-            }
-            else{
-                let cur_streak = victory ? res['rows'][0]['cur_streak'] + 1 : 0;
-                let streak_record = res['rows'][0]['streak_record'] > cur_streak ? res['rows'][0]['streak_record'] : cur_streak;
-                await connection.execute("UPDATE players SET cur_streak = ?, streak_record = ?, name = ? WHERE email = ?", [
-                    cur_streak,
-                    streak_record,
-                    name,
-                    email
-                ]);
-                statusCode = 204;
-            }
+        if(!res['rows'].length){
+            await connection.execute("INSERT INTO players ( user_id, name, email, cur_streak, streak_record ) VALUES ( ?, ? , ? , ? , ? )", [
+                user.sub,
+                user.user_metadata.full_name,
+                user.email,
+                victory,
+                victory
+            ]);
+            statusCode = 201;
+        }
+        else{
+            let cur_streak = victory ? res['rows'][0]['cur_streak'] + 1 : 0;
+            let streak_record = res['rows'][0]['streak_record'] > cur_streak ? res['rows'][0]['streak_record'] : cur_streak;
+            await connection.execute("UPDATE players SET cur_streak = ?, streak_record = ?, name = ?, email = ? WHERE user_id = ?", [
+                cur_streak,
+                streak_record,
+                user.user_metadata.full_name,
+                user.email,
+                user.sub
+            ]);
+            statusCode = 204;
         }
 
         return {
