@@ -46,9 +46,9 @@
             <div class="card-actions justify-end">
                 <button class="btn" 
                     :class="btnColor, {
-                        'btn-disabled' : !isValueChanged, 'loading': loading 
+                        'btn-disabled' : (!isValueChanged || successMessage), 'loading': loading 
                     }" 
-                    :disable="!isValueChanged"
+                    :disable="(!isValueChanged || successMessage)"
                     @click="updateUser"
                 >Salva</button>
             </div>
@@ -102,7 +102,7 @@ const isValueChanged = computed(() => {
 
 const btnColor = computed(() => {
     let color = 'btn-secondary';
-    if(successMessage.value) color = 'btn-success';
+    //if(successMessage.value) color = 'btn-success';
     if(errorBag[choice.value]) color = 'btn-error';
     return color;
 });
@@ -138,7 +138,7 @@ function validate() {
 }
 
 function updateUser() {
-    if(!loading.value && !successMessage.value){
+    if(!loading.value && !successMessage.value && isValueChanged.value){
         successMessage.value = null;
         loading.value = true;
         var data = null;

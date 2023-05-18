@@ -76,11 +76,11 @@ function loadIdentity() {
                 loginUser(user);
                 netlifyIdentity.close();
                 setTawktoIdentity();
+                document.dispatchEvent(new Event("userLoaded"));
             }
             else{
                 isTawktoIdentified.value = false;
             }
-            document.dispatchEvent(new Event("userLoaded"));
         });
         netlifyIdentity.on('logout', () => {
             logoutUser();
