@@ -4,14 +4,14 @@ import { getCollection } from 'astro:content';
 
 export async function get(context) {
     // getCollection('nomeCartellaInPages')
-    const blog = await getCollection('blog');
+    const projects = await getCollection('projects');
     return rss({
         title: Config.title,
         description: Config.description,
         site: context.site,
-        items: blog.map((project) => ({
+        items: projects.map((project) => ({
             //required fields
-            link: `/projects/${project.slug}/`,
+            link: project.data.link,
             title: project.data.title,
             pubDate: project.data.pubDate,
             //optional fields

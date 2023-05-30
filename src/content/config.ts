@@ -14,9 +14,11 @@ const postCollection = defineCollection({
 
 const projectCollection = defineCollection({ 
     schema: z.object({
-        rssSchema,
-        screenshot: z.string(),
-        completed: z.boolean(),
+        title: z.string(),
+        pubDate: z.date(),
+        description: z.string(),
+        link: z.string(),
+        gallery: z.array(z.string()).optional(),
     })
 });
 

@@ -1,7 +1,7 @@
 ---
-import projects from "@data/projects.js";
+import { getCollection } from 'astro:content';
 
-const sortedProjects = projects.reverse();
+const projects = await getCollection('projects');
 ---
 
 <h2 class="text-3xl font-semibold">I miei progetti</h2>
@@ -11,13 +11,13 @@ const sortedProjects = projects.reverse();
             <div class="embla__viewport">
                 <div class="embla__container -ml-3">
                     {
-                        sortedProjects.map(project => 
+                        projects.map(project => 
                             <div class="embla__slide pl-3 relative min-w-full my-auto space-y-2">
-                                <div class="text-lg font-black" >{ project.title }</div>
-                                <p class="pr-5" >{ project.description }</p>
+                                <div class="text-lg font-black" >{ project.data.title }</div>
+                                <p class="pr-5" >{ project.data.description }</p>
                                 <div class="h-48 md:h-96 relative overflow-hidden">
-                                    <a href={ project.link } target="_blank">
-                                        <img class="h-full w-full object-top object-cover my-auto" src={ "/images/projects/" + project.screenshot } alt={ project.title } />
+                                    <a href={ project.data.link } target="_blank">
+                                        <img class="h-full w-full object-top object-cover my-auto" src={ project.data.gallery[0] } alt={ project.data.title } />
                                     </a>
                                 </div>
                             </div>
@@ -32,16 +32,16 @@ const sortedProjects = projects.reverse();
             <div class="embla__viewport">
                 <div class="embla__container -ml-3 cursor-default">
                     {
-                        sortedProjects.map(project =>
+                        projects.map(project =>
                             <div class="embla__slide pl-3 relative min-w-[50%] sm:min-w-[33%] md:min-w-[20%]">
-                                <button aria-label={ project.title }
+                                <button aria-label={ project.data.title }
                                     class="h-24 touch-manipulation w-full bg-transparent relative block overflow-hidden m-0 p-0 cursor-pointer border-none outline-none"
                                     type="button"
                                 >
                                     <img
                                         class="embla__slide__thumbnail opacity-20"
-                                        src={ "images/projects/" + project.screenshot }
-                                        alt={  project.title  + " thumbnail" }
+                                        src={ project.data.gallery[0] }
+                                        alt={  project.data.title  + " thumbnail" }
                                     />
                                 </button>
                             </div>
