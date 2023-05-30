@@ -41,11 +41,12 @@ collections:
     description: "Esempi di lavoro"
     folder: "src/content/projects"
     create: true
+    sortable_fields: [ "pubDate", "title"]
     fields:
       - { label: "Titolo", name: "title", widget: "string", required: true }
       - { label: "Descrizione", name: "description", widget: "text", required: true }
       - { label: "Link", name: "link", widget: "string", required: true }
-      - { label: "Data pubblicazione", name: "pubDate", widget: "date", required: true }
+      - { label: "Data pubblicazione", name: "pubDate", widget: "datetime", required: true }
       - label: "Galleria"
         name: "gallery"
         widget: "list"
