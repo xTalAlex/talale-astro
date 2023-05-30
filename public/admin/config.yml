@@ -51,17 +51,3 @@ collections:
         name: "gallery"
         widget: "list"
         field: { label: "Immagine", name: "image", widget: "image"}
-  - name: "posts"
-    label: "Post"
-    folder: "src/content/posts"
-    preview_path: "posts/{{slug}}"
-    create: true
-    fields:
-      - { label: "Titolo", name: "title", widget: "string" }
-      - { label: "Data", name: "date", widget: "datetime"}
-      - { label: "Immagine in Evidenza", name: "featuredImage", widget: "image" }
-      - { label: "Contenuto", name: "body", widget: "markdown" }
-      - label: "Galleria"
-        name: "gallery"
-        widget: "list"
-        field: { label: "Immagine", name: "image", widget: "image"}
