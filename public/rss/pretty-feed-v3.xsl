@@ -129,6 +129,14 @@ This file is in BETA. Please test and contribute to the discussion:
                   <xsl:value-of select="title"/>
                 </a>
               </h3>
+              <p><xsl:value-of select="description"/></p>
+              <figure>
+                <img>
+                    <xsl:attribute name="src">
+                      <xsl:value-of select="image/url"/>
+                    </xsl:attribute>
+                </img>
+              </figure>
               <small class="text-gray">
                 Published: <xsl:value-of select="pubDate" />
               </small>
