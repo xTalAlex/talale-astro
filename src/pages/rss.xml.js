@@ -18,11 +18,7 @@ export async function get(context) {
             //optional fields
             description: project.data.description,
             //content: project.data.content,
-            customData : `<image>
-                <url>${context.site + project.data.gallery[0]}</url>
-                <title>${project.data.title}</title>
-                <link>${project.data.link}</link>
-            </image>`,
+            //customData : project.data.customData,
         })),
         customData: `<language>it</language>`,
         stylesheet: '/rss/pretty-feed-v3.xsl',

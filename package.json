@@ -12,15 +12,15 @@
     "netlify-cms": "npx netlify-cms-proxy-server "
   },
   "dependencies": {
-    "@astrojs/rss": "^2.3.1",
+    "@astrojs/rss": "^2.3.*",
     "@astrojs/sitemap": "^1.0.0",
     "@astrojs/tailwind": "^3.1.*",
-    "@astrojs/vue": "^2.1.*",
+    "@astrojs/vue": "^2.2.*",
     "@nanostores/vue": "^0.7.*",
     "@netlify/functions": "^1.5.0",
     "@netlify/planetscale": "^1.0.0",
     "@planetscale/database": "^1.7.0",
-    "@types/node": "^14.18.46",
+    "@types/node": "^14.18.*",
     "astro": "^2.1.*",
     "astro-icon": "^0.8.0",
     "astro-seo": "^0.7.*",
