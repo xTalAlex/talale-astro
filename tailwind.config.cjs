@@ -9,6 +9,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+          'print': { 'raw': 'print' },
+      },
       fontFamily: {
         "sans": ["Chakra Petch",...defaultTheme.fontFamily.sans],
         "serif": ["Rokkitt",...defaultTheme.fontFamily.serif],
