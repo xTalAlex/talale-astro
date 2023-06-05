@@ -13,6 +13,11 @@ const stations = [
         name: "Radio Cuore",
         url: "https://stream10.xdevel.com/audio32s975552-1839/stream/icecast.audio",
         imgSrc: "/images/radio/cuore.png",
+    },
+    {
+        name: "RadioAnimati",
+        url: "https://stream.radioanimati.it/rasite",
+        imgSrc: "/images/radio/radioanimati.png"
     }
 ];
 
