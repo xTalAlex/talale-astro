@@ -49,7 +49,7 @@
                     <li><div><input class="range range-xs" type="range" v-model="volume" min="0" max="100" v-on:change="setVolume"/></div></li>
                 </ul>
             </div>
-            <audio class="hidden" ref="radioPlayer" autoplay="1" src=""></audio>
+            <audio class="hidden" ref="radioPlayer" src=""></audio>
         </li>
     </ul>
 </template>
@@ -83,6 +83,7 @@ function play() {
             lastRadioStation.value.isPlaying = true;
         })
         .catch( (e) => {
+            radioPlayer.value.pause();
             isPlaying.value = false;
             lastRadioStation.value.isPlaying = false;
         });

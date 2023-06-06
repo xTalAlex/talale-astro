@@ -1,7 +1,7 @@
 const stations = [
     {
         name: "Rai Radio 2",
-        url: "http://icestreaming.rai.it/2.mp3",
+        url: "https://icestreaming.rai.it/2.mp3",
         imgSrc: "/images/radio/rr2.svg",
     },
     {
