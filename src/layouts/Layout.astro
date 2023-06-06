@@ -17,6 +17,7 @@ import Modal from "@components/vue/Modal.vue";
 import BackToTop from "@components/BackToTop.astro";
 import IubendaCookieSolution from "@components/IubendaCookieSolution.astro";
 import Alert from "@components/Alert.astro";
+import RadioMenu from "@components/vue/RadioMenu.vue";
 
 const { title = null , description = Config.description, ogType = "website", ogImage = Config.url + "/images/sharepreview.png", ogImageAlt = "Website Header", noindex = false } = Astro.props;
 
@@ -117,6 +118,8 @@ const openGraph = {
 			<slot />
 		</main>
 		<Footer />
+
+		<RadioMenu client:only="vue" />
 
 		<BackToTop />
 

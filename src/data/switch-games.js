@@ -27,6 +27,9 @@ do{
             involved_companies.company.name, involved_companies.company.logo.url, involved_companies.company.websites.url;
         sort first_release_date desc;
         where platforms = (${nintendoSwitch.id})
+                & summary != null
+                & genres != null
+                & involved_companies != null
                 & cover != null
                 & ( status = 0 | status = null )
                 & first_release_date > ${Math.floor(new Date('2017.03.03').getTime() / 1000)}

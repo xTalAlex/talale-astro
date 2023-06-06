@@ -152,6 +152,11 @@ const { page } = Astro.props;
 
         <div class="divider"></div>
 
+        <div class="mx-auto flex justify-center mb-6">
+            <button id="randomPageButton" class="btn btn-accent">Pagina a caso</button>
+            <input id="lastPageValue" type="hidden" value={page.lastPage}/>
+        </div>
+
         <div class="mx-auto flex justify-center">
             <Pagination
                 currentPage={page.currentPage}
@@ -176,4 +181,10 @@ const { page } = Astro.props;
             prevEl: ".swiper-button-prev",
         },
     });
+
+    const randomPageButton = document.getElementById('randomPageButton');
+    const lastPage = document.getElementById('lastPageValue')?.value ?? 1;
+    randomPageButton.onclick = () => {
+        window.location.href = '/nintendo-switch/' + Math.ceil(Math.random()*lastPage);
+    }
 </script>

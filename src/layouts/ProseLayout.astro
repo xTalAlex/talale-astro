@@ -21,8 +21,8 @@ const { title, description, ogType, ogImage, ogImageAlt, noindex = false } = Ast
     ogImageAlt={ogImageAlt}
     noindex={noindex}
 >
-    <div class="pt-20 card">
-        <div class="card-body px-10 mx-auto prose container lg:max-w-4xl">
+    <div class="lg:pt-20 card">
+        <div class="card-body px-10 mx-auto prose prose-a:break-all prose-code:break-words prose-code:overflow-scroll container lg:max-w-4xl">
             <slot />
         </div>
     </div>
