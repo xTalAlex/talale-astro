@@ -70,6 +70,25 @@ export async function getNintentoSwitch() {
     return data[0];
 }
 
+export async function getConsole(name) {
+
+    if(!authenticated()) await authenticate();
+    const data = await fetchAPI('platforms', {
+        method: 'POST',
+        headers: {
+            'Client-ID': API_CLIENT,
+            'Authorization':'Bearer ' + AUTH.access_token,
+        },
+        body: `
+            fields *;
+            where name = "${name}";
+            limit 1;
+        `
+    });
+
+    return data[0];
+}
+
 export async function getGames( query ) {
 
     if(!authenticated())  await authenticate();

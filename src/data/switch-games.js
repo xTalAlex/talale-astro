@@ -1,6 +1,6 @@
-import { getGames, getNintentoSwitch } from "@lib/igdb";
+import { getGames, getConsole } from "@lib/igdb";
 
-const nintendoSwitch = await getNintentoSwitch();
+const platform = await getConsole("Nintendo Switch");
 const today = new Date();
 
 var games = [];
@@ -26,7 +26,7 @@ do{
             genres.name, themes.name, cover.url, artworks.url, screenshots.url,
             involved_companies.company.name, involved_companies.company.logo.url, involved_companies.company.websites.url;
         sort first_release_date desc;
-        where platforms = (${nintendoSwitch.id})
+        where platforms = (${platform.id})
                 & summary != null
                 & genres != null
                 & involved_companies != null
@@ -45,7 +45,7 @@ do{
 
 end_time = Date.now();
 
-const gamesCount = games.length
+const gamesCount = games.length;
 
 console.log('Fetched ' + gamesCount + ' games in ' + Math.round( (end_time-start_time)/1000 ) + 's');
 
