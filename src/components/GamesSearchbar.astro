@@ -42,10 +42,10 @@ import { lastDeployDate, formatDate } from "../utils";
             const res = fuse.search(query);
             var html = '';
             if(res.length){
-                html += '<div class="flex space-x-3 h-full justify-start items-center overflow-x-auto overflow-y-hidden">';
+                html += '<div class="flex space-x-3 h-full justify-start items-center overflow-x-hidden overflow-y-hidden select-none cursor-grab active:cursor-grabbing">';
                 for (let i = 0; i < res.length; i++) {
                     html+= `
-                        <a href="/nintendo-switch/${getPageNumberByRef(res[i].refIndex)}#${res[i].item.slug}" >
+                        <a href="/nintendo-switch/${getPageNumberByRef(res[i].refIndex)}#${res[i].item.slug}" draggable="false">
                             <div class="whitespace-nowrap badge badge-lg badge-primary font-semibold badge-outline">${res[i].item.name}</div>    
                         </a>
                     `;
@@ -62,6 +62,33 @@ import { lastDeployDate, formatDate } from "../utils";
             }
             document.getElementById('search-results').innerHTML = html;
             window.history.replaceState(null,'','?query=' + encodeURIComponent(query));
+            let pos = { top: 0, left: 0, x: 0, y: 0 };
+            const mouseMoveHandler = function (e) {
+                // How far the mouse has been moved
+                const dx = e.clientX - pos.x;
+                const dy = e.clientY - pos.y;
+
+                // Scroll the element
+                document.getElementById('search-results').children[0].scrollTop = pos.top - dy;
+                document.getElementById('search-results').children[0].scrollLeft = pos.left - dx;
+            };
+            const mouseUpHandler = function () {
+                document.removeEventListener('mousemove', mouseMoveHandler);
+                document.removeEventListener('mouseup', mouseUpHandler);
+            };
+            const mouseDownHandler = function (e) {
+                pos = {
+                    // The current scroll
+                    left: document.getElementById('search-results').children[0].scrollLeft,
+                    top: document.getElementById('search-results').children[0].scrollTop,
+                    // Get the current mouse position
+                    x: e.clientX,
+                    y: e.clientY,
+                };
+                document.addEventListener('mousemove', mouseMoveHandler);
+                document.addEventListener('mouseup', mouseUpHandler);
+            };
+            document.getElementById('search-results').children[0].addEventListener('mousedown', mouseDownHandler);
         }
     };
 

@@ -9,7 +9,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "netlify-cms": "npx netlify-cms-proxy-server "
+    "decap": "npx netlify-cms-proxy-server"
   },
   "dependencies": {
     "@astrojs/rss": "^2.3.*",
