@@ -6,6 +6,7 @@ import Config from "../site_config.json";
 import mascotte from "@assets/images/mascotte.svg";
 
 const titleParts = Config.title.split(" ");
+const fullTitle = Config.title + " | " + Config.description;
 ---
 
 <div
@@ -30,7 +31,7 @@ const titleParts = Config.title.split(" ");
                 </div>
                 <p class="mb-5 text-2xl font-semibold md:text-center">{Config.subtitle}</p>
             </div>
-            <!-- <h1 class="text-5xl font-bold inline mb-2">{Config.title}</h1> -->
+            <h1 class="hidden">{fullTitle}</h1>
             <p class="mb-5">
                 {Config.description}
             </p>
