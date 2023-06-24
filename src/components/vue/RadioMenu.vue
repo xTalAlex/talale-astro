@@ -1,9 +1,9 @@
 <template>
     <ul
-        class="menu glass rounded-box fixed top-10 z-30 transition right-0 hover:right-1 translate-x-14 group hover:translate-y-10 hover:-translate-x-0 -rotate-90 hover:rotate-0">
+        class="menu glass rounded-box fixed top-10 z-30 transition ease-in-out delay-200 right-0 hover:right-1 translate-x-14 group hover:translate-y-10 hover:-translate-x-0 -rotate-90 hover:rotate-0">
         <li>
             <div :class="{ 'text-accent': isPlaying }">
-                <svg class="rotate-90 group-hover:rotate-0 stroke-current"
+                <svg class="rotate-90 delay-200 group-hover:rotate-0 stroke-current"
                     :class="isPlaying ? 'h-6 w-6 animate-pulse' : 'h-6 w-6 animate-pulse'"
                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path fill="currentColor"
@@ -57,20 +57,45 @@
 <script setup>
 import { stations } from '@data/radio-stations';
 import { useStorage } from "@lib/useStorage";
+import Hls from "hls.js";
 
 import { ref, onMounted } from "vue";
 
 const lastRadioStation = useStorage('lastRadioStation', stations[0]);
 
+let hls = ref(null);
 let volume = ref(null);
 let isPlaying = ref(false);
 
 const radioPlayer = ref(null)
 
+
+function isHlsUrl(url){
+    return url.includes('.m3u8')
+}
+
 function changeStation(station, startPlaying = true) {
     pause();
+    if(isHlsUrl(station.url)){
+        if(Hls.isSupported()) {
+            hls.value.loadSource(station.url);
+            hls.value.attachMedia(radioPlayer.value);
+            // hls.value.on(Hls.Events.MANIFEST_PARSED,function() {
+            //     radioPlayer.value.play();
+            // });
+        }
+        else if (radioPlayer.value.canPlayType('application/vnd.apple.mpegurl')) {
+            radioPlayer.value.src = station.url;
+            // radioPlayer.value.addEventListener('canplay',function() {
+            //     radioPlayer.value.play();
+            // });
+        }
+    }
+    else{
+        radioPlayer.value.src = station.url;
+        if(startPlaying) play();
+    }
     lastRadioStation.value = station;
-    radioPlayer.value.src = station.url;
     setVolume();
     if (startPlaying) play();
 }
@@ -108,6 +133,7 @@ function setVolume() {
 }
 
 onMounted(() => {
+    if(Hls.isSupported()) hls.value = new Hls();
     volume.value = lastRadioStation.value?.volume ? lastRadioStation.value.volume * 100 : 100;
     changeStation(lastRadioStation.value, lastRadioStation.value.isPlaying);
 });

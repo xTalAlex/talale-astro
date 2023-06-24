@@ -30,6 +30,7 @@
     "embla-carousel": "^7.0.3",
     "embla-carousel-autoplay": "^7.0.3",
     "fuse.js": "^6.6.2",
+    "hls.js": "^1.4.5-0.canary.9288",
     "html-to-text": "^9.*",
     "luxon": "^3.0.4",
     "nanostores": "^0.7.1",

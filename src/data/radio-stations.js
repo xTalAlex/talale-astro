@@ -5,6 +5,16 @@ const stations = [
         imgSrc: "/images/radio/rr2.svg",
     },
     {
+        name: "Radio Italia",
+        url: "https://radioitaliasmi.akamaized.net/hls/live/2093120/RISMI/stream02/streamPlaylist.m3u8",
+        imgSrc: "/images/radio/radioitalia.png"
+    },
+    {
+        name: "Radio Kiss Kiss",
+        url: "https://ice07.fluidstream.net/KissKiss.aac",
+        imgSrc: "/images/radio/kisskiss.png"
+    },
+    {
         name: "LatteMiele",
         url: "https://sr15.inmystream.it/stream/lattemiele",
         imgSrc: "/images/radio/lattemiele.svg",
@@ -18,7 +28,7 @@ const stations = [
         name: "RadioAnimati",
         url: "https://stream.radioanimati.it/rasite",
         imgSrc: "/images/radio/radioanimati.png"
-    }
+    },
 ];
 
 export { stations };
