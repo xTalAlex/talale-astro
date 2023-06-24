@@ -5,6 +5,11 @@ const stations = [
         imgSrc: "/images/radio/rr2.svg",
     },
     {
+        name: "Radio Kiss Kiss",
+        url: "http://sr9.inmystream.info:8006",
+        imgSrc: "/images/radio/kisskiss.png"
+    },
+    {
         name: "LatteMiele",
         url: "https://sr15.inmystream.it/stream/lattemiele",
         imgSrc: "/images/radio/lattemiele.svg",
@@ -18,7 +23,7 @@ const stations = [
         name: "RadioAnimati",
         url: "https://stream.radioanimati.it/rasite",
         imgSrc: "/images/radio/radioanimati.png"
-    }
+    },
 ];
 
 export { stations };
