@@ -4,6 +4,7 @@ import { withPlanetscale } from "@netlify/planetscale";
 const handler: Handler = withPlanetscale(
     async ( event: HandlerEvent, context: HandlerContext ) => {
         var statusCode = 500;
+        
         const {
             planetscale: { connection },
         } = context;
