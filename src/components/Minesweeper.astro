@@ -239,8 +239,10 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
                 method: "POST", 
                 headers: {
                     "Content-Type": "application/json",
-                    authorization: `Bearer ${window.netlifyIdentity.currentUser().token.access_token}`
-                },body: JSON.stringify({
+                    //Authorization: `Bearer ${await window.netlifyIdentity.currentUser().jwt()}`
+                },
+                body: JSON.stringify({
+                    user: window.netlifyIdentity.currentUser(),
                     victory : victory
                 }),
             }).then( (res) => document.refreshRanking() );

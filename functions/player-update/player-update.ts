@@ -9,7 +9,7 @@ const handler: Handler = withPlanetscale(
             planetscale: { connection },
         } = context;
 
-        const { identity, user } = context.clientContext;
+        //const { identity, user } = context.clientContext;
 
         const { body } = event;
 
@@ -21,17 +21,17 @@ const handler: Handler = withPlanetscale(
             };
         }
 
-        const { victory } = JSON.parse(body);
+        const { user, victory } = JSON.parse(body);
 
-        console.log( user.email + '(' + user.user_metadata.full_name + ' / ' + user.sub + ' ) ' + ( victory ? 'WIN' : 'LOSS') );
+        console.log( user.email + '(' + user.user_metadata.full_name + ' / ' + user.id + ' ) ' + ( victory ? 'WIN' : 'LOSS') );
 
         const res = await connection.execute("SELECT * FROM players WHERE user_id = ?", [
-                user.sub
+                user.id
             ]);
 
         if(!res['rows'].length){
             await connection.execute("INSERT INTO players ( user_id, name, email, cur_streak, streak_record ) VALUES ( ?, ? , ? , ? , ? )", [
-                user.sub,
+                user.id,
                 user.user_metadata.full_name,
                 user.email,
                 victory,
@@ -47,7 +47,7 @@ const handler: Handler = withPlanetscale(
                 streak_record,
                 user.user_metadata.full_name,
                 user.email,
-                user.sub
+                user.id
             ]);
             statusCode = 204;
         }
