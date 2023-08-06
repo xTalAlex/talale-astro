@@ -1,0 +1,107 @@
+---
+import Layout from "@layouts/Layout.astro";
+
+const title = "Frequenza Fondamentale";
+---
+
+<Layout
+  title={title}
+  description="Visualizza la frequenza fondamentale di ogni suono registrato dal tuo microfono, ottenuta tramite l'algoritmo di autocorrelazione."
+>
+  <div class="px-5 md:mx-auto container w-full max-w-5xl">
+    <h1 class="text-center py-12 text-4xl font-bold">{title}</h1>
+
+    <div class="card w-full glass mx-auto">
+      <canvas id="canvas" class="h-64 w-full"></canvas>
+      <div class="card-body">
+        <h2 class="card-title hidden">Frequenza Fondamentale</h2>
+        <div class="text-center text-xl font-bold space-y-4">
+          <div id="note"></div>
+          <div id="frequency"></div>
+        </div>
+        <div class="card-actions justify-end">
+          <button class="btn btn-error hidden" id="microphone"
+            >Microfono OFF</button
+          >
+        </div>
+      </div>
+    </div>
+
+  </div>
+  
+  <script>
+    import { audioUtils } from "@lib/audioUtils";
+  
+    const setupAudioContext = async function (stream) {
+      const context = new (window.AudioContext || window.webkitAudioContext)();
+      const source = context.createMediaStreamSource(stream);
+      const analyser = context.createAnalyser();
+      analyser.fftSize = 2048;
+      source.connect(analyser);
+      //source.connect(context.destination);
+  
+      audioUtils.setupCanvasContext(canvas);
+      const bufferLength = analyser.fftSize;
+      const dataArray = new Uint8Array(bufferLength);
+      const bufferLengthAlt = analyser.frequencyBinCount;
+      const dataArrayAlt = new Uint8Array(bufferLengthAlt);
+      const dataArrayValues = new Float32Array(bufferLength);
+  
+      var previousValueToDisplay = -1;
+      var smoothingCount = 0;
+      const smoothingCountThreshold = 5;
+  
+      function draw() {
+        analyser.getByteTimeDomainData(dataArray);
+        audioUtils.drawWave(dataArray);
+  
+        analyser.getByteFrequencyData(dataArrayAlt);
+        audioUtils.drawSpectrum(dataArrayAlt);
+  
+        analyser.getFloatTimeDomainData(dataArrayValues);
+        displayNote(audioUtils.getPitch(dataArrayValues, context.sampleRate));
+  
+        requestAnimationFrame(draw);
+      }
+      draw();
+  
+      function displayNote(pitch) {
+        if (
+          pitch.frequency !== -1 &&
+          audioUtils.pitchIsSimilarTo(pitch.frequency, previousValueToDisplay) &&
+          smoothingCount < smoothingCountThreshold
+        ) {
+          smoothingCount++;
+          return;
+        } else {
+          previousValueToDisplay = pitch.frequency;
+          smoothingCount = 0;
+        }
+        document.getElementById("frequency").innerText =
+          (pitch.frequency > 0 ? pitch.frequency : 0) + " Hz";
+        document.getElementById("note").innerText =
+          pitch.frequency > 0 ? pitch.note : "...";
+      }
+    };
+  
+    if (!navigator?.mediaDevices?.getUserMedia) {
+      console.log("Impossibile rilevare microfono.");
+    } else {
+      getMicrophone();
+    }
+  
+    function getMicrophone() {
+      var constraints = { audio: true };
+      navigator.mediaDevices
+        .getUserMedia(constraints)
+        .then((stream) => {
+          document.getElementById("microphone")?.classList.add("hidden");
+          setupAudioContext(stream);
+        })
+        .catch(function (err) {
+          document.getElementById("microphone")?.classList.remove("hidden");
+        });
+    }
+  </script>
+  
+</Layout>
