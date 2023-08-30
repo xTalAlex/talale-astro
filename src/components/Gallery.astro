@@ -1,14 +1,14 @@
 ---
-import img1 from '../../src/assets/images/bomb.png';
-import img2 from '../../src/assets/images/IoTramonto.jpg';
+import img1 from '@assets/images/bomb.png';
+import img2 from '@assets/images/IoTramonto.jpg';
 ---
 <div>
     <div id="my-gallery" class="flex">
-        <a href={img1}>
-            <img class="h-64 w-64 object-contain" src={img1}/>
+        <a href={img1.src}>
+            <img class="h-64 w-64 object-contain" src={img1.src}/>
         </a>
-        <a href={img2}>
-            <img class="h-64 w-64 object-contain" src={img2}/>
+        <a href={img2.src}>
+            <img class="h-64 w-64 object-contain" src={img2.src}/>
         </a>
     </div>
 </div>

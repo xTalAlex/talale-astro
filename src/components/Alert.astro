@@ -3,27 +3,27 @@ import { Icon } from "astro-icon";
 ---
 
 <div class="hidden transition duration-500 ease-in-out alert flex-row shadow-lg alert-info text-info-content fixed top-16 bg-opacity-90 backdrop-blur-2xl z-40 inset-x-0 rounded-none justify-between items-center "
-    id="alert"
+    id="t-alert"
 >
     <div>
         <Icon class="stroke-current flex-shrink-0 w-6 h-6" name="pixelarticons:notification"/>
     </div>
-    <div class="max-w-sm">
+    <div class="max-w-sm mx-auto">
         <div class="w-full text-center">
-            <h3 class="font-bold text-base" id="alert-title"></h3>
-            <div class="mt-1 text-sm font-semibold" id="alert-message">Messaggio</div>
+            <h3 class="font-bold text-base" id="t-alert-title"></h3>
+            <div class="mt-1 text-sm font-semibold" id="t-alert-message">Messaggio</div>
         </div>
     </div>
     <div class="flex-none">
-        <button class="btn btn-sm btn-ghost" id="alert-close">&times</button>
+        <button class="btn btn-sm btn-ghost" id="t-alert-close">&times</button>
     </div>
 </div>
 
 <script client:visible>
-    const alert = document.querySelector('#alert');
-    const alertTitle = document.querySelector('#alert-title');
-    const alertMessage = document.querySelector('#alert-message');
-    const alertCloseButton = document.querySelector('#alert-close');
+    const alert = document.querySelector('#t-alert');
+    const alertTitle = document.querySelector('#t-alert-title');
+    const alertMessage = document.querySelector('#t-alert-message');
+    const alertCloseButton = document.querySelector('#t-alert-close');
 
     const setStyle = (style) => {
         alert.classList.forEach( (classItem,i) => {

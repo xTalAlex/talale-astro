@@ -1,11 +1,12 @@
 import { games } from "@data/switch-games.js";
 
-export async function get() {
-    return {
-        body: JSON.stringify(
-            games,
-            false,
-            1
-        ),
-    };
+export async function GET() {
+    return new Response(
+        JSON.stringify(games), {
+            status: 200,
+            headers: {
+            "Content-Type": "application/json"
+            }
+        }
+    );
 }

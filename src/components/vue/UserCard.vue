@@ -1,5 +1,5 @@
 <template>
-    <div class="card w-full bg-base-100 shadow-xl sm:flex-row" 
+    <div class="card w-full bg-base-200 shadow-xl sm:flex-row" 
         v-if="$isLogged"
     >
         <div class="w-full sm:w-1/2 md:w-1/3 grid place-items-center p-4 py-8 ">

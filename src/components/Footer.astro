@@ -34,7 +34,7 @@ const { COOKIEBOT_ID, IUBENDA_POLICY_ID } = import.meta.env;
         }
         <a href="/rss.xml"><img src="/images/icons/rss.svg" class="h-6" alt="rss"/></a>
     </div>
-    <div class="collapse collapse-plus cursor-pointer">
+    <div class="collapse collapse-plus cursor-pointer max-w-2xl">
         <input type="checkbox" /> 
         <div class="collapse-title text-left font-semibold">Referral</div>
         <div class="collapse-content flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-2"
@@ -53,7 +53,7 @@ const { COOKIEBOT_ID, IUBENDA_POLICY_ID } = import.meta.env;
                 target="_blank"
             >
                 <img class="w-52 h-16 object-contain bg-white rounded"
-                    src={IubendaLogo}
+                    src={IubendaLogo.src}
                     alt="Iubenda Referral Badge"
                 />
             </a>
@@ -62,7 +62,7 @@ const { COOKIEBOT_ID, IUBENDA_POLICY_ID } = import.meta.env;
                 target="_blank"
             >
                 <img class="w-52 h-16 object-contain bg-white rounded"
-                    src={AmazonPrimeLogo}
+                    src={AmazonPrimeLogo.src}
                     alt="Prova Amazon Prime"
                 />
             </a>
@@ -85,7 +85,7 @@ const { COOKIEBOT_ID, IUBENDA_POLICY_ID } = import.meta.env;
     </div>
     <div class="items-center grid-flow-col">
         <div class="h-6 w-8 mr-1 -mt-1 overflow-hidden inline-block">            
-            <img class="h-14 w-8 object-cover object-left" src={mascotte} />
+            <img class="h-14 w-8 object-cover object-left" src={mascotte.src} />
         </div>
         <p class="font-bold"> 
             {Config.title} | {Config.subtitle}

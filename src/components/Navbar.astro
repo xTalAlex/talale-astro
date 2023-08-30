@@ -13,16 +13,17 @@ import { Icon } from "astro-icon";
                 <Icon class="h-5 w-5 stroke-current" name="pixelarticons:menu" />
             </label>
             <ul
-                class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-300 rounded-box w-52"
+                class="menu dropdown-content mt-3 p-2 shadow bg-base-300 rounded-box w-52"
                 tabindex="0"
             >
                 <li><a href="/">Home</a></li>
-                <li tabindex="0">
-                    <a class="justify-between">
+                <li tabindex="0" class="collapse p-0">
+                    <input type="checkbox" class="h-0 p-0" /> 
+                    <a class="justify-between collapse-title">
                         Widget
                         <Icon class="h-5 w-5 fill-current" name="pixelarticons:chevron-down" />
                     </a>
-                    <ul class="p-2 bg-base-300 shadow">
+                    <ul class="bg-base-300 collapse-content p-0 -mt-6 mb-2">
                         <li><a href="/#latest-posts">Dal Blog</a></li>
                         <li><a href="/pitch-detection">Pitch Detection</a></li>
                         <li><a href="/#laravel-tips">Laravel Daily Tips</a></li>
@@ -30,28 +31,28 @@ import { Icon } from "astro-icon";
                         <li><a href="/#messagebox">Messagebox</a></li>
                     </ul>
                 </li>
-                <li>
+                <li class="-mt-6">
                     <a href="/nintendo-switch/1">Catalogo Nintendo Switch</a>
                 </li>
                 <li><a href="/medabots">Medabots</a></li>
             </ul>
         </div>
         <a href="/" class="hidden lg:flex btn btn-ghost normal-case text-xl">
-            <div class="h-6 w-8 mr-1 -mt-1 overflow-hidden">            
-                <img class="h-14 w-8 object-cover object-left" src={mascotte} />
+            <div class="h-6 w-8 -mr-1 -mt-1 overflow-hidden">            
+                <img class="h-14 w-8 object-cover object-left" src={mascotte.src} />
             </div>
             <span class="">{Config.title}</span>
         </a>
     </div>
 
     <div class="navbar-center hidden lg:flex">
-        <ul class="menu menu-horizontal px-1">
-            <li tabindex="0">
-                <a class="justify-between">
+        <ul class="menu text-base menu-horizontal px-1">
+            <li class="dropdown">
+                <a tabindex="0" class="">
                     Widget
                     <Icon class="h-5 w-5 fill-current" name="pixelarticons:chevron-down" />
                 </a>
-                <ul class="p-2 bg-base-300 mt-2 rounded-box">
+                <ul tabindex="0" class="dropdown-content bg-base-300 mt-px min-w-max rounded-box menu text-base">
                     <li><a href="/#latest-posts">Dal Blog</a></li>
                     <li><a href="/pitch-detection">Pitch Detection</a></li>
                     <li><a href="/#laravel-tips">Laravel Daily Tips</a></li>

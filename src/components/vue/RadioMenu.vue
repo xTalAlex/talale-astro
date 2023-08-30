@@ -1,10 +1,14 @@
 <template>
-    <ul
-        class="menu glass rounded-box fixed top-10 z-30 transition ease-in-out delay-200 right-0 hover:right-1 translate-x-14 group hover:translate-y-10 hover:-translate-x-0 -rotate-90 hover:rotate-0">
+    <ul class="menu p-1 glass rounded-box fixed top-10 z-30 transition ease-in-out delay-200 group"
+        :class="{
+            'right-1 translate-y-10 -translate-x-0 rotate-0' : open,
+            'right-0 translate-x-14 -rotate-90' : !open
+        }"
+    >
         <li>
-            <div :class="{ 'text-accent': isPlaying }">
-                <svg class="rotate-90 delay-200 group-hover:rotate-0 stroke-current"
-                    :class="isPlaying ? 'h-6 w-6 animate-pulse' : 'h-6 w-6 animate-pulse'"
+            <div class="" :class="{ 'text-accent': isPlaying }" v-on:click="open = !open">
+                <svg class="delay-200 stroke-current h-6 w-6"
+                    :class="{ 'rotate-90': !open ,'rotate-0': open }"
                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path fill="currentColor"
                         d="M22 2h-2v2h2v12h-2v2h2v-2h2V4h-2V2ZM2 4H0v12h2v2h2v-2H2V4Zm0 0V2h2v2H2Zm4 2H4v8h2V6Zm0 0V4h2v2H6Zm4 0h4v2h-4V6Zm0 6H8V8h2v4Zm4 0h-4v2H8v4H6v4h2v-4h2v-4h4v4h2v4h2v-4h-2v-4h-2v-2Zm0 0h2V8h-2v4Zm6-6h-2V4h-2v2h2v8h2V6Z" />
@@ -63,6 +67,7 @@ import { ref, onMounted } from "vue";
 
 const lastRadioStation = useStorage('lastRadioStation', stations[0]);
 
+let open = ref(false);
 let hls = ref(null);
 let volume = ref(null);
 let isPlaying = ref(false);
