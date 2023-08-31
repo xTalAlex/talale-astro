@@ -12,18 +12,14 @@ import { Icon } from "astro-icon";
             <label class="btn btn-ghost lg:hidden" tabindex="0">
                 <Icon class="h-5 w-5 stroke-current" name="pixelarticons:menu" />
             </label>
-            <ul
-                class="menu dropdown-content mt-3 p-2 shadow bg-base-300 rounded-box w-52"
-                tabindex="0"
-            >
+            <ul class="menu dropdown-content mt-3 p-2 shadow bg-base-300 rounded-box w-52" tabindex="0">
                 <li><a href="/">Home</a></li>
-                <li tabindex="0" class="collapse p-0">
-                    <input type="checkbox" class="h-0 p-0" /> 
-                    <a class="justify-between collapse-title">
+                <li>
+                    <a>
                         Widget
-                        <Icon class="h-5 w-5 fill-current" name="pixelarticons:chevron-down" />
+                        <!-- <Icon class="h-5 w-5 fill-current" name="pixelarticons:chevron-down" /> -->
                     </a>
-                    <ul class="bg-base-300 collapse-content p-0 -mt-6 mb-2">
+                    <ul class="">
                         <li><a href="/#latest-posts">Dal Blog</a></li>
                         <li><a href="/pitch-detection">Pitch Detection</a></li>
                         <li><a href="/#laravel-tips">Laravel Daily Tips</a></li>
@@ -31,7 +27,7 @@ import { Icon } from "astro-icon";
                         <li><a href="/#messagebox">Messagebox</a></li>
                     </ul>
                 </li>
-                <li class="-mt-6">
+                <li>
                     <a href="/nintendo-switch/1">Catalogo Nintendo Switch</a>
                 </li>
                 <li><a href="/medabots">Medabots</a></li>
