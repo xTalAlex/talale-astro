@@ -1,14 +1,15 @@
 ---
 import img1 from '@assets/images/bomb.png';
 import img2 from '@assets/images/IoTramonto.jpg';
+import { Image } from 'astro:assets';
 ---
 <div>
     <div id="my-gallery" class="flex">
         <a href={img1.src}>
-            <img class="h-64 w-64 object-contain" src={img1.src}/>
+            <Image class="h-64 w-64 object-contain" src={img1} alt="uno"/>
         </a>
         <a href={img2.src}>
-            <img class="h-64 w-64 object-contain" src={img2.src}/>
+            <Image class="h-64 w-64 object-contain" src={img2} alt="due"/>
         </a>
     </div>
 </div>

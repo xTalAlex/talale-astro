@@ -5,6 +5,8 @@ export interface Props {
     link: URL,
 }
 
+import { Image } from 'astro:assets';
+
 const { name, icon, link } = Astro.props;
 
 const srcAttribute = "/images/icons/" + icon;
@@ -13,7 +15,7 @@ const altAttribute = name + " icon";
 
 <div class="card card-compact justify-center items-center grayscale-0">
     <figure>
-        <img class="h-14 w-14"
+        <Image height="56" width="56" class="h-14 w-14"
             src={ srcAttribute }
             alt={ altAttribute }
         />

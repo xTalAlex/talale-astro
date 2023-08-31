@@ -4,6 +4,7 @@ import ThemeSwitcher from "./ThemeSwitcher.astro";
 import Config from "../site_config.json";
 import mascotte from "@assets/images/mascotte.svg";
 import { Icon } from "astro-icon";
+import { Image } from "astro:assets";
 ---
 
 <div class="navbar bg-base-300/50 backdrop-blur-2xl fixed z-50 h-16 font-semibold">
@@ -35,7 +36,7 @@ import { Icon } from "astro-icon";
         </div>
         <a href="/" class="hidden lg:flex btn btn-ghost normal-case text-xl">
             <div class="h-6 w-8 -mr-1 -mt-1 overflow-hidden">            
-                <img class="h-14 w-8 object-cover object-left" src={mascotte.src} />
+                <Image class="h-14 w-8 object-cover object-left" src={mascotte} alt={`${Config.title} | ${Config.subtitle}`}/>
             </div>
             <span class="">{Config.title}</span>
         </a>

@@ -1,10 +1,10 @@
 ---
 import testResult from "@assets/images/lighthouse-test.png";
-
+import { Image } from "astro:assets";
 ---
 
 <div class="card card-compact w-full md:w-1/2 mx-auto bg-secondary text-secondary-content shadow-xl">
-    <figure><img src={testResult.src} alt="Lightouse Test" /></figure>
+    <figure><Image src={testResult} alt="Lightouse Test" /></figure>
     <div class="card-body">
         <h2 class="card-title">Ottimizzazione. Per Davvero.</h2>
         <p>

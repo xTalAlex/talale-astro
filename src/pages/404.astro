@@ -1,16 +1,19 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import monster from "@assets/images/monster404.png";
+import image404 from "@assets/images/mdf.gif";
+
+import { Image } from 'astro:assets';
 ---
 
 <Layout 
-    title="404"
+    title="404 - Pagina Non Trovata"
     description="Pagina non trovata"
 >
-    <div class="container mx-auto pt-20">
+    <div class="container mx-auto pt-6">
         <div class="card">
-            <div class="card-body">
-                <img class="h-[60vh] w-auto object-contain" src={monster.src}>
+            <div class="card-body items-center">
+                <h2 class="card-title text-5xl md:text-7xl font-bold">Pagina Non Trovata</h2>
+                <Image class="h-[60vh] w-auto object-cover mt-6" alt="Maria De Filippi 404" src={image404}>
             </div>
         </div>
     </div>

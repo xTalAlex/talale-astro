@@ -6,6 +6,7 @@ import AmazonPrimeLogo from "@assets/images/amazon-prime-logo.png";
 
 import mascotte from "@assets/images/mascotte.svg";
 import { Icon } from "astro-icon";
+import { Image } from "astro:assets";
 
 const curYear = new Date().getFullYear();
 
@@ -32,7 +33,7 @@ const { COOKIEBOT_ID, IUBENDA_POLICY_ID } = import.meta.env;
                 />
             )
         }
-        <a href="/rss.xml"><img src="/images/icons/rss.svg" class="h-6" alt="rss"/></a>
+        <a href="/rss.xml"><Image height="24" width="24" src="/images/icons/rss.svg" class="h-6" alt="rss"/></a>
     </div>
     <div class="collapse collapse-plus cursor-pointer max-w-2xl">
         <input type="checkbox" /> 
@@ -43,17 +44,19 @@ const { COOKIEBOT_ID, IUBENDA_POLICY_ID } = import.meta.env;
                 href="https://www.digitalocean.com/?refcode=4c50de6f8f9f&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge"
                 target="_blank"
             >
-                <img class="w-52 h-16 object-contain bg-white rounded"
+                <Image class="w-52 h-16 object-contain bg-white rounded"
                     src="https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%202.svg"
                     alt="DigitalOcean Referral Badge"
+                    height="64"
+                    width="208"
                 />
             </a>
             <a
                 href="http://iubenda.refr.cc/talale93"
                 target="_blank"
             >
-                <img class="w-52 h-16 object-contain bg-white rounded"
-                    src={IubendaLogo.src}
+                <Image class="w-52 h-16 object-contain bg-white rounded"
+                    src={IubendaLogo}
                     alt="Iubenda Referral Badge"
                 />
             </a>
@@ -61,8 +64,8 @@ const { COOKIEBOT_ID, IUBENDA_POLICY_ID } = import.meta.env;
                 href="https://www.amazon.it/provaprime?tag=gz-blog-21&ascsubtag=0-f-n-av_talale"
                 target="_blank"
             >
-                <img class="w-52 h-16 object-contain bg-white rounded"
-                    src={AmazonPrimeLogo.src}
+                <Image class="w-52 h-16 object-contain bg-white rounded"
+                    src={AmazonPrimeLogo}
                     alt="Prova Amazon Prime"
                 />
             </a>
@@ -85,7 +88,7 @@ const { COOKIEBOT_ID, IUBENDA_POLICY_ID } = import.meta.env;
     </div>
     <div class="items-center grid-flow-col">
         <div class="h-6 w-8 mr-1 -mt-1 overflow-hidden inline-block">            
-            <img class="h-14 w-8 object-cover object-left" src={mascotte.src} />
+            <Image class="h-14 w-8 object-cover object-left" src={mascotte} alt={`${Config.title} | ${Config.subtitle}`}/>
         </div>
         <p class="font-bold"> 
             {Config.title} | {Config.subtitle}

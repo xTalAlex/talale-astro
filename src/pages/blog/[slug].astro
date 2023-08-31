@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon";
+import { Image } from "astro:assets";
 
 import ProseLayout from "@layouts/ProseLayout.astro";
 import { formatDate } from "../../utils";
@@ -46,12 +47,14 @@ const { post, readingTime, previousPost, nextPost } = Astro.props;
         : post.featuredImage.title}
 >
     <div class="h-96 bg-white">
-        <img
+        <Image
             class="m-auto h-full w-auto object-contain"
             src={post.featuredImage.sourceUrl}
             alt={post.featuredImage.altText?.length
                 ? post.featuredImage.altText
                 : post.featuredImage.title}
+            height="384"
+            width="458"
         />
     </div>
     <div class="flex flex-col mt-2 mb-6">

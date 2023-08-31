@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon";
+import { Image } from "astro:assets";
 
 import Config from "../site_config.json";
 
@@ -19,7 +20,7 @@ const fullTitle = Config.title + " | " + Config.description;
         <div class="max-w-full pl-5 md:pl-0 ">
             <div class="max-w-max md:pt-0">
                 <div class="flex flex-col md:flex-row md:justify-start mb-2 group">
-                    <img src={mascotte.src} class="h-24 md:h-32 mb-2 drop-shadow-2xl place-self-start group-hover:animate-wiggle"/>
+                    <Image src={mascotte} class="w-min h-24 md:h-32 mb-2 drop-shadow-2xl place-self-start group-hover:animate-wiggle" alt={`${Config.title} | ${Config.subtitle}`}/>
                     <div class="font-bold -ml-4">
                         {
                             titleParts.length > 1 ?

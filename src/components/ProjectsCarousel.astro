@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 
 const projects = await getCollection('projects');
 
@@ -19,7 +20,7 @@ projects.sort((a,b) => (a.data.pubDate < b.data.pubDate) ? 1 : ((b.data.pubDate 
                                 <p class="pr-5" >{ project.data.description }</p>
                                 <div class="h-48 md:h-96 relative overflow-hidden">
                                     <a href={ project.data.link } target="_blank">
-                                        <img class="h-full w-full object-top object-cover my-auto" src={ project.data.gallery ? project.data.gallery[0] : '' } alt={ project.data.title } />
+                                        <Image height="384" width="912" class="h-full w-full object-top object-cover my-auto" src={ project.data.gallery ? project.data.gallery[0] : '' } alt={ project.data.title } />
                                     </a>
                                 </div>
                             </div>
@@ -40,7 +41,9 @@ projects.sort((a,b) => (a.data.pubDate < b.data.pubDate) ? 1 : ((b.data.pubDate 
                                     class="h-24 touch-manipulation w-full bg-transparent relative block overflow-hidden m-0 p-0 cursor-pointer border-none outline-none"
                                     type="button"
                                 >
-                                    <img
+                                    <Image
+                                        height="80"
+                                        width="172"
                                         class="embla__slide__thumbnail opacity-20"
                                         src={ project.data.gallery ? project.data.gallery[0] : '' }
                                         alt={  project.data.title  + " thumbnail" }

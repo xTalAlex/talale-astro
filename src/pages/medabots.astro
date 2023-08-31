@@ -2,6 +2,8 @@
 import Layout from "@layouts/Layout.astro";
 import { episodes } from "@data/medabots";
 
+import { Image } from "astro:assets";
+
 const title = "Medabots - Tutti gli Episodi";
 ---
 
@@ -31,7 +33,7 @@ const title = "Medabots - Tutti gli Episodi";
                                 <td class="text-center font-bold px-2">{episode.number}</td>
                                 <td class="text-center font-bold px-2 hidden sm:block">
                                     <a href={`/medabots/${episode.season}/${episode.number}`}>
-                                        <img class="h-20 aspect-square" src={`https://img.youtube.com/vi/${episode.video_id}/0.jpg`} />
+                                        <Image class="h-20 aspect-square" height="80" width="80" alt={`Medabots - ${episode.title}`} src={`https://img.youtube.com/vi/${episode.video_id}/0.jpg`} />
                                     </a>
                                 </td>
                                 <td class="font-semibold italic px-2">"{episode.title}"</td>

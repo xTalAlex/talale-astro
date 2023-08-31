@@ -4,6 +4,8 @@ import cvPhoto from "@assets/images/cv-photo.jpg";
 import sign from "@assets/images/sign.png";
 import Icon from "astro-icon";
 
+import { Image } from "astro:assets";
+
 const title = "Alessandro Talamona - CV";
 ---
 
@@ -17,9 +19,9 @@ const title = "Alessandro Talamona - CV";
             <div
                 class="grid print:grid-cols-3 sm:grid-cols-2 md:grid-cols-3 print:text-xs"
             >
-                <div class="card bg-base-100 shadow-xl text-sm print:text-xs">
+                <div class="card bg-base-200 shadow-xl text-sm print:text-xs">
                     <figure class="px-10 pt-10">
-                        <img src={cvPhoto.src} alt="Alessandro Talamona" class="rounded-xl" />
+                        <Image src={cvPhoto} alt="Alessandro Talamona" class="rounded-xl" />
                     </figure>
                     <div class="card-body items-center text-center">
                         <h2 class="card-title">Alessandro Talamona</h2>
@@ -222,10 +224,7 @@ const title = "Alessandro Talamona - CV";
                             Vedano Olona, <span id="curDate"></span>
                         </p>
                         <div>
-                            <img
-                                src={sign.src}
-                                class="dark:bg-white h-16 w-32 mr-0 ml-auto object-center"
-                            />
+                            <Image src={sign} alt="Firma" class="dark:bg-white h-16 w-32 mr-0 ml-auto object-center"/>
                         </div>
                     </div>
                 </div>

@@ -8,6 +8,8 @@ import { formatDate } from "../../utils";
 import AddToWishlist from "@components/vue/AddToWishlist.vue";
 import Wishlist from "@components/vue/Wishlist.vue";
 
+import { Image } from "astro:assets";
+
 export async function getStaticPaths({ paginate }) {
     return paginate(games, { pageSize: Config.gamesPerPage });
 }
@@ -45,20 +47,20 @@ const { page } = Astro.props;
                                     {
                                         game.cover &&
                                         <div class="swiper-slide bg-neutral">
-                                            <img  class="h-full object-cover mx-auto" src={game.cover.url.replace('t_thumb','t_cover_big')} alt={game.name} />
+                                            <Image height="192" width="320"  class="h-full object-cover mx-auto" src={game.cover.url.replace('t_thumb','t_cover_big')} alt={game.name} />
                                         </div>
                                     }
                                     {
                                         game.artworks && game.artworks.map( (artwork,id) => (
                                             <div class="swiper-slide">
-                                                <img class="w-full object-cover" src={artwork.url.replace('t_thumb','t_screenshot_big')} />
+                                                <Image height="192" width="320" class="w-full object-cover" src={artwork.url.replace('t_thumb','t_screenshot_big')} alt={`Artwork ${id+1}`} />
                                             </div> 
                                         ))
                                     }
                                     {
                                         game.screenshots && game.screenshots.map( (screenshot,id) => (
                                             <div class="swiper-slide">
-                                                <img class="w-full object-cover" src={screenshot.url.replace('t_thumb','t_screenshot_big')} />
+                                                <Image height="192" width="320" class="w-full object-cover" src={screenshot.url.replace('t_thumb','t_screenshot_big')} alt={`Screenshot ${id+1}`}/>
                                             </div> 
                                         ))
                                     }
@@ -130,7 +132,7 @@ const { page } = Astro.props;
                                     game.involved_companies?.map( (company) => company.company.logo && company.company.websites && (
                                         <div class="tooltip tooltip-top" data-tip={company.company.name}>
                                             <a href={company.company.websites && company.company.websites[0].url} target="_blank">
-                                                <img class="h-6 object-fill rounded-full" alt={company.company.name} src={company.company.logo && company.company.logo.url}/>
+                                                <Image height="24" width="24" class="h-6 object-fill rounded-full" alt={company.company.name} src={company.company.logo && company.company.logo.url}/>
                                             </a>
                                         </div>
                                     ))
