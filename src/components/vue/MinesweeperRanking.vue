@@ -1,5 +1,5 @@
 <template>
-    <div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box" ref="toggle"
+    <div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box cursor-pointer" ref="toggle"
       	:class="{ 'collapse-open' : open  , 'collapse-close' : !open }"
     >
         <div class="collapse-title text-xl font-medium"
