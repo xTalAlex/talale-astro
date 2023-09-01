@@ -23,7 +23,7 @@ const { title = null , description = Config.description, ogType = "website", ogI
 
 const {COOKIEBOT_ID, IUBENDA_SITE_ID, IUBENDA_POLICY_ID, GOOGLE_SEARCH_CONSOLE_ID, GOOGLE_ANALYTICS_ID, TAWKTO_WIDGET_URL } = import.meta.env;
 const canonical = Astro.url.href;
-const fullTitle = title ? (ogType == "article" ? title + " | " + Config.title : Config.title + " | " + title ) : Config.title + " | " + Config.description;
+const fullTitle = title ? (ogType == "article" ? title + " | " + Config.title : Config.title + " | " + title ) : Config.title + " | " + Config.motto;
 
 const openGraph = {
 	basic : {

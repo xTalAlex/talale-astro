@@ -1,7 +1,6 @@
 ---
 import FrameworkCard from "@components/FrameworkCard.astro";
-
-import frameworks from "@data/frameworks.js";
+import Config from "../site_config.json";
 
 ---
 
@@ -11,12 +10,12 @@ import frameworks from "@data/frameworks.js";
     >
         <div class="embla__container">
         {
-            frameworks.map((framework) => (
+            Config.frameworks.map((framework) => (
                 <div class="embla__slide relative min-w-[50%] sm:min-w-[33%] md:min-w-[20%]">
                     <FrameworkCard
                         name={framework.name}
-                        icon={framework.icon}
-                        link={new URL(framework.link)}
+                        logo={framework.logo}
+                        url={new URL(framework.url)}
                     />
                 </div>
             ))

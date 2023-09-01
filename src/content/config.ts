@@ -7,7 +7,8 @@ const projectCollection = defineCollection({
     // schema: rssSchema.extend({
     //   gallery: z.array(z.string()).optional()
     // }),
-    schema: z.object({
+    schema: ({image}) => z.object({
+        logo: z.string().optional(),
         title: z.string(),
         pubDate: z.date(),
         description: z.string(),

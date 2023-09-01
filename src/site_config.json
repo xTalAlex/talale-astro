@@ -1,17 +1,70 @@
 {
-    "url": "https://talale.it",
-    "blogUrl": "https://talale.altervista.org",
-    "blogCategory": "Informatica",
-    "title": "Alessandro Talamona",
-    "subtitle": "Sviluppatore Web Freelance a Varese",
-    "description": "Realizzazione e ristrutturazione di Siti Web, ECommerce ed Applicazioni Web.",
-    "SEODescription": "Creazione, ristrutturazione e gestione di Siti Web, Ecommerce, Blog, Siti Vetrina, Applicazioni Web e Gestionali per qualunque tipo di attività e budget. Riesco a mantenere prezzi molto competivi e non costringo il cliente a pagare abbonamenti e manutenzioni ricorrenti grazie alle tecnologie che utilizzo.",
-    "cta": "Parlami del tuo Sito Web",
-    "biography": "Sono nato nel 1993, abito in provincia di Varese e sono laureato in Informatica Musicale. Oltre a occuparmi di programmazione, sono appassionato di musica e videogiochi.",
-    "defaultCodePrefix": ">",
-    "messageBoxPlaceholder": "Lascia un messaggio",
-    "messageBoxSuccess": "Messaggio inviato!",
-    "messageBoxError": "Si è verificato un errore!",
-    "gamesPerPage": 18,
-    "piva": "03838670127"
+  "defaultCodePrefix": ">",
+  "blogCategory": "Informatica",
+  "messageBoxError": "Si è verificato un errore!",
+  "piva": "03838670127",
+  "gamesPerPage": 18,
+  "motto": "Realizzazione e ristrutturazione di Siti Web, ECommerce ed Applicazioni Web.",
+  "blogUrl": "https://talale.altervista.org",
+  "url": "https://talale.it",
+  "messageBoxPlaceholder": "Lascia un messaggio",
+  "cta": "Parlami del tuo Sito Web",
+  "biography": "Sono nato nel 1993, abito in provincia di Varese e sono laureato in Informatica Musicale. Oltre a occuparmi di programmazione, sono appassionato di musica e videogiochi.",
+  "frameworks": [
+    {
+      "name": "Laravel",
+      "logo": "/uploads/laravel.svg",
+      "url": "https://laravel.com/"
+    },
+    {
+      "name": "Astro",
+      "logo": "/uploads/astro.svg",
+      "url": "https://astro.build/"
+    },
+    {
+      "name": "Tailwind",
+      "url": "https://tailwindcss.com/",
+      "logo": "/uploads/tailwindcss.svg"
+    },
+    {
+      "name": "Livewire",
+      "logo": "/uploads/livewire.svg",
+      "url": "https://laravel-livewire.com/"
+    },
+    {
+      "name": "Vue",
+      "logo": "/uploads/vue.svg",
+      "url": "https://vuejs.org/"
+    },
+    {
+      "name": "Alpine",
+      "logo": "/uploads/alpinejs.svg",
+      "url": "https://alpinejs.dev/"
+    }
+  ],
+  "subtitle": "Sviluppatore Web Freelance a Varese",
+  "title": "Alessandro Talamona",
+  "description": "Creazione, ristrutturazione e gestione di Siti Web, ECommerce, Blog, Siti Vetrina, Applicazioni Web e Gestionali per qualunque tipo di attività e budget. Riesco a mantenere prezzi molto competitivi e non costringo il cliente a pagare abbonamenti e manutenzioni ricorrenti grazie alle tecnologie che utilizzo.",
+  "features": [
+    {
+      "text": "Ecommerce, Blog, Siti Vetrina, Applicazioni Web, Gestionali..."
+    },
+    {
+      "text": "Gestisco qualsiasi fase di produzione",
+      "color": "text-primary"
+    },
+    {
+      "text": "Creazione siti statici con hosting gratuito",
+      "color": "text-accent"
+    },
+    {
+      "text": "Realizzazione componenti e funzionalità su misura",
+      "color": "text-secondary"
+    },
+    {
+      "text": "Siti responsive, veloci e intuitivi",
+      "color": "text-primary"
+    }
+  ],
+  "messageBoxSuccess": "Messaggio inviato!"
 }

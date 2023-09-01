@@ -1,4 +1,5 @@
 ---
+logo: /uploads/robertotalamona.png
 title: Roberto Talamona
 description: Sito Web in Wordpress che fa sia da blog che da sito personale
 link: https://robertotalamona.it/

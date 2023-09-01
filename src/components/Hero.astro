@@ -6,7 +6,7 @@ import Config from "../site_config.json";
 
 import mascotte from "@assets/images/mascotte.svg";
 
-const fullTitle = Config.title + " | " + Config.description;
+const fullTitle = Config.title + " | " + Config.motto;
 ---
 
 <div
@@ -28,7 +28,7 @@ const fullTitle = Config.title + " | " + Config.description;
             </div>
             <h2 class="hidden">{fullTitle}</h2>
             <h3 class="mb-5">
-                {Config.description}
+                {Config.motto}
             </h3>
             <a href="#contatti" class="btn btn-primary">{Config.cta}</a>
             <a href="#minesweeper" class="mt-2 ml-2 sm:mt-0 btn btn-secondary">Minesweeper</a>

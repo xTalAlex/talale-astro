@@ -1,12 +1,11 @@
 ---
-import features from "@data/features.js";
 import Config from "../site_config.json";
 ---
 <div class="mockup-code before:content-none space-y-2">
     {
-        features.map( feature => 
+        Config.features.map( feature => 
             <pre 
-                data-prefix={ feature.prefix ?? Config.defaultCodePrefix } 
+                data-prefix={ (feature.prefix && feature.prefix.length > 0) ? feature.prefix : Config.defaultCodePrefix } 
                 class={ feature.color }
                 ><code class="font-sans">{ feature.text }</code></pre> 
         )

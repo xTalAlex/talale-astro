@@ -8,7 +8,7 @@ export async function get(context) {
 
     return rss({
         title: Config.title,
-        description: Config.description,
+        description: Config.motto,
         site: context.site,
         items: projects.map((project) => ({
             //required fields

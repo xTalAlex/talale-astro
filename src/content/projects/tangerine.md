@@ -1,4 +1,5 @@
 ---
+logo: /uploads/tangerine.png
 title: Tangerine
 description: Un'applicazione web che permette ai musicisti di mettersi in
   contatto con influencer di tutto il mondo e promuovere le proprie canzoni

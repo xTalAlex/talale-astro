@@ -21,6 +21,7 @@ collections:
     create: true
     sortable_fields: [ "pubDate", "title"]
     fields:
+      - { label: "Logo", name: "logo", widget: "image" }
       - { label: "Titolo", name: "title", widget: "string", required: true }
       - { label: "Descrizione", name: "description", widget: "text", required: true }
       - { label: "Link", name: "link", widget: "string", required: true }
@@ -41,13 +42,30 @@ collections:
           - { label: "URL", name: "url", widget: "string" }
           - { label: "Titolo", name: "title", widget: "string" }
           - { label: "Sottotitolo", name: "subtitle", widget: "string" }
-          - { label: "Descrizione", name: "description", widget: "string"}
+          - { label: "Motto", name: "motto", widget: "string"}
+          - { label: "Descrizione", name: "description", widget: "text"}
           - { label: "Blog URL", name: "blogUrl", widget: "string" }
           - { label: "Categoria Blog", name: "blogCategory", widget: "string" }
           - { label: "CTA", name: "cta", widget: "string" }
-          - { label: "Biografia", name: "biography", widget: "text" }
+          - { label: "Biografia", name: "biography", widget: "markdown" }
           - { label: "Prefisso Blocco Codice", name: "defaultCodePrefix", widget: "string" }
           - { label: "MessageBox - Placeholder", name: "messageBoxPlaceholder", widget: "string" }
           - { label: "MessageBox - Conferma", name: "messageBoxSuccess", widget: "string" }
           - { label: "MessageBox - Errore", name: "messageBoxError", widget: "string" }
           - { label: "Giochi per Pagina", name: "gamesPerPage", widget: "number", value_type: "int", min: 1 }
+          - label: "Features"
+            name: "features"
+            widget: "list"
+            allow_add: true
+            fields:
+              - {label: "Testo", name: "text", widget: "string"}
+              - {label: "Prefisso", name: "prefix", widget: "string", max: "1", required: false, pattern: ['^.?$', "Massimo 1 carattere"]}
+              - {label: "Colore", name: "color", widget: "select", options: ["", "text-primary", "text-secondary", "text-accent", "text-neutral", "text-info", "text-success", "text-warning", "text-error"], required: false }
+          - label: "Frameworks"
+            name: "frameworks"
+            widget: "list"
+            allow_add: true
+            fields:
+              - {label: "Nome", name: "name", widget: "string"}
+              - {label: "Logo", name: "logo", widget: "image"}
+              - {label: "URL", name: "url", widget: "string"}

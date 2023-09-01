@@ -33,6 +33,7 @@
     "hls.js": "^1.4.5-0.canary.9288",
     "html-to-text": "^9.*",
     "luxon": "^3.0.4",
+    "marked": "^7.0.5",
     "nanostores": "^0.9.3",
     "netlify-cms-app": "^2.15.72",
     "netlify-identity-widget": "^1.9.2",
