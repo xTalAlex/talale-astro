@@ -7,7 +7,7 @@ const projects = await getCollection('projects');
 projects.sort((a,b) => (a.data.pubDate < b.data.pubDate) ? 1 : ((b.data.pubDate < a.data.pubDate) ? -1 : 0));
 ---
 
-<h2 class="text-3xl font-semibold">I miei progetti</h2>
+<h2 class="text-3xl font-semibold hidden">Siti Web & Progetti</h2>
 <div class="mockup-window bg-neutral text-neutral-content">
     <div class="px-4 border-t border-neutral">
         <div class="embla relative p-5" id="main-carousel">

@@ -3,13 +3,15 @@
     "blogUrl": "https://talale.altervista.org",
     "blogCategory": "Informatica",
     "title": "Alessandro Talamona",
-    "subtitle": "Sviluppatore Web Freelance",
+    "subtitle": "Sviluppatore Web Freelance a Varese",
     "description": "Realizzazione e ristrutturazione di Siti Web, ECommerce ed Applicazioni Web.",
-    "cta": "Contattami",
+    "SEODescription": "Creazione, ristrutturazione e gestione di Siti Web, Ecommerce, Blog, Siti Vetrina, Applicazioni Web e Gestionali per qualunque tipo di attività e budget. Riesco a mantenere prezzi molto competivi e non costringo il cliente a pagare abbonamenti e manutenzioni ricorrenti grazie alle tecnologie che utilizzo.",
+    "cta": "Parlami del tuo Sito Web",
     "biography": "Sono nato nel 1993, abito in provincia di Varese e sono laureato in Informatica Musicale. Oltre a occuparmi di programmazione, sono appassionato di musica e videogiochi.",
     "defaultCodePrefix": ">",
     "messageBoxPlaceholder": "Lascia un messaggio",
     "messageBoxSuccess": "Messaggio inviato!",
     "messageBoxError": "Si è verificato un errore!",
-    "gamesPerPage": 18
+    "gamesPerPage": 18,
+    "piva": "03838670127"
 }
