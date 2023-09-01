@@ -17,6 +17,7 @@ import Minesweeper from "@components/Minesweeper.astro";
 import NintendoSwitchCTA from "@components/NintendoSwitchCTA.astro";
 import Metabee from "@components/Metabee.astro";
 import LighthouseTest from "@components/LighthouseTest.astro";
+import Map from "@components/Map.astro";
 ---
 
 <Layout>
@@ -51,14 +52,18 @@ import LighthouseTest from "@components/LighthouseTest.astro";
 
 		<div class="w-fit mx-auto space-y-5">
 			<Biography />
-			<div class="pt-12 w-full" id="messagebox">
-				<MessageBox />
+		</div>
+
+		<div class="card w-full glass" id="contatti">
+			<figure><Map /></figure>
+			<div class="card-body justify-center space-y-10 mt-4">
+				<Contacts />
+				<div class="w-full" id="messagebox">
+					<MessageBox />
+				</div>
 			</div>
 		</div>
 
-		<div class="my-10">
-			<Contacts />
-		</div>
-
 	</div>
+
 </Layout>
