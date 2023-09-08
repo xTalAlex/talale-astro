@@ -1,21 +1,18 @@
 ---
 import { Icon } from "astro-icon";
 ---
-
-<div class="hidden transition duration-500 ease-in-out alert flex-row shadow-lg alert-info text-info-content fixed top-16 bg-opacity-90 backdrop-blur-2xl z-40 inset-x-0 rounded-none justify-between items-center "
+<div class="hidden alert place-content-evenly transition duration-500 ease-in-out shadow-lg fixed top-16 bg-opacity-90 backdrop-blur-2xl z-40 inset-x-0 rounded-none"
     id="t-alert"
 >
     <div>
         <Icon class="stroke-current flex-shrink-0 w-6 h-6" name="pixelarticons:notification"/>
     </div>
-    <div class="max-w-sm mx-auto">
-        <div class="w-full text-center">
-            <h3 class="font-bold text-base" id="t-alert-title"></h3>
-            <div class="mt-1 text-sm font-semibold" id="t-alert-message">Messaggio</div>
-        </div>
+    <div class="max-w-sm mx-auto text-center">
+        <h3 class="font-bold text-base" id="t-alert-title">Titolo</h3>
+        <div class="mt-1 text-sm font-semibold" id="t-alert-message">Messaggio</div>
     </div>
-    <div class="flex-none">
-        <button class="btn btn-sm btn-ghost" id="t-alert-close">&times</button>
+    <div>
+        <button class="btn btn-neutral" id="t-alert-close">&times</button>
     </div>
 </div>
 
