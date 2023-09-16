@@ -29,6 +29,7 @@ collections:
       - label: "Galleria"
         name: "gallery"
         widget: "list"
+        required: true
         field: { label: "Immagine", name: "image", widget: "image"}
   - name: "settings"
     label: "Impostazioni"
