@@ -9,21 +9,21 @@ const episodes = [
         season: 1,
         number: 1,
         title: "Un vecchio Medarot all'attacco",
-        video_id: "UW09qDDEspQ",
+        video_id: "qJVsR54-BFU",
         summary: null
     },
     {
         season: 1,
         number: 2,
         title: "La sconfitta degli Screw",
-        video_id: "ow5Y0fhTLWE",
+        video_id: "yCDX87kcVVY",
         summary: null
     },
     {
         season: 1,
         number: 3,
         title: "Un professore davvero straordinario",
-        video_id: "miw4u5thWCk",
+        video_id: "7bCYlqskiGc",
         summary: null
     },
     {
@@ -338,35 +338,35 @@ const episodes = [
         season: 1,
         number: 48,
         title: "Il leone solitario",
-        video_id: "42YGdZsJvNs",
+        video_id: "-qvq3-mCnKQ",
         summary: null,
     },
     {
         season: 1,
         number: 49,
         title: "La finale della Coppa del Mondo",
-        video_id: "iBg0CNj7od8",
+        video_id: "EnepXBY8EWs",
         summary: null,
     },
     {
         season: 1,
         number: 50,
         title: "Un incubo che ritorna",
-        video_id: "-D-fvTzS_J4",
+        video_id: "Mr6qd6qM3V0",
         summary: null,
     },
     {
         season: 1,
         number: 51,
         title: "In un sogno",
-        video_id: "DaxPDDRXVEs",
+        video_id: "dRPQ310u-NI",
         summary: null,
     },
     {
         season: 1,
         number: 52,
         title: "La piú grande robattle del mondo",
-        video_id: "xqWlM6VBeIs",
+        video_id: "HnLVPwGbm54",
         summary: null,
     },
 ];
