@@ -3,12 +3,24 @@ import { Icon } from "astro-icon";
 ---
 
 <label class="swap swap-rotate btn btn-ghost">
-    <input type="checkbox" data-toggle-theme="halloween,halloween-light"/>
+    <input type="checkbox" data-toggle-theme="halloween-light"/>
 
-    <Icon class="swap-on w-6 h-6" name="sun-alt" />
+    <Icon class="swap-on w-6 h-6" id="sun" name="sun-alt" />
 
-    <Icon class="swap-off w-6 h-6" name="moon" />
+    <Icon class="swap-on w-6 h-6" id="moon" name="moon" />
 </label>
+
+<script is:inline>
+    if (localStorage.getItem("theme") === null) {
+        document.getElementById("moon").classList.replace("swap-on", "swap-off");
+    } else
+    {
+        if(localStorage.getItem("theme") == "halloween-light")
+            document.getElementById("sun").classList.replace("swap-on", "swap-off");
+        else 
+            document.getElementById("moon").classList.replace("swap-on", "swap-off");
+    }
+</script>
 
 <script>
     import { themeChange } from "theme-change";

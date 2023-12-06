@@ -39,7 +39,7 @@ const openGraph = {
 ---
 
 <!DOCTYPE html>
-<html lang="it" data-theme="halloween" class="scroll-smooth">
+<html lang="it" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -108,6 +108,13 @@ const openGraph = {
 			import netlifyIdentity from "netlify-identity-widget";
 			window.netlifyIdentity = netlifyIdentity;
 			document.dispatchEvent(new Event("identityLoaded"));
+		</script>
+
+		<script is:inline>
+			if (localStorage.getItem("theme") === null) {
+			document.documentElement.setAttribute("data-theme", "halloween");
+			} else
+			document.documentElement.setAttribute("data-theme",localStorage.getItem("theme"));
 		</script>
 
 	</head>
