@@ -18,7 +18,6 @@ import BackToTop from "@components/BackToTop.astro";
 import IubendaCookieSolution from "@components/IubendaCookieSolution.astro";
 import Alert from "@components/Alert.astro";
 import RadioMenu from "@components/vue/RadioMenu.vue";
-import { ViewTransitions } from "astro:transitions";
 
 const { title = null , description = Config.description, ogType = "website", ogImage = Config.url + "/images/sharepreview.png", ogImageAlt = "Website Header", noindex = false } = Astro.props;
 
@@ -45,8 +44,6 @@ const openGraph = {
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-
-		<ViewTransitions />
 
 		<SEO 
 			title={fullTitle} 
@@ -122,7 +119,7 @@ const openGraph = {
 		</main>
 		<Footer />
 
-		<RadioMenu transition:persist client:only="vue" />
+		<RadioMenu client:only="vue" />
 
 		<BackToTop />
 
