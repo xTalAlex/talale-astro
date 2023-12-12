@@ -70,3 +70,11 @@ collections:
               - {label: "Nome", name: "name", widget: "string"}
               - {label: "Logo", name: "logo", widget: "image"}
               - {label: "URL", name: "url", widget: "string"}
+          - label: "Prezzi"
+            name: "prices"
+            widget: "object"
+            allow_add: true
+            fields:
+              - {label: "Basso", name: "low", widget: "number", default: 0}
+              - {label: "Medio", name: "mid", widget: "number", default: 0}
+              - {label: "Alto", name: "high", widget: "number", default: 0}

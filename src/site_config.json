@@ -3,6 +3,11 @@
   "blogCategory": "Informatica",
   "messageBoxError": "Si è verificato un errore!",
   "piva": "03838670127",
+  "prices": {
+    "low": 600,
+    "mid": 1500,
+    "high": 3000
+  },
   "gamesPerPage": 18,
   "motto": "Realizzazione e ristrutturazione di Siti Web, ECommerce ed Applicazioni Web.",
   "blogUrl": "https://talale.altervista.org",

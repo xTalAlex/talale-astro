@@ -1,10 +1,14 @@
+---
+import Config from "../site_config.json";
+---
+
 <div class="card">
     <div class="card-body">
         <h2 class="card-title">Prezzi Per Lo Sviluppo Di Siti Web</h2>
         <div class="stats flex flex-col text-center sm:text-left sm:grid bg-primary text-primary-content">
             <div class="stat border-secondary">
                 <div class="stat-title text-primary-content font-semibold">Siti Web Statici</div>
-                <div class="stat-value">400€+</div>
+                <div class="stat-value">{Config.prices?.low}€+</div>
                 <div class="stat-actions">
                     <button class="btn btn-xs btn-accent">Hosting da 0€</button>
                 </div>  
@@ -12,7 +16,7 @@
 
             <div class="stat border-secondary">
                 <div class="stat-title text-primary-content font-semibold">ECommerce</div>
-                <div class="stat-value">1500€+</div>
+                <div class="stat-value">{Config.prices?.mid}€+</div>
                 <div class="stat-actions">
 
                 </div>
@@ -20,7 +24,7 @@
 
             <div class="stat border-secondary">
                 <div class="stat-title text-primary-content font-semibold">Applicazioni Web</div>
-                <div class="stat-value">3000€+</div>
+                <div class="stat-value">{Config.prices?.high}€+</div>
                 <div class="stat-actions">
                 </div>
             </div>
