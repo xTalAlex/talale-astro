@@ -11,5 +11,11 @@
   status = 200
   conditions = {Role = ["admin"]}
 
+[[redirects]]
+  from = "/medabots/"
+  to = "/medabots/*"
+  status = 410
+  force = true
+
 [functions]
   directory = "functions"

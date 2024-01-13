@@ -2,7 +2,7 @@
     <ul class="menu p-1 glass rounded-box fixed top-10 z-30 transition ease-in-out delay-200 group"
         :class="{
             'right-1 translate-y-10 -translate-x-0 rotate-0' : open,
-            'right-0 translate-x-14 -rotate-90' : !open
+            'right-0 translate-x-16 -rotate-90' : !open
         }"
     >
         <li>

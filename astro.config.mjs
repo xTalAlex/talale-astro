@@ -18,7 +18,8 @@ export default defineConfig({
       filter: (page) => 
         page !== 'https://talale.it/privacy-policy/' && 
         page !== 'https://talale.it/cookie-policy/'  &&
-        !/https:\/\/talale\.it\/nintendo-switch\/([2-9](\d*)|1(\d+))\//.test(page)
+        !/https:\/\/talale\.it\/nintendo-switch\/([2-9](\d*)|1(\d+))\//.test(page) &&
+        !/^https:\/\/talale\.it\/medabots/.test(page)
     }),
   ]
 });

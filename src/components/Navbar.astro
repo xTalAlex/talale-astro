@@ -16,6 +16,9 @@ import { Image } from "astro:assets";
             <ul class="menu dropdown-content mt-3 p-2 shadow bg-base-300 rounded-box w-52" tabindex="0">
                 <li><a href="/">Home</a></li>
                 <li>
+                    <a href="/#contatti" class="text-primary uppercase">{Config.cta}</a>
+                </li>
+                <li>
                     <a>
                         Widget
                         <!-- <Icon class="h-5 w-5 fill-current" name="pixelarticons:chevron-down" /> -->
@@ -25,16 +28,14 @@ import { Image } from "astro:assets";
                         <li><a href="/pitch-detection">Pitch Detection</a></li>
                         <!-- <li><a href="/#laravel-tips">Laravel Daily Tips</a></li> -->
                         <li><a href="/#minesweeper">Minesweeper</a></li>
-                        <li><a href="/#contatti">Messagebox</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="/nintendo-switch/1">Catalogo Nintendo Switch</a>
                 </li>
-                <li><a href="/medabots">Medabots</a></li>
             </ul>
         </div>
-        <a href="/" class="hidden lg:flex btn uppercase btn-ghost normal-case text-xl">
+        <a href="/" class="hidden lg:flex btn btn-ghost normal-case text-xl">
             <div class="h-6 w-8 -mr-1 -mt-1 overflow-hidden">            
                 <Image class="h-14 w-8 object-cover object-left" src={mascotte} alt={`${Config.title} | ${Config.subtitle}`}/>
             </div>
@@ -44,6 +45,7 @@ import { Image } from "astro:assets";
 
     <div class="navbar-center hidden lg:flex">
         <ul class="menu text-base menu-horizontal px-1">
+            <li><div class="py-0 px-0 my-auto mx-4"><a href="/#contatti" class="btn btn-sm uppercase btn-primary">{Config.cta}</a></div></li>
             <li class="dropdown">
                 <a tabindex="0" class="">
                     Widget
@@ -54,11 +56,9 @@ import { Image } from "astro:assets";
                     <li><a href="/pitch-detection">Pitch Detection</a></li>
                     <!-- <li><a href="/#laravel-tips">Laravel Daily Tips</a></li> -->
                     <li><a href="/#minesweeper">Minesweeper</a></li>
-                    <li><a href="/#contatti">Messagebox</a></li>
                 </ul>
             </li>
             <li><a href="/nintendo-switch/1">Catalogo Nintendo Switch</a></li>
-            <li><a href="/medabots">Medabots</a></li>
         </ul>
     </div>
 
