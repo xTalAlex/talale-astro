@@ -44,7 +44,7 @@
                 ><code v-text="successMessage"></code></pre>
             </div>
             <div class="card-actions justify-end">
-                <button class="btn" 
+                <button class="btn uppercase" 
                     :class="btnColor, {
                         'btn-disabled' : (!isValueChanged || successMessage), 'loading': loading 
                     }" 

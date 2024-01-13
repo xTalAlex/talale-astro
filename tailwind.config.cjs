@@ -40,13 +40,13 @@ module.exports = {
     themes: [
       {
         "halloween": {
-          ...require("daisyui/src/theming/themes")["[data-theme=halloween]"],
+          ...require("daisyui/src/theming/themes")["halloween"],
           "neutral": "#1B1D1D",
         },
       },
       {
         "halloween-light": {
-          ...require("daisyui/src/theming/themes")["[data-theme=halloween]"],
+          ...require("daisyui/src/theming/themes")["halloween"],
           "neutral": "#1B1D1D",
           "base-100": "#FFF",
         },

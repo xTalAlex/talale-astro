@@ -4,7 +4,7 @@
       <div class="card-title flex justify-between -mt-20 pt-20" id="laravel-tips">
         Laravel Daily Tips
         <div class="tooltip tooltip-left" :data-tip="refreshing ? 'Refresh in cooldown' : 'Refresh'">
-          <button aria-label="Refresh" class="btn btn-sm btn-circle btn-secondary" :disabled="refreshing"
+          <button aria-label="Refresh" class="btn uppercase btn-sm btn-circle btn-secondary" :disabled="refreshing"
             @click="fetchTips">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 stroke-current fill-current" viewBox="0 0 24 24">
               <path
@@ -32,7 +32,7 @@
                 v-if="!loading" v-text="curTip.name"></p>
             </Transition>
             <div class="card-actions justify-end">
-              <button class="btn btn-primary" @click="openModal">
+              <button class="btn uppercase btn-primary" @click="openModal">
                 Visualizza
               </button>
             </div>

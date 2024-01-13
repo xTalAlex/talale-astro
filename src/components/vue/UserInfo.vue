@@ -5,7 +5,7 @@
                 <div class="card-body items-center justify-center bg-cover bg-[url(https://picsum.photos/800/500)]">
                     <div class="card w-96">
                     <div class="card-body">
-                        <button class="btn glass text-neutral">Bottone in Vetro di Murano</button>
+                        <button class="btn uppercase glass text-neutral">Bottone in Vetro di Murano</button>
                     </div>
                 </div>
                 </div>

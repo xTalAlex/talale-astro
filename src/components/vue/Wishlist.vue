@@ -6,7 +6,7 @@
                 <img :src="item.imgSrc" :alt="item.name" class="cursor-pointer rounded-box"
                     @click="searchGame(item.id)"
                 />
-                <button class="btn glass btn-xs absolute -right-1 -top-1 z-10"
+                <button class="btn uppercase glass btn-xs absolute -right-1 -top-1 z-10"
                     @click="removeWishlistItem(item)"
                 >&times</button>
             </div>

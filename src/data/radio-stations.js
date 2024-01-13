@@ -6,7 +6,7 @@ const stations = [
     },
     {
         name: "Radio Italia",
-        url: "https://radioitaliasmi.akamaized.net/hls/live/2093120/RISMI/stream02/streamPlaylist.m3u8",
+        url: "https://radioitaliasmi.akamaized.net/hls/live/2093120/RISMI/stream01/streamPlaylist.m3u8",
         imgSrc: "/images/radio/radioitalia.png"
     },
     {

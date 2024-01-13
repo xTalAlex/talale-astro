@@ -26,7 +26,6 @@
     "astro-seo": "^0.8.0",
     "canvas-confetti": "^1.6.0",
     "crypto-js": "^4.1.1",
-    "daisyui": "^3.6.4",
     "embla-carousel": "^7.0.3",
     "embla-carousel-autoplay": "^7.0.3",
     "fuse.js": "^6.6.2",
@@ -46,6 +45,7 @@
     "vue": "^3.2.43"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.7"
+    "@tailwindcss/typography": "^0.5.7",
+    "daisyui": "^4.6.0"
   }
 }

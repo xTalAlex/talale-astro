@@ -48,6 +48,8 @@ collections:
           - { label: "Blog URL", name: "blogUrl", widget: "string" }
           - { label: "Categoria Blog", name: "blogCategory", widget: "string" }
           - { label: "CTA", name: "cta", widget: "string" }
+          - { label: "Google Calendar URL", name: "google_calendar_url", widget: "string" }
+          - { label: "Google Calendar CTA", name: "google_calendar_cta", widget: "string" }
           - { label: "Biografia", name: "biography", widget: "markdown" }
           - { label: "Prefisso Blocco Codice", name: "defaultCodePrefix", widget: "string" }
           - { label: "MessageBox - Placeholder", name: "messageBoxPlaceholder", widget: "string" }

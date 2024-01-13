@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 <div tabindex="0" class="dropdown-content py-2">
-                    <div class="card compact bg-neutral-focus text-neutral-content rounded-box md:w-72 shadow-xl">
+                    <div class="card compact bg-neutral text-neutral-content rounded-box md:w-72 shadow-xl">
                         <div class="card-body">
                             <div class="card-title font-extrabold capitalize text-base">ID - {{ $userInfo.id }}</div>
                         </div>

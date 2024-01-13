@@ -24,7 +24,7 @@ if(rightEdge - leftEdge < Math.floor(size / 2 ) * 2){
 <div class="btn-group">
 
     {  leftEdge > 1 &&
-        <a class={`btn md:btn-lg`}
+        <a class={`btn uppercase md:btn-lg`}
             href={`${url}/1`}
         >
             <Icon class="stroke-current w-6 h-6" name="pixelarticons:chevron-left" />
@@ -32,7 +32,7 @@ if(rightEdge - leftEdge < Math.floor(size / 2 ) * 2){
     }
 
     <!-- {  leftEdge > 1 &&
-        <a class={`btn md:btn-lg hidden md:flex`}
+        <a class={`btn uppercase md:btn-lg hidden md:flex`}
             href={`${url}/${leftEdge - 1}`}
         >
             <svg class="stroke-current w-6 h-6"
@@ -43,13 +43,13 @@ if(rightEdge - leftEdge < Math.floor(size / 2 ) * 2){
     } -->
 
     { Array.from({length: (rightEdge - leftEdge + 1) }).map( (item,index) => 
-        <a class={`btn md:btn-lg ${ currentPage == leftEdge + index ? 'btn-active' : '' }`}
+        <a class={`btn uppercase md:btn-lg ${ currentPage == leftEdge + index ? 'btn-active' : '' }`}
             href={`${url}/${ leftEdge + index }`}
         >{  leftEdge + index }</a>   
     )}
 
     <!-- {  rightEdge < lastPage &&
-        <a class={`btn md:btn-lg hidden md:flex`}
+        <a class={`btn uppercase md:btn-lg hidden md:flex`}
             href={`${url}/${rightEdge + 1}`}
         >
             <svg class="stroke-current w-6 h-6"
@@ -60,7 +60,7 @@ if(rightEdge - leftEdge < Math.floor(size / 2 ) * 2){
     } -->
 
     {  rightEdge < lastPage &&
-        <a class={`btn md:btn-lg`}
+        <a class={`btn uppercase md:btn-lg`}
             href={`${url}/${lastPage}`}
         >
             <Icon class="stroke-current w-6 h-6" name="pixelarticons:chevron-right" />

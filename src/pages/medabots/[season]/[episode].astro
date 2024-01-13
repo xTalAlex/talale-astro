@@ -61,13 +61,13 @@ const title = 'Medabots - Episodio ' + episode.number;
             ></iframe>
         </div>
 
-        <button class="btn btn-neutral rounded-t-none mb-12 w-full" id="skip-intro">Salta Intro</button>
+        <button class="btn uppercase btn-neutral rounded-t-none mb-12 w-full" id="skip-intro">Salta Intro</button>
 
         <div class="divider"></div>
 
         <div class="flex flex-col sm:flex-row sm:justify-between space-y-4 sm:space-y-0">
             { previousEpisode ?
-                <a href={`/medabots/${previousEpisode.season}/${previousEpisode.number}`} title={previousEpisode.title} class="btn btn-ghost justify-start sm:space-x-2 w-full sm:w-auto">
+                <a href={`/medabots/${previousEpisode.season}/${previousEpisode.number}`} title={previousEpisode.title} class="btn uppercase btn-ghost justify-start sm:space-x-2 w-full sm:w-auto">
                     <Icon class="stroke-current w-6 h-6" name="pixelarticons:chevron-left" />
                     <span class="whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis" >Episodio {previousEpisode.number}</span>
                 </a>
@@ -75,7 +75,7 @@ const title = 'Medabots - Episodio ' + episode.number;
                 <div></div>
             }
             { nextEpisode ?
-                <a  href={`/medabots/${nextEpisode.season}/${nextEpisode.number}`} title={nextEpisode.title} class="btn btn-ghost justify-end sm:space-x-2 w-full sm:w-auto">
+                <a  href={`/medabots/${nextEpisode.season}/${nextEpisode.number}`} title={nextEpisode.title} class="btn uppercase btn-ghost justify-end sm:space-x-2 w-full sm:w-auto">
                     <span class="whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis">Episodio {nextEpisode.number}</span>
                     <Icon class="stroke-current w-6 h-6" name="pixelarticons:chevron-right" />
                 </a>

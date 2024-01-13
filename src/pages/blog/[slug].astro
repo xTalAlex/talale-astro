@@ -77,7 +77,7 @@ const { post, readingTime, previousPost, nextPost } = Astro.props;
     <div class="divider"></div>
     <div class="flex flex-col sm:flex-row sm:justify-between space-y-4 sm:space-y-0">
         { previousPost ?
-            <a href={`/blog/${previousPost.slug}`} title={previousPost.title} class="btn btn-ghost justify-start sm:space-x-2 w-full sm:w-auto">
+            <a href={`/blog/${previousPost.slug}`} title={previousPost.title} class="btn uppercase btn-ghost justify-start sm:space-x-2 w-full sm:w-auto">
                 <Icon class="stroke-current w-6 h-6" name="pixelarticons:chevron-left" />
                 <span class="whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis" >{previousPost.title}</span>
             </a>
@@ -85,7 +85,7 @@ const { post, readingTime, previousPost, nextPost } = Astro.props;
             <div></div>
         }
         { nextPost ?
-            <a  href={`/blog/${nextPost.slug}`} title={nextPost.title} class="btn btn-ghost justify-end sm:space-x-2 w-full sm:w-auto">
+            <a  href={`/blog/${nextPost.slug}`} title={nextPost.title} class="btn uppercase btn-ghost justify-end sm:space-x-2 w-full sm:w-auto">
                 <span class="whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis">{nextPost.title}</span>
                 <Icon class="stroke-current w-6 h-6" name="pixelarticons:chevron-right" />
             </a>

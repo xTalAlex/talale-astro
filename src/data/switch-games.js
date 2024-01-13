@@ -5,7 +5,7 @@ const today = new Date();
 
 var games = [];
 var newGames = [];
-var limit = 500;
+var limit = import.meta.PROD ? 500 : 50;
 var offset = 0;
 var start_time;
 var end_time;
@@ -41,7 +41,7 @@ do{
     newGames = await getGames(query);
     games = games.concat(newGames);
     offset += limit;
-}while(newGames.length == limit);
+}while(newGames.length == limit && import.meta.env.PROD);
 
 end_time = Date.now();
 
