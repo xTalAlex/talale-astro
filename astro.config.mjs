@@ -16,8 +16,10 @@ export default defineConfig({
     vue({ appEntrypoint: '/src/_app' }), 
     sitemap({
       filter: (page) => 
+        page !== 'https://talale.it/admin/'  && 
         page !== 'https://talale.it/privacy-policy/' && 
         page !== 'https://talale.it/cookie-policy/'  &&
+        page !== 'https://talale.it/profile/'  &&
         !/https:\/\/talale\.it\/nintendo-switch\/([2-9](\d*)|1(\d+))\//.test(page) &&
         !/^https:\/\/talale\.it\/medabots/.test(page)
     }),
