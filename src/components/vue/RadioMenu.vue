@@ -140,6 +140,6 @@ function setVolume() {
 onMounted(() => {
     if(Hls.isSupported()) hls.value = new Hls();
     volume.value = lastRadioStation.value?.volume ? lastRadioStation.value.volume * 100 : 100;
-    changeStation(lastRadioStation.value, lastRadioStation.value.isPlaying);
+    changeStation(lastRadioStation.value, lastRadioStation.value.isPlaying ?? false);
 });
 </script>
