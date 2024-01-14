@@ -3,6 +3,7 @@ import Config from './src/site_config.json';
 import tailwind from '@astrojs/tailwind';
 import vue from "@astrojs/vue";
 import sitemap from "@astrojs/sitemap";
+import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
@@ -23,5 +24,6 @@ export default defineConfig({
         !/https:\/\/talale\.it\/nintendo-switch\/([2-9](\d*)|1(\d+))\//.test(page) &&
         !/^https:\/\/talale\.it\/medabots/.test(page)
     }),
+    icon(),
   ]
 });

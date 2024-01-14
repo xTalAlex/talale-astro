@@ -3,11 +3,6 @@ import Config from "../site_config.json";
 import profilePic from "@assets/images/IoTramonto.jpg";
 import { Image } from "astro:assets";
 import { marked } from 'marked';
-
-marked.use({
-  mangle: false,
-  headerIds: false,
-});
 ---
 
 <div class="card md:card-side bg-neutral shadow-xl w-fit mx-auto">
@@ -15,7 +10,7 @@ marked.use({
         <Image class="mask mask-squircle w-40 md:w-48" src={ profilePic } alt="Alessandro Talamona" />
     </div>
     <div class="card-body pt-0 md:card-body prose text-neutral-content">
-        <p class="" set:html={marked.parse(Config.biography )}></p>
+        <div set:html={marked.parse(Config.biography )}></div>
         <div class="card-actions justify-end">
             <a href="/cv" class="btn uppercase btn-primary">CV</a>
         </div>

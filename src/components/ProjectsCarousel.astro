@@ -62,9 +62,7 @@ projects.sort((a,b) => (a.data.pubDate < b.data.pubDate) ? 1 : ((b.data.pubDate 
     import EmblaCarousel from "embla-carousel";
 
     const onThumbClick = (mainCarousel, thumbCarousel, index) => () => {
-        if(thumbCarousel.clickAllowed()){ 
-            mainCarousel.scrollTo(index);
-        }
+        mainCarousel.scrollTo(index);
     };
 
     const followMainCarousel = (mainCarousel, thumbCarousel) => () => {

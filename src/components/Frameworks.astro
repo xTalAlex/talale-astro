@@ -4,10 +4,8 @@ import Config from "../site_config.json";
 
 ---
 
-<div class="embla relative" id="frameworks-carousel">
-    <div
-        class="embla__viewport"
-    >
+<div class="embla relative">
+    <div class="embla__viewport" id="frameworks-carousel">
         <div class="embla__container">
         {
             Config.frameworks.map((framework) => (
@@ -28,12 +26,11 @@ import Config from "../site_config.json";
     import EmblaCarousel from "embla-carousel";
     import Autoplay from 'embla-carousel-autoplay';
 
-    const thumbCarouselWrap = document.getElementById("frameworks-carousel");
-    const thumbCarouselView = thumbCarouselWrap.querySelector(".embla__viewport");
-    const autoplay = Autoplay({delay:1000}, thumbCarouselView.parentElement);
-    const thumbCarousel = EmblaCarousel(thumbCarouselView, {
+    const emblaCarousel = EmblaCarousel(document.getElementById("frameworks-carousel"), {
         dragFree: true,
         loop: true,
-        speed: 0.05,
-    },[autoplay]);
+        duration: 5000,
+    },[
+        Autoplay({delay:0}, document.getElementById("frameworks-carousel").parentElement)
+    ]);
 </script>
