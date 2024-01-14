@@ -7,7 +7,7 @@
                 <div tabindex="0">
                     <div class="avatar" :class="{ 'online': $isLogged, 'offline': !$isLogged }">
                         <div class="mask mask-squircle bg-base-content h-24 w-24 bg-opacity-10 p-px">
-                            <img :src="$userInfo.avatar" width="94" height="94" alt={{ $userInfo.name }}
+                            <img :src="$userInfo.avatar" width="94" height="94" :alt="$userInfo.name"
                             class="mask mask-squircle"></div>
                     </div>
                 </div>
