@@ -12,7 +12,7 @@ const stations = [
     {
         name: "Radio Kiss Kiss",
         url: "https://ice07.fluidstream.net/KissKiss.aac",
-        imgSrc: "/images/radio/kisskiss.png"
+        imgSrc: "/images/radio/kisskiss.jpg"
     },
     {
         name: "LatteMiele",

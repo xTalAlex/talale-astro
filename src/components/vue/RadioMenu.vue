@@ -63,7 +63,7 @@ import { stations } from '@data/radio-stations';
 import { useStorage } from "@lib/useStorage";
 import Hls from "hls.js";
 
-import { ref, onMounted } from "vue";
+import { ref, computed, onMounted } from "vue";
 
 const lastRadioStation = useStorage('lastRadioStation', stations[0]);
 
@@ -72,8 +72,14 @@ let hls = ref(null);
 let volume = ref(null);
 let isPlaying = ref(false);
 
+let supportsMediaSession = ref(false);
+
 const radioPlayer = ref(null)
 
+const stationIndex = computed(() => {
+    let index = stations.map( s => s.name ).indexOf(lastRadioStation.value?.name);
+    return index >= 0 ? index : 0;
+})
 
 function isHlsUrl(url){
     return url.includes('.m3u8')
@@ -101,8 +107,30 @@ function changeStation(station, startPlaying = true) {
         if(startPlaying) play();
     }
     lastRadioStation.value = station;
+
+    if(supportsMediaSession.value){
+        navigator.mediaSession.metadata = new MediaMetadata({
+            title: lastRadioStation.value.name,
+            artist: "talale.it",
+            artwork: [
+                {
+                    src: lastRadioStation.value.imgSrc,
+                }
+            ]
+        })
+        navigator.mediaSession.playbackState = "paused";
+    }
+    
     setVolume();
     if (startPlaying) play();
+}
+
+function previousStation(){
+    changeStation(stations[((stationIndex.value - 1 % stations.length) + stations.length) % (stations.length)], isPlaying.value);
+}
+
+function nextStation(){
+    changeStation(stations[(stationIndex.value + 1) % (stations.length)], isPlaying.value);
 }
 
 function play() {
@@ -111,6 +139,7 @@ function play() {
         then( () => {
             isPlaying.value = true;
             lastRadioStation.value.isPlaying = true;
+            navigator.mediaSession.playbackState = "playing";
         })
         .catch( (e) => {
             radioPlayer.value.pause();
@@ -125,6 +154,16 @@ function pause() {
         radioPlayer.value.pause();
         isPlaying.value = false;
         lastRadioStation.value.isPlaying = false;
+        navigator.mediaSession.playbackState = "paused";
+    }
+}
+
+function stop() {
+    if (!radioPlayer.value.paused) {
+        radioPlayer.value.pause();
+        isPlaying.value = false;
+        lastRadioStation.value.isPlaying = false;
+        navigator.mediaSession.playbackState = "none";
     }
 }
 
@@ -138,8 +177,33 @@ function setVolume() {
 }
 
 onMounted(() => {
+    supportsMediaSession.value = "mediaSession" in navigator;
     if(Hls.isSupported()) hls.value = new Hls();
     volume.value = lastRadioStation.value?.volume ? lastRadioStation.value.volume * 100 : 100;
     changeStation(lastRadioStation.value, lastRadioStation.value.isPlaying ?? false);
+
+    if(supportsMediaSession.value){
+        navigator.mediaSession.setActionHandler('play', function() { 
+            play();
+        });
+        navigator.mediaSession.setActionHandler('pause', function() { 
+            pause();
+        });
+        navigator.mediaSession.setActionHandler("stop", () => {
+            stop();
+        });
+        navigator.mediaSession.setActionHandler("seekbackward", () => {
+            previousStation();
+        });
+        navigator.mediaSession.setActionHandler("seekforward", () => {
+            nextStation();
+        });
+        navigator.mediaSession.setActionHandler("previoustrack", () => {
+            previousStation();
+        });
+        navigator.mediaSession.setActionHandler("nexttrack", () => {
+            nextStation();
+        });
+    }
 });
 </script>

@@ -29,7 +29,7 @@ TITOLARE DEL TRATTAMENTO
 
 Alessandro Talamona, Via Nino Bixio 2, Vedano Olona (VA), 21040, Italia
 
-Indirizzo email del Titolare: talale93@hotmail.it
+Indirizzo email del Titolare: info@talale.it
 
 COME UTILIZZIAMO I TUOI DATI PERSONALI?
 ---------------------------------------
@@ -66,4 +66,4 @@ Di volta in volta potremo aggiornare la presente Informativa sulla privacy, ad e
 CONTATTACI
 ----------
 
-Per maggiori informazioni sulle nostre procedure in materia di privacy, se hai domande o se vuoi presentare un reclamo, inviaci un'email a talale93@hotmail.it o su https://talale.it.
+Per maggiori informazioni sulle nostre procedure in materia di privacy, se hai domande o se vuoi presentare un reclamo, inviaci un'email a info@talale.it o su https://talale.it.
