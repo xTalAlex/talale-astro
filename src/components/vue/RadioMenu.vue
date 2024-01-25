@@ -1,5 +1,5 @@
 <template>
-    <ul class="menu p-1 glass rounded-box fixed top-10 z-30 transition ease-in-out delay-200 group"
+    <ul class="menu p-1 glass rounded-box fixed top-10 z-30 transition-transform ease-in-out delay-200 group"
         :class="{
             'right-1 translate-y-10 -translate-x-0 rotate-0' : open,
             'right-0 translate-x-16 -rotate-90' : !open
@@ -7,7 +7,7 @@
     >
         <li>
             <div class="" :class="{ 'text-accent': isPlaying }" v-on:click="open = !open">
-                <svg class="delay-200 stroke-current h-6 w-6"
+                <svg class="transition-transform delay-200 stroke-current h-6 w-6"
                     :class="{ 'rotate-90': !open ,'rotate-0': open }"
                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path fill="currentColor"
@@ -26,7 +26,7 @@
                 <ul tabindex="0"
                     class="-mr-1 -mt-12 dropdown-content menu text-sm font-semibold shadow-xl bg-base-200 rounded-box w-52">
                     <li v-for="station in stations">
-                        <a v-on:click="changeStation(station)" :class="{ 'active': lastRadioStation.name == station.name }">
+                        <a v-on:click="changeStation(station)" :class="{ 'bg-base-300': lastRadioStation.name == station.name }">
                             <img class="h-8 w-8" v-bind:src="station.imgSrc" />{{ station.name }}
                         </a>
                     </li>
