@@ -2,10 +2,19 @@ import { DateTime } from "luxon";
 
 const lastDeployDate = new Date();
 
-const formatDate = (date, format) => {
+const formatDate = (date, format = "short") => {
+    ["long","short"].includes(format.toLowerCase()) ? format.toLowerCase() : "long";
+    switch(format.toLowerCase()){
+        case "long" : 
+            format = DateTime.DATE_MED_WITH_WEEKDAY;
+            break;
+        default : 
+            format = DateTime.DATE_SHORT;
+            break;
+    }
     return DateTime.fromISO(new Date(date).toISOString())
         .setLocale('it')
-        .toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY);
+        .toLocaleString(format);
 };
 
 const adjacentCells = (col, row, maxCol, maxRow) => {

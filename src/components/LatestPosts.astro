@@ -1,30 +1,22 @@
 ---
 import { posts } from "@data/posts";
 import { formatDate } from "../utils";
+
+const { class: className } = Astro.props;
 ---
-<div class="card">
-    <div class="card-body">
-        <div class="card-title -mt-20 pt-20" id="latest-posts">Dal Blog</div>
-        <blockquote class="p-4 my-4 border-l-4 border-neutral-content bg-base-200">
-            <p class="italic font-medium leading-relaxed text-base opacity-75">
-                "Learning coding is like playing cards — you learn the rules, then you play, then you go back and learn the rules again, then you play again."
-                <span>- Mozilla.org</span>
-            </p>
-        </blockquote>
-        <div>
-            <ul>
-            {
-                posts.map( post => 
-                    <li class="mt-6">
-                        <div class="flex flex-col md:flex-row md:space-x-4 md:items-center">
-                            <div class="badge badge-secondary badge-outline whitespace-nowrap place-self-end md:place-self-auto w-32">{ formatDate(post.date) }</div>
-                            <a href={`/blog/${ post.slug }`}><div class="link text-lg text-primary" set:html={ post.title }></div></a>
-                        </div>
-                        <div class="ml-4" set:html={ post.excerpt }></div>
-                    </li>
-                )
-            }
-            </ul>
-        </div>
-    </div>
+<div class:list={[className]}>
+    <div class="text-3xl uppercase text-left pt-20 -mt-20 mb-12" id="latest-posts">Dal Blog</div>
+    <ul>
+        {
+            posts.slice(0,4).map( post => 
+                <li class="mt-6 flex">
+                    <div class="badge badge-secondary badge-lg flex-none">{ formatDate(post.date, 'short') }</div>
+                    <div class="ml-5 flex flex-col items-start">
+                        <a href={`/blog/${ post.slug }`}><div class="link text-lg text-primary" set:html={ post.title }></div></a>
+                        <div class="text-left" set:html={ post.excerpt }></div>
+                    </div>
+                </li>
+            )
+        }
+    </ul>
 </div>

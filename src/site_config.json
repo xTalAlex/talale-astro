@@ -4,9 +4,9 @@
   "messageBoxError": "Si è verificato un errore!",
   "piva": "03838670127",
   "prices": {
-    "low": 600,
-    "mid": 1500,
-    "high": 3000
+    "basic": 750,
+    "custom": 2000,
+    "monthly": 200
   },
   "gamesPerPage": 18,
   "motto": "Realizzazione e ristrutturazione di Siti Web, ECommerce ed Applicazioni Web.",
@@ -51,7 +51,7 @@
   ],
   "subtitle": "Sviluppatore Web Freelance a Varese",
   "title": "Alessandro Talamona",
-  "description": "Creazione, ristrutturazione e gestione di Siti Web, ECommerce, Blog, Siti Vetrina, Applicazioni Web e Gestionali per qualunque tipo di attività e budget. Riesco a mantenere prezzi molto competitivi e non costringo il cliente a pagare abbonamenti e manutenzioni ricorrenti grazie alle tecnologie che utilizzo.",
+  "description": "Siti web su misura per distinguersi dalla concorrenza. Creazione, ristrutturazione e gestione di Siti Aziendali, ECommerce, Blog, Siti Vetrina, Applicazioni Web e Gestionali per qualunque tipo di attività.",
   "features": [
     {
       "text": "Ecommerce, Blog, Siti Vetrina, Applicazioni Web, Gestionali..."

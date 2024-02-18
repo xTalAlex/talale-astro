@@ -5,14 +5,18 @@ import { Image } from "astro:assets";
 import { marked } from 'marked';
 ---
 
-<div class="card md:card-side bg-neutral shadow-xl w-fit mx-auto">
-    <div class="card-body flex-none mx-auto">
-        <Image class="mask mask-squircle w-40 md:w-48" src={ profilePic } alt="Alessandro Talamona" />
+<div class="mt-0 mb-auto items-stretch h-full space-y-10">
+    <Image class="h-48 w-full mx-auto object-contain mask mask-circle" src={ profilePic } alt="Alessandro Talamona" />
+
+    <div set:html={marked.parse(Config.biography )}></div>
+    <div class="max-w-xs mx-auto">
+        <a href="/cv" class="w-full btn uppercase btn-primary">Curriculum</a>
     </div>
-    <div class="card-body pt-0 md:card-body prose text-neutral-content">
-        <div set:html={marked.parse(Config.biography )}></div>
-        <div class="card-actions justify-end">
-            <a href="/cv" class="btn uppercase btn-primary">CV</a>
-        </div>
-    </div>
+
+    <blockquote class="p-4 my-4 border-l-4 border-neutral-content bg-base-200">
+        <p class="italic font-medium leading-relaxed text-base opacity-75">
+            "Learning coding is like playing cards — you learn the rules, then you play, then you go back and learn the rules again, then you play again."
+            <br/><div class="text-right">- Mozilla.org</div>
+        </p>
+    </blockquote>
 </div>

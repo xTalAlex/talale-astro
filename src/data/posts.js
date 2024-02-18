@@ -23,7 +23,7 @@ async function fetchAPI(query, { variables } = {}) {
 async function getPosts(perPage, page) {
     const data = await fetchAPI(`
     {
-        posts(first: 10, where: {categoryName: "${ Config.blogCategory }"}) {
+        posts(first: 50, where: {categoryName: "${ Config.blogCategory }"}) {
           nodes {
             id
             title

@@ -27,7 +27,7 @@ module.exports = {
         wiggle: {
           "0%, 100%": { transform: "rotate(0deg)" },
           "50%": { transform: "rotate(3deg)" },
-        },
+        }
       },
     }
   },
@@ -41,12 +41,14 @@ module.exports = {
       {
         "halloween": {
           ...require("daisyui/src/theming/themes")["halloween"],
+          "secondary": "#69398b",
           "neutral": "#1B1D1D",
         },
       },
       {
         "halloween-light": {
           ...require("daisyui/src/theming/themes")["halloween"],
+          "secondary": "#69398b",
           "neutral": "#1B1D1D",
           "base-100": "#FFF",
         },

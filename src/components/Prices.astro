@@ -1,33 +1,104 @@
 ---
+import { Icon } from "astro-icon/components";
 import Config from "../site_config.json";
 ---
 
-<div class="card">
-    <div class="card-body">
-        <h2 class="card-title">Prezzi Per Lo Sviluppo Di Siti Web</h2>
-        <div class="stats flex flex-col text-center sm:text-left sm:grid bg-primary text-primary-content">
-            <div class="stat border-secondary">
-                <div class="stat-title text-primary-content font-semibold">Siti Web Statici</div>
-                <div class="stat-value">{Config.prices?.low}€+</div>
-                <div class="stat-actions">
-                    <button class="btn uppercase btn-xs btn-accent">Hosting da 0€</button>
-                </div>  
+<h2 class="card-title font-bold text-3xl">Pacchetti di sviluppo siti web</h2>
+
+<p>I prezzi sono da considerarsi una tantum dove non indicato.</p>
+
+<div class="grid mx-auto max-w-sm md:max-w-full md:grid-cols-2 lg:grid-cols-3 gap-6 cursor-default">
+    <div class="group relative overflow-hidden md:max-w-sm lg:max-w-none bg-opacity-0 border-0 shadow-xl px-6 py-6 rounded-xl hover:scale-105 from-secondary to-primary transition-all text-primary-content duration-500 ease-in-out flex flex-col">
+        <div class="transition duration-500 absolute inset-0 bg-gradient-to-br from-10% from-secondary group-hover:-translate-y-1/2 -translate-x-1/4 group-hover:-translate-x-1/2 h-[200%] w-[200%] bg-repeat to-primary -z-10 "></div>
+        <div class="">
+            <h3 class="font-bold text-xl">Basic</h3>
+            <div class="mt-6 mb-6 text-5xl">
+                {Config.prices.basic}€+
             </div>
-
-            <div class="stat border-secondary">
-                <div class="stat-title text-primary-content font-semibold">ECommerce</div>
-                <div class="stat-value">{Config.prices?.mid}€+</div>
-                <div class="stat-actions">
-
+            <div>Per siti vetrina o aziendali, blog e landing page.</div>
+            <div class="mt-6 space-y-4">
+                <div class="flex">
+                    <Icon class="mr-2 h-4 w-4 mt-1 stroke-current" name="pixelarticons:arrow-right" /> <div>CMS custom o Wordpress</div>
                 </div>
-            </div>
-
-            <div class="stat border-secondary">
-                <div class="stat-title text-primary-content font-semibold">Applicazioni Web</div>
-                <div class="stat-value">{Config.prices?.high}€+</div>
-                <div class="stat-actions">
+                <div class="flex">
+                    <Icon class="mr-2 h-4 w-4 mt-1 stroke-current" name="pixelarticons:arrow-right" /> <div>Fino a 10 pagine</div>
+                </div>
+                <div class="flex">
+                    <Icon class="mr-2 h-4 w-4 mt-1 stroke-current" name="pixelarticons:arrow-right" /> <div>Servizi base inclusi</div>
+                </div>
+                <div class="flex">
+                    <Icon class="mr-2 h-4 w-4 mt-1 stroke-current" name="pixelarticons:arrow-right" /> <div>2 mese di <strong>Manutenzione & Ads</strong> inclusi </div>
                 </div>
             </div>
         </div>
+        <div class="py-6 mb-0 mt-auto">
+            <a href="#" class="btn btn-neutral uppercase">Richiedi un preventivo</a>
+        </div>
+    </div>
+    <div class="group relative overflow-hidden md:max-w-sm lg:max-w-none border-0 shadow-xl px-6 py-6 rounded-xl hover:scale-105 from-secondary to-primary transition-all text-primary-content duration-500 ease-in-out flex flex-col">
+        <div class="transition duration-500 absolute inset-0 bg-gradient-to-br from-10% from-primary group-hover:-translate-y-1/2 -translate-x-1/4 group-hover:-translate-x-1/2 h-[200%] w-[200%] bg-repeat to-secondary -z-10 "></div>
+        <div>
+            <h3 class="font-bold text-xl">Ecommerce / Custom</h3>
+            <div class="mt-6 mb-6 text-5xl">
+                {Config.prices.custom}€+
+            </div>
+            <div>Per negozi online e startup.</div>
+            <div class="mt-6 space-y-4">
+                <div class="flex">
+                    <Icon class="mr-2 h-4 w-4 mt-1 stroke-current" name="pixelarticons:arrow-right" /> <div>CMS custom</div>
+                </div>
+                <div class="flex">
+                    <Icon class="mr-2 h-4 w-4 mt-1 stroke-current" name="pixelarticons:arrow-right" /> <div>Integrazione gestionale tramite API</div>
+                </div>
+                <div class="flex">
+                    <Icon class="mr-2 h-4 w-4 mt-1 stroke-current" name="pixelarticons:arrow-right" /> <div>Pagamenti con Stripe e PayPal</div>
+                </div>
+                <div class="flex">
+                    <Icon class="mr-2 h-4 w-4 mt-1 stroke-current" name="pixelarticons:arrow-right" /> <div>Servizi base inclusi</div>
+                </div>
+                <div class="flex">
+                    <Icon class="mr-2 h-4 w-4 mt-1 stroke-current" name="pixelarticons:arrow-right" /> <div>2 mesi di <strong>Manutenzione & Ads</strong> inclusi</div>
+                </div>
+            </div>
+        </div>
+        <div class="py-6 mb-0 mt-auto">
+            <a href="#" class="btn btn-neutral uppercase">Richiedi un preventivo</a>
+        </div>
+    </div>
+    <div class="group md:col-span-2 relative  lg:col-span-1 md:max-w-sm sm:mx-auto overflow-hidden md:w-full bg-transparent bg-opacity-0 lg:max-w-none border-0 shadow-xl px-6 py-6 rounded-xl hover:scale-105 text-accent-content transition duration-500 ease-in-out flex flex-col">
+        <div class="transition duration-500 absolute inset-0 bg-gradient-to-br from-10% from-secondary group-hover:-translate-y-1/2 -translate-x-1/4 group-hover:-translate-x-1/2 h-[200%] w-[200%] bg-repeat to-accent -z-10 "></div>
+        <div>
+            <h3 class="font-bold text-xl">Manutenzione & Pubblicità</h3>
+            <div class="mt-6 mb-6 text-5xl">
+                {Config.prices.monthly}€<span class="text-sm">/mese</span>
+            </div>
+            <div></div>
+            <div class="mt-6 space-y-4">
+                <div class="flex">
+                    <Icon class="mr-2 h-4 w-4 mt-1 stroke-current inline" name="pixelarticons:arrow-right" /> <div>Correzione bug</div>
+                </div>
+                <div class="flex">
+                    <Icon class="mr-2 h-4 w-4 mt-1 stroke-current inline" name="pixelarticons:arrow-right" /> <div>Monitoraggio SEO</div>
+                </div>
+                <div class="flex">
+                    <Icon class="mr-2 h-4 w-4 mt-1 stroke-current inline" name="pixelarticons:arrow-right" /> <div>Campagna Google ADS</div>
+                </div>
+                <div class="flex">
+                    <Icon class="mr-2 h-4 w-4 mt-1 stroke-current inline" name="pixelarticons:arrow-right" /> <div>Gestione profilo Google Maps</div>
+                </div>
+                <div class="flex">
+                    <Icon class="mr-2 h-4 w-4 mt-1 stroke-current inline" name="pixelarticons:arrow-right" /> <div>Modifiche e aggiornamento contenuti</div>
+                </div>
+                <div class="flex">
+                    <Icon class="mr-2 h-4 w-4 mt-1 stroke-current inline" name="pixelarticons:arrow-right" /> <div>Assistenza</div>
+                </div>
+            </div>
+        </div>
+        <div class="py-6 mb-0 mt-auto">
+            <a href="#" class="btn btn-neutral uppercase">Richiedi un preventivo</a>
+        </div>
+    </div>
+    <div>
+        
     </div>
 </div>

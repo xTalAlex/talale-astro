@@ -1,18 +1,44 @@
 ---
+import { Icon } from "astro-icon/components";
 import Config from "../site_config.json";
+import Checklist from "@components/Checklist.astro";
+
+
+const bullets = [
+  "Tema Custom e Responsive",
+  "Funzionalitá ad hoc e integrazione API",
+  "Ottimizzazione SEO & Performance",
+  "Tag Google",
+  "Gestione Cookie con Iubenda/Cookiebot",
+  "Logo wordmark",
+  "Ricerca immagini stock",
+  "Gestione Hosting, Dominio e Email"
+];
 ---
-<div class="card card-compact">
-    <div class="card-body">
-        <div class="prose-lg max-w-none">
-            <p>
-                { Config.description }
+
+<!-- /**
+* tema custom e responsive
+* ottimizzazione SEO & performance
+* logo wordmark
+* ricerca immagini stock
+* gestione cookie con iubenda/cookiebot
+* tag google
+* gestione hosting, dominio e email
+* sviluppo funzionalitá ad hoc e integrazione API
+* 
+*/ -->
+<div class="card card-compact relative">
+  <div class="absolute inset-0 top-12 bottom-12 -left-64 bg-gradient-to-tl blur-3xl -z-10 from-primary to-secondary opacity-20"></div>
+    <div class="card-body relative grid lg:grid-cols-3 gap-12">
+        <div class="prose-lg max-w-none lg:col-span-2">
+            <h2 class="text-5xl font-bold">Siti web su misura per distinguersi dalla concorrenza</h2>
+            <h3 class="font-bold">Non accontentarti di un sito web banale: scegli la personalizzazione.</h3>
+            <p>Siti Vetrina e Aziendali, ECommerce, Blog, Applicazioni Web e Gestionali che <strong>funzionano</strong>, veloci e intuitivi.</p>
+            <p>Non creo siti web prefabbricati, ma sviluppo ogni progetto in base alle tue specifiche esigenze e al target di riferimento.
+              <br/>
+              Integro le funzionalità di cui hai bisogno per raggiungere i tuoi <strong>obiettivi</strong>, come moduli di contatto, sistemi di pagamento online, blog e molto altro.
             </p>
-            <p>
-                Oltre ad essere specializzato nello stack TALL (Tailwind, Alpine, Laravel, Livewire), con cui riesco a implementare applicazioni web 
-                complesse e gestionali, utilizzo anche Astro, un framework di recente introduzione che permette di ottenere quello di cui la maggior 
-                parte di chi cerca visibilità nel web ha bisogno: un sito web <strong>autonomo</strong> ed  <strong>economico</strong> di cui si ha il pieno controllo senza dover essere dipendenti 
-                da tariffe molto spesso esagerate per risorse non sfruttate dovute all'utilizzo di CMS come Wordpress in contesti non adatti.
-            </p>
-        </div>     
+        </div>
+        <Checklist class="" {bullets}/>     
     </div>
 </div>

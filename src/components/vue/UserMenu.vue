@@ -4,7 +4,7 @@
             <div class="w-8 h-8 rounded-full"  
                 v-if="$userInfo.avatar"
             >
-                <img :src="$userInfo.avatar" />
+                <img :src="$userInfo.avatar" :alt="$userInfo.name" />
             </div>
             <div class="w-6 h-6"
                 v-else

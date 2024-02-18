@@ -1,18 +1,20 @@
 ---
-import { Image } from "astro:assets";
-import corso from "@assets/images/corso-marketing.png";
-import lim from "@assets/images/lim-logo.png";
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+
+const certificates = await getCollection('certificates');
+
+certificates.sort((a,b) => (a.data.obtainedAt < b.data.obtainedAt) ? 1 : ((b.data.obtainedAt < a.data.obtainedAt) ? -1 : 0));
 ---
 
-<div class="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 px-5">
-    <div class="w-full max-w-md md:w-1/2 max-h-96 h-full">
-        <a href={corso.src}>
-            <Image class="w-full object-contain" src={corso} alt="Attestato corso marketing Google" />
-        </a>
-    </div>
-    <div class="w-full max-w-md md:w-1/2 max-h-96 h-full p-12">
-        <a href="https://www.lim.di.unimi.it/" target="_blank">
-            <Image class="max-h-72 w-auto mx-auto object-contain" src={lim} alt="LIM - Laboratorio di Informatica Musicale" />
-        </a>
-    </div>
+<div class="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 px-5 bg-transparent py-5 card">
+    {
+        certificates.map( certificate => (
+            <div class="w-full max-w-md md:w-1/2 max-h-96 h-full">
+                <a href={certificate.data.image}>
+                    <Image height="480" width="480" class="w-full object-contain" src={certificate.data.image} alt={certificate.data.title} />
+                </a>
+            </div>
+        ))
+    }
 </div>

@@ -1,0 +1,58 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+
+const projects = await getCollection('projects');
+
+projects.sort((a,b) => (a.data.pubDate < b.data.pubDate) ? 1 : ((b.data.pubDate < a.data.pubDate) ? -1 : 0));
+
+function setSize(i) {
+    switch(i){
+        case (0): return 'lg:col-span-5 lg:row-span-3'; break;
+        case (1): return 'lg:col-span-4 lg:row-span-6'; break;
+        case (2): return 'lg:col-span-5 lg:row-span-3'; break;
+
+        case (3): return 'lg:col-span-5 lg:row-span-4'; break;
+        case (4): return 'lg:col-span-4 lg:row-span-4'; break;
+        case (5): return 'lg:col-span-3 lg:row-span-4'; break;
+
+        case (6): return 'lg:col-span-5 lg:row-span-2'; break;
+        case (7): return 'lg:col-span-4 lg:row-span-2'; break;
+        case (8): return 'lg:col-span-3 lg:row-span-2'; break;
+        default: return '';
+    }
+}
+---
+
+<div class="relative grid grid-cols-1 lg:grid-cols-12 gap-2 pt-64 overflow-hidden mt-96">
+    <div class="parallax-bg-title opacity-10 absolute uppercase text-[32rem] font-bold tracking-tighter -top-24">Portfolio</div>
+    <div class="lg:col-span-3 lg:row-span-6 grid text-center transform place-items-center tracking-widest">
+        <h2 class="text-6xl uppercase lg:-rotate-90 pb-12">Portfolio</h2>
+    </div>
+    {
+        projects.slice(0,9).map((project,i) =>
+            <div class={`card overflow-hidden group shadow-xl relative  group image-full ${setSize(i)}`}>
+                <figure><Image height="384" width="912" class={`transition group-hover:blur group-hover:scale-125 duration-1000 ease-in-out h-full w-full object-cover my-auto ${[2,5,7].includes(i) ? '' : ''}`} src={ project.data.gallery ? project.data.gallery[0] : '' } alt={ project.data.title } /></figure>   
+                <div class="cursor-default card-body transition opacity-0 group-hover:opacity-100 ease-in delay-500 justify-center items-center space-y-4">
+                    <h2 class="card-title">{ project.data.title }</h2>
+                    <div class="mx-auto max-w-sm text-center "><p>{ project.data.description }</p></div>
+                    <div class="card-actions">
+                        <a href={ project.data.link } target="_blank" class="link link-hover">Visita</a>
+                    </div>
+                </div>
+            </div>
+        ) 
+    }
+</div>
+
+<script>
+    import simpleParallax from 'simple-parallax-js';
+    new simpleParallax(document.getElementsByClassName('parallax-bg-title'), {
+        overflow: true,
+        orientation: 'left'
+    });
+    new simpleParallax(document.getElementsByClassName('parallax-image'), {
+        overflow: true,
+        delay: .6,
+    });
+</script>

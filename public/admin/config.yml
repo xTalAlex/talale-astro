@@ -31,6 +31,18 @@ collections:
         widget: "list"
         required: true
         field: { label: "Immagine", name: "image", widget: "image"}
+  - name: "certificates"
+    label: "Attestati"
+    label_singular: "Attestato"
+    description: "Attestati e corsi"
+    folder: "src/content/certificates"
+    create: true
+    sortable_fields: [ "obtainedAt", "name"]
+    fields:
+      - { label: "Logo", name: "logo", widget: "image", required: false }
+      - { label: "Titolo", name: "title", widget: "string", required: true }
+      - { label: "Immagine", name: "image", widget: "image" }
+      - { label: "Data", name: "obtainedAt", widget: "datetime", required: true }
   - name: "settings"
     label: "Impostazioni"
     files:
@@ -77,6 +89,6 @@ collections:
             widget: "object"
             allow_add: true
             fields:
-              - {label: "Basso", name: "low", widget: "number", default: 0}
-              - {label: "Medio", name: "mid", widget: "number", default: 0}
-              - {label: "Alto", name: "high", widget: "number", default: 0}
+              - {label: "Basic", name: "basic", widget: "number", default: 0}
+              - {label: "Custom", name: "custom", widget: "number", default: 0}
+              - {label: "Mensile", name: "monthly", widget: "number", default: 0}
