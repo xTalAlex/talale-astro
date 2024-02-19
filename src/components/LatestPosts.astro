@@ -4,8 +4,9 @@ import { formatDate } from "../utils";
 
 const { class: className } = Astro.props;
 ---
-<div class:list={[className]}>
-    <div class="text-3xl uppercase text-left pt-20 -mt-20 mb-12" id="latest-posts">Dal Blog</div>
+<div class:list={['relative', className]}>
+    <div class="relative text-3xl uppercase text-left pt-20 -mt-20 mb-12" id="latest-posts">Dal Blog</div>
+    <div class="absolute inset-0 bg-gradient-to-tl blur-3xl from-primary to-secondary opacity-10"></div>
     <ul>
         {
             posts.slice(0,4).map( post => 

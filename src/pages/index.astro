@@ -4,7 +4,6 @@ import Hero from "@components/Hero.astro";
 import Frameworks from "@components/Frameworks.astro";
 import ProjectsGallery from "@components/ProjectsGallery.astro";
 import Introduction from "@components/Introduction.astro";
-import Features from "@components/Features.astro";
 import MessageBox from "@components/MessageBox.astro";
 import Contacts from "@components/Contacts.astro";
 import FeaturedImages from "@components/FeaturedImages.astro";
@@ -20,7 +19,7 @@ import Map from "@components/Map.astro";
 <Layout>
 	<Hero />
 	
-	<div class="px-5 mx-auto container space-y-24 py-32">
+	<div class="px-5 mx-auto container space-y-24 pt-32">
 		
 		<Introduction />
 
@@ -30,19 +29,24 @@ import Map from "@components/Map.astro";
 
 		<ProjectsGallery />
 
-		<div class="flex flex-col w-full lg:flex-row pt-20 -mt-20 pb-20" id="contacts">
-			<div class="grid flex-grow card bg-neutral rounded-box place-items-center">
-				<div class="card-body w-full"><MessageBox /></div>	
-			</div> 
-			<div class="divider lg:divider-horizontal">O</div> 
-			<div class="grid flex-grow card min-h-44 bg-neutral rounded-box place-items-center">
-				<div class="card-body w-full"><Contacts /></div>
-			</div>
-		</div>
+		<!-- <FeaturedImages /> -->
+
 	</div>
 
-	<div class="w-full overflow-hidden">
-		<Map />
+	<div class="w-full h-full overflow-hidden relative group mt-32 md:mt-52 -mb-32" id="contacts">
+		<div class="absolute inset-0">
+			<Map />
+		</div>
+		<div class="px-5 mx-auto lg:ml-auto lg:mr-20 container py-32 lg:w-1/2">
+			<div class="card glass">
+				<div class="card-body">
+					<div class="card bg-transparent p-10 space-y-6 text-primary-content">
+						<MessageBox />
+						<Contacts />
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 </Layout>

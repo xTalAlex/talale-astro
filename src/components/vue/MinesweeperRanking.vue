@@ -64,7 +64,7 @@ import { isLogged } from "@lib/authStore";
 import { formatDate } from "../../utils";
 
 let players = ref(null);
-let open = ref(true);
+let open = ref(false);
 const toggle = ref(null);
 
 const $isLogged = useStore(isLogged);

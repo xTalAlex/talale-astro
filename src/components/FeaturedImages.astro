@@ -7,12 +7,12 @@ const certificates = await getCollection('certificates');
 certificates.sort((a,b) => (a.data.obtainedAt < b.data.obtainedAt) ? 1 : ((b.data.obtainedAt < a.data.obtainedAt) ? -1 : 0));
 ---
 
-<div class="flex flex-col md:flex-row items-center justify-center space-y-2 md:space-y-0 px-5 bg-transparent py-5 card">
+<div class="carousel carousel-end rounded-box">
     {
-        certificates.map( certificate => (
-            <div class="w-full max-w-md md:w-1/2 max-h-96 h-full">
+        certificates.filter( c => !c.data.hidden ).map( certificate => (
+            <div class="carousel-item">
                 <a href={certificate.data.image}>
-                    <Image height="480" width="480" class="w-full object-contain" src={certificate.data.image} alt={certificate.data.title} />
+                    <Image height="480" width="480" class="object-contain" src={certificate.data.image} alt={certificate.data.title} />
                 </a>
             </div>
         ))

@@ -27,6 +27,7 @@ const certificateCollection = defineCollection({
       title: z.string(),
       image: z.string(),
       obtainedAt: z.date(),
+      hidden: z.boolean().optional()
   })
 });
 

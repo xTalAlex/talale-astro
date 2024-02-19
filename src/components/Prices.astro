@@ -1,6 +1,53 @@
 ---
 import { Icon } from "astro-icon/components";
 import Config from "../site_config.json";
+
+const prices = [
+    {
+        "name": "Basic",
+        "amount": 750,
+        "plus": true,
+        "small": null,
+        "description": "Per siti vetrina o aziendali, blog e landing page.",
+        "features": [
+            "CMS custom o Wordpress",
+            "Fino a 10 pagine"
+        ],
+        "base_services": true,
+        "manteinance_months_included": 1
+    },
+    {
+        "name": "ECommerce / Custom",
+        "amount": 2000,
+        "plus": true,
+        "small": null,
+        "description": "Per negozi online e startup.",
+        "features": [
+            "CMS custom",
+            "Integrazione gestionale tramite API",
+            "Pagamenti con Stripe e PayPal"
+        ],
+        "base_services": true,
+        "manteinance_months_included": 2
+    },
+    {
+        "name": "Manutenzione & Pubblicità",
+        "amount": 200,
+        "plus": false,
+        "small": true,
+        "description": null,
+        "features": [
+            "Correzione bug",
+            "Monitoraggio SEO",
+            "Campagna Google ADS",
+            "Gestione profilo Google Maps",
+            "Modifiche e aggiornamento contenuti",
+            "Assistenza"
+        ],
+        "base_services": false,
+        "manteinance_months_included": 0
+    },
+];
 ---
 
 <div class="space-y-10">
@@ -10,12 +57,8 @@ import Config from "../site_config.json";
 
     <p>I prezzi sono da considerarsi una tantum dove non indicato.</p>
 
-    <div
-        class="grid mx-auto max-w-sm md:max-w-full md:grid-cols-2 lg:grid-cols-3 gap-6 cursor-default"
-    >
-        <div
-            class="group relative overflow-hidden md:max-w-sm lg:max-w-none bg-opacity-0 border-0 shadow-xl px-6 py-6 rounded-xl hover:scale-105 from-secondary to-primary transition-all text-primary-content duration-500 ease-in-out flex flex-col"
-        >
+    <div class="grid mx-auto max-w-sm md:max-w-5xl md:grid-cols-2 lg:grid-cols-3 gap-12 cursor-default text-primary-content">
+        <div class="group relative overflow-hidden md:max-w-sm lg:max-w-none bg-opacity-0 border-0 shadow-xl px-6 py-6 rounded-xl hover:scale-105 from-secondary to-primary transition-all text-primary-content duration-500 ease-in-out flex flex-col">
             <div
                 class="transition duration-500 absolute inset-0 bg-gradient-to-br from-10% from-secondary group-hover:-translate-y-1/2 -translate-x-1/4 group-hover:-translate-x-1/2 h-[200%] w-[200%] bg-repeat to-primary -z-10"
             >
@@ -30,28 +73,28 @@ import Config from "../site_config.json";
                     <div class="flex">
                         <Icon
                             class="mr-2 h-4 w-4 mt-1 stroke-current"
-                            name="pixelarticons:arrow-right"
+                            name="pixelarticons:checkbox"
                         />
                         <div>CMS custom o Wordpress</div>
                     </div>
                     <div class="flex">
                         <Icon
                             class="mr-2 h-4 w-4 mt-1 stroke-current"
-                            name="pixelarticons:arrow-right"
+                            name="pixelarticons:checkbox"
                         />
                         <div>Fino a 10 pagine</div>
                     </div>
                     <div class="flex">
                         <Icon
                             class="mr-2 h-4 w-4 mt-1 stroke-current"
-                            name="pixelarticons:arrow-right"
+                            name="pixelarticons:checkbox"
                         />
-                        <div><a class="link" href="#">Servizi base</a> inclusi</div>
+                        <div><a class="link" href="/services">Servizi base</a> inclusi</div>
                     </div>
                     <div class="flex">
                         <Icon
                             class="mr-2 h-4 w-4 mt-1 stroke-current"
-                            name="pixelarticons:arrow-right"
+                            name="pixelarticons:checkbox"
                         />
                         <div>
                             2 mesi di <strong>Manutenzione & Ads</strong> inclusi
@@ -82,35 +125,35 @@ import Config from "../site_config.json";
                     <div class="flex">
                         <Icon
                             class="mr-2 h-4 w-4 mt-1 stroke-current"
-                            name="pixelarticons:arrow-right"
+                            name="pixelarticons:checkbox"
                         />
                         <div>CMS custom</div>
                     </div>
                     <div class="flex">
                         <Icon
                             class="mr-2 h-4 w-4 mt-1 stroke-current"
-                            name="pixelarticons:arrow-right"
+                            name="pixelarticons:checkbox"
                         />
                         <div>Integrazione gestionale tramite API</div>
                     </div>
                     <div class="flex">
                         <Icon
                             class="mr-2 h-4 w-4 mt-1 stroke-current"
-                            name="pixelarticons:arrow-right"
+                            name="pixelarticons:checkbox"
                         />
                         <div>Pagamenti con Stripe e PayPal</div>
                     </div>
                     <div class="flex">
                         <Icon
                             class="mr-2 h-4 w-4 mt-1 stroke-current"
-                            name="pixelarticons:arrow-right"
+                            name="pixelarticons:checkbox"
                         />
-                        <div><a class="link" href="#">Servizi base</a> inclusi</div>
+                        <div><a class="link" href="/services">Servizi base</a> inclusi</div>
                     </div>
                     <div class="flex">
                         <Icon
                             class="mr-2 h-4 w-4 mt-1 stroke-current"
-                            name="pixelarticons:arrow-right"
+                            name="pixelarticons:checkbox"
                         />
                         <div>
                             2 mesi di <strong>Manutenzione & Ads</strong> inclusi
@@ -141,42 +184,42 @@ import Config from "../site_config.json";
                     <div class="flex">
                         <Icon
                             class="mr-2 h-4 w-4 mt-1 stroke-current inline"
-                            name="pixelarticons:arrow-right"
+                            name="pixelarticons:checkbox"
                         />
                         <div>Correzione bug</div>
                     </div>
                     <div class="flex">
                         <Icon
                             class="mr-2 h-4 w-4 mt-1 stroke-current inline"
-                            name="pixelarticons:arrow-right"
+                            name="pixelarticons:checkbox"
                         />
                         <div>Monitoraggio SEO</div>
                     </div>
                     <div class="flex">
                         <Icon
                             class="mr-2 h-4 w-4 mt-1 stroke-current inline"
-                            name="pixelarticons:arrow-right"
+                            name="pixelarticons:checkbox"
                         />
                         <div>Campagna Google ADS</div>
                     </div>
                     <div class="flex">
                         <Icon
                             class="mr-2 h-4 w-4 mt-1 stroke-current inline"
-                            name="pixelarticons:arrow-right"
+                            name="pixelarticons:checkbox"
                         />
                         <div>Gestione profilo Google Maps</div>
                     </div>
                     <div class="flex">
                         <Icon
                             class="mr-2 h-4 w-4 mt-1 stroke-current inline"
-                            name="pixelarticons:arrow-right"
+                            name="pixelarticons:checkbox"
                         />
                         <div>Modifiche e aggiornamento contenuti</div>
                     </div>
                     <div class="flex">
                         <Icon
                             class="mr-2 h-4 w-4 mt-1 stroke-current inline"
-                            name="pixelarticons:arrow-right"
+                            name="pixelarticons:checkbox"
                         />
                         <div>Assistenza</div>
                     </div>
@@ -188,6 +231,5 @@ import Config from "../site_config.json";
                 >
             </div>
         </div>
-        <div></div>
     </div>
 </div>

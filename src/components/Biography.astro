@@ -1,13 +1,25 @@
 ---
+import { getCollection } from 'astro:content';
 import Config from "../site_config.json";
 import profilePic from "@assets/images/IoTramonto.jpg";
 import { Image } from "astro:assets";
 import { marked } from 'marked';
+
+const certificates = await getCollection('certificates');
+const bestCertificate = certificates.filter( c => c.data.title.includes('professionale')).slice(-1)[0];
 ---
 
 <div class="mt-0 mb-auto items-stretch h-full space-y-10">
-    <Image class="h-48 w-full mx-auto object-contain mask mask-circle" src={ profilePic } alt="Alessandro Talamona" />
-
+    <div class="relative h-fit w-fit mx-auto">
+        <div class="absolute inset-0 bg-gradient-to-tl blur-3xl from-primary to-secondary opacity-20"></div>
+        <Image class="relative h-48 w-full mx-auto object-contain mask mask-circle" src={ profilePic } alt="Alessandro Talamona" />
+        {
+            bestCertificate && 
+                <a href="https://www.credential.net/profile/talale/wallet#gs.5a4y5e" target="_blank" role="img" aria-label="Alessandro Talamona's Credentials wallet">
+                    <Image class="absolute h-20 w-20 -bottom-4 -left-4 rounded-full object-cover bg-white" width="200" height="200" src={bestCertificate.data.logo} alt={bestCertificate.data.title} />
+                </a>
+        }
+    </div>
     <div set:html={marked.parse(Config.biography )}></div>
     <div class="mx-auto flex items-center justify-center space-x-10">
         <a href="https://github.com/xTalAlex" target="_blank"
@@ -25,7 +37,8 @@ import { marked } from 'marked';
         <a href="/cv" class="max-w-xs btn uppercase btn-primary">Curriculum</a>
     </div>
 
-    <blockquote class="p-4 my-4 border-l-4 border-neutral-content bg-base-200">
+    <blockquote class="relative p-4 my-4 border-l-4 border-neutral-content bg-base-200">
+        <div class="absolute inset-0 bg-gradient-to-tl blur-3xl from-primary to-secondary opacity-20"></div>
         <p class="italic font-medium leading-relaxed text-base opacity-75">
             "Learning coding is like playing cards — you learn the rules, then you play, then you go back and learn the rules again, then you play again."
             <br/><div class="text-right">- Mozilla.org</div>
