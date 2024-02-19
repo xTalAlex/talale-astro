@@ -2,31 +2,7 @@
 import { Icon } from "astro-icon/components";
 import Config from "../site_config.json";
 import Checklist from "@components/Checklist.astro";
-
-
-const bullets = [
-  "Tema Custom e Responsive",
-  "Funzionalitá ad hoc e integrazione API",
-  "Ottimizzazione SEO & Performance",
-  "Tag Google",
-  "Gestione Cookie con Iubenda/Cookiebot",
-  "Logo wordmark",
-  "Ricerca immagini stock",
-  "Gestione Hosting, Dominio e Email"
-];
 ---
-
-<!-- /**
-* tema custom e responsive
-* ottimizzazione SEO & performance
-* logo wordmark
-* ricerca immagini stock
-* gestione cookie con iubenda/cookiebot
-* tag google
-* gestione hosting, dominio e email
-* sviluppo funzionalitá ad hoc e integrazione API
-* 
-*/ -->
 <div class="card card-compact relative">
   <div class="absolute inset-0 top-12 bottom-12 -left-64 bg-gradient-to-tl blur-3xl -z-10 from-primary to-secondary opacity-20"></div>
     <div class="card-body relative grid lg:grid-cols-3 gap-12">
@@ -39,6 +15,6 @@ const bullets = [
               Integro le funzionalità di cui hai bisogno per raggiungere i tuoi <strong>obiettivi</strong>, come moduli di contatto, sistemi di pagamento online, blog e molto altro.
             </p>
         </div>
-        <Checklist class="" {bullets}/>     
+        <Checklist class="" bullets={Config.features.map(feature => feature.text)}/>     
     </div>
 </div>

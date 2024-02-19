@@ -3,12 +3,12 @@ import { DateTime } from "luxon";
 const lastDeployDate = new Date();
 
 const formatDate = (date, format = "short") => {
-    ["long","short"].includes(format.toLowerCase()) ? format.toLowerCase() : "long";
-    switch(format.toLowerCase()){
-        case "long" : 
+    ["long", "short"].includes(format.toLowerCase()) ? format.toLowerCase() : "long";
+    switch (format.toLowerCase()) {
+        case "long":
             format = DateTime.DATE_MED_WITH_WEEKDAY;
             break;
-        default : 
+        default:
             format = DateTime.DATE_SHORT;
             break;
     }
@@ -46,16 +46,16 @@ const toTrimmedAlphanumeric = (inputString) => {
     return inputString.replace(/[^a-zA-Z0-9 ]/g, '').trim();
 }
 
-const slugify = ( text ) => {
+const slugify = (text) => {
     return text
         .toString()
-        .normalize( 'NFD' )                   // split an accented letter in the base letter and the acent
-        .replace( /[\u0300-\u036f]/g, '' )   // remove all previously split accents
+        .normalize('NFD')                   // split an accented letter in the base letter and the acent
+        .replace(/[\u0300-\u036f]/g, '')   // remove all previously split accents
         .toLowerCase()
         .trim()
         .replace(/\s+/g, '-')
         .replace(/[^\w\-]+/g, '')
-        .replace(/\-\-+/g, '-'); 
+        .replace(/\-\-+/g, '-');
 };
 
 export { lastDeployDate, formatDate, adjacentCells, delayFunction, toTrimmedAlphanumeric, slugify };

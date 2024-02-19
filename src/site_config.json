@@ -1,5 +1,4 @@
 {
-  "defaultCodePrefix": ">",
   "blogCategory": "Informatica",
   "messageBoxError": "Si è verificato un errore!",
   "piva": "03838670127",
@@ -53,25 +52,14 @@
   "title": "Alessandro Talamona",
   "description": "Siti web su misura per distinguersi dalla concorrenza. Creazione, ristrutturazione e gestione di Siti Aziendali, ECommerce, Blog, Siti Vetrina, Applicazioni Web e Gestionali per qualunque tipo di attività.",
   "features": [
-    {
-      "text": "Ecommerce, Blog, Siti Vetrina, Applicazioni Web, Gestionali..."
-    },
-    {
-      "text": "Gestisco qualsiasi fase di produzione",
-      "color": "text-primary"
-    },
-    {
-      "text": "Creazione siti statici con hosting gratuito",
-      "color": "text-accent"
-    },
-    {
-      "text": "Realizzazione componenti e funzionalità su misura",
-      "color": "text-secondary"
-    },
-    {
-      "text": "Siti responsive, veloci e intuitivi",
-      "color": "text-primary"
-    }
+    { "text": "Tema Custom e Responsive" },
+    { "text": "Funzionalitá ad hoc e integrazione API" },
+    { "text": "Ottimizzazione SEO & Performance" },
+    { "text": "Tag Google" },
+    { "text": "Gestione Cookie con Iubenda/Cookiebot" },
+    { "text": "Logo wordmark" },
+    { "text": "Ricerca immagini stock" },
+    { "text": "Gestione Hosting, Dominio e Email" }
   ],
   "messageBoxSuccess": "Messaggio inviato!"
 }

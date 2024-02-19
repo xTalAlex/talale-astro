@@ -63,7 +63,6 @@ collections:
           - { label: "Google Calendar URL", name: "google_calendar_url", widget: "string" }
           - { label: "Google Calendar CTA", name: "google_calendar_cta", widget: "string" }
           - { label: "Biografia", name: "biography", widget: "markdown" }
-          - { label: "Prefisso Blocco Codice", name: "defaultCodePrefix", widget: "string" }
           - { label: "MessageBox - Placeholder", name: "messageBoxPlaceholder", widget: "string" }
           - { label: "MessageBox - Conferma", name: "messageBoxSuccess", widget: "string" }
           - { label: "MessageBox - Errore", name: "messageBoxError", widget: "string" }
@@ -74,8 +73,6 @@ collections:
             allow_add: true
             fields:
               - {label: "Testo", name: "text", widget: "string"}
-              - {label: "Prefisso", name: "prefix", widget: "string", max: "1", required: false, pattern: ['^.?$', "Massimo 1 carattere"]}
-              - {label: "Colore", name: "color", widget: "select", options: ["", "text-primary", "text-secondary", "text-accent", "text-neutral", "text-info", "text-success", "text-warning", "text-error"], required: false }
           - label: "Frameworks"
             name: "frameworks"
             widget: "list"
