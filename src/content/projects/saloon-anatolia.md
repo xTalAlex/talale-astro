@@ -7,4 +7,5 @@ link: https://saloonanatolia.netlify.app
 pubDate: 2023-09-16T11:31:21.282Z
 gallery:
   - /uploads/saloonanatolia.png
+portfolio: true
 ---

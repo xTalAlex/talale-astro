@@ -7,4 +7,5 @@ link: https://tangerineway.com/
 pubDate: 2021-10-27T14:01:34.415Z
 gallery:
   - /uploads/tangerine.png
+portfolio: true
 ---

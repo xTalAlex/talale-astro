@@ -6,4 +6,5 @@ link: https://sbarborigioielli.it/
 pubDate: 2022-02-18T15:45:02.876Z
 gallery:
   - /uploads/sbarbori.png
+portfolio: true
 ---

@@ -6,4 +6,5 @@ link: https://github.com/xTalAlex/TALLCommerce#readme
 pubDate: 2022-07-30T14:49:09.876Z
 gallery:
   - /uploads/tallcommerce.png
+portfolio: false
 ---

@@ -7,4 +7,5 @@ link: https://laforzadellacondivisione.netlify.app/
 pubDate: 2022-06-23T14:46:53.394Z
 gallery:
   - /uploads/laforzadellacondivisione.png
+portfolio: true
 ---

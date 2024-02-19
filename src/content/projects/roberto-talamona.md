@@ -6,4 +6,5 @@ link: https://robertotalamona.it/
 pubDate: 2022-01-19T14:34:21.271Z
 gallery:
   - /uploads/robertotalamona.png
+portfolio: true
 ---

@@ -7,4 +7,5 @@ link: https://lombardaascensori.it
 pubDate: 2022-12-11T15:46:21.042Z
 gallery:
   - /uploads/lombardaascensori.png
+portfolio: true
 ---

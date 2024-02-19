@@ -6,4 +6,5 @@ link: https://lacasadipaola.it/
 pubDate: 2022-11-07T15:49:43.328Z
 gallery:
   - /uploads/lacasadipaola.png
+portfolio: true
 ---
