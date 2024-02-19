@@ -2,34 +2,33 @@
 import Config from "../site_config.json";
 ---
 
-<div class="card bg-neutral text-neutral-content h-full w-full">
-    <div class="card-body">
-        <form
-            id="messagebox"
-            netlify
-            name="messagebox"
-            method="POST"
-        >
-            <input type="hidden" name="form-name" value="messagebox" />
-            <!-- <div id="alertContainer" class="hidden alert shadow-lg cursor-pointer mb-2" onclick="this.classList.add('hidden')">
-                <div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    <span id="alertText"></span>
-                </div>
-            </div> -->
-            <textarea
-                id="message"
-                class="textarea textarea-secondary bg-neutral text-neutral-content w-full resize-none min-h-32"
-                name="message"
-                maxlength="300"
-                placeholder={Config.messageBoxPlaceholder}></textarea>
-            <div class="card-actions justify-end mt-2">
-                <button id="submitButton" type="submit" class="btn uppercase btn-secondary"
-                >Invia</button>
+<div class="h-full w-full">
+    <form
+        id="messagebox"
+        netlify
+        name="messagebox"
+        method="POST"
+    >
+        <input type="hidden" name="form-name" value="messagebox" />
+        <!-- <div id="alertContainer" class="hidden alert shadow-lg cursor-pointer mb-2" onclick="this.classList.add('hidden')">
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <span id="alertText"></span>
             </div>
-        </form>
-    </div>
+        </div> -->
+        <textarea
+            id="message"
+            class="textarea textarea-primary bg-neutral text-neutral-content w-full resize-none min-h-32"
+            name="message"
+            maxlength="300"
+            placeholder={Config.messageBoxPlaceholder}></textarea>
+        <div class="card-actions justify-end mt-2">
+            <button id="submitButton" type="submit" class="btn uppercase btn-primary"
+            >Invia</button>
+        </div>
+    </form>
 </div>
+
 
 <script>
     import Config from "../site_config.json";

@@ -1,5 +1,5 @@
 <template>
-    <div tabindex="0" class="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box cursor-pointer" ref="toggle"
+    <div tabindex="0" class="h-max collapse collapse-arrow border border-base-300 bg-base-100 rounded-box cursor-pointer" ref="toggle"
       	:class="{ 'collapse-open' : open  , 'collapse-close' : !open }"
     >
         <div class="collapse-title text-xl font-medium"
@@ -64,7 +64,7 @@ import { isLogged } from "@lib/authStore";
 import { formatDate } from "../../utils";
 
 let players = ref(null);
-let open = ref(false);
+let open = ref(true);
 const toggle = ref(null);
 
 const $isLogged = useStore(isLogged);

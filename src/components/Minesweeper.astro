@@ -12,47 +12,49 @@ var table = new Array(boardSize);
 for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
 ---
 
-    <div class="flex justify-center items-center mt-6 pb-12">
-        <div class="">
-
-            <div class="flex border-4 border-accent relative">
-                {
-                    table.map((col, colId) => {
-                        return (
-                            <div class="text-neutral-content">
-                                {table.map((row, rowId) => {
-                                    return (
-                                        <div class="grid place-items-center mine-cell select-none hover:border-accent border-neutral-content font-black h-8 w-8 md:h-10 md:w-10 z-10 text-center border-2 shadow-inner active:shadow-none cursor-pointer"
-                                            id={ (colId * boardSize) + rowId }   
-                                        />
-                                    );
-                                })}
-                            </div>
-                        );
-                    })
-                }
-            </div>
-        
-            <audio class="hidden" 
-                id="electrodeCry" 
-                src={electrodeCry}
-            ></audio>
-            <audio class="hidden" 
-                id="itemFoundFanfare" 
-                src={itemFoundFanfare}
-            ></audio>
-        
-            <div class="mt-6 text-center">
-                <button class="btn uppercase btn-accent" 
-                    id="refresh"
-                >Refresh
-                    <Icon class="ml-1 w-4 h-5 stroke-current" name="pixelarticons:reload" />         
-                </button>
+    <div class="grid lg:grid-cols-2 gap-24">
+        <div class="flex justify-center items-center lg:col-span-1">
+            <div class="">
+    
+                <div class="flex border-4 border-accent relative">
+                    {
+                        table.map((col, colId) => {
+                            return (
+                                <div class="text-neutral-content">
+                                    {table.map((row, rowId) => {
+                                        return (
+                                            <div class="grid place-items-center mine-cell select-none hover:border-accent border-neutral-content font-black h-8 w-8 md:h-10 md:w-10 z-10 text-center border-2 shadow-inner active:shadow-none cursor-pointer"
+                                                id={ (colId * boardSize) + rowId }   
+                                            />
+                                        );
+                                    })}
+                                </div>
+                            );
+                        })
+                    }
+                </div>
+            
+                <audio class="hidden" 
+                    id="electrodeCry" 
+                    src={electrodeCry}
+                ></audio>
+                <audio class="hidden" 
+                    id="itemFoundFanfare" 
+                    src={itemFoundFanfare}
+                ></audio>
+            
+                <div class="mt-6 text-center">
+                    <button class="btn uppercase btn-accent" 
+                        id="refresh"
+                    >Refresh
+                        <Icon class="ml-1 w-4 h-5 stroke-current" name="pixelarticons:reload" />         
+                    </button>
+                </div>
             </div>
         </div>
+    
+        <MinesweeperRanking client:only="vue"/>
     </div>
-
-    <MinesweeperRanking client:only="vue"/>
 
 <script>
     import confetti from 'canvas-confetti';

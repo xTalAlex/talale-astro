@@ -1,10 +1,21 @@
 ---
 import FrameworkCard from "@components/FrameworkCard.astro";
 import Config from "../site_config.json";
-
 ---
 
-<div class="embla relative">
+<div class="mx-auto max-w-xl lg:max-w-none flex flex-wrap items-center justify-center gap-x-16 gap-y-16">
+    {
+        Config.frameworks.map((framework) => (
+            <FrameworkCard
+                name={framework.name}
+                logo={framework.logo}
+                url={new URL(framework.url)}
+            />
+        ))
+    } 
+</div>
+
+<!-- <div class="embla relative max-w-full">
     <div class="embla__viewport" id="frameworks-carousel">
         <div class="embla__container">
         {
@@ -20,17 +31,24 @@ import Config from "../site_config.json";
         }
         </div>
     </div>
-</div>
+</div> -->
 
-<script>
+<!-- <script>
     import EmblaCarousel from "embla-carousel";
-    import Autoplay from 'embla-carousel-autoplay';
+    import Autoplay from "embla-carousel-autoplay";
 
-    const emblaCarousel = EmblaCarousel(document.getElementById("frameworks-carousel"), {
-        dragFree: true,
-        loop: true,
-        duration: 5000,
-    },[
-        Autoplay({delay:0}, document.getElementById("frameworks-carousel").parentElement)
-    ]);
-</script>
+    const emblaCarousel = EmblaCarousel(
+        document.getElementById("frameworks-carousel"),
+        {
+            dragFree: true,
+            loop: true,
+            duration: 5000,
+        },
+        [
+            Autoplay(
+                { delay: 0 },
+                document.getElementById("frameworks-carousel").parentElement,
+            ),
+        ],
+    );
+</script> -->

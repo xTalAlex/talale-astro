@@ -20,33 +20,29 @@ import Map from "@components/Map.astro";
 <Layout>
 	<Hero />
 	
-	<div class="py-6">
-		<Frameworks />
-	</div>
-
-	<div class="px-5 mx-auto container space-y-12 pt-12">
-		
-	</div>
-	<div class="px-5 mx-auto container space-y-24 pt-12">
+	<div class="px-5 mx-auto container space-y-24 py-32">
 		
 		<Introduction />
+
+		<Frameworks/>
 
 		<Prices />
 
 		<ProjectsGallery />
 
-		<div class="py-24">
-			<div class="card w-full glass" id="contacts">
-				<figure><Map /></figure>
-				<div class="card-body justify-center space-y-10 mt-4">
-					<Contacts />
-					<div class="w-full">
-						<MessageBox />
-					</div>
-				</div>
+		<div class="flex flex-col w-full lg:flex-row pt-20 -mt-20 pb-20" id="contacts">
+			<div class="grid flex-grow card bg-neutral rounded-box place-items-center">
+				<div class="card-body w-full"><MessageBox /></div>	
+			</div> 
+			<div class="divider lg:divider-horizontal">O</div> 
+			<div class="grid flex-grow card min-h-44 bg-neutral rounded-box place-items-center">
+				<div class="card-body w-full"><Contacts /></div>
 			</div>
 		</div>
+	</div>
 
+	<div class="w-full overflow-hidden">
+		<Map />
 	</div>
 
 </Layout>

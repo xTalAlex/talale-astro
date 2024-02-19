@@ -2,13 +2,8 @@
 import Config from "../site_config.json";
 ---
 
-<link
-    href="https://calendar.google.com/calendar/scheduling-button-script.css"
-    rel="stylesheet"
-/>
-<script
-    src="https://calendar.google.com/calendar/scheduling-button-script.js"
-    async></script>
+<link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet"/>
+<script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
 <script data-gc-url={Config.google_calendar_url} data-gc-cta={Config.google_calendar_cta}>
     var gcUrl = document.currentScript.dataset.gcUrl;
     var gcCta = document.currentScript.dataset.gcCta;
@@ -17,7 +12,7 @@ import Config from "../site_config.json";
         window.addEventListener("load", function () {
             calendar.schedulingButton.load({
                 url: gcUrl,
-                color: "#039BE5",
+                color: "#ff972a",
                 label: gcCta,
                 target,
             });
