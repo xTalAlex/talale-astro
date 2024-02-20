@@ -19,6 +19,7 @@ const { page } = Astro.props;
 <Layout
     title={`Catalogo Nintendo Switch - Pagina ${page.currentPage}`}
     description="Catalogo con le informazioni su tutti i giochi per Nintendo Switch messe a disposizione da IGDB.com"
+    noindex={page.currentPage!=1}
 >
 
     <div class="px-5 md:mx-auto container w-full max-w-5xl">
