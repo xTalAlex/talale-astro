@@ -1,0 +1,40 @@
+---
+import Layout from "@layouts/Layout.astro";
+import bgImage from "@assets/images/pixelshop.png";
+import Image from "astro/components/Image.astro";
+
+const title =
+    "Fai crescere la tua attività online con un sito web personalizzato";
+const description =
+    "Fai crescere la tua attività online con un sito web personalizzato. Scegli il pacchetto su misura per te e scopri i servizi base inclusi.";
+---
+
+<Layout title={title} description={description}>
+
+    <div class="px-5 md:mx-auto container w-full max-w-5xl ">
+        <div class="pb-96 lg:pb-32">
+            <div class="relative">
+                <div class="ml-10 max-w-xl my-10">
+                    <h1 class="py-12 text-4xl font-bold">{title}</h1>
+                    <h2 class="text-2xl max-w-sm">
+                        Scegli il pacchetto di sviluppo web su misura per te e scopri i
+                        servizi base inclusi<h2></h2>
+                    </h2>
+                </div>
+
+                <div class="absolute -z-10 -right-0 -bottom-full lg:-bottom-16">
+                    <div class="relative">
+                        <div class="absolute opacity-60 animate-pulse inset-0 -z-10 bg-gradient-to-br from-primary to-secondary blur-3xl"></div>
+                        <Image
+                            src={bgImage}
+                            alt={title}
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-5xl font-bold uppercase mt-12">
+            coming soon...
+        </div>
+    </div>
+</Layout>

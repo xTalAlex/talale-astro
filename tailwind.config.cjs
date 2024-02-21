@@ -41,6 +41,7 @@ module.exports = {
       {
         "halloween": {
           ...require("daisyui/src/theming/themes")["halloween"],
+          "primary": "#ff972a",
           "secondary": "#69398b",
           "neutral": "#1B1D1D",
         },
@@ -48,6 +49,7 @@ module.exports = {
       {
         "halloween-light": {
           ...require("daisyui/src/theming/themes")["halloween"],
+          "primary": "#ff972a",
           "secondary": "#69398b",
           "neutral": "#1B1D1D",
           "base-100": "#FFF",

@@ -21,28 +21,7 @@ const { COOKIEBOT_ID, IUBENDA_POLICY_ID } = import.meta.env;
 		<LatestPosts class="lg:col-span-2 mb-20 lg:mb-0"/>  
         <Biography />
     </div>
-    <div class="pb-20"><ScreenSize /></div>
-    <div class="grid grid-flow-col gap-4">
-        {
-            (!COOKIEBOT_ID && !IUBENDA_POLICY_ID) && (
-                <a href="/privacy-policy.html" target="_blank">Privacy Policy Custom</a>
-            )
-        }
-        {
-			COOKIEBOT_ID && (
-                <a href="/cookie-policy.html" target="_blank">Cookie Policy</a>
-                <a href="javascript: Cookiebot.renew()">Impostazioni Cookie</a>
-            )
-        }
-        {
-            IUBENDA_POLICY_ID && (
-                <IubendaPolicy
-                    policyId={IUBENDA_POLICY_ID}
-                />
-            )
-        }
-        <a href="/rss.xml"><Image height="24" width="24" src="/images/icons/rss.svg" class="h-6" alt="rss"/></a>
-    </div>
+    <div class="pb-12"><ScreenSize /></div>
     <div class="collapse collapse-plus cursor-pointer max-w-2xl">
         <input type="checkbox" /> 
         <div class="collapse-title text-left font-semibold">Referral</div>
@@ -93,6 +72,27 @@ const { COOKIEBOT_ID, IUBENDA_POLICY_ID } = import.meta.env;
             }
             }).render('#donate-button');
         </script>
+    </div>
+    <div class="grid grid-flow-col gap-4">
+        {
+            (!COOKIEBOT_ID && !IUBENDA_POLICY_ID) && (
+                <a href="/privacy-policy.html" target="_blank">Privacy Policy Custom</a>
+            )
+        }
+        {
+			COOKIEBOT_ID && (
+                <a href="/cookie-policy.html" target="_blank">Cookie Policy</a>
+                <a href="javascript: Cookiebot.renew()">Impostazioni Cookie</a>
+            )
+        }
+        {
+            IUBENDA_POLICY_ID && (
+                <IubendaPolicy
+                    policyId={IUBENDA_POLICY_ID}
+                />
+            )
+        }
+        <a href="/rss.xml"><Image height="24" width="24" src="/images/icons/rss.svg" class="h-6" alt="rss"/></a>
     </div>
     <div class="items-center grid-flow-col">
         <div class="h-6 w-8 mr-1 -mt-1 overflow-hidden inline-block">            
