@@ -52,14 +52,42 @@
   "title": "Alessandro Talamona",
   "description": "Siti web su misura per distinguersi dalla concorrenza. Creazione, ristrutturazione e gestione di Siti Aziendali, ECommerce, Blog, Siti Vetrina, Applicazioni Web e Gestionali per qualunque tipo di attività.",
   "features": [
-    { "text": "Tema Custom e Responsive" },
-    { "text": "Funzionalitá ad hoc e integrazione API" },
-    { "text": "Ottimizzazione SEO & Performance" },
-    { "text": "Tag Google" },
-    { "text": "Gestione Cookie con Iubenda/Cookiebot" },
-    { "text": "Logo wordmark" },
-    { "text": "Ricerca immagini stock" },
-    { "text": "Gestione Hosting, Dominio e Email" }
-  ],
+    {
+        "title": "Tema Custom e Responsive",
+        "description": "Il tuo sito web sarà la tua identità online e offrirà un'esperienza di navigazione ottimale per tutti i tuoi clienti su tutti i dispositivi."
+    },
+    {
+        "title": "Funzionalitá ad hoc e integrazione API",
+        "description": "Automatizza processi, ottimizza l'esperienza utente e offri nuovi servizi ai tuoi clienti."
+    },
+    {
+        "title": "Ottimizzazione SEO & Performance",
+        "description": "Migliora la visibilità online del tuo sito web con una strategia SEO by design. Aumenta il traffico organico, la velocità di caricamento e l'usabilità, favorendo il posizionamento tra i primi risultati nelle ricerche Google."
+    },
+    {
+        "title": "Integrazione Tag Google",
+        "description": "Monitora il traffico, le conversioni e il comportamento degli utenti sul tuo sito web. Ottieni dati e insights preziosi per ottimizzare le tue strategie di marketing e migliorare i risultati della tua attività."
+    },
+    {
+        "title": "Cookie Policy compliant e GDPR",
+        "description": "Gestisci i cookie in modo conforme al GDPR con le soluzioni standard di Iubenda o Cookiebot oppure integrando i documenti del tuo legale di fiducia."
+    },
+    {
+        "title": "Branding e Logo wordmark",
+        "description": "Crea un'immagine aziendale distintiva e coerente per tutti i tuoi canali di comunicazione. Se non hai ancora un logo, la sua realizzazione è inclusa, insieme alla scelta dei font, dei colori e altre linee guida grafiche."
+    },
+    {
+        "title": "Ricerca immagini stock",
+        "description": "Arricchisci i tuoi contenuti e cattura l'attenzione dei visitatori con foto, illustrazioni, vettori e video."
+    },
+    {
+        "title": "Gestione Hosting, Dominio (HTTPS) e Email",
+        "description": "Dalla registrazione del dominio all'attivazione di caselle email personalizzate, mi occupo di tutto quello che serve per garantirti un servizio di hosting sicuro, efficiente e performante. Il tuo sito web sarà sempre online e raggiungibile, con la massima protezione SSL (HTTPS)."
+    },
+    {
+        "title": "Informazioni e moduli di contatto",
+        "description": "Fornisci ai tuoi utenti tutte le informazioni di cui hanno bisogno e facilita il contatto con la tua azienda grazie a moduli di contatto personalizzati e intuitivi. Raccogli i dati necessari per rispondere alle loro esigenze in modo efficiente e tempestivo."
+    }
+],
   "messageBoxSuccess": "Messaggio inviato!"
 }
