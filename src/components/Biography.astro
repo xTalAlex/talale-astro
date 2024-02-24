@@ -15,9 +15,13 @@ const bestCertificate = certificates.filter( c => c.data.title.includes('profess
         <Image class="relative h-48 w-full mx-auto object-contain mask mask-circle" src={ profilePic } alt="Alessandro Talamona" />
         {
             bestCertificate && 
-                <a href="https://www.credential.net/profile/talale/wallet#gs.5a4y5e" target="_blank" role="img" aria-label="Alessandro Talamona's Credentials wallet">
-                    <Image class="absolute h-20 w-20 -bottom-4 -left-4 rounded-full object-cover bg-white" width="200" height="200" src={bestCertificate.data.logo} alt={bestCertificate.data.title} />
-                </a>
+                <div class="absolute h-20 w-20 -bottom-4 -left-4 rounded-full bg-white grid place-items-center overflow-hidden">
+                    <span class="absolute loading loading-spinner text-primary loading-lg z-0"></span>
+                    <a href="https://www.credential.net/profile/talale/wallet#gs.5a4y5e" target="_blank" role="img" aria-label="Alessandro Talamona's Credentials wallet">
+                        <Image class="h-16 w-16 object-cover scale-125 z-10" width="200" height="200" src={bestCertificate.data.logo} alt={bestCertificate.data.title} />
+                    </a>
+                </div>
+                
         }
     </div>
     <div set:html={marked.parse(Config.biography )}></div>

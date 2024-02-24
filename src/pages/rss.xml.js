@@ -2,7 +2,7 @@ import rss from '@astrojs/rss';
 import Config from '../site_config.json';
 import { getCollection } from 'astro:content';
 
-export async function get(context) {
+export async function GET(context) {
     const projects = await getCollection('projects');
     projects.sort((a,b) => (a.data.pubDate < b.data.pubDate) ? 1 : ((b.data.pubDate < a.data.pubDate) ? -1 : 0));
 

@@ -7,55 +7,117 @@ import Config from "../site_config.json";
 const title =
     "Fai crescere la tua attività online con un sito web personalizzato";
 const description =
-    "Fai crescere la tua attività online con un sito web personalizzato. Scegli il pacchetto su misura per te e scopri i servizi base inclusi.";
-
+    "Scegli il pacchetto di sviluppo web su misura per te e scopri i servizi base inclusi.";
 ---
 
 <Layout title={title} description={description}>
-    <div class="px-5 md:mx-auto container w-full max-w-5xl">
-        <div class="pb-96 lg:pb-32">
+    <div class="px-5 md:mx-auto container w-full max-w-5xl overflow-hidden lg:overflow-visible">
+
+        <!-- HEADER  -->
+        <div class="pb-96 md:pb-44">
             <div class="relative">
-                <div class="ml-10 max-w-xl my-10">
-                    <h1 class="py-12 text-5xl font-bold">{title}</h1>
+                <div class="md:ml-10 max-w-xl my-10">
+                    <h1 class="py-12 text-4xl sm:text-5xl font-bold">{title}</h1>
                     <h2 class="text-2xl max-w-sm">
-                        Scegli il pacchetto di sviluppo web su misura per te e
-                        scopri i servizi base inclusi<h2></h2>
+                        {description}
                     </h2>
                 </div>
 
-                <div class="absolute -z-10 -right-0 -bottom-full lg:-bottom-16">
+                <div class="absolute -z-10 -right-20 md:-right-10 h-64 -bottom-80 md:-bottom-16">
                     <div class="relative">
-                        <div
-                            class="absolute opacity-60 animate-pulse inset-0 -z-10 bg-gradient-to-br from-primary to-secondary blur-3xl"
-                        >
+                        <div class="absolute opacity-40 animate-pulse inset-0 -z-10 bg-gradient-to-br from-primary to-secondary blur-3xl">
                         </div>
-                        <Image src={bgImage} alt={title} />
+                        <Image class="object-cover h-full" src={bgImage} alt={title} />
                     </div>
                 </div>
             </div>
         </div>
-        <div class="mt-12">
-            <h2 class="text-2xl my-12 uppercase font-bold">
+
+        <!-- BASE SERVICES -->
+        <div class="mt-20">
+            <h2 class="text-2xl mb-20 uppercase font-bold" id="">
                 Tutto ciò di cui hai bisogno per una presenza online solida e professionale
             </h2>
-
             <div class="join join-vertical w-full">
-            {
-                Config.features.map( (service,i) => (
-                    <div class="join-item collapse collapse-plus bg-base-200">
-                        <input type="radio" name="base-services"/>
-                        <div class="collapse-title text-xl font-bold">
-                            {service.title}
-                        </div>
-                        <div class="collapse-content">
-                            <div class="py-4">
-                                <p>{service.description}</p>
+                {
+                    Config.features.map((service, i) => (
+                        <div class="join-item collapse collapse-plus bg-base-200">
+                            <input type="radio" name="base-services" />
+                            <div class="collapse-title text-xl font-bold">
+                                {service.title}
+                            </div>
+                            <div class="collapse-content">
+                                <div class="py-4">
+                                    <p>{service.description}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))
-            }
+                    ))
+                }
             </div>
         </div>
+
+        <!-- PRICES -->
+        <div class="relative mt-24">
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="md:col-span-2 overflow-hidden mx-auto w-full">
+                    <div class="h-96 carousel carousel-vertical card bg-primary w-full">
+                        <div class="carousel-item h-full" id="basic">
+                            <img class="w-full object-cover" src="https://daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.jpg" />
+                        </div> 
+                        <div class="carousel-item h-full" id="custom">
+                            <img class="w-full object-cover" src="https://daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.jpg" />
+                        </div> 
+                        <div class="carousel-item h-full" id="monthly">
+                            <img class="w-full object-cover" src="https://daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.jpg" />
+                        </div> 
+                    </div>
+                </div>
+                <div>
+                    <ul class="steps steps-vertical mb-10">
+                        <li class="step step-primary"><a class="" href="#basic">Basic</a></li>
+                        <li class="step"><a class="" href="#custom">ECommerce / Custom</a></li>
+                        <li class="step"><a class="" href="#monthly">Assistenza & Pubblicità</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- TIMELINE -->
+        <div class="mt-12 relative z-30">
+            <div class="h-screen sticky bg-base-100 top-16">
+                <h3 class="text-3xl sm:text-5xl text-nowrap">1 Ricerca</h3>
+                <div class="mt-12">
+                    definizione tempistiche, strategia e budget
+                </div>
+            </div>
+            <div class="h-screen sticky bg-base-100 top-32">
+                <h3 class="text-3xl sm:text-5xl text-nowrap">2 Progettazione</h3>
+                <div class="mt-12">
+                    ricerca di mercato, brand identity e wordmark logo
+                    design template e funzionalitá
+                </div>
+            </div>
+            <div class="h-screen sticky bg-base-100 top-48">
+                <h3 class="text-3xl sm:text-5xl text-nowrap">3 Svilluppo & Test</h3>
+                <div class="mt-12">
+                    messa online della bozza del progetto 
+                    test in tempo reale
+                    feedback soddisfazione
+                </div>
+            </div>
+            <div class="h-screen sticky bg-base-100 top-64">
+                <h3 class="text-3xl sm:text-5xl text-nowrap">4 Lancio</h3>
+                <div class="mt-12">
+                    messa online definitiva
+                    assistenza debug
+                    formazione
+                </div>
+            </div>
+            <div class="sticky top-0 h-screen bg-base-100 grid place-items-center w-full z-50 ">
+                <a class="btn btn-primary uppercase" href="/#contacts">REALIZZA IL TUO SITO WEB</a>
+            </div>
+        </div>
+
     </div>
 </Layout>
