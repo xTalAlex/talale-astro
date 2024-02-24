@@ -38,7 +38,7 @@ const description =
             <h2 class="text-2xl mb-20 uppercase font-bold" id="">
                 Tutto ciò di cui hai bisogno per una presenza online solida e professionale
             </h2>
-            <div class="join join-vertical w-full">
+            <div class="join join-vertical w-full space-y-2">
                 {
                     Config.features.map((service, i) => (
                         <div class="join-item collapse collapse-plus bg-base-200">
@@ -58,7 +58,7 @@ const description =
         </div>
 
         <!-- PRICES -->
-        <div class="relative mt-24">
+        <div class="relative mt-24 hidden">
             <div class="grid md:grid-cols-3 gap-10">
                 <div class="md:col-span-2 overflow-hidden mx-auto w-full">
                     <div class="h-96 carousel carousel-vertical card bg-primary w-full">
@@ -82,42 +82,88 @@ const description =
                 </div>
             </div>
         </div>
+    </div>
 
+    <div class="px-5 md:mx-auto container w-full max-w-5xl">
         <!-- TIMELINE -->
-        <div class="mt-12 relative z-30">
-            <div class="h-screen sticky bg-base-100 top-16">
-                <h3 class="text-3xl sm:text-5xl text-nowrap">1 Ricerca</h3>
+        <h2 class="text-5xl font-bold mt-32">Timeline di sviluppo web trasparente</h2>
+
+        <div class="mt-20 relative z-30">
+            <div class="pt-12 min-h-screen sticky bg-base-100 top-20">
+                <h3 class="text-3xl -mt-6 sm:text-5xl text-nowrap">Step 1: Ricerca</h3>
                 <div class="mt-12">
-                    definizione tempistiche, strategia e budget
+                    <div class="text-xl grid md:grid-cols-2 gap-12 place-content-between">
+                        <div>
+                            <ul class="space-y-2">
+                                <li>Ricerca di mercato e analisi della concorrenza.</li>
+                                <li>Formulazione degli obiettivi.</li>
+                                <li>Definizione di tempistiche e budget.</li>
+                            </ul>
+                        </div>
+                        <div class="place-self-end text-left w-full md:max-w-xs">
+                            <div class="">Tempistiche: 1-3 giorni</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="h-screen sticky bg-base-100 top-32">
-                <h3 class="text-3xl sm:text-5xl text-nowrap">2 Progettazione</h3>
+            <div class="pt-12 min-h-screen sticky bg-base-100 top-20">
+                <h3 class="text-3xl -mt-6 sm:text-5xl text-nowrap">Step 2: Progettazione</h3>
                 <div class="mt-12">
-                    ricerca di mercato, brand identity e wordmark logo
-                    design template e funzionalitá
+                    <div class="text-xl grid md:grid-cols-2 gap-12 place-content-between">
+                        <div>
+                            <ul class="space-y-2">
+                                <li>Creazione del logo wordmark e della brand identity.</li>
+                                <li>Design template grafico.</li>  
+                                <li>Definizione delle funzionalità.</li>
+                            </ul>
+                            <div></div>
+                        </div>
+                        <div class="place-self-end text-left w-full md:max-w-xs">
+                            <div class="">Tempistiche: 1 settimana*</div>
+                            <div class="mt-6 text-sm">*A partire dal versamento dell'acconto</div>
+                            <div class="text-sm">*Le tempistiche possono variare in base al numero di revisioni</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="h-screen sticky bg-base-100 top-48">
-                <h3 class="text-3xl sm:text-5xl text-nowrap">3 Svilluppo & Test</h3>
+            <div class="pt-12 min-h-screen sticky bg-base-100 top-20">
+                <h3 class="text-3xl -mt-6 sm:text-5xl text-nowrap">Step 3: Svilluppo & Test</h3>
                 <div class="mt-12">
-                    messa online della bozza del progetto 
-                    test in tempo reale
-                    feedback soddisfazione
+                    <div class="text-xl grid md:grid-cols-2 gap-12 place-content-between">
+                        <div>
+                            <ul class="space-y-2">
+                                <li>Caricamento online dell'ambiente di sviluppo.</li>
+                                <li>Implementazione del tema grafico.</li>
+                                <li>Sviluppo backend e frontend.</li>
+                            </ul>
+                        </div>
+                        <div class="place-self-end text-left w-full md:max-w-xs">
+                            <div>Tempistiche: 1-4 settimane*</div>
+                            <div class="mt-6 text-sm">*Le tempistiche possono variare in base alla complessità del progetto e al numero di revisioni</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="h-screen sticky bg-base-100 top-64">
-                <h3 class="text-3xl sm:text-5xl text-nowrap">4 Lancio</h3>
+            <div class="pt-12 min-h-screen sticky bg-base-100 top-20">
+                <h3 class="text-3xl -mt-6 sm:text-5xl text-nowrap">Step 4: Lancio</h3>
                 <div class="mt-12">
-                    messa online definitiva
-                    assistenza debug
-                    formazione
+                    <div class="text-xl grid md:grid-cols-2 gap-12 place-content-between">
+                        <div>
+                            <ul class="space-y-2">
+                                <li>Pubblicazione del sito web.</li>
+                                <li>Formazione all'utillizzo.</li>
+                            </ul>
+                            <div class="mt-6">Assistenza e monitoraggio secondo <a class="link" href="/services">piano mensile</a>.</div class="mt-6">
+                        </div>
+                        <div class="place-self-end text-left w-full md:max-w-xs">
+                            <div>Tempistiche: 1-3 giorni</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="sticky top-0 h-screen bg-base-100 grid place-items-center w-full z-50 ">
-                <a class="btn btn-primary uppercase" href="/#contacts">REALIZZA IL TUO SITO WEB</a>
+            <div class="min-h-screen bg-base-100 sticky top-0 grid place-items-center w-full z-50">
+                <a class="btn btn-wide btn-primary uppercase" href="/#contacts">CREA IL TUO SITO WEB</a>
             </div>
         </div>
-
     </div>
 </Layout>

@@ -7,7 +7,7 @@ const prices = [
         "name": "Basic",
         "amount": 750,
         "plus": true,
-        "small": null,
+        "small": "acconto da stabilire",
         "description": "Siti vetrina, blog e landing page.",
         "features": [
             "CMS custom o Wordpress",
@@ -20,7 +20,7 @@ const prices = [
         "name": "ECommerce / Custom",
         "amount": 2000,
         "plus": true,
-        "small": null,
+        "small": "acconto da stabilire",
         "description": "Soluzioni per negozi online, aziende e startup.",
         "features": [
             "CMS custom",
@@ -34,7 +34,7 @@ const prices = [
         "name": "Manutenzione & Pubblicità",
         "amount": 200,
         "plus": false,
-        "small": true,
+        "small": "mese",
         "description": "Supporto continuato",
         "features": [
             "Correzione bug",
@@ -65,10 +65,12 @@ const prices = [
             </div>
             <div class="">
                 <h3 class="font-bold uppercase">Basic</h3>
-                <div class="mt-6 mb-6 text-5xl">
+                <div>Per siti vetrina, blog e landing page.</div>
+
+                <div class="mt-6 text-5xl">
                     {Config.prices.basic}€+
                 </div>
-                <div>Per siti vetrina, blog e landing page.</div>
+                <span class="text-sm">Acconto da stabilire</span>
                 <div class="divider"></div>
                 <div class="mt-6 space-y-4">
                     <div class="flex">
@@ -105,8 +107,11 @@ const prices = [
             </div>
             <div class="divider"></div>
             <div class="pb-6 mb-0 mt-auto">
-                <a href="/services#basic" class="btn btn-neutral uppercase"
-                    >Più informazioni</a
+                <a href="#contacts" class="btn btn-neutral uppercase"
+                    >Contattami</a
+                >
+                <a href="/services" class="btn btn-ghost uppercase"
+                    >Informazioni</a
                 >
             </div>
         </div>
@@ -119,10 +124,11 @@ const prices = [
             </div>
             <div>
                 <h3 class="font-bold uppercase">Ecommerce / Custom</h3>
-                <div class="mt-6 mb-6 text-5xl">
+                <div class="">Per negozi online e startup.</div>
+                <div class="mt-6 text-5xl">
                     {Config.prices.custom}€+
                 </div>
-                <div class="">Per negozi online e startup.</div>
+                <span class="text-sm">Acconto da stabilire</span>
                 <div class="divider"></div>
                 <div class="mt-6 space-y-4">
                     <div class="flex">
@@ -166,8 +172,11 @@ const prices = [
             </div>
             <div class="divider"></div>
             <div class="pb-6 mb-0 mt-auto">
-                <a href="/services#custom" class="btn btn-neutral uppercase"
-                    >Più informazioni</a
+                <a href="#contacts" class="btn btn-neutral uppercase"
+                    >Contattami</a
+                >
+                <a href="/services" class="btn btn-ghost uppercase"
+                    >Informazioni</a
                 >
             </div>
         </div>
@@ -180,10 +189,10 @@ const prices = [
             </div>
             <div>
                 <h3 class="font-bold uppercase">Manutenzione & Pubblicità</h3>
+                <div>Supporto continuato</div>
                 <div class="mt-6 mb-6 text-5xl">
                     {Config.prices.monthly}€<span class="text-sm">/mese</span>
                 </div>
-                <div>Supporto continuato</div>
                 <div class="divider"></div>
                 <div class="mt-6 space-y-4">
                     <div class="flex">
@@ -232,8 +241,11 @@ const prices = [
             </div>
             <div class="divider"></div>
             <div class="pb-6 mb-0 mt-auto">
-                <a href="/services#monthly" class="btn btn-neutral uppercase"
-                    >Più informazioni</a
+                <a href="#contacts" class="btn btn-neutral uppercase"
+                    >Contattami</a
+                >
+                <a href="/services" class="btn btn-ghost uppercase"
+                    >Informazioni</a
                 >
             </div>
         </div>

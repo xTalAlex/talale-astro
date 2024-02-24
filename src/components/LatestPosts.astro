@@ -14,7 +14,7 @@ const { class: className } = Astro.props;
                     <div class="badge badge-secondary flex-none md:p-4 badge-sm">{ formatDate(post.date, 'short') }</div>
                     <div class="ml-5 flex flex-col items-start text-left">
                         <a href={`/blog/${ post.slug }`}><div class="link text-lg text-primary" set:html={ post.title }></div></a>
-                        <div class="max-w-md" set:html={ post.excerpt }></div>
+                        <div class="max-w-md line-clamp-3" set:html={ post.excerpt }></div>
                     </div>
                 </li>
             )
