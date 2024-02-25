@@ -4,7 +4,7 @@ import Config from "../site_config.json";
 
 const prices = [
     {
-        "name": "Basic",
+        "name": "Standard",
         "amount": 750,
         "plus": true,
         "small": "acconto da stabilire",
@@ -64,11 +64,11 @@ const prices = [
             >
             </div>
             <div class="">
-                <h3 class="font-bold uppercase">Basic</h3>
+                <h3 class="font-bold uppercase">Standard</h3>
                 <div>Per siti vetrina, blog e landing page.</div>
 
                 <div class="mt-6 text-5xl">
-                    {Config.prices.basic}€+
+                    {Config.prices.standard}€+
                 </div>
                 <span class="text-sm">Acconto da stabilire</span>
                 <div class="divider"></div>
@@ -92,7 +92,7 @@ const prices = [
                             class="mr-2 h-4 w-4 mt-1 stroke-current"
                             name="pixelarticons:checkbox"
                         />
-                        <div><a class="link" href="/services">Servizi base</a> inclusi</div>
+                        <div><a class="link" href="/services#included-services">Servizi base</a> inclusi</div>
                     </div>
                     <div class="flex">
                         <Icon
@@ -157,7 +157,7 @@ const prices = [
                             class="mr-2 h-4 w-4 mt-1 stroke-current"
                             name="pixelarticons:checkbox"
                         />
-                        <div><a class="link" href="/services">Servizi base</a> inclusi</div>
+                        <div><a class="link" href="/services#included-services">Servizi base</a> inclusi</div>
                     </div>
                     <div class="flex">
                         <Icon
@@ -191,7 +191,7 @@ const prices = [
                 <h3 class="font-bold uppercase">Manutenzione & Pubblicità</h3>
                 <div>Supporto continuato</div>
                 <div class="mt-6 mb-6 text-5xl">
-                    {Config.prices.monthly}€<span class="text-sm">/mese</span>
+                    {Config.prices.support}€<span class="text-sm">/mese</span>
                 </div>
                 <div class="divider"></div>
                 <div class="mt-6 space-y-4">

@@ -3,9 +3,9 @@
   "messageBoxError": "Si è verificato un errore!",
   "piva": "03838670127",
   "prices": {
-    "basic": 750,
+    "standard": 750,
     "custom": 2000,
-    "monthly": 200
+    "support": 200
   },
   "gamesPerPage": 18,
   "motto": "Realizzazione e ristrutturazione di Siti Web, ECommerce ed Applicazioni Web.",
