@@ -11,6 +11,9 @@
       "@components/*": [
         "src/components/*"
       ],
+      "@content/*": [
+        "src/content/*"
+      ],
       "@data/*": [
         "src/data/*"
       ],

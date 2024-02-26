@@ -18,7 +18,16 @@ const { COOKIEBOT_ID, IUBENDA_POLICY_ID } = import.meta.env;
 
 <footer class="footer bg-base-200 footer-center pt-10 pb-24">
     <div class="grid lg:grid-cols-3 gap-20 px-10 items-start py-20">       
-		<LatestPosts class="lg:col-span-2 mb-20 lg:mb-0"/>  
+		<div class="lg:col-span-2 mb-20 lg:mb-0">
+            <LatestPosts/>  
+            <!-- <blockquote class="relative p-4 mt-20 border-l-4 border-neutral-content bg-base-200 max-w-md">
+                <div class="absolute inset-0 bg-gradient-to-tl blur-3xl from-primary to-secondary opacity-20"></div>
+                <p class="italic font-medium leading-relaxed text-base opacity-75">
+                    "Learning coding is like playing cards — you learn the rules, then you play, then you go back and learn the rules again, then you play again."
+                    <br/><div class="text-right">- Mozilla.org</div>
+                </p>
+            </blockquote> -->
+        </div>
         <Biography />
     </div>
     <div class="pb-12"><ScreenSize /></div>

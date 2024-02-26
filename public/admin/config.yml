@@ -75,7 +75,7 @@ collections:
             allow_add: true
             fields:
               - {label: "Titolo", name: "title", widget: "string"}
-              - {label: "Descrizione", name: "description", widget: "text"}
+              - {label: "Descrizione", name: "description", widget: "markdown"}
           - label: "Frameworks"
             name: "frameworks"
             widget: "list"
