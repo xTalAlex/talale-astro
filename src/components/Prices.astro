@@ -31,7 +31,7 @@ const prices = [
         "manteinance_months_included": 2
     },
     {
-        "name": "Manutenzione & Pubblicità",
+        "name": "Assistenza & Ads",
         "amount": 200,
         "plus": false,
         "small": "mese",
@@ -51,7 +51,7 @@ const prices = [
 ---
 
 <div class="space-y-10">
-    <h2 class="card-title font-bold text-3xl pt-20 -mt-20" id="prices">
+    <h2 class="card-title font-bold text-3xl pb-10 pt-20 -mt-20" id="prices">
         Pacchetti di sviluppo siti web
     </h2>
 
@@ -98,7 +98,7 @@ const prices = [
                             name="pixelarticons:checkbox"
                         />
                         <div>
-                            2 mesi di <strong>Manutenzione & Ads</strong> inclusi
+                            2 mesi di <strong>Assistenza & Ads</strong> inclusi
                         </div>
                     </div>
                 </div>
@@ -163,7 +163,7 @@ const prices = [
                             name="pixelarticons:checkbox"
                         />
                         <div>
-                            2 mesi di <strong>Manutenzione & Ads</strong> inclusi
+                            2 mesi di <strong>Assistenza & Ads</strong> inclusi
                         </div>
                     </div>
                 </div>
@@ -178,15 +178,13 @@ const prices = [
                 >
             </div>
         </div>
-        <div
-            class="group md:col-span-2 relative lg:col-span-1 md:max-w-sm sm:mx-auto overflow-hidden md:w-full bg-transparent bg-opacity-0 lg:max-w-none border-0 shadow-xl px-6 py-6 rounded-xl hover:scale-105 text-accent-content transition duration-500 ease-in-out flex flex-col"
+        <div class="group md:col-span-2 relative lg:col-span-1 md:max-w-sm sm:mx-auto overflow-hidden md:w-full bg-transparent bg-opacity-0 lg:max-w-none border-0 shadow-xl px-6 py-6 rounded-xl hover:scale-105 text-accent-content transition duration-500 ease-in-out flex flex-col"
+            id="support"
         >
-            <div
-                class="transition duration-500 absolute inset-0 bg-gradient-to-br from-10% from-secondary group-hover:-translate-y-1/2 -translate-x-1/4 group-hover:-translate-x-1/2 h-[200%] w-[200%] bg-repeat to-accent -z-10"
-            >
+            <div class="transition duration-500 absolute inset-0 bg-gradient-to-br from-10% from-secondary group-hover:-translate-y-1/2 -translate-x-1/4 group-hover:-translate-x-1/2 h-[200%] w-[200%] bg-repeat to-accent -z-10">
             </div>
             <div>
-                <h3 class="font-bold uppercase">Manutenzione & Pubblicità</h3>
+                <h3 class="font-bold uppercase">Assistenza & Ads</h3>
                 <div>Supporto continuato</div>
                 <div class="mt-6 mb-6 text-5xl">
                     {Config.prices.support}€<span class="text-sm">/mese</span>
@@ -242,14 +240,14 @@ const prices = [
                 <a href="#contacts" class="btn btn-neutral uppercase"
                     >Contattami</a
                 >
-                <a href="/services" class="btn btn-ghost uppercase"
+                <a href="/services#support" class="btn btn-ghost uppercase"
                     >Informazioni</a
                 >
             </div>
         </div>
     </div>
 
-    <div class="pt-10">
+    <div class="pt-10 text-center opacity-80">
         <p>I prezzi sono da considerarsi una tantum dove non indicato.</p>
         <p>I costi di hosting, dominio e altri servizi terzi non sono inclusi.</p>
     </div>

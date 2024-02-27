@@ -33,8 +33,8 @@ const bestCertificate = certificates.filter( c => c.data.title.includes('profess
     <div class="flex items-center justify-center gap-2 mt-10">
         {
             bestCertificate && 
-                <div class=" flex-none size-16 rounded-full bg-white grid place-items-center overflow-hidden">
-                    <span class="absolute loading loading-spinner text-primary loading-lg z-0"></span>
+                <div class="relative flex-none size-16 rounded-full bg-white grid place-items-center overflow-hidden">
+                    <span class="absolute inset-0 size-10 m-auto loading loading-spinner text-primary loading-lg z-0"></span>
                     <a href="https://www.credential.net/profile/talale/wallet#gs.5a4y5e" target="_blank" role="img" aria-label="Alessandro Talamona's Credentials wallet">
                         <Image class="size-14 object-cover scale-125 z-10" width="200" height="200" src={bestCertificate.data.logo} alt={bestCertificate.data.title} />
                     </a>

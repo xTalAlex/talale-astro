@@ -12,6 +12,37 @@ const title =
     "Fai crescere la tua attività online con un sito web personalizzato";
 const description =
     "Scegli il pacchetto di sviluppo web su misura per te e scopri i servizi base inclusi.";
+
+const supportServices = [
+    { 
+        "title": "Risoluzione di problemi e bug",
+        "icon": "pixelarticons:bug" 
+    },
+    { 
+        "title": "Monitoraggio traffico e rendimento SEO",
+        "icon": "pixelarticons:speed-fast" 
+    },
+    { 
+        "title": "Campagne google ADS",
+        "icon": "pixelarticons:coin" 
+    },
+    { 
+        "title": "Gestione profilo Google Maps",
+        "icon": "pixelarticons:map" 
+    },
+    { 
+        "title": "Aggiornamenti software e di sicurezza",
+        "icon": "pixelarticons:repeat" 
+    },
+    // { 
+    //     "title": "Interventi sul codice",
+    //     "icon": "pixelarticons:code" 
+    // },
+    { 
+        "title": "Assistenza e supporto tecnico",
+        "icon": "pixelarticons:suitcase" 
+    }
+]
 ---
 
 <Layout title={title} description={description}>
@@ -20,7 +51,7 @@ const description =
         <!-- HEADER  -->
         <div class="pb-96 md:pb-72 lg:pb-32">
             <div class="relative">
-                <div class="md:ml-10 max-w-xl my-10">
+                <div class="md:ml-10 lg:ml-0 max-w-xl my-10">
                     <h1 class="py-12 text-4xl sm:text-5xl font-bold">{title}</h1>
                     <h2 class="text-2xl max-w-sm">
                         {description}
@@ -38,7 +69,7 @@ const description =
         </div>
 
         <!-- FEATURES -->
-        <div class="relative">
+        <div>
             <h2 class="text-3xl md:text-4xl font-bold mt-12 md:mt-32 uppercase text-center mx-auto">
                 Pannello di controllo CMS personalizzato per una facile gestione del tuo sito web
             </h2>
@@ -47,18 +78,55 @@ const description =
             </div>
 
             <div class="grid md:grid-cols-2 gap-10">
-                <div class="relative card overflow-hidden ring-primary ring group">
+                <div class="relative card overflow-hidden ring-primary shadow-md shadow-primary ring group">
                     <div class="hidden group-hover:grid absolute inset-x-0 bottom-6 z-10 place-items-center"><a class="link link-primary glass card py-2 px-3" href="https://demo.filamentphp.com/" target="_blank">Prova la demo</a></div>
                     <Image class="group-hover:scale-110 transition duration-500 object-cover h-full w-full" src={filamentDemo} alt="Filament CMS Demo | Pannello di controllo CMS personalizzato" />
                 </div>
-                <div class="relative card overflow-hidden ring-primary ring group hidden md:block">
+                <div class="relative card overflow-hidden ring-primary shadow-md shadow-primary ring group hidden md:block">
                     <div class="hidden group-hover:grid absolute inset-x-0 bottom-6 z-10 place-items-center"><a class="link link-primary glass card py-2 px-3" href="https://demo.decapcms.org/" target="_blank">Prova la demo</a></div>
                     <Image class="group-hover:scale-110 transition duration-500 object-cover h-full w-full" src={decapDemo} alt="Decap CMS Demo | Pannello di controllo CMS personalizzato" />
                 </div>
             </div>
 
             <div class="mt-20 text-center">
-                <a class="link link-primary link-hover uppercase" href="/#prices">Scegli un pacchetto di sviluppo web</a>
+                <a class="link link-primary link-hover font-bold uppercase" href="/#prices">Scegli un pacchetto di sviluppo web</a>
+            </div>
+
+        
+            <div class="text-3xl md:text-4xl font-bold -mt-8 md:mt-12 uppercase text-center pt-20" id="support">Assistenza, Manutenzione e Pubblicità</div>
+            <h2 class="my-6 text-2xl text-center">
+                Massima tranquillità con il pacchetto di Assistenza & Ads
+            </h2>
+            <div class="grid md:grid-cols-2 gap-x-20 gap-y-10 my-20 w-full">
+                <div class="card text-center w-full ">
+                    <div class="card-body">
+                    <h3 class="text-3xl max-w-sm">Risparmia tempo e stress: affida la gestione del tuo sito web alle nostre cure.</h3>
+    
+                    <div class="space-y-10 mt-10">
+                        <div class="card px-6 py-3 uppercase ring-accent shadow-md shadow-accent ring-2 mr-0 ml-auto max-w-xs w-fit">Sito web sempre funzionante, aggiornato e performante</div>
+                        <div class="card px-6 py-3 uppercase ring-accent shadow-md shadow-accent ring-2 ml-0 max-w-xs w-fit">Interventi rapidi</div>
+                    </div>
+                    </div>
+                </div> 
+                <div>
+                    <div class="gap-2 grid grid-cols-2 lg:grid-cols-3">
+                        {
+                            supportServices.map( service => (
+                                <div class="min-h-32 px-2 py-6 bg-base-200 text-center">
+                                    <Icon class="mx-auto size-6 stroke-current"
+                                        name={service.icon}
+                                    />
+                                    <div class="mt-2">{service.title}</div>
+                                </div>
+                            ))
+                        }
+                    </div>
+                    <div class="text-center mt-10">Prova gratuita inclusa per i <a class="link" href="/#prices">pacchetti di sviluppo web</a></div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a class="link text-xl" href="/#support">Attiva il tuo servizio di assistenza oggi stesso!</a>
             </div>
         </div>
 
@@ -203,7 +271,7 @@ const description =
         </div>
         <div class="relative bg-base-100 grid place-items-center w-full group max-w-min mx-auto pt-32 -mt-20" id="cta">
             <Image class="w-96 -ml-32" src={mascotte} alt="Crea il tuo sito web"/>
-            <a class="btn btn-wide -mt-28 text-xl font-bold btn-primary uppercase" href="/#contacts">Crea il tuo sito web</a>
+            <a class="btn btn-wide text-nowrap -mt-28 text-xl font-bold btn-primary uppercase" href="/#contacts">Crea il tuo sito web</a>
         </div>
     </div>
 </Layout>

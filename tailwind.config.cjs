@@ -19,6 +19,7 @@ module.exports = {
       animation: {
         shine: "shine 1s",
         wiggle: "wiggle 2s ease-in-out infinite",
+        marquee: 'marquee 10s linear infinite',
       },
       keyframes: {
         shine: {
@@ -27,6 +28,10 @@ module.exports = {
         wiggle: {
           "0%, 100%": { transform: "rotate(0deg)" },
           "50%": { transform: "rotate(3deg)" },
+        },
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-100%)' },
         }
       },
     }
