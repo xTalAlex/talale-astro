@@ -15,6 +15,7 @@ module.exports = {
       fontFamily: {
         "sans": ["Chakra Petch",...defaultTheme.fontFamily.sans],
         "serif": ["Rokkitt",...defaultTheme.fontFamily.serif],
+        "mono": [...defaultTheme.fontFamily.mono],
       },
       animation: {
         shine: "shine 1s",

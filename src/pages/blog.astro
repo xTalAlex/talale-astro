@@ -16,7 +16,7 @@ const title = "Blog";
         {
             posts.map( post => 
                 <div class="relative text-neutral-content overflow-hidden group">
-                    <div class="z-10 absolute inset-0 group-hover:opacity-0 bg-neutral bg-opacity-80 transition duration-500"></div>
+                    <div class="z-10 absolute inset-0 bg-gradient-to-t from-neutral transition duration-500"></div>
                     <img class="z-0 h-64 w-full object-cover group-hover:scale-105 transition duration-500" src={post.featuredImage.sourceUrl} />
                     <div class="z-20 absolute inset-x-4 bottom-4 ">
                         <a href={`/blog/${ post.slug }`} class="font-bold text-xl">
