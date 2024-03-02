@@ -34,7 +34,7 @@ function setSize(i) {
             <div class={`${setSize(i)} ${i>5 ? 'hidden lg:block' : ''}`}>
                 <div class={`card relative h-full w-full overflow-hidden group shadow-xl group`}>
                     <div class="z-0 absolute inset-0 transition group-hover:blur group-hover:scale-125 duration-1000 ease-in-out"><Image height="384" width="912" class={`h-full w-full object-cover my-auto ${[2,5,7].includes(i) ? '' : ''}`} src={ project.data.gallery ? project.data.gallery[0] : '' } alt={ project.data.title } /></div>   
-                    <div class="z-10 select-none cursor-default group-hover:bg-neutral group-hover:bg-opacity-80 card-body transition opacity-0 group-hover:opacity-100 ease-in justify-center items-center space-y-4">
+                    <div class="z-10 select-none cursor-default text-neutral-content group-hover:bg-neutral group-hover:bg-opacity-80 card-body transition opacity-0 group-hover:opacity-100 ease-in justify-center items-center space-y-4">
                         <h2 class="card-title">{ project.data.title }</h2>
                         <div class="mx-auto max-w-sm text-center "><p>{ project.data.description }</p></div>
                         <div class="card-actions">
