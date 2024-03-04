@@ -9,6 +9,8 @@ export interface Props {
 	frontmatter?: Props;
 }
 
+import '@fontsource/chakra-petch';
+import '@fontsource-variable/rokkitt';
 import "@assets/css/main.css";
 import 'animate.css';
 import Config from "../site_config.json";
@@ -96,7 +98,7 @@ const openGraph = {
 					data-cookieconsent="statistics"
 					data-iub-purposes="4"
 				></script>
-				<script data-gaid={GOOGLE_ANALYTICS_ID}>
+				<script data-gaid={GOOGLE_ANALYTICS_ID} class="_iub_cs_activate-inline" type="text/plain">
 					window.dataLayer = window.dataLayer || [];
 					function gtag() {
 						dataLayer.push(arguments);
@@ -138,7 +140,7 @@ const openGraph = {
 
 		{
 			TAWKTO_WIDGET_URL && (
-				<script class="_iub_cs_activate"
+				<script class="_iub_cs_activate-inline"
 					type={`${(COOKIEBOT_ID || IUBENDA_SITE_ID) ? 'text/plain' : 'text/javascript'}`}
 					data-cookieconsent="preferences, statistics"
 					data-iub-purposes="2,4"

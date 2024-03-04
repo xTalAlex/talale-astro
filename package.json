@@ -16,6 +16,8 @@
     "@astrojs/sitemap": "^3.0.4",
     "@astrojs/tailwind": "^5.1.0",
     "@astrojs/vue": "^4.0.8",
+    "@fontsource-variable/rokkitt": "^5.0.20",
+    "@fontsource/chakra-petch": "^5.0.19",
     "@iconify-json/pixelarticons": "^1.1.10",
     "@nanostores/vue": "^0.10.0",
     "@netlify/functions": "^2.0.2",

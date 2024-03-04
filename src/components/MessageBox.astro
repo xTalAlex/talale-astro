@@ -1,5 +1,7 @@
 ---
 import Config from "../site_config.json";
+
+const { COOKIEBOT_ID, IUBENDA_POLICY_ID } = import.meta.env;
 ---
 
 <div class="h-full w-full">
@@ -22,8 +24,14 @@ import Config from "../site_config.json";
             name="message"
             maxlength="300"
             placeholder={Config.messageBoxPlaceholder}></textarea>
-        <div class="card-actions justify-end mt-2">
-            <button id="submitButton" type="submit" class="btn uppercase btn-primary"
+        <div class="form-control">
+            <label class="label cursor-pointer space-x-2 justify-start">
+                <input type="checkbox" class="checkbox checkbox-primary checkbox-sm" id="privacy_check" name="privacy_check"/>
+                <span class="label-text text-neutral">Ho letto e accetto la <a class="link" target="_blank" href={`https://www.iubenda.com/privacy-policy/${IUBENDA_POLICY_ID}`}>Privacy Policy</a>.</span> 
+            </label>
+        </div>
+        <div class="card-actions justify-center mt-2">
+            <button id="submitButton" type="submit" class="btn uppercase btn-primary disabled:text-primary-content/50" disabled
             >Invia</button>
         </div>
     </form>
@@ -70,9 +78,17 @@ import Config from "../site_config.json";
         });
     };
 
+    document.getElementById("privacy_check").addEventListener('change', function() {
+        if (this.checked) {
+            document.getElementById("submitButton").disabled = false;
+        } else {
+            document.getElementById("submitButton").disabled = true;
+        }
+    });
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        if(document.getElementById("message").value.trim() != ""){
+        if(document.getElementById("message").value.trim() != "" && document.getElementById("privacy_check").checked){
             let data = new FormData(document.forms[0]);
             data.set("message",document.getElementById("message").value.trim());
             document.getElementById("message").disabled = true;

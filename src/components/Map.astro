@@ -1,11 +1,25 @@
-<iframe
-    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11131.72007880793!2d8.887267!3d45.7725927!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x290fd78780394b75%3A0xd42195a7fbeb044b!2sSviluppatore%20Web%20-%20Alessandro%20Talamona!5e0!3m2!1sit!2sit!4v1693608730480!5m2!1sit!2sit"
+---
+import { Image } from "astro:assets";
+import mapsScreen from "@assets/images/maps-screen.png";
+
+const mapsLink = "https://www.google.com/maps/place/Creazione+Siti+Web+e+ECommerce+-+Alessandro+Talamona/@45.7726887,8.8838888,16z/data=!4m6!3m5!1s0x290fd78780394b75:0xd42195a7fbeb044b!8m2!3d45.7725927!4d8.887267!16s%2Fg%2F11rq11rj3d?hl=it&entry=tts";
+---
+
+<!-- <iframe src="https://m.media-amazon.com/images/I/71ZVA6QfbOL.__AC_SY300_SX300_QL70_FMwebp_.jpg"
+    suppressedsrc="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11131.72007880793!2d8.887267!3d45.7725927!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x290fd78780394b75%3A0xd42195a7fbeb044b!2sSviluppatore%20Web%20-%20Alessandro%20Talamona!5e0!3m2!1sit!2sit!4v1693608730480!5m2!1sit!2sit"
+    data-iub-purposes="2"
     width="600"
     height="450"
     style="border:0;"
     allowfullscreen=""
+    allowtransparency="true"
     loading="lazy"
     referrerpolicy="no-referrer-when-downgrade"
-    class="grayscale h-full w-full hover:grayscale-0 group-hover:grayscale-0 transition duration-1000 ease-out"
+    class="_iub_cs_activate bg-transparent grayscale h-full w-full hover:grayscale-0 group-hover:grayscale-0 transition duration-1000 ease-out"
 >
-</iframe>
+</iframe> -->
+<a href={mapsLink} target="_blank">
+    <Image class="grayscale h-full w-full object-left-top object-cover hover:grayscale-0 group-hover:grayscale-0 delay-200 transition duration-1000 ease-out"
+        src={mapsScreen} alt="Creazione Siti Web e ECommerce - Alessandro Talamona"
+    />
+</a>
