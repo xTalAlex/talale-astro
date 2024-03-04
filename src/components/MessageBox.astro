@@ -61,6 +61,13 @@ import Config from "../site_config.json";
         window.notify(Config.messageBoxSuccess, null, 'success');
         document.getElementById("message").value = "";
         document.getElementById("submitButton").classList.remove("loading");
+        reportGoogleConversion();
+    };
+
+    const reportGoogleConversion = () => {
+        gtag && gtag('event', 'form_submit', {
+            'form_name': 'messagebox'
+        });
     };
 
     const handleSubmit = (event) => {

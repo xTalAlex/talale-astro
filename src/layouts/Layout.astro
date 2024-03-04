@@ -150,6 +150,15 @@ const openGraph = {
 							new CustomEvent("tawktoLoaded")
 						);
 					};
+					window.Tawk_API.onOfflineSubmit = function(data){
+						gtag && gtag('event', 'form_submit', {
+							'form_name': 'tawkto_offline_form'
+						});
+					};
+					window.Tawk_API.onChatStarted = function(){
+						gtag && gtag('event', 'chat_start', {
+						});
+					};
 					var Tawk_LoadStart=new Date();
 					(function () {
 						var s1 = document.createElement("script"),

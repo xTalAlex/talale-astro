@@ -7,9 +7,10 @@ import GoogleCalendarButton from "./GoogleCalendarButton.astro";
         <GoogleCalendarButton />
     </div>
     <div class="grid grid-flow-col gap-4 items-center justify-center">
-        <a role="img" aria-label="Whatsapp"
+        <a class="ga-contact-link" role="img" aria-label="Whatsapp"
             href="https://wa.me/3485650564?text=Ciao%2C%20ho%20bisogno%20di%20un%20sito%20web"
             target="_blank"
+            id="wa-btn"
             ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -21,7 +22,7 @@ import GoogleCalendarButton from "./GoogleCalendarButton.astro";
                 ></path>
             </svg>
         </a>
-        <a href="mailto:info@talale.it" target="_blank"
+        <a class="ga-contact-link" href="mailto:info@talale.it" target="_blank" id="mail-btn"
             ><svg  aria-label="Email"
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
