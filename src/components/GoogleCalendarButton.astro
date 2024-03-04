@@ -2,12 +2,21 @@
 import Config from "../site_config.json";
 ---
 
-<link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet"/>
-<script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
-<script class="_iub_cs_activate-inline"
+<link
+    href="https://calendar.google.com/calendar/scheduling-button-script.css"
+    rel="stylesheet"
+/>
+<script
+    class="_iub_cs_activate"
     type="text/plain"
     data-iub-purposes="2"
-    data-gc-url={Config.google_calendar_url} 
+    src="https://calendar.google.com/calendar/scheduling-button-script.js"
+></script>
+<script
+    class="_iub_cs_activate-inline"
+    type="text/plain"
+    data-iub-purposes="2"
+    data-gc-url={Config.google_calendar_url}
     data-gc-cta={Config.google_calendar_cta}
 >
     var gcUrl = document.currentScript.dataset.gcUrl;
@@ -23,4 +32,5 @@ import Config from "../site_config.json";
             });
         });
     })();
+    window.calendar = window.calendar || {};
 </script>
