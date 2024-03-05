@@ -3,11 +3,14 @@ import { DateTime } from "luxon";
 const lastDeployDate = new Date();
 
 const formatDate = (date, format = "short") => {
-    ["long", "short"].includes(format.toLowerCase()) ? format.toLowerCase() : "long";
+    ["longest", "long", "short"].includes(format.toLowerCase()) ? format.toLowerCase() : "long";
     switch (format.toLowerCase()) {
-        case "long":
+        case "longest":
             format = DateTime.DATE_MED_WITH_WEEKDAY;
             break;
+        case "long":
+                format = DateTime.DATE_MED;
+                break;
         default:
             format = DateTime.DATE_SHORT;
             break;
