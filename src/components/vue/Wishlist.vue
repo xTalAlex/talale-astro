@@ -8,32 +8,32 @@
                 />
                 <button class="btn uppercase glass btn-xs absolute -right-1 -top-1 z-10"
                     @click="removeWishlistItem(item)"
-                >&times</button>
+                >&times;</button>
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
-    import { computed } from "vue";
-    import { useStore } from '@nanostores/vue';
-    import { wishlist, isWishlistOpen, removeWishlistItem } from '@lib/wishlistStore';
+import { computed } from "vue";
+import { useStore } from "@nanostores/vue";
+import { wishlist, removeWishlistItem } from "@lib/wishlistStore";
 
-    const $wishlist = useStore(wishlist);
-    const $isWishlistOpen = useStore(isWishlistOpen);
+const $wishlist = useStore(wishlist);
+//const $isWishlistOpen = useStore(isWishlistOpen);
 
-    const items = computed(() => {
-        return Object.values($wishlist.value["items"]);
-    })
+const items = computed(() => {
+	return Object.values($wishlist.value["items"]);
+});
 
-    function slideId(gameId) {
-        return 'wishlisted' + gameId;
-    }
+function slideId(gameId) {
+	return "wishlisted" + gameId;
+}
 
-    function searchGame(slug){
-        document.dispatchEvent(
-            new CustomEvent("quickSearch", { detail: slug })
-        );
-    };
+function searchGame(slug){
+	document.dispatchEvent(
+		new CustomEvent("quickSearch", { detail: slug })
+	);
+}
 </script>
 

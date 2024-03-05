@@ -29,17 +29,17 @@ let body = ref(null);
 let image = ref(null);
 
 onMounted(() => {
-  document.openModal = function openModal(params) {
-    document.dispatchEvent(
-      new CustomEvent("openModal", { detail: params })
-    );
-  };
+	document.openModal = function openModal(params) {
+		document.dispatchEvent(
+			new CustomEvent("openModal", { detail: params })
+		);
+	};
 
-  document.addEventListener("openModal", (e) => {
-    title.value = e.detail.name;
-    body.value = e.detail.description;
-    image.value = e.detail.original_image;
-    open.value = true;
-  });
+	document.addEventListener("openModal", (e) => {
+		title.value = e.detail.name;
+		body.value = e.detail.description;
+		image.value = e.detail.original_image;
+		open.value = true;
+	});
 });
 </script>

@@ -5,10 +5,10 @@
 </template>
 
 <script setup>
-import { inject } from 'vue';
+import { inject } from "vue";
 
-const props = defineProps([ 'title' ]);
+defineProps([ "title" ]);
 
-const selectedTabTitle = inject('selectedTabTitle');
+const selectedTabTitle = inject("selectedTabTitle");
 
 </script>

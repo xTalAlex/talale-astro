@@ -8,89 +8,113 @@ import { htmlToText } from "html-to-text";
 import getReadingTime from "reading-time";
 import { posts } from "@data/posts";
 
-export async function getStaticPaths({ paginate }) {
-    return posts.map((post, id) => {
-        return {
-            params: { slug: post.slug },
-            props: {
-                post,
-                readingTime: getReadingTime(post.content),
-                previousPost:
-                    id > 0
-                        ? {
-                              title: posts[id - 1].title,
-                              slug: posts[id - 1].slug,
-                          }
-                        : null,
-                nextPost:
-                    id + 1 < posts.length
-                        ? {
-                              title: posts[id + 1].title,
-                              slug: posts[id + 1].slug,
-                          }
-                        : null,
-            },
-        };
-    });
+export async function getStaticPaths() {
+	return posts.map((post, id) => {
+		return {
+			params: { slug: post.slug },
+			props: {
+				post,
+				readingTime: getReadingTime(post.content),
+				previousPost:
+					id > 0
+						? {
+							title: posts[id - 1].title,
+							slug: posts[id - 1].slug,
+						}
+						: null,
+				nextPost:
+					id + 1 < posts.length
+						? {
+							title: posts[id + 1].title,
+							slug: posts[id + 1].slug,
+						}
+						: null,
+			},
+		};
+	});
 }
 
 const { post, readingTime, previousPost, nextPost } = Astro.props;
 ---
 
 <ProseLayout
-    title={post.title}
-    description={htmlToText(post.excerpt)}
-    ogType="article"
-    ogImage={post.featuredImage.sourceUrl}
-    ogImageAlt={post.featuredImage.altText?.length
-        ? post.featuredImage.altText
-        : post.featuredImage.title}
+	title={post.title}
+	description={htmlToText(post.excerpt)}
+	ogType="article"
+	ogImage={post.featuredImage.sourceUrl}
+	ogImageAlt={post.featuredImage.altText?.length
+		? post.featuredImage.altText
+		: post.featuredImage.title}
 >
-    <div class="h-96 bg-white">
-        <Image
-            class="m-auto h-full w-auto object-contain"
-            src={post.featuredImage.sourceUrl}
-            alt={post.featuredImage.altText?.length
-                ? post.featuredImage.altText
-                : post.featuredImage.title}
-            height="384"
-            width="458"
-        />
-    </div>
-    <div class="flex flex-col mt-2 mb-6">
-        <h1 class="w-full">{post.title}</h1>
-        <div class="flex space-x-2 justify-end">
-            <div
-                class="cursor-default flex-none badge badge-accent badge-outline"
-            >
-                {Math.round(readingTime.minutes)}
-                {Math.round(readingTime.minutes) == 1 ? "minuto" : "minuti"}
-            </div>
-            <div
-                class="cursor-default flex-none badge badge-primary badge-outline"
-            >
-                {formatDate(post.date)}
-            </div>
-        </div>
-    </div>
-    <div set:html={post.content} />
-    <div class="divider"></div>
-    <div class="flex flex-col sm:flex-row sm:justify-between space-y-4 sm:space-y-0">
-        { previousPost ?
-            <a href={`/blog/${previousPost.slug}`} title={previousPost.title} class="btn uppercase btn-ghost justify-start sm:space-x-2 w-full sm:w-auto">
-                <Icon class="stroke-current w-6 h-6" name="pixelarticons:chevron-left" />
-                <span class="whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis" >{previousPost.title}</span>
-            </a>
-            :
-            <div></div>
-        }
-        { nextPost ?
-            <a  href={`/blog/${nextPost.slug}`} title={nextPost.title} class="btn uppercase btn-ghost justify-end sm:space-x-2 w-full sm:w-auto">
-                <span class="whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis">{nextPost.title}</span>
-                <Icon class="stroke-current w-6 h-6" name="pixelarticons:chevron-right" />
-            </a>
-            :
-            <div></div>
-        }
-    </div>
+	<div class="h-96 bg-white">
+		<Image
+			class="m-auto h-full w-auto object-contain"
+			src={post.featuredImage.sourceUrl}
+			alt={post.featuredImage.altText?.length
+				? post.featuredImage.altText
+				: post.featuredImage.title}
+			height="384"
+			width="458"
+		/>
+	</div>
+	<div class="flex flex-col mt-2 mb-6">
+		<h1 class="w-full">{post.title}</h1>
+		<div class="flex space-x-2 justify-end">
+			<div
+				class="cursor-default flex-none badge badge-accent badge-outline"
+			>
+				{Math.round(readingTime.minutes)}
+				{Math.round(readingTime.minutes) == 1 ? "minuto" : "minuti"}
+			</div>
+			<div
+				class="cursor-default flex-none badge badge-primary badge-outline"
+			>
+				{formatDate(post.date)}
+			</div>
+		</div>
+	</div>
+	<div set:html={post.content} />
+	<div class="divider"></div>
+	<div
+		class="flex flex-col sm:flex-row sm:justify-between space-y-4 sm:space-y-0"
+	>
+		{
+			previousPost ? (
+				<a
+					href={`/blog/${previousPost.slug}`}
+					title={previousPost.title}
+					class="btn uppercase btn-ghost justify-start sm:space-x-2 w-full sm:w-auto"
+				>
+					<Icon
+						class="stroke-current w-6 h-6"
+						name="pixelarticons:chevron-left"
+					/>
+					<span class="whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis">
+						{previousPost.title}
+					</span>
+				</a>
+			) : (
+				<div />
+			)
+		}
+		{
+			nextPost ? (
+				<a
+					href={`/blog/${nextPost.slug}`}
+					title={nextPost.title}
+					class="btn uppercase btn-ghost justify-end sm:space-x-2 w-full sm:w-auto"
+				>
+					<span class="whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis">
+						{nextPost.title}
+					</span>
+					<Icon
+						class="stroke-current w-6 h-6"
+						name="pixelarticons:chevron-right"
+					/>
+				</a>
+			) : (
+				<div />
+			)
+		}
+	</div>
 </ProseLayout>

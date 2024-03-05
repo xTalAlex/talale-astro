@@ -60,7 +60,7 @@ import Tabs from "@components/vue/common/Tabs.vue";
 import Tab from "@components/vue/common/Tab.vue";
 import UserUpdate from "@components/vue/UserUpdate.vue";
 import UserInfo from "@components/vue/UserInfo.vue";
-import { useStore } from '@nanostores/vue';
+import { useStore } from "@nanostores/vue";
 import { isLogged, userInfo, loadUser } from "@lib/authStore";
 import { formatDate } from "src/utils";
 
@@ -68,7 +68,7 @@ const $isLogged = useStore(isLogged);
 const $userInfo = useStore(userInfo);
 
 function login() {
-    netlifyIdentity.open();
+	window.netlifyIdentity.open();
 }
 
 </script>

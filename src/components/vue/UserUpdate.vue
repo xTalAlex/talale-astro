@@ -45,8 +45,8 @@
             </div>
             <div class="card-actions justify-end">
                 <button class="btn uppercase" 
-                    :class="btnColor, {
-                        'btn-disabled' : (!isValueChanged || successMessage), 'loading': loading 
+                    :class="{
+                        btnColor, 'btn-disabled' : (!isValueChanged || successMessage), 'loading': loading 
                     }" 
                     :disable="(!isValueChanged || successMessage)"
                     @click="updateUser"
@@ -57,112 +57,112 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from "vue";
+import { ref, computed } from "vue";
 
-const props = defineProps(['defaultName','defaultEmail']);
+const props = defineProps(["defaultName","defaultEmail"]);
 
-const emit = defineEmits(['userUpdated']);
+const emit = defineEmits(["userUpdated"]);
 
 const successMessages = {
-    name: "Nome aggiornato!",
-    email: "Email di conferma inviata al nuovo indirizzo!",
-    password: "Password aggiornata!"
-}
+	name: "Nome aggiornato!",
+	email: "Email di conferma inviata al nuovo indirizzo!",
+	password: "Password aggiornata!"
+};
 
 const choice = ref("name");
 const loading = ref(false);
 const formData = ref({
-    name : props.defaultName,
-    email: props.defaultEmail,
-    password: null,
-    passwordConfirm: null
+	name : props.defaultName,
+	email: props.defaultEmail,
+	password: null,
+	passwordConfirm: null
 });
 const errorBag = ref({
-    name: null,
-    email: null,
-    password: null,
+	name: null,
+	email: null,
+	password: null,
 });
 const successMessage = ref(null);
 
 const isValueChanged = computed(() => {
-    let changed = false;
-    switch(choice.value){
-        case("password"): 
-            changed = formData.value.password && formData.value.passwordConfirm;
-            break;
-        case("name"): 
-            changed = formData.value[choice.value] != props.defaultName;
-            break;
-        case("email"): 
-            changed = formData.value[choice.value] != props.defaultEmail;
-            break;
-    }
-    return changed;
+	let changed = false;
+	switch(choice.value){
+	case("password"): 
+		changed = formData.value.password && formData.value.passwordConfirm;
+		break;
+	case("name"): 
+		changed = formData.value[choice.value] != props.defaultName;
+		break;
+	case("email"): 
+		changed = formData.value[choice.value] != props.defaultEmail;
+		break;
+	}
+	return changed;
 });
 
 const btnColor = computed(() => {
-    let color = 'btn-secondary';
-    //if(successMessage.value) color = 'btn-success';
-    if(errorBag[choice.value]) color = 'btn-error';
-    return color;
+	let color = "btn-secondary";
+	//if(successMessage.value) color = 'btn-success';
+	if(errorBag[choice.value]) color = "btn-error";
+	return color;
 });
 
 function resetInput() {
-    formData.value.name = props.defaultName;
-    formData.value.email = props.defaultEmail;
-    formData.value.password = null;
-    formData.value.passwordConfirm = null;
+	formData.value.name = props.defaultName;
+	formData.value.email = props.defaultEmail;
+	formData.value.password = null;
+	formData.value.passwordConfirm = null;
 }
 
 function resetErrorBag() {
-    errorBag.value = {
-        name: null,
-        email: null,
-        password: null
-    }
+	errorBag.value = {
+		name: null,
+		email: null,
+		password: null
+	};
 }
 
 function resetSuccessMessage() {
-    successMessage.value = null;
+	successMessage.value = null;
 }
 
 function validate() {
-    let isValid = true;
-    if(choice.value == "password"){
-        if(formData.value.password != formData.value.passwordConfirm){
-            errorBag.value.password = "Le password non coincidono";
-            isValid = false;
-        }
-    }
-    return isValid;
+	let isValid = true;
+	if(choice.value == "password"){
+		if(formData.value.password != formData.value.passwordConfirm){
+			errorBag.value.password = "Le password non coincidono";
+			isValid = false;
+		}
+	}
+	return isValid;
 }
 
 function updateUser() {
-    if(!loading.value && !successMessage.value && isValueChanged.value){
-        successMessage.value = null;
-        loading.value = true;
-        var data = null;
-        if(validate()){
-            switch(choice.value){
-                case("name"): data = { data : { full_name : formData.value.name } };
-                    break;
-                case("email"): data = { email : formData.value.email };
-                    break;
-                case("password"): data = { password : formData.value.password }; 
-                    break;
-                default: break;
-            }
-            netlifyIdentity.currentUser().update(data)
-                .then((user) =>{
-                    successMessage.value = successMessages[choice.value];
-                    loading.value = false;
-                    emit('userUpdated');
-                })
-                .catch((error) => {
-                    loading.value = false;
-                    errorBag.value[choice.value] = error;
-                });
-        } else loading.value = false;
-    }
+	if(!loading.value && !successMessage.value && isValueChanged.value){
+		successMessage.value = null;
+		loading.value = true;
+		var data = null;
+		if(validate()){
+			switch(choice.value){
+			case("name"): data = { data : { full_name : formData.value.name } };
+				break;
+			case("email"): data = { email : formData.value.email };
+				break;
+			case("password"): data = { password : formData.value.password }; 
+				break;
+			default: break;
+			}
+			window.netlifyIdentity.currentUser().update(data)
+				.then(() =>{ // (user)
+					successMessage.value = successMessages[choice.value];
+					loading.value = false;
+					emit("userUpdated");
+				})
+				.catch((error) => {
+					loading.value = false;
+					errorBag.value[choice.value] = error;
+				});
+		} else loading.value = false;
+	}
 }
 </script>

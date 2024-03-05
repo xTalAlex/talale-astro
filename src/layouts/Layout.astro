@@ -9,10 +9,10 @@ export interface Props {
 	frontmatter?: Props;
 }
 
-import '@fontsource/chakra-petch';
-import '@fontsource-variable/rokkitt';
+import "@fontsource/chakra-petch";
+import "@fontsource-variable/rokkitt";
 import "@assets/css/main.css";
-import 'animate.css';
+import "animate.css";
 import Config from "../site_config.json";
 import { SEO } from "astro-seo";
 import Navbar from "@components/Navbar.astro";
@@ -81,7 +81,7 @@ const openGraph = {
 			)
 		}
 
-			<meta name="google-adsense-account" content="ca-pub-1599248063497322">
+		<meta name="google-adsense-account" content="ca-pub-1599248063497322">
 
 		{
 			GOOGLE_SEARCH_CONSOLE_ID && (
@@ -92,7 +92,7 @@ const openGraph = {
 		{
 			GOOGLE_ANALYTICS_ID && (
 				<script class="_iub_cs_activate"
-					type={`${(COOKIEBOT_ID || IUBENDA_SITE_ID) ? 'text/plain' : 'text/javascript'}`}
+					type={`${(COOKIEBOT_ID || IUBENDA_SITE_ID) ? "text/plain" : "text/javascript"}`}
 					async
 					src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
 					data-cookieconsent="statistics"
@@ -141,7 +141,7 @@ const openGraph = {
 		{
 			TAWKTO_WIDGET_URL && (
 				<script class="_iub_cs_activate-inline"
-					type={`${(COOKIEBOT_ID || IUBENDA_SITE_ID) ? 'text/plain' : 'text/javascript'}`}
+					type={`${(COOKIEBOT_ID || IUBENDA_SITE_ID) ? "text/plain" : "text/javascript"}`}
 					data-cookieconsent="preferences, statistics"
 					data-iub-purposes="2,4"
 					data-widget={TAWKTO_WIDGET_URL}

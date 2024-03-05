@@ -5,69 +5,67 @@ import IubendaLogo from "@assets/images/iubenda-logo.png";
 import AmazonPrimeLogo from "@assets/images/amazon-prime-logo.png";
 
 import mascotte from "@assets/images/mascotte.svg";
-import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 import Biography from "@components/Biography.astro";
 import LatestPosts from "@components/LatestPosts.astro";
 import ScreenSize from "@components/ScreenSize.astro";
 
-const curYear = new Date().getFullYear();
-
 const { COOKIEBOT_ID, IUBENDA_POLICY_ID } = import.meta.env;
 ---
 
 <footer class="footer bg-base-200 footer-center pt-10 pb-24">
-    <div class="grid lg:grid-cols-3 gap-20 px-10 items-start py-20">       
+	<div class="grid lg:grid-cols-3 gap-20 px-10 items-start py-20">
 		<div class="lg:col-span-2 mb-20 lg:mb-0">
-            <LatestPosts/>  
-            <!-- <blockquote class="relative p-4 mt-20 border-l-4 border-neutral-content bg-base-200 max-w-md">
+			<LatestPosts />
+			<!-- <blockquote class="relative p-4 mt-20 border-l-4 border-neutral-content bg-base-200 max-w-md">
                 <div class="absolute inset-0 bg-gradient-to-tl blur-3xl from-primary to-secondary opacity-20"></div>
                 <p class="italic font-medium leading-relaxed text-base opacity-75">
                     "Learning coding is like playing cards — you learn the rules, then you play, then you go back and learn the rules again, then you play again."
                     <br/><div class="text-right">- Mozilla.org</div>
                 </p>
             </blockquote> -->
-        </div>
-        <Biography />
-    </div>
-    <div class="pb-12"><ScreenSize /></div>
-    <div class="collapse collapse-plus cursor-pointer max-w-2xl">
-        <input type="checkbox" /> 
-        <div class="collapse-title text-left font-semibold">Referral</div>
-        <div class="collapse-content flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-2"
-        >
-            <a
-                href="https://www.digitalocean.com/?refcode=4c50de6f8f9f&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge"
-                target="_blank"
-            >
-                <Image class="w-52 h-16 object-contain bg-white rounded"
-                    src="https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%202.svg"
-                    alt="DigitalOcean Referral Badge"
-                    height="64"
-                    width="208"
-                />
-            </a>
-            <a
-                href="http://iubenda.refr.cc/talale93"
-                target="_blank"
-            >
-                <Image class="w-52 h-16 object-contain bg-white rounded"
-                    src={IubendaLogo}
-                    alt="Iubenda Referral Badge"
-                />
-            </a>
-            <a
-                href="https://www.amazon.it/provaprime?tag=gz-blog-21&ascsubtag=0-f-n-av_talale"
-                target="_blank"
-            >
-                <Image class="w-52 h-16 object-contain bg-white rounded"
-                    src={AmazonPrimeLogo}
-                    alt="Prova Amazon Prime"
-                />
-            </a>
-        </div>
-    </div>
-    <!-- <div id="donate-button-container">
+		</div>
+		<Biography />
+	</div>
+	<div class="pb-12"><ScreenSize /></div>
+	<div class="collapse collapse-plus cursor-pointer max-w-2xl">
+		<input type="checkbox" />
+		<div class="collapse-title text-left font-semibold">Referral</div>
+		<div
+			class="collapse-content flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-2"
+		>
+			<a
+				href="https://www.digitalocean.com/?refcode=4c50de6f8f9f&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge"
+				target="_blank"
+			>
+				<Image
+					class="w-52 h-16 object-contain bg-white rounded"
+					src="https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%202.svg"
+					alt="DigitalOcean Referral Badge"
+					height="64"
+					width="208"
+				/>
+			</a>
+			<a href="http://iubenda.refr.cc/talale93" target="_blank">
+				<Image
+					class="w-52 h-16 object-contain bg-white rounded"
+					src={IubendaLogo}
+					alt="Iubenda Referral Badge"
+				/>
+			</a>
+			<a
+				href="https://www.amazon.it/provaprime?tag=gz-blog-21&ascsubtag=0-f-n-av_talale"
+				target="_blank"
+			>
+				<Image
+					class="w-52 h-16 object-contain bg-white rounded"
+					src={AmazonPrimeLogo}
+					alt="Prova Amazon Prime"
+				/>
+			</a>
+		</div>
+	</div>
+	<!-- <div id="donate-button-container">
         <div id="donate-button"></div>
         <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
         <script>
@@ -82,34 +80,54 @@ const { COOKIEBOT_ID, IUBENDA_POLICY_ID } = import.meta.env;
             }).render('#donate-button');
         </script>
     </div> -->
-    <div class="grid grid-flow-col gap-4">
-        {
-            (!COOKIEBOT_ID && !IUBENDA_POLICY_ID) && (
-                <a href="/privacy-policy.html" target="_blank">Privacy Policy Custom</a>
-            )
-        }
-        {
+	<div class="grid grid-flow-col gap-4">
+		{
+			!COOKIEBOT_ID && !IUBENDA_POLICY_ID && (
+				<a href="/privacy-policy.html" target="_blank">
+					Privacy Policy Custom
+				</a>
+			)
+		}
+		{
 			COOKIEBOT_ID && (
-                <a href="/cookie-policy.html" target="_blank">Cookie Policy</a>
-                <a href="javascript: Cookiebot.renew()">Impostazioni Cookie</a>
-            )
-        }
-        {
-            IUBENDA_POLICY_ID && (
-                <IubendaPolicy
-                    policyId={IUBENDA_POLICY_ID}
-                />
-            )
-        }
-        <a href="/rss.xml"><Image height="24" width="24" src="/images/icons/rss.svg" class="h-6" alt="rss"/></a>
-    </div>
-    <div class="items-center grid-flow-col">
-        <div class="h-6 w-8 mr-1 -mt-1 overflow-hidden inline-block">            
-            <Image class="h-14 w-8 object-cover object-left" src={mascotte} alt={`${Config.title} | ${Config.subtitle}`}/>
-        </div>
-        <div class="font-bold flex flex-col md:flex-row space-x-2"> 
-            <div class="">{Config.title}</div><span class="hidden md:inline"> | </span><div class="">{Config.subtitle}</div><span class="hidden md:inline"> | </span><div class="">P.IVA {Config.piva}</div>
-        </div>
-        <!-- <p>Copyright © {curYear} - tutti i diritti riservati</p> -->
-    </div>
+				<>
+					<a href="/cookie-policy.html" target="_blank">
+						Cookie Policy
+					</a>
+					<a href="javascript: Cookiebot.renew()">
+						Impostazioni Cookie
+					</a>
+				</>
+			)
+		}
+		{IUBENDA_POLICY_ID && <IubendaPolicy policyId={IUBENDA_POLICY_ID} />}
+		<a href="/rss.xml"
+		><Image
+				height="24"
+				width="24"
+				src="/images/icons/rss.svg"
+				class="h-6"
+				alt="rss"
+			/></a
+		>
+	</div>
+	<div class="items-center grid-flow-col">
+		<div class="h-6 w-8 mr-1 -mt-1 overflow-hidden inline-block">
+			<Image
+				class="h-14 w-8 object-cover object-left"
+				src={mascotte}
+				alt={`${Config.title} | ${Config.subtitle}`}
+			/>
+		</div>
+		<div class="font-bold flex flex-col md:flex-row space-x-2">
+			<div class="">{Config.title}</div><span class="hidden md:inline">
+				|
+			</span><div class="">{Config.subtitle}</div><span
+				class="hidden md:inline"
+			>
+				|
+			</span><div class="">P.IVA {Config.piva}</div>
+		</div>
+		<!-- <p>Copyright © {curYear} - tutti i diritti riservati</p> -->
+	</div>
 </footer>

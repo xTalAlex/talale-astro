@@ -1,0 +1,67 @@
+{
+    "env": {
+        "browser": true,
+        "node": true,
+        "es2024": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:vue/vue3-essential",
+        "plugin:astro/recommended"
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "parser": "@typescript-eslint/parser",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "vue"
+    ],
+    "ignorePatterns": [
+        "*.json"
+    ],
+    "rules": {
+        "indent": [
+            "warn",
+            "tab"
+        ],
+        "linebreak-style": [
+            "warn",
+            "windows"
+        ],
+        "quotes": [
+            "warn",
+            "double"
+        ],
+        "semi": [
+            "warn",
+            "always"
+        ]
+    },
+    "overrides": [
+        {
+            // Define the configuration for `.astro` file.
+            "files": [
+                "*.astro"
+            ],
+            // Allows Astro components to be parsed.
+            "parser": "astro-eslint-parser",
+            // Parse the script in `.astro` as TypeScript by adding the following configuration.
+            // It's the setting you need when using TypeScript.
+            "parserOptions": {
+                "parser": "@typescript-eslint/parser",
+                "extraFileExtensions": [
+                    ".astro"
+                ]
+            },
+            "processor": "astro/client-side-ts",
+            "rules": {
+                // override/add rules settings here, such as:
+                // "astro/no-set-html-directive": "error"
+            }
+        }
+        // ...
+    ]
+}

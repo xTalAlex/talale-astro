@@ -1,7 +1,7 @@
 ---
 export interface Props {
-    class?: String;
-    iconName?: String;
+    class?: string;
+    iconName?: string;
 	bullets: string[];
 }
 
@@ -10,17 +10,17 @@ import { Icon } from "astro-icon/components";
 const { class: className, bullets, iconName = "pixelarticons:checkbox" } = Astro.props;
 ---
 
-<ul class:list={['timeline timeline-vertical', className]}>
-    {
-        bullets.map( (bullet,i) => 
-            <li>
-              <hr class={`${i == 0 ? 'hidden' : ''}`}/>
-              <div class="timeline-middle">
-                <Icon class="h-5 w-5 stroke-current" name={iconName}></Icon>
-              </div>
-              <div class={`${i%2 == 0 ? 'timeline-end' : 'timeline-start'} timeline-box`}>{bullet}</div>
-              <hr class={`${i == bullets.length-1 ? 'hidden' : ''}`}/>
-            </li>
-        )
-    }
+<ul class:list={["timeline timeline-vertical", className]}>
+	{
+		bullets.map( (bullet,i) => 
+			<li>
+				<hr class={`${i == 0 ? "hidden" : ""}`}/>
+				<div class="timeline-middle">
+					<Icon class="h-5 w-5 stroke-current" name={iconName}></Icon>
+				</div>
+				<div class={`${i%2 == 0 ? "timeline-end" : "timeline-start"} timeline-box`}>{bullet}</div>
+				<hr class={`${i == bullets.length-1 ? "hidden" : ""}`}/>
+			</li>
+		)
+	}
 </ul>

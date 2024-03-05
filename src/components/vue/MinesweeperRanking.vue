@@ -1,6 +1,6 @@
 <template>
     <div tabindex="0" class="h-max collapse collapse-arrow border border-base-300 bg-base-100 rounded-box cursor-pointer" ref="toggle"
-      	:class="{ 'collapse-open' : open  , 'collapse-close' : !open }"
+      :class="{ 'collapse-open' : open  , 'collapse-close' : !open }"
     >
         <div class="collapse-title text-xl font-medium"
           @click="collapse"
@@ -27,6 +27,7 @@
                     </thead>
                     <tbody>
                         <tr v-for="(player,index) in players"
+                          v-bind:key="index"
                           :class="{ 'font-bold' : index < 3 }"
                         >
                             <td>{{ index + 1 }}</td>
@@ -59,7 +60,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { useStore } from '@nanostores/vue';
+import { useStore } from "@nanostores/vue";
 import { isLogged } from "@lib/authStore";
 import { formatDate } from "../../utils";
 
@@ -70,41 +71,41 @@ const toggle = ref(null);
 const $isLogged = useStore(isLogged);
 
 function collapse(){
-  if(!open.value) fetchRanks(); 
-  open.value = !open.value;
+	if(!open.value) fetchRanks(); 
+	open.value = !open.value;
 }
 
 function login(){
-  netlifyIdentity.open();
+	window.netlifyIdentity.open();
 }
 
 function lastUpdateLabel(date){
-  return "Ultimo aggiornamento: " + formatDate(date)
+	return "Ultimo aggiornamento: " + formatDate(date);
 }
 
 function fetchRanks() {
-  fetch(
-    "/.netlify/functions/players-ranking"
-  ).then((response) => {
-    if(response.ok){
-      response.json().then((data) => {
-        if (data.ranking) {
-          players.value = data?.ranking;
-        }
-      });
-    }
-  });
+	fetch(
+		"/.netlify/functions/players-ranking"
+	).then((response) => {
+		if(response.ok){
+			response.json().then((data) => {
+				if (data.ranking) {
+					players.value = data?.ranking;
+				}
+			});
+		}
+	});
 }
 
 onMounted(() => {
-  document.refreshRanking = function refreshRanking() {
-    document.dispatchEvent(
-      new CustomEvent("refreshRanking")
-    );
-  };
-  document.addEventListener("refreshRanking", () => {
-    if(open.value) fetchRanks();
-  });
+	document.refreshRanking = function refreshRanking() {
+		document.dispatchEvent(
+			new CustomEvent("refreshRanking")
+		);
+	};
+	document.addEventListener("refreshRanking", () => {
+		if(open.value) fetchRanks();
+	});
 });
 
 </script>

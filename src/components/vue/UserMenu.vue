@@ -22,100 +22,100 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { useStore } from '@nanostores/vue';
+import { useStore } from "@nanostores/vue";
 import { isLogged, userInfo, loginUser, logoutUser } from "@lib/authStore";
 import { useStorage } from "@lib/useStorage";
 
 let loaded = ref(false);
 const $isLogged = useStore(isLogged);
 const $userInfo = useStore(userInfo);
-const isTawktoIdentified = useStorage('isTawktoIdentified', false);
+const isTawktoIdentified = useStorage("isTawktoIdentified", false);
 
 async function getTawktoHash(email) {
-    const data = await fetch('/.netlify/functions/tawkto-hash', {
-        method: "POST", 
-        headers: {
-            "Content-Type": "application/json",
-        },body: JSON.stringify({
-            email : email
-        }),
-    }).then( response => response.json());
-    return data;
+	const data = await fetch("/.netlify/functions/tawkto-hash", {
+		method: "POST", 
+		headers: {
+			"Content-Type": "application/json",
+		},body: JSON.stringify({
+			email : email
+		}),
+	}).then( response => response.json());
+	return data;
 }
 
 function setTawktoAttributes(){
-    getTawktoHash($userInfo.value.email).then(
-        data => {
-            window.Tawk_API.setAttributes({
-                name : $userInfo.value.name,
-                email: $userInfo.value.email,
-                hash: data.hash
-            });
-            isTawktoIdentified.value = true;
-        }
-    );
+	getTawktoHash($userInfo.value.email).then(
+		data => {
+			window.Tawk_API.setAttributes({
+				name : $userInfo.value.name,
+				email: $userInfo.value.email,
+				hash: data.hash
+			});
+			isTawktoIdentified.value = true;
+		}
+	);
 }
 
 function loadIdentity() {
-    if(!loaded.value){
-        netlifyIdentity.on('init', async user => {
-            if(user){
-                await netlifyIdentity.refresh(true);
-                loginUser(await user.update({}));
-            }
-            else{
-                logoutUser();
-                isTawktoIdentified.value = false;
-                document.dispatchEvent(new Event("notLogged"));
-            }
+	if(!loaded.value){
+		window.netlifyIdentity.on("init", async user => {
+			if(user){
+				await window.netlifyIdentity.refresh(true);
+				loginUser(await user.update({}));
+			}
+			else{
+				logoutUser();
+				isTawktoIdentified.value = false;
+				document.dispatchEvent(new Event("notLogged"));
+			}
             
-        });
-        netlifyIdentity.on('login', user => {
-            if(user)
-            {
-                loginUser(user);
-                netlifyIdentity.close();
-                setTawktoIdentity();
-                document.dispatchEvent(new Event("userLoaded"));
-            }
-            else{
-                isTawktoIdentified.value = false;
-            }
-        });
-        netlifyIdentity.on('logout', () => {
-            logoutUser();
-            netlifyIdentity.close();
-            isTawktoIdentified.value = false;
-        });
-        netlifyIdentity.init({
-            locale: 'it'
-        });
-        loaded.value = true;
-    }
+		});
+		window.netlifyIdentity.on("login", user => {
+			if(user)
+			{
+				loginUser(user);
+				window.netlifyIdentity.close();
+				setTawktoIdentity();
+				document.dispatchEvent(new Event("userLoaded"));
+			}
+			else{
+				isTawktoIdentified.value = false;
+			}
+		});
+		window.netlifyIdentity.on("logout", () => {
+			logoutUser();
+			window.netlifyIdentity.close();
+			isTawktoIdentified.value = false;
+		});
+		window.netlifyIdentity.init({
+			locale: "it"
+		});
+		loaded.value = true;
+	}
 }
 
 function setTawktoIdentity(){
-    if(isTawktoIdentified.value){
-        return
-    }
-    if(window.Tawk_API && window.Tawk_API.setAttributes){
-        setTawktoAttributes();
-    }
-    else{
-        document.addEventListener("tawktoLoaded", (e) => {
-            setTawktoAttributes();
-        });
-    }
+	if(isTawktoIdentified.value){
+		return;
+	}
+	if(window.Tawk_API && window.Tawk_API.setAttributes){
+		setTawktoAttributes();
+	}
+	else{
+		document.addEventListener("tawktoLoaded", () => {
+			setTawktoAttributes();
+		});
+	}
 }
 
 onMounted(() => {
-    if(window.netlifyIdentity){
-        loadIdentity();
-    }
-    else {
-        document.addEventListener("identityLoaded", (e) => {
-            loadIdentity();
-        });
-    }
+	if(window.window.netlifyIdentity){
+		loadIdentity();
+	}
+	else {
+		document.addEventListener("identityLoaded", () => {
+			loadIdentity();
+		});
+	}
 });
 </script>

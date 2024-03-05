@@ -4,15 +4,15 @@ import Config from "../site_config.json";
 ---
 
 <div class="mx-auto max-w-xl lg:max-w-none flex flex-wrap items-center justify-center gap-x-16 gap-y-16">
-    {
-        Config.frameworks.map((framework) => (
-            <FrameworkCard
-                name={framework.name}
-                logo={framework.logo}
-                url={new URL(framework.url)}
-            />
-        ))
-    } 
+	{
+		Config.frameworks.map((framework) => (
+			<FrameworkCard
+				name={framework.name}
+				logo={framework.logo}
+				url={new URL(framework.url)}
+			/>
+		))
+	} 
 </div>
 
 <!-- <div class="embla relative max-w-full">

@@ -7,27 +7,27 @@ const title = "Blog";
 ---
 
 <Layout
-  title={title}
+	title={title}
 >
-  <div class="px-5 md:mx-auto container w-full max-w-5xl">
-    <h1 class="py-12 text-4xl font-bold">{title}</h1>  
+	<div class="px-5 md:mx-auto container w-full max-w-5xl">
+		<h1 class="py-12 text-4xl font-bold">{title}</h1>  
 
-    <div class="grid md:grid-cols-2">
-        {
-            posts.map( post => 
-                <div class="relative text-neutral-content overflow-hidden group">
-                    <div class="z-10 absolute inset-0 bg-gradient-to-t from-neutral transition duration-500"></div>
-                    <img class="z-0 h-64 w-full object-cover group-hover:scale-105 transition duration-500" src={post.featuredImage.sourceUrl} />
-                    <div class="z-20 absolute inset-x-4 bottom-4 ">
-                        <a href={`/blog/${ post.slug }`} class="font-bold text-xl">
-                            { post.title }
-                        </a>
-                        <div class="text-sm hidden">{formatDate(post.date, 'short')}</div>
-                        <div class="max-w-md hidden" set:html={ post.excerpt }></div>
-                    </div>
-                </div>
-            )
-        }
-    </div>
-  </div>
+		<div class="grid md:grid-cols-2">
+			{
+				posts.map( post => 
+					<div class="relative text-neutral-content overflow-hidden group">
+						<div class="z-10 absolute inset-0 bg-gradient-to-t from-neutral transition duration-500"></div>
+						<img class="z-0 h-64 w-full object-cover group-hover:scale-105 transition duration-500" src={post.featuredImage.sourceUrl} />
+						<div class="z-20 absolute inset-x-4 bottom-4 ">
+							<a href={`/blog/${ post.slug }`} class="font-bold text-xl">
+								{ post.title }
+							</a>
+							<div class="text-sm hidden">{formatDate(post.date, "short")}</div>
+							<div class="max-w-md hidden" set:html={ post.excerpt }></div>
+						</div>
+					</div>
+				)
+			}
+		</div>
+	</div>
 </Layout>

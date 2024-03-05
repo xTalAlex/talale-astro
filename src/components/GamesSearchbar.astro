@@ -5,26 +5,26 @@ import { lastDeployDate, formatDate } from "../utils";
 ---
 
 <div class="form-control mx-auto w-full relative">
-    <div class="join">
-        <input type="text" id="search-input" placeholder="Focus: ctrl+c | Clear: ctrl+x" class="join-item placeholder:text-xs input input-bordered w-full" />
-        <button class="btn uppercase join-item btn-error btn-square" id="clear-button">
-            <Icon class="h-6 w-6 stroke-current" name="pixelarticons:close" />
+	<div class="join">
+		<input type="text" id="search-input" placeholder="Focus: ctrl+c | Clear: ctrl+x" class="join-item placeholder:text-xs input input-bordered w-full" />
+		<button class="btn uppercase join-item btn-error btn-square" id="clear-button">
+			<Icon class="h-6 w-6 stroke-current" name="pixelarticons:close" />
 
-        </button>
-        <button class="btn uppercase join-item btn-primary btn-square" id="search-button">
-            <Icon class="h-6 w-6 stroke-current" name="pixelarticons:search" />
-        </button>
-    </div>
+		</button>
+		<button class="btn uppercase join-item btn-primary btn-square" id="search-button">
+			<Icon class="h-6 w-6 stroke-current" name="pixelarticons:search" />
+		</button>
+	</div>
 </div>
 
 <div class="mt-12 flex w-full h-24 justify-center items-center" id="search-results">
-    <div class="cursor-default stats shadow bg-primary text-primary-content">
-        <div class="stat">
-          <div class="stat-title font-semibold text-primary-content">Numero di titoli</div>
-          <div class="stat-value">{gamesCount}</div>
-          <div class="stat-desc font-semibold text-primary-content">Ultimo aggiornamento { formatDate(lastDeployDate) }</div>
-        </div>
-    </div>
+	<div class="cursor-default stats shadow bg-primary text-primary-content">
+		<div class="stat">
+			<div class="stat-title font-semibold text-primary-content">Numero di titoli</div>
+			<div class="stat-value">{gamesCount}</div>
+			<div class="stat-desc font-semibold text-primary-content">Ultimo aggiornamento { formatDate(lastDeployDate) }</div>
+		</div>
+	</div>
 </div>
 
 <script>

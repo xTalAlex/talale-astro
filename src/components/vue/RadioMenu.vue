@@ -25,7 +25,7 @@
                 </label>
                 <ul tabindex="0"
                     class="-mr-1 -mt-12 dropdown-content menu text-sm font-semibold shadow-xl bg-base-200 rounded-box w-52">
-                    <li v-for="station in stations">
+                    <li v-for="(station,index) in stations" v-bind:key="index">
                         <a v-on:click="changeStation(station)" :class="{ 'bg-base-300': lastRadioStation.name == station.name }">
                             <img class="h-8 w-8" v-bind:src="station.imgSrc" />{{ station.name }}
                         </a>
@@ -59,13 +59,13 @@
 </template>
 
 <script setup>
-import { stations } from '@data/radio-stations';
+import { stations } from "@data/radio-stations";
 import { useStorage } from "@lib/useStorage";
 import Hls from "hls.js";
 
 import { ref, computed, onMounted } from "vue";
 
-const lastRadioStation = useStorage('lastRadioStation', stations[0]);
+const lastRadioStation = useStorage("lastRadioStation", stations[0]);
 
 let open = ref(false);
 let hls = ref(null);
@@ -74,136 +74,136 @@ let isPlaying = ref(false);
 
 let supportsMediaSession = ref(false);
 
-const radioPlayer = ref(null)
+const radioPlayer = ref(null);
 
 const stationIndex = computed(() => {
-    let index = stations.map( s => s.name ).indexOf(lastRadioStation.value?.name);
-    return index >= 0 ? index : 0;
-})
+	let index = stations.map( s => s.name ).indexOf(lastRadioStation.value?.name);
+	return index >= 0 ? index : 0;
+});
 
 function isHlsUrl(url){
-    return url.includes('.m3u8')
+	return url.includes(".m3u8");
 }
 
 function changeStation(station, startPlaying = true) {
-    pause();
-    if(isHlsUrl(station.url)){
-        if(Hls.isSupported()) {
-            hls.value.loadSource(station.url);
-            hls.value.attachMedia(radioPlayer.value);
-            // hls.value.on(Hls.Events.MANIFEST_PARSED,function() {
-            //     radioPlayer.value.play();
-            // });
-        }
-        else if (radioPlayer.value.canPlayType('application/vnd.apple.mpegurl')) {
-            radioPlayer.value.src = station.url;
-            // radioPlayer.value.addEventListener('canplay',function() {
-            //     radioPlayer.value.play();
-            // });
-        }
-    }
-    else{
-        radioPlayer.value.src = station.url;
-        if(startPlaying) play();
-    }
-    lastRadioStation.value = station;
+	pause();
+	if(isHlsUrl(station.url)){
+		if(Hls.isSupported()) {
+			hls.value.loadSource(station.url);
+			hls.value.attachMedia(radioPlayer.value);
+			// hls.value.on(Hls.Events.MANIFEST_PARSED,function() {
+			//     radioPlayer.value.play();
+			// });
+		}
+		else if (radioPlayer.value.canPlayType("application/vnd.apple.mpegurl")) {
+			radioPlayer.value.src = station.url;
+			// radioPlayer.value.addEventListener('canplay',function() {
+			//     radioPlayer.value.play();
+			// });
+		}
+	}
+	else{
+		radioPlayer.value.src = station.url;
+		if(startPlaying) play();
+	}
+	lastRadioStation.value = station;
 
-    if(supportsMediaSession.value){
-        navigator.mediaSession.metadata = new MediaMetadata({
-            title: lastRadioStation.value.name,
-            artist: "talale.it",
-            artwork: [
-                {
-                    src: lastRadioStation.value.imgSrc,
-                }
-            ]
-        })
-        navigator.mediaSession.playbackState = "paused";
-    }
+	if(supportsMediaSession.value){
+		navigator.mediaSession.metadata = new MediaMetadata({
+			title: lastRadioStation.value.name,
+			artist: "talale.it",
+			artwork: [
+				{
+					src: lastRadioStation.value.imgSrc,
+				}
+			]
+		});
+		navigator.mediaSession.playbackState = "paused";
+	}
     
-    setVolume();
-    if (startPlaying) play();
+	setVolume();
+	if (startPlaying) play();
 }
 
 function previousStation(){
-    changeStation(stations[((stationIndex.value - 1 % stations.length) + stations.length) % (stations.length)], isPlaying.value);
+	changeStation(stations[((stationIndex.value - 1 % stations.length) + stations.length) % (stations.length)], isPlaying.value);
 }
 
 function nextStation(){
-    changeStation(stations[(stationIndex.value + 1) % (stations.length)], isPlaying.value);
+	changeStation(stations[(stationIndex.value + 1) % (stations.length)], isPlaying.value);
 }
 
 function play() {
-    if (radioPlayer.value.paused) {
-        radioPlayer.value.play().
-        then( () => {
-            isPlaying.value = true;
-            lastRadioStation.value.isPlaying = true;
-            navigator.mediaSession.playbackState = "playing";
-        })
-        .catch( (e) => {
-            radioPlayer.value.pause();
-            isPlaying.value = false;
-            lastRadioStation.value.isPlaying = false;
-        });
-    }
+	if (radioPlayer.value.paused) {
+		radioPlayer.value.play().
+			then( () => {
+				isPlaying.value = true;
+				lastRadioStation.value.isPlaying = true;
+				navigator.mediaSession.playbackState = "playing";
+			})
+			.catch( () => {
+				radioPlayer.value.pause();
+				isPlaying.value = false;
+				lastRadioStation.value.isPlaying = false;
+			});
+	}
 }
 
 function pause() {
-    if (!radioPlayer.value.paused) {
-        radioPlayer.value.pause();
-        isPlaying.value = false;
-        lastRadioStation.value.isPlaying = false;
-        navigator.mediaSession.playbackState = "paused";
-    }
+	if (!radioPlayer.value.paused) {
+		radioPlayer.value.pause();
+		isPlaying.value = false;
+		lastRadioStation.value.isPlaying = false;
+		navigator.mediaSession.playbackState = "paused";
+	}
 }
 
 function stop() {
-    if (!radioPlayer.value.paused) {
-        radioPlayer.value.pause();
-        isPlaying.value = false;
-        lastRadioStation.value.isPlaying = false;
-        navigator.mediaSession.playbackState = "none";
-    }
+	if (!radioPlayer.value.paused) {
+		radioPlayer.value.pause();
+		isPlaying.value = false;
+		lastRadioStation.value.isPlaying = false;
+		navigator.mediaSession.playbackState = "none";
+	}
 }
 
 function toggle() {
-    radioPlayer.value.paused ? play() : pause();
+	radioPlayer.value.paused ? play() : pause();
 }
 
 function setVolume() {
-    radioPlayer.value.volume = volume.value/100;
-    lastRadioStation.value.volume = volume.value/100;
+	radioPlayer.value.volume = volume.value/100;
+	lastRadioStation.value.volume = volume.value/100;
 }
 
 onMounted(() => {
-    supportsMediaSession.value = "mediaSession" in navigator;
-    if(Hls.isSupported()) hls.value = new Hls();
-    volume.value = lastRadioStation.value?.volume ? lastRadioStation.value.volume * 100 : 100;
-    changeStation(lastRadioStation.value, lastRadioStation.value.isPlaying ?? false);
+	supportsMediaSession.value = "mediaSession" in navigator;
+	if(Hls.isSupported()) hls.value = new Hls();
+	volume.value = lastRadioStation.value?.volume ? lastRadioStation.value.volume * 100 : 100;
+	changeStation(lastRadioStation.value, lastRadioStation.value.isPlaying ?? false);
 
-    if(supportsMediaSession.value){
-        navigator.mediaSession.setActionHandler('play', function() { 
-            play();
-        });
-        navigator.mediaSession.setActionHandler('pause', function() { 
-            pause();
-        });
-        navigator.mediaSession.setActionHandler("stop", () => {
-            stop();
-        });
-        navigator.mediaSession.setActionHandler("seekbackward", () => {
-            previousStation();
-        });
-        navigator.mediaSession.setActionHandler("seekforward", () => {
-            nextStation();
-        });
-        navigator.mediaSession.setActionHandler("previoustrack", () => {
-            previousStation();
-        });
-        navigator.mediaSession.setActionHandler("nexttrack", () => {
-            nextStation();
-        });
-    }
+	if(supportsMediaSession.value){
+		navigator.mediaSession.setActionHandler("play", function() { 
+			play();
+		});
+		navigator.mediaSession.setActionHandler("pause", function() { 
+			pause();
+		});
+		navigator.mediaSession.setActionHandler("stop", () => {
+			stop();
+		});
+		navigator.mediaSession.setActionHandler("seekbackward", () => {
+			previousStation();
+		});
+		navigator.mediaSession.setActionHandler("seekforward", () => {
+			nextStation();
+		});
+		navigator.mediaSession.setActionHandler("previoustrack", () => {
+			previousStation();
+		});
+		navigator.mediaSession.setActionHandler("nexttrack", () => {
+			nextStation();
+		});
+	}
 });
 </script>

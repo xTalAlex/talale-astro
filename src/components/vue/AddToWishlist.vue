@@ -9,37 +9,37 @@
 </template>
 
 <script setup>
-    import { ref, computed, watch } from "vue";
-    import { useStore } from '@nanostores/vue';
-    import { wishlist, addWishlistItem, removeWishlistItem, wishlistContains } from "@lib/wishlistStore";
+import { ref, computed, watch } from "vue";
+import { useStore } from "@nanostores/vue";
+import { wishlist, addWishlistItem, removeWishlistItem, wishlistContains } from "@lib/wishlistStore";
     
-    const $wishlist = useStore(wishlist);
+const $wishlist = useStore(wishlist);
 
-    const items = computed(() => {
-        return Object.values($wishlist.value["items"]);
-    })
+const items = computed(() => {
+	return Object.values($wishlist.value["items"]);
+});
 
-    const props = defineProps({
-        id: String,
-        name: String,
-        imgSrc: String
-    });
+const props = defineProps({
+	id: String,
+	name: String,
+	imgSrc: String
+});
 
-    const game = computed(() => {
-        return {
-            id: props.id,
-            name: props.name,
-            imgSrc: props.imgSrc
-        };
-    });
+const game = computed(() => {
+	return {
+		id: props.id,
+		name: props.name,
+		imgSrc: props.imgSrc
+	};
+});
 
-    let isWishlisted = ref(wishlistContains(game.value));
+let isWishlisted = ref(wishlistContains(game.value));
 
-    function toggleItem(){
-        isWishlisted.value ? removeWishlistItem(game.value) : addWishlistItem(game.value);
-    };
+function toggleItem(){
+	isWishlisted.value ? removeWishlistItem(game.value) : addWishlistItem(game.value);
+}
 
-    watch(items, () => {
-        isWishlisted.value = wishlistContains(game.value);
-    }, {deep: true})
+watch(items, () => {
+	isWishlisted.value = wishlistContains(game.value);
+}, {deep: true});
 </script>

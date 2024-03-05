@@ -2,145 +2,171 @@
 import { Icon } from "astro-icon/components";
 
 import { episodes } from "@data/medabots";
-import { slugify } from "../../../utils";
 
 import Layout from "@layouts/Layout.astro";
 
-export async function getStaticPaths({ paginate }) {
-    return episodes.map((episode, id) => {
-        return {
-            params: { 
-                season: episode.season,
-                episode: episode.number
-            },
-            props: {
-                episode,
-                previousEpisode:
-                    id > 0
-                        ? {
-                              title: episodes[id - 1].title,
-                              season: episodes[id - 1].season,
-                              number: episodes[id - 1].number,
-                          }
-                        : null,
-                nextEpisode:
-                    id + 1 < episodes.length
-                        ? {
-                              title: episodes[id + 1].title,
-                              season: episodes[id + 1].season,
-                              number: episodes[id + 1].number,
-                          }
-                        : null,
-            },
-        };
-    });
+export async function getStaticPaths() {
+	return episodes.map((episode, id) => {
+		return {
+			params: {
+				season: episode.season,
+				episode: episode.number,
+			},
+			props: {
+				episode,
+				previousEpisode:
+					id > 0
+						? {
+							title: episodes[id - 1].title,
+							season: episodes[id - 1].season,
+							number: episodes[id - 1].number,
+						}
+						: null,
+				nextEpisode:
+					id + 1 < episodes.length
+						? {
+							title: episodes[id + 1].title,
+							season: episodes[id + 1].season,
+							number: episodes[id + 1].number,
+						}
+						: null,
+			},
+		};
+	});
 }
 
 const { episode, previousEpisode, nextEpisode } = Astro.props;
 
-const title = 'Medabots - Episodio ' + episode.number;
+const title = "Medabots - Episodio " + episode.number;
 ---
 
 <Layout
-    title={title}
-    description={episode.title}
-    ogImage={`https://img.youtube.com/vi/${episode.video_id}/0.jpg`}
-    ogImageAlt={episode.title}
+	title={title}
+	description={episode.title}
+	ogImage={`https://img.youtube.com/vi/${episode.video_id}/0.jpg`}
+	ogImageAlt={episode.title}
 >
-    <div class="px-5 md:mx-auto container w-full max-w-5xl">
+	<div class="px-5 md:mx-auto container w-full max-w-5xl">
+		<h1 class="text-center mt-12 text-4xl font-bold">{title}</h1>
+		<h2 class="text-center mt-6 text-2xl font-semibold">{episode.title}</h2>
 
-        <h1 class="text-center mt-12 text-4xl font-bold">{title}</h1>
-        <h2 class="text-center mt-6 text-2xl font-semibold">{episode.title}</h2>
+		<div class="w-full h-full grid place-items-center mt-12">
+			<iframe
+				type="text/html"
+				class="aspect-video w-full h-[30rem]"
+				src={`https://www.youtube-nocookie.com/embed/${episode.video_id}?enablejsapi=1`}
+				allow="picture-in-picture; autoplay"
+				allowfullscreen
+				id="player"></iframe>
+		</div>
 
-        <div class="w-full h-full grid place-items-center mt-12">
-            <iframe type="text/html" class="aspect-video w-full h-[30rem]" 
-                src={`https://www.youtube-nocookie.com/embed/${episode.video_id}?enablejsapi=1`}
-                allow="picture-in-picture; autoplay" 
-                allowfullscreen
-                id="player"
-            ></iframe>
-        </div>
+		<button
+			class="btn uppercase btn-neutral rounded-t-none mb-12 w-full"
+			id="skip-intro">Salta Intro</button
+		>
 
-        <button class="btn uppercase btn-neutral rounded-t-none mb-12 w-full" id="skip-intro">Salta Intro</button>
+		<div class="divider"></div>
 
-        <div class="divider"></div>
-
-        <div class="flex flex-col sm:flex-row sm:justify-between space-y-4 sm:space-y-0">
-            { previousEpisode ?
-                <a href={`/medabots/${previousEpisode.season}/${previousEpisode.number}`} title={previousEpisode.title} class="btn uppercase btn-ghost justify-start sm:space-x-2 w-full sm:w-auto">
-                    <Icon class="stroke-current w-6 h-6" name="pixelarticons:chevron-left" />
-                    <span class="whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis" >Episodio {previousEpisode.number}</span>
-                </a>
-                :
-                <div></div>
-            }
-            { nextEpisode ?
-                <a  href={`/medabots/${nextEpisode.season}/${nextEpisode.number}`} title={nextEpisode.title} class="btn uppercase btn-ghost justify-end sm:space-x-2 w-full sm:w-auto">
-                    <span class="whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis">Episodio {nextEpisode.number}</span>
-                    <Icon class="stroke-current w-6 h-6" name="pixelarticons:chevron-right" />
-                </a>
-                :
-                <div></div>
-            }
-        </div>
-
-    </div>
+		<div
+			class="flex flex-col sm:flex-row sm:justify-between space-y-4 sm:space-y-0"
+		>
+			{
+				previousEpisode ? (
+					<a
+						href={`/medabots/${previousEpisode.season}/${previousEpisode.number}`}
+						title={previousEpisode.title}
+						class="btn uppercase btn-ghost justify-start sm:space-x-2 w-full sm:w-auto"
+					>
+						<Icon
+							class="stroke-current w-6 h-6"
+							name="pixelarticons:chevron-left"
+						/>
+						<span class="whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis">
+							Episodio {previousEpisode.number}
+						</span>
+					</a>
+				) : (
+					<div />
+				)
+			}
+			{
+				nextEpisode ? (
+					<a
+						href={`/medabots/${nextEpisode.season}/${nextEpisode.number}`}
+						title={nextEpisode.title}
+						class="btn uppercase btn-ghost justify-end sm:space-x-2 w-full sm:w-auto"
+					>
+						<span class="whitespace-nowrap overflow-hidden w-48 sm:w-32 lg:w-64 overflow-ellipsis">
+							Episodio {nextEpisode.number}
+						</span>
+						<Icon
+							class="stroke-current w-6 h-6"
+							name="pixelarticons:chevron-right"
+						/>
+					</a>
+				) : (
+					<div />
+				)
+			}
+		</div>
+	</div>
 </Layout>
 
 <script src="https://www.youtube.com/iframe_api" is:inline></script>
-<script is:inline data-episode={JSON.stringify(episode)} data-next-episode={JSON.stringify(nextEpisode)}>
+<script
+	is:inline
+	data-episode={JSON.stringify(episode)}
+	data-next-episode={JSON.stringify(nextEpisode)}
+>
+	const startFrom = 107;
+	const skipIntroButton = document.querySelector("#skip-intro");
+	const episode = JSON.parse(document.currentScript.dataset.episode);
+	const nextEpisode = JSON.parse(document.currentScript.dataset.nextEpisode);
+	let player;
 
-    const startFrom = 107;
-    const skipIntroButton = document.querySelector('#skip-intro');
-    const episode = JSON.parse(document.currentScript.dataset.episode);
-    const nextEpisode = JSON.parse(document.currentScript.dataset.nextEpisode);
-    var player;
-    
-    function onYouTubeIframeAPIReady() {
-        player = new YT.Player('player',{
-            events: {
-                onStateChange : checkState
-            }
-        });
-        skipIntroButton.classList.remove('hidden');
-    }
+	function onYouTubeIframeAPIReady() {
+		player = new YT.Player("player", {
+			events: {
+				onStateChange: checkState,
+			},
+		});
+		skipIntroButton.classList.remove("hidden");
+	}
 
-    const checkState = ({target, data}) => {
-        toggleSkipIntroButton();
-        if(data === 0){
-            localStorage.setItem('keepwatching', JSON.stringify(nextEpisode));
-            storeAsUserMetadata({ keepwatching : nextEpisode });
-        }
-        else if(data == 1){
-            localStorage.setItem('keepwatching', JSON.stringify(episode));
-            storeAsUserMetadata({ keepwatching : episode });
-        }
-    };
+	const checkState = ({ data }) => {
+		toggleSkipIntroButton();
+		if (data === 0) {
+			localStorage.setItem("keepwatching", JSON.stringify(nextEpisode));
+			storeAsUserMetadata({ keepwatching: nextEpisode });
+		} else if (data == 1) {
+			localStorage.setItem("keepwatching", JSON.stringify(episode));
+			storeAsUserMetadata({ keepwatching: episode });
+		}
+	};
 
-    const storeAsUserMetadata = (data) => {
-        if(window.netlifyIdentity && netlifyIdentity.currentUser()){
-            netlifyIdentity.currentUser().update({
-                data : data
-            });
-        }
-    };
+	const storeAsUserMetadata = (data) => {
+		if (window.netlifyIdentity && netlifyIdentity.currentUser()) {
+			netlifyIdentity.currentUser().update({
+				data: data,
+			});
+		}
+	};
 
-    const toggleSkipIntroButton = ()  => {
-        if(player){
-            if(player.getCurrentTime() < startFrom)
-                skipIntroButton.classList.remove('hidden');
-            else
-                skipIntroButton.classList.add('hidden');
-        }
-    }
+	const toggleSkipIntroButton = () => {
+		if (player) {
+			if (player.getCurrentTime() < startFrom)
+				skipIntroButton.classList.remove("hidden");
+			else skipIntroButton.classList.add("hidden");
+		}
+	};
 
-    const skipIntro = () => {
-        if(player){
-            if(player.getCurrentTime() < startFrom) player.seekTo(startFrom);
-            toggleSkipIntroButton();
-            setTimeout(() => player.playVideo(), 500);
-        }
-    };
+	const skipIntro = () => {
+		if (player) {
+			if (player.getCurrentTime() < startFrom) player.seekTo(startFrom);
+			toggleSkipIntroButton();
+			setTimeout(() => player.playVideo(), 500);
+		}
+	};
 
-    skipIntroButton.onclick = skipIntro;
+	skipIntroButton.onclick = skipIntro;
 </script>

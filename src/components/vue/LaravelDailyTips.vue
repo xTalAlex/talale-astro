@@ -55,51 +55,51 @@ let loading = ref(true);
 let refreshing = ref(false);
 
 function fetchTips() {
-  refreshing.value = true;
-  fetch(
-    "https://laraveldaily.com/api/v1/tips?" +
+	refreshing.value = true;
+	fetch(
+		"https://laraveldaily.com/api/v1/tips?" +
     "count=" +
     totTips +
     "&content=html"
-  ).then((response) => {
-    if (!response.ok) {
-      setTimeout(() => (refreshing.value = false), 10000);
-    } else {
-      response.json().then((data) => {
-        if (data.data) {
-          tips.value = data?.data.map((tip) => ({
-            name: tip.name,
-            description: tip.description,
-            original_image: tip.original_image,
-            stream_image: tip.stream_image,
-          }));
-          loading.value = false;
-        }
-        setTimeout(() => (refreshing.value = false), 3000);
-      });
-    }
-  });
+	).then((response) => {
+		if (!response.ok) {
+			setTimeout(() => (refreshing.value = false), 10000);
+		} else {
+			response.json().then((data) => {
+				if (data.data) {
+					tips.value = data?.data.map((tip) => ({
+						name: tip.name,
+						description: tip.description,
+						original_image: tip.original_image,
+						stream_image: tip.stream_image,
+					}));
+					loading.value = false;
+				}
+				setTimeout(() => (refreshing.value = false), 3000);
+			});
+		}
+	});
 }
 
 function nextTip() {
-  if (!loading.value) {
-    loading.value = true;
-    curTipId.value = (curTipId.value + 1) % totTips;
-    setTimeout(() => {
-      loading.value = false;
-    }, 300);
-  }
+	if (!loading.value) {
+		loading.value = true;
+		curTipId.value = (curTipId.value + 1) % totTips;
+		setTimeout(() => {
+			loading.value = false;
+		}, 300);
+	}
 }
 
 function openModal() {
-  document.openModal(curTip.value);
+	document.openModal(curTip.value);
 }
 
 const curTip = computed(() => {
-  return tips.value ? tips.value[curTipId.value] : null;
+	return tips.value ? tips.value[curTipId.value] : null;
 });
 
 onMounted(() => {
-  fetchTips();
+	fetchTips();
 });
 </script>

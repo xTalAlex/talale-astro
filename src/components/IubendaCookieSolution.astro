@@ -1,7 +1,7 @@
 ---
 export interface Props {
-    siteId: String;
-    policyId: String;
+    siteId: string;
+    policyId: string;
 }
 
 const { siteId, policyId } = Astro.props;
@@ -44,7 +44,7 @@ const { siteId, policyId } = Astro.props;
 <script type="text/javascript" src={`//cs.iubenda.com/sync/${siteId}.js`}
 ></script>
 <script
-    type="text/javascript"
-    src="//cdn.iubenda.com/cs/iubenda_cs.js"
-    charset="UTF-8"
-    async></script>
+	type="text/javascript"
+	src="//cdn.iubenda.com/cs/iubenda_cs.js"
+	charset="UTF-8"
+	async></script>

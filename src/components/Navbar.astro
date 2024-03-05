@@ -8,66 +8,66 @@ import { Image } from "astro:assets";
 ---
 
 <div class="navbar bg-base-300/50 backdrop-blur-2xl fixed z-50 h-16 font-semibold">
-    <div class="navbar-start">
-        <div class="dropdown">
-            <label class="btn uppercase btn-ghost lg:hidden" tabindex="0">
-                <Icon class="h-5 w-5 stroke-current" name="pixelarticons:menu" />
-            </label>
-            <ul class="menu dropdown-content mt-3 p-2 shadow bg-base-300 rounded-box w-52" tabindex="0">
-                <li><a href="/">Home</a></li>
-                <li>
-                    <a href="/#contacts" class="text-primary uppercase">{Config.cta}</a>
-                </li>
-                <li>
-                    <a>
+	<div class="navbar-start">
+		<div class="dropdown">
+			<label class="btn uppercase btn-ghost lg:hidden" tabindex="0">
+				<Icon class="h-5 w-5 stroke-current" name="pixelarticons:menu" />
+			</label>
+			<ul class="menu dropdown-content mt-3 p-2 shadow bg-base-300 rounded-box w-52" tabindex="0">
+				<li><a href="/">Home</a></li>
+				<li>
+					<a href="/#contacts" class="text-primary uppercase">{Config.cta}</a>
+				</li>
+				<li>
+					<a>
                         Portfolio
                         <!-- <Icon class="h-5 w-5 fill-current" name="pixelarticons:chevron-down" /> -->
-                    </a>
-                    <ul class="">
-                        <li><a href="/#portfolio">Progetti</a></li>
-                        <li><a href="/electrode-minesweeper">Campo Minato</a></li>
-                        <li><a href="/pitch-detection">Pitch Detection</a></li>
-                        <li><a href="/nintendo-switch/1">Catalogo Nintendo Switch</a></li>
-                        <li><a href="#latest-posts">Blog</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="/#prices">Prezzi</a>
-                </li>
-            </ul>
-        </div>
-        <a href="/" class="hidden lg:flex btn btn-ghost normal-case text-xl">
-            <div class="h-6 w-8 -mr-1 -mt-1 overflow-hidden">            
-                <Image class="h-14 w-8 object-cover object-left" src={mascotte} alt={`${Config.title} | ${Config.subtitle}`}/>
-            </div>
-            <span class="">{Config.title}</span>
-        </a>
-    </div>
+					</a>
+					<ul class="">
+						<li><a href="/#portfolio">Progetti</a></li>
+						<li><a href="/electrode-minesweeper">Campo Minato</a></li>
+						<li><a href="/pitch-detection">Pitch Detection</a></li>
+						<li><a href="/nintendo-switch/1">Catalogo Nintendo Switch</a></li>
+						<li><a href="#latest-posts">Blog</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="/#prices">Prezzi</a>
+				</li>
+			</ul>
+		</div>
+		<a href="/" class="hidden lg:flex btn btn-ghost normal-case text-xl">
+			<div class="h-6 w-8 -mr-1 -mt-1 overflow-hidden">            
+				<Image class="h-14 w-8 object-cover object-left" src={mascotte} alt={`${Config.title} | ${Config.subtitle}`}/>
+			</div>
+			<span class="">{Config.title}</span>
+		</a>
+	</div>
 
-    <div class="navbar-center hidden lg:flex">
-        <ul class="menu text-base menu-horizontal px-1">
-            <li><div class="py-0 px-0 my-auto mx-4"><a href="/#contacts" class="btn btn-sm uppercase btn-primary">{Config.cta}</a></div></li>
-            <li class="dropdown">
-                <a tabindex="0" class="">
+	<div class="navbar-center hidden lg:flex">
+		<ul class="menu text-base menu-horizontal px-1">
+			<li><div class="py-0 px-0 my-auto mx-4"><a href="/#contacts" class="btn btn-sm uppercase btn-primary">{Config.cta}</a></div></li>
+			<li class="dropdown">
+				<a tabindex="0" class="">
                     Portfolio
-                    <Icon class="h-5 w-5 fill-current" name="pixelarticons:chevron-down" />
-                </a>
-                <ul tabindex="0" class="dropdown-content bg-base-300 mt-px min-w-max rounded-box menu text-base">
-                    <li><a href="/#portfolio">Progetti</a></li>
-                    <li><a href="/electrode-minesweeper">Campo Minato</a></li>
-                    <li><a href="/pitch-detection">Pitch Detection</a></li>
-                    <li><a href="/nintendo-switch/1">Catalogo Nintendo Switch</a></li>
-                    <li><a href="#latest-posts">Blog</a></li>
-                </ul>
-            </li>
-            <li><a href="/#prices">Prezzi</a></li>
-        </ul>
-    </div>
+					<Icon class="h-5 w-5 fill-current" name="pixelarticons:chevron-down" />
+				</a>
+				<ul tabindex="0" class="dropdown-content bg-base-300 mt-px min-w-max rounded-box menu text-base">
+					<li><a href="/#portfolio">Progetti</a></li>
+					<li><a href="/electrode-minesweeper">Campo Minato</a></li>
+					<li><a href="/pitch-detection">Pitch Detection</a></li>
+					<li><a href="/nintendo-switch/1">Catalogo Nintendo Switch</a></li>
+					<li><a href="#latest-posts">Blog</a></li>
+				</ul>
+			</li>
+			<li><a href="/#prices">Prezzi</a></li>
+		</ul>
+	</div>
 
-    <div class="navbar-end">
-       <ThemeSwitcher />
-       <UserMenu client:only="vue">
-        <Icon class="w-6 h-6 fill-current" name="pixelarticons:user" />
-       </UserMenu>
-    </div>
+	<div class="navbar-end">
+		<ThemeSwitcher />
+		<UserMenu client:only="vue">
+			<Icon class="w-6 h-6 fill-current" name="pixelarticons:user" />
+		</UserMenu>
+	</div>
 </div>

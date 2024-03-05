@@ -9,242 +9,271 @@ import { Image } from "astro:assets";
 const title = "Alessandro Talamona - CV";
 ---
 
-<Layout
-    title={title}
->
-    <div class="px-5 md:mx-auto container w-full max-w-5xl">
-        <h1 class="text-center py-12 text-4xl font-bold">{title}</h1>
+<Layout title={title}>
+	<div class="px-5 md:mx-auto container w-full max-w-5xl">
+		<h1 class="text-center py-12 text-4xl font-bold">{title}</h1>
 
-        <div id="cvContent">
-            <div
-                class="grid print:grid-cols-3 sm:grid-cols-2 md:grid-cols-3 print:text-xs"
-            >
-                <div class="card bg-base-200 shadow-xl text-sm print:text-xs">
-                    <figure class="px-10 pt-10">
-                        <Image src={cvPhoto} alt="Alessandro Talamona" class="rounded-xl" />
-                    </figure>
-                    <div class="card-body items-center text-center">
-                        <h2 class="card-title">Alessandro Talamona</h2>
-                        <div class="-mt-2 text-base">Sviluppatore Web</div>
+		<div id="cvContent">
+			<div
+				class="grid print:grid-cols-3 sm:grid-cols-2 md:grid-cols-3 print:text-xs"
+			>
+				<div class="card bg-base-200 shadow-xl text-sm print:text-xs">
+					<figure class="px-10 pt-10">
+						<Image
+							src={cvPhoto}
+							alt="Alessandro Talamona"
+							class="rounded-xl"
+						/>
+					</figure>
+					<div class="card-body items-center text-center">
+						<h2 class="card-title">Alessandro Talamona</h2>
+						<div class="-mt-2 text-base">Sviluppatore Web</div>
 
-                        <div class="mt-4 text-left">
-                            <div>
-                                <Icon
-                                    class="mr-2 w-4 h-4 stroke-current inline-block"
-                                    name="pixelarticons:user"
-                                />Nato il 9/8/1993 a Varese
-                            </div>
-                            <div>
-                                <Icon
-                                    class="mr-2 w-4 h-4 stroke-current inline-block"
-                                    name="pixelarticons:pin"
-                                />Via Nino Bixio, 2 - Vedano Olona (VA)
-                            </div>
-                            <div>
-                                <Icon
-                                    class="mr-2 w-4 h-4 stroke-current inline-block"
-                                    name="pixelarticons:mail"
-                                />talale93@hotmail.it
-                            </div>
-                            <div>
-                                <Icon
-                                    class="mr-2 w-4 h-4 stroke-current inline-block"
-                                    name="pixelarticons:device-phone"
-                                />3485650564
-                            </div>
-                            <div>
-                                <Icon
-                                    class="mr-2 w-4 h-4 stroke-current inline-block"
-                                    name="pixelarticons:external-link"
-                                />https://talale.it
-                            </div>
-                            <div>
-                                <Icon
-                                    class="mr-2 w-4 h-4 stroke-current inline-block"
-                                    name="pixelarticons:git-branch"
-                                />https://github.com/xTalAlex
-                            </div>
-                        </div>
+						<div class="mt-4 text-left">
+							<div>
+								<Icon
+									class="mr-2 w-4 h-4 stroke-current inline-block"
+									name="pixelarticons:user"
+								/>Nato il 9/8/1993 a Varese
+							</div>
+							<div>
+								<Icon
+									class="mr-2 w-4 h-4 stroke-current inline-block"
+									name="pixelarticons:pin"
+								/>Via Nino Bixio, 2 - Vedano Olona (VA)
+							</div>
+							<div>
+								<Icon
+									class="mr-2 w-4 h-4 stroke-current inline-block"
+									name="pixelarticons:mail"
+								/>talale93@hotmail.it
+							</div>
+							<div>
+								<Icon
+									class="mr-2 w-4 h-4 stroke-current inline-block"
+									name="pixelarticons:device-phone"
+								/>3485650564
+							</div>
+							<div>
+								<Icon
+									class="mr-2 w-4 h-4 stroke-current inline-block"
+									name="pixelarticons:external-link"
+								/>https://talale.it
+							</div>
+							<div>
+								<Icon
+									class="mr-2 w-4 h-4 stroke-current inline-block"
+									name="pixelarticons:git-branch"
+								/>https://github.com/xTalAlex
+							</div>
+						</div>
 
-                        <div class="divider"></div>
+						<div class="divider"></div>
 
-                        <div class="space-y-4">
-                            <div>
-                                <h3 class="font-semibold text-sm">Linguaggi</h3>
-                                <div class="">
-                                    HTML | CSS | Javascript <br /> PHP | MySQL <br
-                                    /> Java | C
-                                </div>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-sm">Framework</h3>
-                                <div>
-                                    Laravel | Livewire | TailwindCSS <br /> Alpine
-                                    | Vuejs | Astrojs
-                                </div>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-sm">Lingue</h3>
-                                <div>Inglese B2</div>
-                            </div>
-                        </div>
+						<div class="space-y-4">
+							<div>
+								<h3 class="font-semibold text-sm">Linguaggi</h3>
+								<div class="">
+									HTML | CSS | Javascript <br /> PHP | MySQL <br
+									/> Java | C
+								</div>
+							</div>
+							<div>
+								<h3 class="font-semibold text-sm">Framework</h3>
+								<div>
+									Laravel | Livewire | TailwindCSS <br /> Alpine
+									| Vuejs | Astrojs
+								</div>
+							</div>
+							<div>
+								<h3 class="font-semibold text-sm">Lingue</h3>
+								<div>Inglese B2</div>
+							</div>
+						</div>
 
-                        <div class="card-actions mt-6">
-                            <button class="btn uppercase btn-primary" id="print"
-                                >Stampa <Icon
-                                    class="ml-1 w-4 h-5 stroke-current"
-                                    name="pixelarticons:print"
-                                /></button
-                            >
-                        </div>
-                    </div>
-                </div>
+						<div class="card-actions mt-6">
+							<button class="btn uppercase btn-primary" id="print"
+							>Stampa <Icon
+									class="ml-1 w-4 h-5 stroke-current"
+									name="pixelarticons:print"
+								/></button
+							>
+						</div>
+					</div>
+				</div>
 
-                <div
-                    class="print:col-span-2 md:col-span-2 pt-6 sm:px-12 card bg-base-100"
-                >
-                    <div class="flex flex-col card-body space-y-6">
-                        <div class="">
-                            <h2 class="text-2xl font-bold">
-                                Profilo professionale
-                            </h2>
-                            <p class="mt-2">
-                                Programmatore specializzato nello sviluppo web
-                                full stack e perito informatico. In costante
-                                aggiornamento sia per approfondire framework e
-                                linguaggi già conosciuti, che per sperimentare
-                                nuove soluzioni. <br />Predisposto al problem
-                                solving e lavorare in team.
-                            </p>
-                            <p class="mt-2">Possibilità di lavorare come Partita IVA e da remoto.</p>
-                        </div>
+				<div
+					class="print:col-span-2 md:col-span-2 pt-6 sm:px-12 card bg-base-100"
+				>
+					<div class="flex flex-col card-body space-y-6">
+						<div class="">
+							<h2 class="text-2xl font-bold">
+								Profilo professionale
+							</h2>
+							<p class="mt-2">
+								Programmatore specializzato nello sviluppo web
+								full stack e perito informatico. In costante
+								aggiornamento sia per approfondire framework e
+								linguaggi già conosciuti, che per sperimentare
+								nuove soluzioni. <br />Predisposto al problem
+								solving e lavorare in team.
+							</p>
+							<p class="mt-2">
+								Possibilità di lavorare come Partita IVA e da
+								remoto.
+							</p>
+						</div>
 
-                        <div class="">
-                            <h2 class="text-2xl font-bold">Esperienze lavorative</h2>
-                            <div class="mt-2 ml-2 space-y-2">
-                                <div>
-                                    <div class="font-black">Sviluppatore full stack freelance</div>
-                                    <div>2021 - ad oggi</div>
-                                    <div class="ml-2 opacity-75">
-                                        <div>Progettazione database</div>
-                                        <div>
-                                            Progettazione e sviluppo di
-                                            applicazioni SaaS
-                                        </div>
-                                        <div>Creazione siti web Jamstack</div>
-                                        <div>
-                                            Migrazione siti web da Wordpress a
-                                            Jamstack
-                                        </div>
-                                        <div>
-                                            Progettazione e sviluppo di una
-                                            soluzioni di ecommerce custom
-                                        </div>
-                                        <div>Consulenza</div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="font-black">Progetto Strange - Bando Giovani Smart</div>
-                                    <div>Novembre 2022 - Marzo 2023</div>
-                                    <div class="ml-2 opacity-75">
-                                        <div>L'Aquilone SCS, Vedano Olona</div>
-                                        <div>Corso di elementi di programmazione web</div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="font-black">Tirocinio - Laboratorio di Informatica Musicale</div>
-                                    <div>Settembre 2020 - Dicembre 2020</div>
-                                    <div class="ml-2 opacity-75">
-                                        <div>Università degli Studi di Milano</div>
-                                        <div>
-                                            Sviluppo di una libreria C per il
-                                            caricamento e la manipolazione di
-                                            documenti IEEE 1599
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+						<div class="">
+							<h2 class="text-2xl font-bold">
+								Esperienze lavorative
+							</h2>
+							<div class="mt-2 ml-2 space-y-2">
+								<div>
+									<div class="font-black">
+										Sviluppatore full stack freelance
+									</div>
+									<div>2021 - ad oggi</div>
+									<div class="ml-2 opacity-75">
+										<div>Progettazione database</div>
+										<div>
+											Progettazione e sviluppo di
+											applicazioni SaaS
+										</div>
+										<div>Creazione siti web Jamstack</div>
+										<div>
+											Migrazione siti web da Wordpress a
+											Jamstack
+										</div>
+										<div>
+											Progettazione e sviluppo di una
+											soluzioni di ecommerce custom
+										</div>
+										<div>Consulenza</div>
+									</div>
+								</div>
+								<div>
+									<div class="font-black">
+										Progetto Strange - Bando Giovani Smart
+									</div>
+									<div>Novembre 2022 - Marzo 2023</div>
+									<div class="ml-2 opacity-75">
+										<div>L'Aquilone SCS, Vedano Olona</div>
+										<div>
+											Corso di elementi di programmazione
+											web
+										</div>
+									</div>
+								</div>
+								<div>
+									<div class="font-black">
+										Tirocinio - Laboratorio di Informatica
+										Musicale
+									</div>
+									<div>Settembre 2020 - Dicembre 2020</div>
+									<div class="ml-2 opacity-75">
+										<div>
+											Università degli Studi di Milano
+										</div>
+										<div>
+											Sviluppo di una libreria C per il
+											caricamento e la manipolazione di
+											documenti IEEE 1599
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 
-                        <div class="">
-                            <h2 class="text-2xl font-bold">Istruzione</h2>
-                            <div class="mt-2 ml-2 space-y-2">
-                                <div>
-                                    <div class="font-black">
-                                        Laurea in Informatca Musicale
-                                    </div>
-                                    <div>Settembre 2016 - Febbraio 2021</div>
-                                    <div class="ml-2 opacity-75">
-                                        <div>Università degli Studi di Milano</div>                                     
-                                        <div>Esito 104</div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="font-black">Diploma in informatica</div>
-                                    <div>2009 - 2013</div>
-                                    <div class="ml-2 opacity-75">
-                                        <div>ISIS Keynes, Gazzada</div>                               
-                                        <div>Esito 85</div>
-                                    </div>
-                                </div>
-                                <div class="divider"></div>
-                                <div>
-                                    <div class="font-black">Fondamenti di Marketing Digitale</div>
-                                    <div>Marzo 2021</div>
-                                    <div class="ml-2 opacity-75">
-                                        <div>Google Digital Training</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+						<div class="">
+							<h2 class="text-2xl font-bold">Istruzione</h2>
+							<div class="mt-2 ml-2 space-y-2">
+								<div>
+									<div class="font-black">
+										Laurea in Informatca Musicale
+									</div>
+									<div>Settembre 2016 - Febbraio 2021</div>
+									<div class="ml-2 opacity-75">
+										<div>
+											Università degli Studi di Milano
+										</div>
+										<div>Esito 104</div>
+									</div>
+								</div>
+								<div>
+									<div class="font-black">
+										Diploma in informatica
+									</div>
+									<div>2009 - 2013</div>
+									<div class="ml-2 opacity-75">
+										<div>ISIS Keynes, Gazzada</div>
+										<div>Esito 85</div>
+									</div>
+								</div>
+								<div class="divider"></div>
+								<div>
+									<div class="font-black">
+										Fondamenti di Marketing Digitale
+									</div>
+									<div>Marzo 2021</div>
+									<div class="ml-2 opacity-75">
+										<div>Google Digital Training</div>
+									</div>
+								</div>
+							</div>
+						</div>
 
-                        <div class="hidden">
-                            <h2 class="text-2xl font-bold">Altro</h2>
-                            <div>
-                                <div>Albizzate Valley Festival</div>
-                                <div>Associazione MEGA, Albizzate</div>
-                                <div>2012 - 2015</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+						<div class="hidden">
+							<h2 class="text-2xl font-bold">Altro</h2>
+							<div>
+								<div>Albizzate Valley Festival</div>
+								<div>Associazione MEGA, Albizzate</div>
+								<div>2012 - 2015</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
-                <div
-                    class="print:col-span-3 sm:col-span-3 mt-12 italic text-sm print:text-xs"
-                >
-                    <p class="sm:px-12">
-                        "Autorizzo il trattamento dei miei dati personali
-                        presenti nel cv ai sensi del Decreto Legislativo 30
-                        giugno 2003, n. 196 “Codice in materia di protezione dei
-                        dati personali” e dell'art. 13 del GDPR (Regolamento UE
-                        2016/679)."
-                    </p>
-                    <div class="text-right">
-                        <p class="mt-2">
-                            Vedano Olona, <span id="curDate"></span>
-                        </p>
-                        <div>
-                            <Image src={sign} alt="Firma" class="dark:bg-white h-16 w-32 mr-0 ml-auto object-center"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+				<div
+					class="print:col-span-3 sm:col-span-3 mt-12 italic text-sm print:text-xs"
+				>
+					<p class="sm:px-12">
+						"Autorizzo il trattamento dei miei dati personali
+						presenti nel cv ai sensi del Decreto Legislativo 30
+						giugno 2003, n. 196 “Codice in materia di protezione dei
+						dati personali” e dell'art. 13 del GDPR (Regolamento UE
+						2016/679)."
+					</p>
+					<div class="text-right">
+						<p class="mt-2">
+							Vedano Olona, <span id="curDate"></span>
+						</p>
+						<div>
+							<Image
+								src={sign}
+								alt="Firma"
+								class="dark:bg-white h-16 w-32 mr-0 ml-auto object-center"
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </Layout>
 
 <script type="text/javascript">
-    const curDate = document.getElementById("curDate");
-    curDate.innerHTML = new Date().toLocaleDateString();
+	const curDate = document.getElementById("curDate");
+	curDate.innerHTML = new Date().toLocaleDateString();
 
-    const handlePrint = () => {
-        var cvContent = document.getElementById("cvContent").innerHTML;
-        var bodyContent = document.body.innerHTML;
-        document.body.innerHTML = cvContent;
-        document.getElementById("print").classList.add("hidden");
-        window.print();
-        location.reload();
-    };
+	const handlePrint = () => {
+		const cvContent = document.getElementById("cvContent").innerHTML;
+		const bodyContent = document.body.innerHTML;
+		document.body.innerHTML = cvContent;
+		document.getElementById("print").classList.add("hidden");
+		window.print();
+		location.reload();
+	};
 
-    document.getElementById("print").onclick = handlePrint;
+	document.getElementById("print").onclick = handlePrint;
 </script>

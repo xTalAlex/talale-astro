@@ -9,267 +9,418 @@ import decapDemo from "@assets/images/decapdemo.png";
 import filamentDemo from "@assets/images/filamentdemo.png";
 
 const title =
-    "Fai crescere la tua attività online con un sito web personalizzato";
+	"Fai crescere la tua attività online con un sito web personalizzato";
 const description =
-    "Scegli il pacchetto di sviluppo web su misura per te e scopri i servizi base inclusi.";
+	"Scegli il pacchetto di sviluppo web su misura per te e scopri i servizi base inclusi.";
 
 const supportServices = [
-    { 
-        "title": "Risoluzione bug e problemi",
-        "icon": "pixelarticons:bug" 
-    },
-    { 
-        "title": "Monitoraggio traffico e rendimento SEO",
-        "icon": "pixelarticons:speed-fast" 
-    },
-    { 
-        "title": "Campagne google ADS",
-        "icon": "pixelarticons:coin" 
-    },
-    { 
-        "title": "Gestione profilo Google Maps",
-        "icon": "pixelarticons:map" 
-    },
-    { 
-        "title": "Aggiornamenti software e di sicurezza",
-        "icon": "pixelarticons:repeat" 
-    },
-    // { 
-    //     "title": "Interventi sul codice",
-    //     "icon": "pixelarticons:code" 
-    // },
-    { 
-        "title": "Assistenza e supporto tecnico",
-        "icon": "pixelarticons:suitcase" 
-    }
-]
+	{
+		title: "Risoluzione bug e problemi",
+		icon: "pixelarticons:bug",
+	},
+	{
+		title: "Monitoraggio traffico e rendimento SEO",
+		icon: "pixelarticons:speed-fast",
+	},
+	{
+		title: "Campagne google ADS",
+		icon: "pixelarticons:coin",
+	},
+	{
+		title: "Gestione profilo Google Maps",
+		icon: "pixelarticons:map",
+	},
+	{
+		title: "Aggiornamenti software e di sicurezza",
+		icon: "pixelarticons:repeat",
+	},
+	// {
+	//     "title": "Interventi sul codice",
+	//     "icon": "pixelarticons:code"
+	// },
+	{
+		title: "Assistenza e supporto tecnico",
+		icon: "pixelarticons:suitcase",
+	},
+];
 ---
 
 <Layout title={title} description={description}>
-    <div class="px-5 md:mx-auto container w-full max-w-5xl overflow-hidden lg:overflow-visible">
+	<div
+		class="px-5 md:mx-auto container w-full max-w-5xl overflow-hidden lg:overflow-visible"
+	>
+		<!-- HEADER  -->
+		<div class="pb-96 md:pb-72 lg:pb-32">
+			<div class="relative">
+				<div class="md:ml-10 lg:ml-0 max-w-xl my-10">
+					<h1 class="py-12 text-4xl sm:text-5xl font-bold">
+						{title}
+					</h1>
+					<h2 class="text-2xl max-w-sm">
+						{description}
+					</h2>
+				</div>
 
-        <!-- HEADER  -->
-        <div class="pb-96 md:pb-72 lg:pb-32">
-            <div class="relative">
-                <div class="md:ml-10 lg:ml-0 max-w-xl my-10">
-                    <h1 class="py-12 text-4xl sm:text-5xl font-bold">{title}</h1>
-                    <h2 class="text-2xl max-w-sm">
-                        {description}
-                    </h2>
-                </div>
+				<div
+					class="absolute -z-10 -right-10 md:right-0 md:-bottom-64 -bottom-80 lg:-bottom-16"
+				>
+					<div class="relative h-64 md:h-80">
+						<div
+							class="absolute opacity-40 animate-pulse inset-0 -z-10 bg-gradient-to-br from-primary to-secondary blur-3xl"
+						>
+						</div>
+						<Image
+							class="object-cover h-full"
+							src={bgImage}
+							alt={title}
+						/>
+					</div>
+				</div>
+			</div>
+		</div>
 
-                <div class="absolute -z-10 -right-10 md:right-0 md:-bottom-64 -bottom-80 lg:-bottom-16">
-                    <div class="relative h-64 md:h-80">
-                        <div class="absolute opacity-40 animate-pulse inset-0 -z-10 bg-gradient-to-br from-primary to-secondary blur-3xl">
-                        </div>
-                        <Image class="object-cover h-full" src={bgImage} alt={title} />
-                    </div>
-                </div>
-            </div>
-        </div>
+		<!-- BASE SERVICES -->
+		<div class="mt-12 md:mt-20">
+			<h2
+				class="text-2xl mb-10 uppercase font-bold pt-20 -mt-20"
+				id="included-services"
+			>
+				Tutto ciò di cui hai bisogno per una presenza online solida e
+				professionale
+			</h2>
+			<div class="join join-vertical w-full space-y-2">
+				{
+					Config.features.map((service) => (
+						<div class="join-item collapse collapse-plus bg-base-200">
+							<input type="radio" name="base-services" />
+							<div class="collapse-title text-xl font-bold">
+								{service.title}
+							</div>
+							<div class="collapse-content">
+								<div class="py-4">
+									<p>{service.description}</p>
+								</div>
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</div>
 
-        <!-- BASE SERVICES -->
-        <div class="mt-12 md:mt-20">
-            <h2 class="text-2xl mb-10 uppercase font-bold pt-20 -mt-20" id="included-services">
-                Tutto ciò di cui hai bisogno per una presenza online solida e professionale
-            </h2>
-            <div class="join join-vertical w-full space-y-2">
-                {
-                    Config.features.map((service, i) => (
-                        <div class="join-item collapse collapse-plus bg-base-200">
-                            <input type="radio" name="base-services" />
-                            <div class="collapse-title text-xl font-bold">
-                                {service.title}
-                            </div>
-                            <div class="collapse-content">
-                                <div class="py-4">
-                                    <p>{service.description}</p>
-                                </div>
-                            </div>
-                        </div>
-                    ))
-                }
-            </div>
-        </div>
+		<!-- FEATURES -->
+		<div>
+			<h2
+				class="text-3xl md:text-4xl font-bold mt-32 uppercase text-center mx-auto"
+			>
+				Pannello di controllo CMS personalizzato per una facile gestione
+				del tuo sito web
+			</h2>
+			<div class="text-center my-20 text-xl">
+				Gestione autonoma dei contenuti: tieni sotto controllo i tuoi
+				contenuti più importanti, sempre.
+			</div>
 
-        <!-- FEATURES -->
-        <div>
-            <h2 class="text-3xl md:text-4xl font-bold mt-32 uppercase text-center mx-auto">
-                Pannello di controllo CMS personalizzato per una facile gestione del tuo sito web
-            </h2>
-            <div class="text-center my-20 text-xl">
-                Gestione autonoma dei contenuti: tieni sotto controllo i tuoi contenuti più importanti, sempre.
-            </div>
+			<div class="grid md:grid-cols-2 gap-10">
+				<div
+					class="relative card overflow-hidden ring-primary shadow-md shadow-primary ring group"
+				>
+					<div
+						class="hidden group-hover:grid absolute inset-x-0 bottom-6 z-10 place-items-center"
+					>
+						<a
+							class="link link-primary glass card py-2 px-3"
+							href="https://demo.filamentphp.com/"
+							target="_blank">Prova la demo</a>
+					</div>
+					<Image
+						class="group-hover:scale-110 transition duration-500 object-cover h-full w-full"
+						src={filamentDemo}
+						alt="Filament CMS Demo | Pannello di controllo CMS personalizzato"
+					/>
+				</div>
+				<div
+					class="relative card overflow-hidden ring-primary shadow-md shadow-primary ring group hidden md:block"
+				>
+					<div
+						class="hidden group-hover:grid absolute inset-x-0 bottom-6 z-10 place-items-center"
+					>
+						<a
+							class="link link-primary glass card py-2 px-3"
+							href="https://demo.decapcms.org/"
+							target="_blank">Prova la demo</a>
+					</div>
+					<Image
+						class="group-hover:scale-110 transition duration-500 object-cover h-full w-full"
+						src={decapDemo}
+						alt="Decap CMS Demo | Pannello di controllo CMS personalizzato"
+					/>
+				</div>
+			</div>
 
-            <div class="grid md:grid-cols-2 gap-10">
-                <div class="relative card overflow-hidden ring-primary shadow-md shadow-primary ring group">
-                    <div class="hidden group-hover:grid absolute inset-x-0 bottom-6 z-10 place-items-center"><a class="link link-primary glass card py-2 px-3" href="https://demo.filamentphp.com/" target="_blank">Prova la demo</a></div>
-                    <Image class="group-hover:scale-110 transition duration-500 object-cover h-full w-full" src={filamentDemo} alt="Filament CMS Demo | Pannello di controllo CMS personalizzato" />
-                </div>
-                <div class="relative card overflow-hidden ring-primary shadow-md shadow-primary ring group hidden md:block">
-                    <div class="hidden group-hover:grid absolute inset-x-0 bottom-6 z-10 place-items-center"><a class="link link-primary glass card py-2 px-3" href="https://demo.decapcms.org/" target="_blank">Prova la demo</a></div>
-                    <Image class="group-hover:scale-110 transition duration-500 object-cover h-full w-full" src={decapDemo} alt="Decap CMS Demo | Pannello di controllo CMS personalizzato" />
-                </div>
-            </div>
+			<div class="my-20 text-center">
+				<a
+					class="btn btn-primary btn-lg font-bold uppercase"
+					href="/#prices">Scegli un pacchetto di sviluppo web</a
+				>
+			</div>
 
-            <div class="my-20 text-center">
-                <a class="btn btn-primary btn-lg font-bold uppercase" href="/#prices">Scegli un pacchetto di sviluppo web</a>
-            </div>
+			<div
+				class="opacity-20 w-full items-center gap-10 pt-20 hidden sm:flex"
+			>
+				<div class="flex-none font-bold uppercase">
+					Assistenza, Manutenzione e Pubblicità
+				</div>
+				<div class="w-full">
+					<div class="w-full h-0.5 bg-neutral-content"></div>
+				</div>
+			</div>
+			<h2
+				class="mb-6 pt-20 -mt-12 text-3xl md:text-4xl font-bold uppercase text-center"
+				id="support"
+			>
+				Massima tranquillità con il pacchetto <span class="text-nowrap"
+				>Assistenza & Ads</span
+				>
+			</h2>
+			<h3 class="mt-20 text-2xl text-center">
+				Dedicati alla tua attività, non al tuo sito web: affidati alle
+				cure di un esperto
+			</h3>
+			<div class="text-xl text-center">
+				Interventi rapidi per un sito web sempre funzionante, aggiornato
+				e performante.
+			</div>
 
-        
-            <div class="opacity-20 w-full items-center gap-10 pt-20 hidden sm:flex">
-                <div class="flex-none font-bold uppercase">Assistenza, Manutenzione e Pubblicità</div>
-                <div class="w-full">
-                    <div class="w-full h-0.5 bg-neutral-content"></div>
-                </div>
-            </div>
-            <h2 class="mb-6 pt-20 -mt-12 text-3xl md:text-4xl font-bold uppercase  text-center"
-                id="support"
-            >
-                Massima tranquillità con il pacchetto <span class="text-nowrap">Assistenza & Ads</span>
-            </h2>
-            <h3 class="mt-20 text-2xl text-center">Dedicati alla tua attività, non al tuo sito web: affidati alle cure di un esperto</h3>
-            <div class="text-xl text-center">Interventi rapidi per un sito web sempre funzionante, aggiornato e performante.</div>
+			<div class="mt-20">
+				<div class="gap-4 sm:gap-6 grid grid-cols-2 lg:grid-cols-3">
+					{
+						supportServices.map((service) => (
+							<div class="min-h-32 px-2 pt-12 pb-12 bg-base-200 shadow-md card text-center">
+								<Icon
+									class="mx-auto size-8 stroke-secondary text-primary"
+									name={service.icon}
+								/>
+								<div class="mt-4 sm:w-2/3 mx-auto">
+									{service.title}
+								</div>
+							</div>
+						))
+					}
+				</div>
+			</div>
 
-            <div class="mt-20">
-                <div class="gap-4 sm:gap-6 grid grid-cols-2 lg:grid-cols-3">
-                    {
-                        supportServices.map( service => (
-                            <div class="min-h-32 px-2 pt-12 pb-12 bg-base-200 shadow-md card text-center">
-                                <Icon class="mx-auto size-8 stroke-secondary text-primary"
-                                    name={service.icon}
-                                />
-                                <div class="mt-4 sm:w-2/3 mx-auto">{service.title}</div>
-                            </div>
-                        ))
-                    }
-                </div>
-            </div>
+			<div class="mt-20 text-center w-fit mx-auto">
+				<a class="btn btn-lg btn-primary uppercase" href="/#support"
+				>Attiva il tuo servizio di assistenza oggi stesso!</a
+				>
+				<div class="mt-6">
+					Prova gratuita inclusa per i <a class="link" href="/#prices"
+					>pacchetti di sviluppo web</a>
+				</div>
+			</div>
+		</div>
+	</div>
 
-            <div class="mt-20 text-center w-fit mx-auto">
-                <a class="btn btn-lg btn-primary uppercase" href="/#support">Attiva il tuo servizio di assistenza oggi stesso!</a>
-                <div class="mt-6">Prova gratuita inclusa per i <a class="link" href="/#prices">pacchetti di sviluppo web</a></div>
-            </div>
-        </div>
-    </div>
+	<div class="px-5 md:mx-auto container w-full max-w-5xl">
+		<!-- TIMELINE -->
+		<h2 class="text-2xl font-bold mt-32 uppercase">
+			Timeline di sviluppo web trasparente
+		</h2>
 
-    <div class="px-5 md:mx-auto container w-full max-w-5xl">
-        <!-- TIMELINE -->
-        <h2 class="text-2xl font-bold mt-32 uppercase">Timeline di sviluppo web trasparente</h2>
-
-        <div class="mt-20 relative">
-            <div class="pt-12 sticky min-h-screen bg-base-100 top-20" id="step1">
-                <h3 class="text-3xl font-bold -mt-6 sm:text-5xl text-nowrap">Step 1: Ricerca</h3>
-                <div class="mt-12">
-                    <div class="text-xl grid md:grid-cols-2 gap-12 place-content-between">
-                        <div>
-                            <ul class="space-y-2">
-                                <li>Ricerca di mercato e analisi della concorrenza.</li>
-                                <li>Formulazione degli obiettivi.</li>
-                                <li>Definizione di tempistiche e budget.</li>
-                            </ul>
-                        </div>
-                        <div class="place-self-end text-left w-full md:max-w-xs">
-                            <div class="">Tempistiche: <span class="font-bold">1-3 giorni</span></div>
-                        </div>
-                    </div>
-                    <div class="mt-10">
-                        <a href="#step2">
-                            <Icon
-                                class="h-6 w-6 stroke-current mx-auto animate-pulse opacity-25 hover:opacity-100 transition"
-                                name="pixelarticons:arrow-down"
-                            />
-                        </a>
-                    </div>
-                </div>
-                <div class="h-[50vh]"></div>
-            </div>
-            <div class="pt-12 sticky min-h-screen bg-base-100 top-20" id="step2">
-                <h3 class="text-3xl font-bold -mt-6 sm:text-5xl text-nowrap">Step 2: Progettazione</h3>
-                <div class="mt-12">
-                    <div class="text-xl grid md:grid-cols-2 gap-12 place-content-between">
-                        <div>
-                            <ul class="space-y-2">
-                                <li>Creazione del logo wordmark e della brand identity.</li>
-                                <li>Design template grafico.</li>  
-                                <li>Definizione delle funzionalità.</li>
-                            </ul>
-                            <div></div>
-                        </div>
-                        <div class="place-self-end text-left w-full md:max-w-xs">
-                            <div class="">Tempistiche: <span class="font-bold">1 settimana*</span></div>
-                            <div class="mt-6 text-sm">*A partire dal versamento dell'acconto</div>
-                            <div class="text-sm">*Le tempistiche possono variare in base al numero di revisioni</div>
-                        </div>
-                    </div>
-                    <div class="mt-10">
-                        <a href="#step3">
-                            <Icon
-                                class="h-6 w-6 stroke-current mx-auto animate-pulse opacity-25 hover:opacity-100 transition"
-                                name="pixelarticons:arrow-down"
-                            />
-                        </a>
-                    </div>
-                </div>
-                <div class="h-[50vh]"></div>
-            </div>
-            <div class="pt-12 sticky min-h-screen bg-base-100 top-20" id="step3">
-                <h3 class="text-3xl font-bold -mt-6 sm:text-5xl text-nowrap">Step 3: Svilluppo & Test</h3>
-                <div class="mt-12">
-                    <div class="text-xl grid md:grid-cols-2 gap-12 place-content-between">
-                        <div>
-                            <ul class="space-y-2">
-                                <li>Caricamento online dell'ambiente di sviluppo.</li>
-                                <li>Implementazione del tema grafico.</li>
-                                <li>Sviluppo backend e frontend.</li>
-                            </ul>
-                        </div>
-                        <div class="place-self-end text-left w-full md:max-w-xs">
-                            <div>Tempistiche: <span class="font-bold">1-4 settimane*</span></div>
-                            <div class="mt-6 text-sm">*Le tempistiche possono variare in base alla complessità del progetto e al numero di revisioni</div>
-                        </div>
-                    </div>
-                    <div class="mt-10">
-                        <a href="#step4">
-                            <Icon
-                                class="h-6 w-6 stroke-current mx-auto animate-pulse opacity-25 hover:opacity-100 transition"
-                                name="pixelarticons:arrow-down"
-                            />
-                        </a>
-                    </div>
-                </div>
-                <div class="h-[50vh]"></div>
-            </div>
-            <div class="pt-12 sticky min-h-screen bg-base-100 top-20" id="step4">
-                <h3 class="text-3xl font-bold -mt-6 sm:text-5xl text-nowrap">Step 4: Lancio</h3>
-                <div class="mt-12">
-                    <div class="text-xl grid md:grid-cols-2 gap-12 place-content-between">
-                        <div>
-                            <ul class="space-y-2">
-                                <li>Pubblicazione del sito web.</li>
-                                <li>Formazione all'utillizzo.</li>
-                            </ul>
-                            <div class="mt-6">Assistenza e monitoraggio secondo <a class="link" href="/services#support">piano mensile</a>.</div class="mt-6">
-                        </div>
-                        <div class="place-self-end text-left w-full md:max-w-xs">
-                            <div>Tempistiche: <span class="font-bold">1-3 giorni</span></div>
-                        </div>
-                    </div>
-                    <div class="mt-10">
-                        <a href="#cta">
-                            <Icon
-                                class="h-6 w-6 stroke-current mx-auto animate-pulse opacity-25 hover:opacity-100 transition"
-                                name="pixelarticons:arrow-down"
-                            />
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="h-[50vh]"></div>
-        </div>
-        <div class="relative bg-base-100 grid place-items-center w-full group max-w-min mx-auto pt-32 -mt-20" id="cta">
-            <Image class="w-96 -ml-32" src={mascotte} alt="Crea il tuo sito web"/>
-            <a class="btn btn-wide text-nowrap -mt-28 text-xl font-bold btn-primary uppercase" href="/#contacts">Crea il tuo sito web</a>
-        </div>
-    </div>
+		<div class="mt-20 relative">
+			<div
+				class="pt-12 sticky min-h-screen bg-base-100 top-20"
+				id="step1"
+			>
+				<h3 class="text-3xl font-bold -mt-6 sm:text-5xl text-nowrap">
+					Step 1: Ricerca
+				</h3>
+				<div class="mt-12">
+					<div
+						class="text-xl grid md:grid-cols-2 gap-12 place-content-between"
+					>
+						<div>
+							<ul class="space-y-2">
+								<li>
+									Ricerca di mercato e analisi della
+									concorrenza.
+								</li>
+								<li>Formulazione degli obiettivi.</li>
+								<li>Definizione di tempistiche e budget.</li>
+							</ul>
+						</div>
+						<div
+							class="place-self-end text-left w-full md:max-w-xs"
+						>
+							<div class="">
+								Tempistiche: <span class="font-bold"
+								>1-3 giorni</span>
+							</div>
+						</div>
+					</div>
+					<div class="mt-10">
+						<a href="#step2">
+							<Icon
+								class="h-6 w-6 stroke-current mx-auto animate-pulse opacity-25 hover:opacity-100 transition"
+								name="pixelarticons:arrow-down"
+							/>
+						</a>
+					</div>
+				</div>
+				<div class="h-[50vh]"></div>
+			</div>
+			<div
+				class="pt-12 sticky min-h-screen bg-base-100 top-20"
+				id="step2"
+			>
+				<h3 class="text-3xl font-bold -mt-6 sm:text-5xl text-nowrap">
+					Step 2: Progettazione
+				</h3>
+				<div class="mt-12">
+					<div
+						class="text-xl grid md:grid-cols-2 gap-12 place-content-between"
+					>
+						<div>
+							<ul class="space-y-2">
+								<li>
+									Creazione del logo wordmark e della brand
+									identity.
+								</li>
+								<li>Design template grafico.</li>
+								<li>Definizione delle funzionalità.</li>
+							</ul>
+							<div></div>
+						</div>
+						<div
+							class="place-self-end text-left w-full md:max-w-xs"
+						>
+							<div class="">
+								Tempistiche: <span class="font-bold"
+								>1 settimana*</span>
+							</div>
+							<div class="mt-6 text-sm">
+								*A partire dal versamento dell'acconto
+							</div>
+							<div class="text-sm">
+								*Le tempistiche possono variare in base al
+								numero di revisioni
+							</div>
+						</div>
+					</div>
+					<div class="mt-10">
+						<a href="#step3">
+							<Icon
+								class="h-6 w-6 stroke-current mx-auto animate-pulse opacity-25 hover:opacity-100 transition"
+								name="pixelarticons:arrow-down"
+							/>
+						</a>
+					</div>
+				</div>
+				<div class="h-[50vh]"></div>
+			</div>
+			<div
+				class="pt-12 sticky min-h-screen bg-base-100 top-20"
+				id="step3"
+			>
+				<h3 class="text-3xl font-bold -mt-6 sm:text-5xl text-nowrap">
+					Step 3: Svilluppo & Test
+				</h3>
+				<div class="mt-12">
+					<div
+						class="text-xl grid md:grid-cols-2 gap-12 place-content-between"
+					>
+						<div>
+							<ul class="space-y-2">
+								<li>
+									Caricamento online dell'ambiente di
+									sviluppo.
+								</li>
+								<li>Implementazione del tema grafico.</li>
+								<li>Sviluppo backend e frontend.</li>
+							</ul>
+						</div>
+						<div
+							class="place-self-end text-left w-full md:max-w-xs"
+						>
+							<div>
+								Tempistiche: <span class="font-bold"
+								>1-4 settimane*</span>
+							</div>
+							<div class="mt-6 text-sm">
+								*Le tempistiche possono variare in base alla
+								complessità del progetto e al numero di
+								revisioni
+							</div>
+						</div>
+					</div>
+					<div class="mt-10">
+						<a href="#step4">
+							<Icon
+								class="h-6 w-6 stroke-current mx-auto animate-pulse opacity-25 hover:opacity-100 transition"
+								name="pixelarticons:arrow-down"
+							/>
+						</a>
+					</div>
+				</div>
+				<div class="h-[50vh]"></div>
+			</div>
+			<div
+				class="pt-12 sticky min-h-screen bg-base-100 top-20"
+				id="step4"
+			>
+				<h3 class="text-3xl font-bold -mt-6 sm:text-5xl text-nowrap">
+					Step 4: Lancio
+				</h3>
+				<div class="mt-12">
+					<div
+						class="text-xl grid md:grid-cols-2 gap-12 place-content-between"
+					>
+						<div>
+							<ul class="space-y-2">
+								<li>Pubblicazione del sito web.</li>
+								<li>Formazione all'utillizzo.</li>
+							</ul>
+							<div class="mt-6">
+								Assistenza e monitoraggio secondo <a
+									class="link"
+									href="/services#support">piano mensile</a
+								>.
+							</div>
+						</div>
+						<div
+							class="place-self-end text-left w-full md:max-w-xs"
+						>
+							<div>
+								Tempistiche: <span class="font-bold"
+								>1-3 giorni</span>
+							</div>
+						</div>
+					</div>
+					<div class="mt-10">
+						<a href="#cta">
+							<Icon
+								class="h-6 w-6 stroke-current mx-auto animate-pulse opacity-25 hover:opacity-100 transition"
+								name="pixelarticons:arrow-down"
+							/>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="h-[50vh]"></div>
+		</div>
+		<div
+			class="relative bg-base-100 grid place-items-center w-full group max-w-min mx-auto pt-32 -mt-20"
+			id="cta"
+		>
+			<Image
+				class="w-96 -ml-32"
+				src={mascotte}
+				alt="Crea il tuo sito web"
+			/>
+			<a
+				class="btn btn-wide text-nowrap -mt-28 text-xl font-bold btn-primary uppercase"
+				href="/#contacts">Crea il tuo sito web</a
+			>
+		</div>
+	</div>
 </Layout>
