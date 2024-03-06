@@ -79,12 +79,12 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
     window.notify(Config.messageBoxSuccess, null, "success");
     document.getElementById("message").value = "";
     document.getElementById("submitButton").classList.remove("loading");
-    reportGoogleConversion();
+    trackGoogleEvent();
   };
 
-  const reportGoogleConversion = () => {
-    gtag &&
-      gtag("event", "form_submit", {
+  const trackGoogleEvent = () => {
+    window.gtag &&
+      window.gtag("event", "form_submit", {
         form_name: "messagebox",
       });
   };

@@ -19,8 +19,8 @@
     "@astrojs/sitemap": "^3.0.4",
     "@astrojs/tailwind": "^5.1.0",
     "@astrojs/vue": "^4.0.8",
-    "@fontsource-variable/rokkitt": "^5.0.20",
     "@fontsource/chakra-petch": "^5.0.19",
+    "@fontsource/vt323": "^5.0.12",
     "@iconify-json/pixelarticons": "^1.1.10",
     "@nanostores/vue": "^0.10.0",
     "@netlify/functions": "^2.0.2",
@@ -50,7 +50,7 @@
     "swiper": "^11.0.5",
     "tailwindcss": "^3.1.8",
     "theme-change": "^2.2.0",
-    "typescript": "^5.2.2",
+    "typescript": "^5.4.2",
     "vue": "^3.2.43"
   },
   "devDependencies": {

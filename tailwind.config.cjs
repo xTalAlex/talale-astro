@@ -1,26 +1,31 @@
-const defaultTheme = require("tailwindcss/defaultTheme")
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
   content: [
     "./public/**/*.html",
     "./src/**/*.{astro,js,jsx,svelte,ts,tsx,vue}",
   ],
-  safelist: [
-  ],
+  safelist: [],
   theme: {
     extend: {
       screens: {
-          'print': { 'raw': 'print' },
+        print: { raw: "print" },
       },
       fontFamily: {
-        "sans": ["Chakra Petch",...defaultTheme.fontFamily.sans],
-        "serif": ["Rokkitt",...defaultTheme.fontFamily.serif],
-        "mono": [...defaultTheme.fontFamily.mono],
+        sans: ["Chakra Petch", ...defaultTheme.fontFamily.sans],
+        serif: [
+          "Rockwell",
+          "Rockwell Nova",
+          "Roboto Slab",
+          "DejaVu Serif",
+          "Sitka Small",
+        ],
+        mono: ["VT323", ...defaultTheme.fontFamily.mono],
       },
       animation: {
         shine: "shine 1s",
         wiggle: "wiggle 2s ease-in-out infinite",
-        marquee: 'marquee 10s linear infinite',
+        marquee: "marquee 10s linear infinite",
       },
       keyframes: {
         shine: {
@@ -31,33 +36,30 @@ module.exports = {
           "50%": { transform: "rotate(3deg)" },
         },
         marquee: {
-          '0%': { transform: 'translateX(0%)' },
-          '100%': { transform: 'translateX(-100%)' },
-        }
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-100%)" },
+        },
       },
-    }
+    },
   },
-  plugins: [
-    require("@tailwindcss/typography"),
-    require("daisyui"), 
-  ],
+  plugins: [require("@tailwindcss/typography"), require("daisyui")],
   daisyui: {
     logs: false,
     themes: [
       {
-        "halloween": {
+        halloween: {
           ...require("daisyui/src/theming/themes")["halloween"],
-          "primary": "#ff972a",
-          "secondary": "#69398b",
-          "neutral": "#1B1D1D",
+          primary: "#ff972a",
+          secondary: "#69398b",
+          neutral: "#1B1D1D",
         },
       },
       {
         "halloween-light": {
           ...require("daisyui/src/theming/themes")["halloween"],
-          "primary": "#ff972a",
-          "secondary": "#69398b",
-          "neutral": "#1B1D1D",
+          primary: "#ff972a",
+          secondary: "#69398b",
+          neutral: "#1B1D1D",
           "base-100": "#FFF",
         },
       },

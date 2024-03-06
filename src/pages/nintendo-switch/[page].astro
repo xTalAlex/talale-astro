@@ -6,7 +6,7 @@ import Config from "../../site_config.json";
 import Pagination from "@components/Pagination.astro";
 import { formatDate } from "../../utils";
 import AddToWishlist from "@components/vue/AddToWishlist.vue";
-import Wishlist from "@components/vue/Wishlist.vue";
+import WishList from "@components/vue/WishList.vue";
 
 import { Image } from "astro:assets";
 
@@ -34,7 +34,7 @@ const { page } = Astro.props;
       <GamesSearchbar />
     </div>
 
-    <Wishlist client:only="vue" />
+    <WishList client:only="vue" />
 
     <div class="divider"></div>
 

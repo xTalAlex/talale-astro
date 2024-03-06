@@ -59,18 +59,18 @@
     </div>
     <div class="card w-full sm:w-1/2 md:w-2/3">
       <div class="card-body">
-        <Tabs headerClass="card-title">
-          <Tab title="Info">
+        <TabsWrapper headerClass="card-title">
+          <TabItem title="Info">
             <UserInfo />
-          </Tab>
-          <Tab title="Modifica">
+          </TabItem>
+          <TabItem title="Modifica">
             <UserUpdate
               :defaultName="$userInfo.name"
               :defaultEmail="$userInfo.email"
               @userUpdated="loadUser"
             />
-          </Tab>
-        </Tabs>
+          </TabItem>
+        </TabsWrapper>
       </div>
     </div>
   </div>
@@ -80,8 +80,8 @@
 </template>
 
 <script setup>
-import Tabs from "@components/vue/common/Tabs.vue";
-import Tab from "@components/vue/common/Tab.vue";
+import TabsWrapper from "@components/vue/common/TabsWrapper.vue";
+import TabItem from "@components/vue/common/TabItem.vue";
 import UserUpdate from "@components/vue/UserUpdate.vue";
 import UserInfo from "@components/vue/UserInfo.vue";
 import { useStore } from "@nanostores/vue";

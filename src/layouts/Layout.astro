@@ -10,14 +10,14 @@ export interface Props {
 }
 
 import "@fontsource/chakra-petch";
-import "@fontsource-variable/rokkitt";
+import "@fontsource/vt323";
 import "@assets/css/main.css";
 import "animate.css";
 import Config from "../site_config.json";
 import { SEO } from "astro-seo";
 import Navbar from "@components/Navbar.astro";
 import Footer from "@components/Footer.astro";
-import Modal from "@components/vue/Modal.vue";
+import BaseModal from "@components/vue/BaseModal.vue";
 import BackToTop from "@components/BackToTop.astro";
 import IubendaCookieSolution from "@components/IubendaCookieSolution.astro";
 import TawkToWidget from "@components/TawkToWidget.astro";
@@ -166,7 +166,7 @@ const openGraph = {
 
     <BackToTop />
 
-    <Modal client:only="vue" />
+    <BaseModal client:only="vue" />
 
     {
       TAWKTO_WIDGET_URL && (

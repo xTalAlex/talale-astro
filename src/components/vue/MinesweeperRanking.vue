@@ -91,12 +91,14 @@ function fetchRanks() {
   });
 }
 
+function refreshRanking() {
+  if (open.value) fetchRanks();
+}
+
 onMounted(() => {
-  document.refreshRanking = function refreshRanking() {
-    document.dispatchEvent(new CustomEvent("refreshRanking"));
-  };
-  document.addEventListener("refreshRanking", () => {
-    if (open.value) fetchRanks();
+  window.addEventListener("refreshRanking", () => {
+    refreshRanking();
   });
+  window.dispatchEvent(new CustomEvent("refreshRanking"));
 });
 </script>

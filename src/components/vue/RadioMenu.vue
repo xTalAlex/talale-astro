@@ -196,6 +196,7 @@ function play() {
         isPlaying.value = true;
         lastRadioStation.value.isPlaying = true;
         navigator.mediaSession.playbackState = "playing";
+        trackGoogleEvent();
       })
       .catch(() => {
         radioPlayer.value.pause();
@@ -230,6 +231,13 @@ function toggle() {
 function setVolume() {
   radioPlayer.value.volume = volume.value / 100;
   lastRadioStation.value.volume = volume.value / 100;
+}
+
+function trackGoogleEvent() {
+  window.gtag &&
+    window.gtag("event", "radio_play", {
+      radio_name: lastRadioStation.value?.name,
+    });
 }
 
 onMounted(() => {

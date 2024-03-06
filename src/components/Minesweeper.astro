@@ -22,8 +22,8 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
                 {table.map((row, rowId) => {
                   return (
                     <div
-                      class="mine-cell z-10 grid h-8 w-8 cursor-pointer select-none place-items-center border-2 border-neutral-content text-center font-black shadow-inner hover:border-accent active:shadow-none md:h-10 md:w-10"
-                      id={colId * boardSize + rowId}
+                      class="minesweeper-cell z-10 grid h-8 w-8 cursor-pointer select-none place-items-center border-2 border-neutral-content text-center font-black shadow-inner hover:border-accent active:shadow-none md:h-10 md:w-10"
+                      id={`${colId * boardSize + rowId}`}
                     />
                   );
                 })}
@@ -78,10 +78,14 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
     3: "text-error",
   };
 
-  const cells = document.querySelectorAll(".mine-cell");
-  const refresh = document.getElementById("refresh");
-  const itemFoundFanfare = document.getElementById("itemFoundFanfare");
-  const electrodeCry = document.getElementById("electrodeCry");
+  const cells = Array.from(document.getElementsByClassName("minesweeper-cell"));
+  const refresh = document.getElementById("refresh") as HTMLButtonElement;
+  const itemFoundFanfare = document.getElementById(
+    "itemFoundFanfare",
+  ) as HTMLAudioElement;
+  const electrodeCry = document.getElementById(
+    "electrodeCry",
+  ) as HTMLAudioElement;
 
   const init = () => {
     gameOver = false;
@@ -105,7 +109,7 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
     getHints();
   };
 
-  const getCoordinates = (id) => {
+  const getCoordinates = (id: number) => {
     return {
       col: Math.floor(id / boardSize),
       row: id % boardSize,
@@ -138,15 +142,21 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
 
   init();
 
-  const checkCell = (id) => {
-    if (gameOver || document.getElementById(id).innerHTML != "") return;
-    var cell = document.getElementById(id);
+  const checkCell = (id: number) => {
+    var cell = document.getElementById(String(id));
     var coordinates = getCoordinates(id);
+    if (
+      gameOver ||
+      document.getElementById(String(id))?.innerHTML != "" ||
+      !cell
+    )
+      return;
     if (table[coordinates.col][coordinates.row] == "X") {
       cell.innerHTML = `<img class="h-5 w-5 md:h-6 md:w-6" src='${electrode}'/>`;
       gameOver = true;
-      storeResult(false);
       electrodeCry.play();
+      storeResult(false);
+      trackGoogleEvent("game_lost");
       setTimeout(showBombs(id), 2000);
       return;
     } else {
@@ -165,8 +175,8 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
       adjacentCells(coordinates.col, coordinates.row, boardSize).forEach(
         (cell) => {
           if (
-            document.getElementById(cell.col * boardSize + cell.row)
-              .innerHTML == "" &&
+            document.getElementById(String(cell.col * boardSize + cell.row))
+              ?.innerHTML == "" &&
             table[cell.col][cell.row] != "X"
           ) {
             checkCell(cell.col * boardSize + cell.row);
@@ -178,13 +188,14 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
     }
   };
 
-  const showBombs = (excludeId) => {
+  const showBombs = (excludeId: number) => {
     refresh.disabled = true;
     var remainingBombs = bombs.filter((id) => id != excludeId);
     remainingBombs.forEach((id, i) => {
+      let cell = document.getElementById(id);
       setTimeout(() => {
-        document.getElementById(id).innerHTML =
-          `<img class="h-5 w-5 md:h-6 md:w-6" src='${electrode}'/>`;
+        cell &&
+          (cell.innerHTML = `<img class="h-5 w-5 md:h-6 md:w-6" src='${electrode}'/>`);
         if (i == remainingBombs.length - 1) refresh.disabled = false;
       }, i * 200);
     });
@@ -193,8 +204,9 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
   const checkWin = () => {
     if (checkedCtr == boardSize * boardSize - nBombs) {
       gameOver = true;
-      storeResult(true);
       itemFoundFanfare.play();
+      storeResult(true);
+      trackGoogleEvent("game_won");
       fire(0.25, {
         spread: 26,
         startVelocity: 55,
@@ -220,7 +232,7 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
     }
   };
 
-  const fire = (particleRatio, opts) => {
+  const fire = (particleRatio: number, opts: object) => {
     confetti(
       Object.assign({}, { origin: { y: 0.7 } }, opts, {
         particleCount: Math.floor(200 * particleRatio),
@@ -230,21 +242,21 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
 
   refresh.onclick = init;
   cells.forEach((cell) => {
-    cell.onclick = (event) => {
-      if (event.target.tagName != "IMG") checkCell(event.target.id);
+    (cell as HTMLElement).onclick = (event: Event) => {
+      let et = event.target as HTMLElement;
+      if (et.tagName != "IMG") checkCell(Number(et.id));
     };
-    cell.oncontextmenu = (e) => {
-      e.preventDefault();
+    (cell as HTMLElement).oncontextmenu = (event: Event) => {
+      event.preventDefault();
+      let et = event.target as HTMLElement;
       if (!gameOver) {
-        if (e.target.innerHTML == "")
-          e.target.innerHTML = `<img class='h-8 w-8 md:h-10 md:w-10' src='${magnet}'/>`;
-        if (e.target.tagName == "IMG" && e.target.getAttribute("src") == magnet)
-          e.target.parentElement.innerHTML = `<img class="h-5 w-5 md:h-6 md:w-6" src='${unownQuestion}'/>`;
-        if (
-          e.target.tagName == "IMG" &&
-          e.target.getAttribute("src") == unownQuestion
-        )
-          e.target.remove();
+        if (et.innerHTML == "")
+          et.innerHTML = `<img class='h-8 w-8 md:h-10 md:w-10' src='${magnet}'/>`;
+        if (et.tagName == "IMG" && et.getAttribute("src") == magnet)
+          et.parentElement &&
+            (et.parentElement.innerHTML = `<img class="h-5 w-5 md:h-6 md:w-6" src='${unownQuestion}'/>`);
+        if (et.tagName == "IMG" && et.getAttribute("src") == unownQuestion)
+          et.remove();
       }
     };
   });
@@ -261,7 +273,11 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
           user: window.netlifyIdentity.currentUser(),
           victory: victory,
         }),
-      }).then((res) => document.refreshRanking());
+      }).then((res) => window.dispatchEvent(new CustomEvent("refreshRanking")));
     }
+  };
+
+  const trackGoogleEvent = (eventName: string, eventParams: object = {}) => {
+    window.gtag && window.gtag("event", eventName, eventParams);
   };
 </script>
