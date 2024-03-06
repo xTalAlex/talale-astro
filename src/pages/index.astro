@@ -11,36 +11,36 @@ import Map from "@components/Map.astro";
 ---
 
 <Layout>
-	<Hero />
-	
-	<div class="px-5 mx-auto container space-y-24 pt-32">
-		
-		<Introduction />
+  <Hero />
 
-		<Frameworks/>
+  <div class="container mx-auto space-y-24 px-5 pt-32">
+    <Introduction />
 
-		<Prices />
+    <Frameworks />
 
-		<ProjectsGallery />
+    <Prices />
 
-		<!-- <FeaturedImages /> -->
+    <ProjectsGallery />
 
-	</div>
+    <!-- <FeaturedImages /> -->
+  </div>
 
-	<div class="w-full h-full overflow-hidden relative group mt-32 md:mt-52 -mb-32" id="contacts">
-		<div class="absolute inset-0">
-			<Map />
-		</div>
-		<div class="px-5 mx-auto lg:ml-auto lg:mr-20 container py-32 lg:w-1/2">
-			<div class="card glass mt-10">
-				<div class="card-body">
-					<div class="card bg-transparent p-0 space-y-12 text-primary-content">
-						<MessageBox />
-						<Contacts />
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
+  <div
+    class="group relative -mb-32 mt-32 h-full w-full overflow-hidden md:mt-52"
+    id="contacts"
+  >
+    <div class="absolute inset-0">
+      <Map />
+    </div>
+    <div class="container mx-auto px-5 py-32 lg:ml-auto lg:mr-20 lg:w-1/2">
+      <div class="card glass mt-10">
+        <div class="card-body">
+          <div class="card space-y-12 bg-transparent p-0 text-primary-content">
+            <MessageBox />
+            <Contacts />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </Layout>

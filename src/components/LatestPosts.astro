@@ -4,22 +4,35 @@ import { formatDate } from "../utils";
 
 const { class: className } = Astro.props;
 ---
+
 <div class:list={["relative", className]}>
-	<div class="relative text-3xl uppercase text-left pt-20 -mt-20 mb-12" id="latest-posts">Dal Blog</div>
-	<div class="absolute inset-0 bg-gradient-to-tl blur-3xl from-primary to-secondary opacity-10 z-0"></div>
-	<div class="relative z-10">
-		<ul>
-			{
-				posts.slice(0,4).map( post => 
-					<li class="mt-6 flex">
-						<div class="badge badge-secondary flex-none md:p-4 badge-sm">{ formatDate(post.date, "short") }</div>
-						<div class="ml-5 flex flex-col items-start text-left">
-							<a href={`/blog/${ post.slug }`}><div class="link text-lg text-primary" set:html={ post.title }></div></a>
-							<div class="max-w-md line-clamp-3" set:html={ post.excerpt }></div>
-						</div>
-					</li>
-				)
-			}
-		</ul>
-	</div>
+  <div
+    class="relative -mt-20 mb-12 pt-20 text-left text-3xl uppercase"
+    id="latest-posts"
+  >
+    Dal Blog
+  </div>
+  <div
+    class="absolute inset-0 z-0 bg-gradient-to-tl from-primary to-secondary opacity-10 blur-3xl"
+  >
+  </div>
+  <div class="relative z-10">
+    <ul>
+      {
+        posts.slice(0, 4).map((post) => (
+          <li class="mt-6 flex">
+            <div class="badge badge-secondary badge-sm flex-none md:p-4">
+              {formatDate(post.date, "short")}
+            </div>
+            <div class="ml-5 flex flex-col items-start text-left">
+              <a href={`/blog/${post.slug}`}>
+                <div class="link text-lg text-primary" set:html={post.title} />
+              </a>
+              <div class="line-clamp-3 max-w-md" set:html={post.excerpt} />
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 </div>

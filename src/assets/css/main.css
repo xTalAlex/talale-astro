@@ -10,18 +10,18 @@
 @import "tailwindcss/utilities";
 
 :root {
-    --swiper-theme-color: theme('colors.base-content') !important;
-    /*
+  --swiper-theme-color: theme("colors.base-content") !important;
+  /*
     * --swiper-navigation-color: "#000";
     * --swiper-pagination-color: "#fff"; 
     */
 }
 
 .swiper-pagination-bullet {
-    background-color: theme('colors.base-content') !important;
-    opacity: 1 !important;
+  background-color: theme("colors.base-content") !important;
+  opacity: 1 !important;
 }
 
 .swiper-pagination-bullet-active {
-    background-color: theme('colors.primary') !important;
+  background-color: theme("colors.primary") !important;
 }

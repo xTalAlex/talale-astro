@@ -10,52 +10,63 @@ const fullTitle = Config.title + " | " + Config.motto;
 ---
 
 <div
-	id="heroContainer"
-	class="hero min-h-screen relative max-w-none -mt-16"
-	style={"background-image: url(images/castelia-city-day.jfif);"}
+  id="heroContainer"
+  class="hero relative -mt-16 min-h-screen max-w-none"
+  style={"background-image: url(images/castelia-city-day.jfif);"}
 >
-	<div class="hero-overlay bg-opacity-60"></div>
-	<div class="hero-content text-left text-neutral-content">
-		<div class="max-w-full pl-5 md:pl-0 ">
-			<div class="max-w-max md:pt-0">
-				<div class="flex flex-col md:flex-row md:justify-start mb-2 group">
-					<Image src={mascotte} class="animate__animated animate__jackInTheBox w-min -mr-16 -z-10 h-24 md:h-32 mb-2 drop-shadow-2xl place-self-start" alt={`${Config.title} | ${Config.subtitle}`}/>
-					<div class="font-bold -ml-4">
-						<h1 class="text-5xl md:text-6xl ml-4 md:ml-4 max-w-xs">{ Config.title }</h1>
-					</div>
-				</div>
-				<h1 class="mb-5 text-2xl font-semibold md:text-center">{Config.subtitle}</h1>
-			</div>
-			<h2 class="hidden">{fullTitle}</h2>
-			<h3 class="mb-5">
-				{Config.motto}
-			</h3>
-			<a href="#contacts" class="btn uppercase btn-primary">{Config.cta}</a>
-			<a href="#prices" class="mt-2 ml-2 sm:mt-0 btn uppercase btn-secondary">Prezzi</a>
-		</div>
-		<div class="tooltip tooltip-right absolute bottom-4 left-4 md:bottom-6 md:left-6 cursor-help" 
-			data-tip="Lo sfondo cambia durante la giornata"
-		>
-			<Icon class="w-6 h-6 stroke-current" name="pixelarticons:android" />
-		</div>
-	</div>
+  <div class="hero-overlay bg-opacity-60"></div>
+  <div class="hero-content text-left text-neutral-content">
+    <div class="max-w-full pl-5 md:pl-0">
+      <div class="max-w-max md:pt-0">
+        <div class="group mb-2 flex flex-col md:flex-row md:justify-start">
+          <Image
+            src={mascotte}
+            class="animate__animated animate__jackInTheBox -z-10 -mr-16 mb-2 h-24 w-min place-self-start drop-shadow-2xl md:h-32"
+            alt={`${Config.title} | ${Config.subtitle}`}
+          />
+          <div class="-ml-4 font-bold">
+            <h1 class="ml-4 max-w-xs text-5xl md:ml-4 md:text-6xl">
+              {Config.title}
+            </h1>
+          </div>
+        </div>
+        <h1 class="mb-5 text-2xl font-semibold md:text-center">
+          {Config.subtitle}
+        </h1>
+      </div>
+      <h2 class="hidden">{fullTitle}</h2>
+      <h3 class="mb-5">
+        {Config.motto}
+      </h3>
+      <a href="#contacts" class="btn btn-primary uppercase">{Config.cta}</a>
+      <a href="#prices" class="btn btn-secondary ml-2 mt-2 uppercase sm:mt-0"
+        >Prezzi</a
+      >
+    </div>
+    <div
+      class="tooltip tooltip-right absolute bottom-4 left-4 cursor-help md:bottom-6 md:left-6"
+      data-tip="Lo sfondo cambia durante la giornata"
+    >
+      <Icon class="h-6 w-6 stroke-current" name="pixelarticons:android" />
+    </div>
+  </div>
 </div>
 
 <script>
-    const morningBG = "images/castelia-city-morning.jfif";
-    const dayBG = "images/castelia-city-day.jfif";
-    const eveningBG = "images/castelia-city-evening.jfif";
-    const nightBG = "images/castelia-city-night.jfif";
+  const morningBG = "images/castelia-city-morning.jfif";
+  const dayBG = "images/castelia-city-day.jfif";
+  const eveningBG = "images/castelia-city-evening.jfif";
+  const nightBG = "images/castelia-city-night.jfif";
 
-    const container = document.getElementById("heroContainer");
-    const currentTime = new Date().getHours();
+  const container = document.getElementById("heroContainer");
+  const currentTime = new Date().getHours();
 
-    if (currentTime >= 6 && currentTime < 12)
-        container.style.backgroundImage = `url(${morningBG})`;
-    else if (currentTime >= 12 && currentTime < 17)
-        container.style.backgroundImage = `url(${dayBG})`;
-    else if (currentTime >= 17 && currentTime < 20)
-        container.style.backgroundImage = `url(${eveningBG})`;
-    else if (currentTime >= 20 || currentTime < 6)
-        container.style.backgroundImage = `url(${nightBG})`;
+  if (currentTime >= 6 && currentTime < 12)
+    container.style.backgroundImage = `url(${morningBG})`;
+  else if (currentTime >= 12 && currentTime < 17)
+    container.style.backgroundImage = `url(${dayBG})`;
+  else if (currentTime >= 17 && currentTime < 20)
+    container.style.backgroundImage = `url(${eveningBG})`;
+  else if (currentTime >= 20 || currentTime < 6)
+    container.style.backgroundImage = `url(${nightBG})`;
 </script>

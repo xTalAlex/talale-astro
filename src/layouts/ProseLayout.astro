@@ -2,38 +2,47 @@
 import Layout from "./Layout.astro";
 
 export interface Props {
-	title?: string;
-	description?: string;
-	ogType?: string;
-	ogImage?: string;
-    ogImageAlt?: string;
-    noindex?: boolean;
+  title?: string;
+  description?: string;
+  ogType?: string;
+  ogImage?: string;
+  ogImageAlt?: string;
+  noindex?: boolean;
 }
 
-const { title, description, ogType, ogImage, ogImageAlt, noindex = false } = Astro.props.frontmatter || Astro.props;
+const {
+  title,
+  description,
+  ogType,
+  ogImage,
+  ogImageAlt,
+  noindex = false,
+} = Astro.props.frontmatter || Astro.props;
 ---
 
-<Layout 
-	title={title}
-	description={description}
-	ogType={ogType}
-	ogImage={ogImage}
-	ogImageAlt={ogImageAlt}
-	noindex={noindex}
+<Layout
+  title={title}
+  description={description}
+  ogType={ogType}
+  ogImage={ogImage}
+  ogImageAlt={ogImageAlt}
+  noindex={noindex}
 >
-	<div class="lg:pt-20 card">
-		<div class="card-body px-10 mx-auto prose prose-a:break-all prose-code:break-words prose-code:overflow-scroll container lg:max-w-4xl">
-			<slot />
-		</div>
-	</div>
+  <div class="card lg:pt-20">
+    <div
+      class="container prose card-body mx-auto px-10 prose-a:break-all prose-code:overflow-scroll prose-code:break-words lg:max-w-4xl"
+    >
+      <slot />
+    </div>
+  </div>
 </Layout>
 
 <script>
-    const codeTags = [...document.getElementsByTagName('code')];
-    codeTags.forEach(code => {
-        const aTags = [...code.getElementsByTagName('a')];
-        aTags.forEach(a => {
-            a.classList.add('link','link-secondary');
-        });
+  const codeTags = [...document.getElementsByTagName("code")];
+  codeTags.forEach((code) => {
+    const aTags = [...code.getElementsByTagName("a")];
+    aTags.forEach((a) => {
+      a.classList.add("link", "link-secondary");
     });
+  });
 </script>

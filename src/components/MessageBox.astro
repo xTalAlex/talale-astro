@@ -5,130 +5,127 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
 ---
 
 <div class="h-full w-full">
-	<form id="messagebox" netlify name="messagebox" method="POST">
-		<input type="hidden" name="form-name" value="messagebox" />
-        <!-- <div id="alertContainer" class="hidden alert shadow-lg cursor-pointer mb-2" onclick="this.classList.add('hidden')">
+  <form id="messagebox" netlify name="messagebox" method="POST">
+    <input type="hidden" name="form-name" value="messagebox" />
+    <!-- <div id="alertContainer" class="hidden alert shadow-lg cursor-pointer mb-2" onclick="this.classList.add('hidden')">
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 <span id="alertText"></span>
             </div>
         </div> -->
-        <textarea
-        	id="message"
-        	class="textarea textarea-primary bg-transparent w-full resize-none min-h-32"
-        	name="message"
-        	maxlength="300"
-        	placeholder={Config.messageBoxPlaceholder}></textarea>
-        <div class="form-control">
-        	<label class="label cursor-pointer space-x-2 justify-start">
-        		<input
-        			type="checkbox"
-        			class="checkbox checkbox-primary checkbox-sm"
-        			id="privacy_check"
-        			name="privacy_check"
-        		/>
-        		<span class="label-text text-neutral"
-        		>Ho letto e accetto la <a
-        				class="link"
-        				target="_blank"
-        				href={`https://www.iubenda.com/privacy-policy/${IUBENDA_POLICY_ID}`}
-        			>Privacy Policy</a
-        			>.</span
-        		>
-        	</label>
-        </div>
-        <div class="card-actions justify-center mt-2">
-        	<button
-        		id="submitButton"
-        		type="submit"
-        		class="btn uppercase btn-primary disabled:text-primary-content/50"
-        		disabled>Invia</button
-        	>
-        </div>
-	</form>
+    <textarea
+      id="message"
+      class="textarea textarea-primary min-h-32 w-full resize-none bg-transparent"
+      name="message"
+      maxlength="300"
+      placeholder={Config.messageBoxPlaceholder}></textarea>
+    <div class="form-control">
+      <label class="label cursor-pointer justify-start space-x-2">
+        <input
+          type="checkbox"
+          class="checkbox-primary checkbox checkbox-sm"
+          id="privacy_check"
+          name="privacy_check"
+        />
+        <span class="label-text text-neutral"
+          >Ho letto e accetto la <a
+            class="link"
+            target="_blank"
+            href={`https://www.iubenda.com/privacy-policy/${IUBENDA_POLICY_ID}`}
+            >Privacy Policy</a
+          >.</span
+        >
+      </label>
+    </div>
+    <div class="card-actions mt-2 justify-center">
+      <button
+        id="submitButton"
+        type="submit"
+        class="btn btn-primary uppercase disabled:text-primary-content/50"
+        disabled>Invia</button
+      >
+    </div>
+  </form>
 </div>
 
 <script>
-    import Config from "../site_config.json";
+  import Config from "../site_config.json";
 
-    // const encode = (data) => {
-    // 	return Object.keys(data)
-    // 		.map(
-    // 			(key) =>
-    // 				encodeURIComponent(key) +
-    //                 "=" +
-    //                 encodeURIComponent(data[key]),
-    // 		)
-    // 		.join("&");
-    // };
+  // const encode = (data) => {
+  // 	return Object.keys(data)
+  // 		.map(
+  // 			(key) =>
+  // 				encodeURIComponent(key) +
+  //                 "=" +
+  //                 encodeURIComponent(data[key]),
+  // 		)
+  // 		.join("&");
+  // };
 
-    const handleError = () => {
-    	// document.getElementById("alertContainer").classList.add("alert-error");
-    	// document.getElementById("alertContainer").classList.remove("hidden");
-    	// document.getElementById("alertText").innerHTML = Config.messageBoxError;
-    	window.notify(Config.messageBoxError, null, "error");
-    	document.getElementById("message").disabled = false;
-    	document.getElementById("submitButton").disabled = false;
-    	document.getElementById("submitButton").classList.remove("loading");
-    };
+  const handleError = () => {
+    // document.getElementById("alertContainer").classList.add("alert-error");
+    // document.getElementById("alertContainer").classList.remove("hidden");
+    // document.getElementById("alertText").innerHTML = Config.messageBoxError;
+    window.notify(Config.messageBoxError, null, "error");
+    document.getElementById("message").disabled = false;
+    document.getElementById("submitButton").disabled = false;
+    document.getElementById("submitButton").classList.remove("loading");
+  };
 
-    const handleSuccess = () => {
-    	// document.getElementById("alertContainer").classList.add("alert-success");
-    	// document.getElementById("alertContainer").classList.remove("hidden");
-    	// document.getElementById("alertText").innerHTML = Config.messageBoxSuccess;
-    	window.notify(Config.messageBoxSuccess, null, "success");
-    	document.getElementById("message").value = "";
-    	document.getElementById("submitButton").classList.remove("loading");
-    	reportGoogleConversion();
-    };
+  const handleSuccess = () => {
+    // document.getElementById("alertContainer").classList.add("alert-success");
+    // document.getElementById("alertContainer").classList.remove("hidden");
+    // document.getElementById("alertText").innerHTML = Config.messageBoxSuccess;
+    window.notify(Config.messageBoxSuccess, null, "success");
+    document.getElementById("message").value = "";
+    document.getElementById("submitButton").classList.remove("loading");
+    reportGoogleConversion();
+  };
 
-    const reportGoogleConversion = () => {
-    	gtag &&
-            gtag("event", "form_submit", {
-            	form_name: "messagebox",
-            });
-    };
+  const reportGoogleConversion = () => {
+    gtag &&
+      gtag("event", "form_submit", {
+        form_name: "messagebox",
+      });
+  };
 
-    document
-    	.getElementById("privacy_check")
-    	.addEventListener("change", function () {
-    		if (this.checked) {
-    			document.getElementById("submitButton").disabled = false;
-    		} else {
-    			document.getElementById("submitButton").disabled = true;
-    		}
-    	});
+  document
+    .getElementById("privacy_check")
+    .addEventListener("change", function () {
+      if (this.checked) {
+        document.getElementById("submitButton").disabled = false;
+      } else {
+        document.getElementById("submitButton").disabled = true;
+      }
+    });
 
-    const handleSubmit = (event) => {
-    	event.preventDefault();
-    	if (
-    		document.getElementById("message").value.trim() != "" &&
-            document.getElementById("privacy_check").checked
-    	) {
-    		const data = new FormData(document.forms[0]);
-    		data.set(
-    			"message",
-    			document.getElementById("message").value.trim(),
-    		);
-    		document.getElementById("message").disabled = true;
-    		document.getElementById("submitButton").disabled = true;
-    		document.getElementById("submitButton").classList.add("loading");
-    		fetch("/", {
-    			method: "POST",
-    			headers: {
-    				"Content-Type": "application/x-www-form-urlencoded",
-    			},
-    			body: new URLSearchParams(data).toString(),
-    		})
-    			.then((res) => {
-    				if (res.status == 200) handleSuccess(res);
-    				else handleError(res);
-    			})
-    			.catch((error) => {
-    				handleError(error);
-    			});
-    	}
-    };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (
+      document.getElementById("message").value.trim() != "" &&
+      document.getElementById("privacy_check").checked
+    ) {
+      const data = new FormData(document.forms[0]);
+      data.set("message", document.getElementById("message").value.trim());
+      document.getElementById("message").disabled = true;
+      document.getElementById("submitButton").disabled = true;
+      document.getElementById("submitButton").classList.add("loading");
+      fetch("/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams(data).toString(),
+      })
+        .then((res) => {
+          if (res.status == 200) handleSuccess(res);
+          else handleError(res);
+        })
+        .catch((error) => {
+          handleError(error);
+        });
+    }
+  };
 
-    document.forms[0].onsubmit = handleSubmit;
+  document.forms[0].onsubmit = handleSubmit;
 </script>

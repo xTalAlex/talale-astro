@@ -2,27 +2,26 @@
 import { Icon } from "astro-icon/components";
 ---
 
-<label class="swap swap-rotate btn uppercase btn-ghost">
-	<input type="checkbox" data-toggle-theme="halloween-light"/>
+<label class="btn btn-ghost swap swap-rotate uppercase">
+  <input type="checkbox" data-toggle-theme="halloween-light" />
 
-	<Icon class="swap-on w-6 h-6" id="sun" name="sun-alt" />
+  <Icon class="swap-on h-6 w-6" id="sun" name="sun-alt" />
 
-	<Icon class="swap-on w-6 h-6" id="moon" name="moon" />
+  <Icon class="swap-on h-6 w-6" id="moon" name="moon" />
 </label>
 
 <script is:inline>
-    if (localStorage.getItem("theme") === null) {
-        document.getElementById("moon").classList.replace("swap-on", "swap-off");
-    } else
-    {
-        if(localStorage.getItem("theme") == "halloween-light")
-            document.getElementById("sun").classList.replace("swap-on", "swap-off");
-        else 
-            document.getElementById("moon").classList.replace("swap-on", "swap-off");
-    }
+  if (localStorage.getItem("theme") === null) {
+    document.getElementById("moon").classList.replace("swap-on", "swap-off");
+  } else {
+    if (localStorage.getItem("theme") == "halloween-light")
+      document.getElementById("sun").classList.replace("swap-on", "swap-off");
+    else
+      document.getElementById("moon").classList.replace("swap-on", "swap-off");
+  }
 </script>
 
 <script>
-    import { themeChange } from "theme-change";
-    themeChange();
+  import { themeChange } from "theme-change";
+  themeChange();
 </script>

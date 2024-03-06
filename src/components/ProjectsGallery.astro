@@ -4,59 +4,116 @@ import { Image } from "astro:assets";
 
 const projects = await getCollection("projects");
 
-projects.sort((a,b) => (a.data.pubDate < b.data.pubDate) ? 1 : ((b.data.pubDate < a.data.pubDate) ? -1 : 0));
+projects.sort((a, b) =>
+  a.data.pubDate < b.data.pubDate
+    ? 1
+    : b.data.pubDate < a.data.pubDate
+      ? -1
+      : 0,
+);
 
 function setSize(i) {
-	var size = "";
-	switch(i){
-	case (0): size = "lg:col-span-5 lg:row-span-3"; break;
-	case (1): size = "lg:col-span-4 lg:row-span-6"; break;
-	case (2): size = "lg:col-span-5 lg:row-span-3"; break;
+  var size = "";
+  switch (i) {
+    case 0:
+      size = "lg:col-span-5 lg:row-span-3";
+      break;
+    case 1:
+      size = "lg:col-span-4 lg:row-span-6";
+      break;
+    case 2:
+      size = "lg:col-span-5 lg:row-span-3";
+      break;
 
-	case (3): size = "lg:col-span-5 lg:row-span-4"; break;
-	case (4): size = "lg:col-span-4 lg:row-span-4"; break;
-	case (5): size = "lg:col-span-3 lg:row-span-4"; break;
+    case 3:
+      size = "lg:col-span-5 lg:row-span-4";
+      break;
+    case 4:
+      size = "lg:col-span-4 lg:row-span-4";
+      break;
+    case 5:
+      size = "lg:col-span-3 lg:row-span-4";
+      break;
 
-	case (6): size = "lg:col-span-5 lg:row-span-2"; break;
-	case (7): size = "lg:col-span-4 lg:row-span-2"; break;
-	case (8): size = "lg:col-span-3 lg:row-span-2"; break;
-	default: break;
-	}
-	return size;
+    case 6:
+      size = "lg:col-span-5 lg:row-span-2";
+      break;
+    case 7:
+      size = "lg:col-span-4 lg:row-span-2";
+      break;
+    case 8:
+      size = "lg:col-span-3 lg:row-span-2";
+      break;
+    default:
+      break;
+  }
+  return size;
 }
 ---
 
-<div class="relative grid grid-cols-1 lg:grid-cols-12 gap-2 pt-64 overflow-hidden mt-96" id="portfolio">
-	<div class="select-none parallax-bg-title opacity-10 absolute uppercase text-[32rem] font-bold tracking-tighter -top-24">Portfolio</div>
-	<div class="lg:col-span-3 lg:row-span-6 grid text-center transform place-items-center tracking-widest">
-		<h2 class="text-6xl uppercase lg:-rotate-90 pb-12">Portfolio</h2>
-	</div>
-	{
-		projects.filter( p => p.data.portfolio ).slice(0,9).map((project,i) =>
-			<div class={`${setSize(i)} ${i>5 ? "hidden lg:block" : ""}`}>
-				<div class={"card relative h-full w-full overflow-hidden group shadow-xl group"}>
-					<div class="z-0 absolute inset-0 transition group-hover:blur group-hover:scale-125 duration-1000 ease-in-out"><Image height="384" width="912" class={`h-full w-full object-cover my-auto ${[2,5,7].includes(i) ? "" : ""}`} src={ project.data.gallery ? project.data.gallery[0] : "" } alt={ project.data.title } /></div>   
-					<div class="z-10 select-none cursor-default text-neutral-content group-hover:bg-neutral group-hover:bg-opacity-80 card-body transition opacity-0 group-hover:opacity-100 ease-in justify-center items-center space-y-4">
-						<h2 class="card-title">{ project.data.title }</h2>
-						<div class="mx-auto max-w-sm text-center "><p>{ project.data.description }</p></div>
-						<div class="card-actions">
-							<a href={ project.data.link } target="_blank" class="link link-hover">Visita</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		) 
-	}
+<div
+  class="relative mt-96 grid grid-cols-1 gap-2 overflow-hidden pt-64 lg:grid-cols-12"
+  id="portfolio"
+>
+  <div
+    class="parallax-bg-title absolute -top-24 select-none text-[32rem] font-bold uppercase tracking-tighter opacity-10"
+  >
+    Portfolio
+  </div>
+  <div
+    class="grid transform place-items-center text-center tracking-widest lg:col-span-3 lg:row-span-6"
+  >
+    <h2 class="pb-12 text-6xl uppercase lg:-rotate-90">Portfolio</h2>
+  </div>
+  {
+    projects
+      .filter((p) => p.data.portfolio)
+      .slice(0, 9)
+      .map((project, i) => (
+        <div class={`${setSize(i)} ${i > 5 ? "hidden lg:block" : ""}`}>
+          <div
+            class={
+              "group group card relative h-full w-full overflow-hidden shadow-xl"
+            }
+          >
+            <div class="absolute inset-0 z-0 transition duration-1000 ease-in-out group-hover:scale-125 group-hover:blur">
+              <Image
+                height="384"
+                width="912"
+                class={`my-auto h-full w-full object-cover ${[2, 5, 7].includes(i) ? "" : ""}`}
+                src={project.data.gallery ? project.data.gallery[0] : ""}
+                alt={project.data.title}
+              />
+            </div>
+            <div class="card-body z-10 cursor-default select-none items-center justify-center space-y-4 text-neutral-content opacity-0 transition ease-in group-hover:bg-neutral group-hover:bg-opacity-80 group-hover:opacity-100">
+              <h2 class="card-title">{project.data.title}</h2>
+              <div class="mx-auto max-w-sm text-center ">
+                <p>{project.data.description}</p>
+              </div>
+              <div class="card-actions">
+                <a
+                  href={project.data.link}
+                  target="_blank"
+                  class="link-hover link"
+                >
+                  Visita
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))
+  }
 </div>
 
 <script>
-    import simpleParallax from 'simple-parallax-js';
-    new simpleParallax(document.getElementsByClassName('parallax-bg-title'), {
-        overflow: true,
-        orientation: 'left'
-    });
-    new simpleParallax(document.getElementsByClassName('parallax-image'), {
-        overflow: true,
-        delay: .6,
-    });
+  import simpleParallax from "simple-parallax-js";
+  new simpleParallax(document.getElementsByClassName("parallax-bg-title"), {
+    overflow: true,
+    orientation: "left",
+  });
+  new simpleParallax(document.getElementsByClassName("parallax-image"), {
+    overflow: true,
+    delay: 0.6,
+  });
 </script>

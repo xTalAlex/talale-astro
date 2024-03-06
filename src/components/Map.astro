@@ -2,7 +2,8 @@
 import { Image } from "astro:assets";
 import mapsScreen from "@assets/images/maps-screen.png";
 
-const mapsLink = "https://www.google.com/maps/place/Creazione+Siti+Web+e+ECommerce+-+Alessandro+Talamona/@45.7726887,8.8838888,16z/data=!4m6!3m5!1s0x290fd78780394b75:0xd42195a7fbeb044b!8m2!3d45.7725927!4d8.887267!16s%2Fg%2F11rq11rj3d?hl=it&entry=tts";
+const mapsLink =
+  "https://www.google.com/maps/place/Creazione+Siti+Web+e+ECommerce+-+Alessandro+Talamona/@45.7726887,8.8838888,16z/data=!4m6!3m5!1s0x290fd78780394b75:0xd42195a7fbeb044b!8m2!3d45.7725927!4d8.887267!16s%2Fg%2F11rq11rj3d?hl=it&entry=tts";
 ---
 
 <!-- <iframe src="https://m.media-amazon.com/images/I/71ZVA6QfbOL.__AC_SY300_SX300_QL70_FMwebp_.jpg"
@@ -19,7 +20,9 @@ const mapsLink = "https://www.google.com/maps/place/Creazione+Siti+Web+e+ECommer
 >
 </iframe> -->
 <a href={mapsLink} target="_blank">
-	<Image class="grayscale h-full w-full object-left-top object-cover hover:grayscale-0 group-hover:grayscale-0 delay-200 transition duration-1000 ease-out"
-		src={mapsScreen} alt="Creazione Siti Web e ECommerce - Alessandro Talamona"
-	/>
+  <Image
+    class="h-full w-full object-cover object-left-top grayscale transition delay-200 duration-1000 ease-out hover:grayscale-0 group-hover:grayscale-0"
+    src={mapsScreen}
+    alt="Creazione Siti Web e ECommerce - Alessandro Talamona"
+  />
 </a>

@@ -5,138 +5,127 @@ import { Image } from "astro:assets";
 const projects = await getCollection("projects");
 
 projects.sort((a, b) =>
-	a.data.pubDate < b.data.pubDate
-		? 1
-		: b.data.pubDate < a.data.pubDate
-			? -1
-			: 0,
+  a.data.pubDate < b.data.pubDate
+    ? 1
+    : b.data.pubDate < a.data.pubDate
+      ? -1
+      : 0,
 );
 ---
 
-<h2 class="text-3xl font-semibold hidden">Siti Web & Progetti</h2>
+<h2 class="hidden text-3xl font-semibold">Siti Web & Progetti</h2>
 <div class="mockup-window bg-neutral text-neutral-content">
-	<div class="px-4 border-t border-neutral">
-		<div class="embla relative p-5" id="main-carousel">
-			<div class="embla__viewport">
-				<div class="embla__container -ml-3">
-					{
-						projects.map((project) => (
-							<div class="embla__slide pl-3 relative min-w-full my-auto space-y-2">
-								<div class="text-lg font-black">
-									{project.data.title}
-								</div>
-								<p class="pr-5">{project.data.description}</p>
-								<div class="h-48 md:h-96 relative overflow-hidden">
-									<a href={project.data.link} target="_blank">
-										<Image
-											height="384"
-											width="912"
-											class="h-full w-full object-top object-cover my-auto"
-											src={
-												project.data.gallery
-													? project.data.gallery[0]
-													: ""
-											}
-											alt={project.data.title}
-										/>
-									</a>
-								</div>
-							</div>
-						))
-					}
-				</div>
-			</div>
-		</div>
+  <div class="border-t border-neutral px-4">
+    <div class="embla relative p-5" id="main-carousel">
+      <div class="embla__viewport">
+        <div class="embla__container -ml-3">
+          {
+            projects.map((project) => (
+              <div class="embla__slide relative my-auto min-w-full space-y-2 pl-3">
+                <div class="text-lg font-black">{project.data.title}</div>
+                <p class="pr-5">{project.data.description}</p>
+                <div class="relative h-48 overflow-hidden md:h-96">
+                  <a href={project.data.link} target="_blank">
+                    <Image
+                      height="384"
+                      width="912"
+                      class="my-auto h-full w-full object-cover object-top"
+                      src={project.data.gallery ? project.data.gallery[0] : ""}
+                      alt={project.data.title}
+                    />
+                  </a>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
 
-		<!-- Thumbs -->
-		<div class="embla relative p-5 pt-0 -mt-3" id="thumb-carousel">
-			<div class="embla__viewport">
-				<div class="embla__container -ml-3 cursor-default">
-					{
-						projects.map((project) => (
-							<div class="embla__slide pl-3 relative min-w-[50%] sm:min-w-[33%] md:min-w-[20%]">
-								<button
-									aria-label={project.data.title}
-									class="h-24 touch-manipulation w-full bg-transparent relative block overflow-hidden m-0 p-0 cursor-pointer border-none outline-none"
-									type="button"
-								>
-									<Image
-										height="80"
-										width="172"
-										class="embla__slide__thumbnail opacity-20"
-										src={
-											project.data.gallery
-												? project.data.gallery[0]
-												: ""
-										}
-										alt={project.data.title + " thumbnail"}
-									/>
-								</button>
-							</div>
-						))
-					}
-				</div>
-			</div>
-		</div>
-	</div>
+    <!-- Thumbs -->
+    <div class="embla relative -mt-3 p-5 pt-0" id="thumb-carousel">
+      <div class="embla__viewport">
+        <div class="embla__container -ml-3 cursor-default">
+          {
+            projects.map((project) => (
+              <div class="embla__slide relative min-w-[50%] pl-3 sm:min-w-[33%] md:min-w-[20%]">
+                <button
+                  aria-label={project.data.title}
+                  class="relative m-0 block h-24 w-full cursor-pointer touch-manipulation overflow-hidden border-none bg-transparent p-0 outline-none"
+                  type="button"
+                >
+                  <Image
+                    height="80"
+                    width="172"
+                    class="embla__slide__thumbnail opacity-20"
+                    src={project.data.gallery ? project.data.gallery[0] : ""}
+                    alt={project.data.title + " thumbnail"}
+                  />
+                </button>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
-	import EmblaCarousel from "embla-carousel";
+  import EmblaCarousel from "embla-carousel";
 
-	const onThumbClick = (mainCarousel, thumbCarousel, index) => () => {
-		mainCarousel.scrollTo(index);
-	};
+  const onThumbClick = (mainCarousel, thumbCarousel, index) => () => {
+    mainCarousel.scrollTo(index);
+  };
 
-	const followMainCarousel = (mainCarousel, thumbCarousel) => () => {
-		thumbCarousel.scrollTo(mainCarousel.selectedScrollSnap());
-		selectThumbBtn(mainCarousel, thumbCarousel);
-	};
+  const followMainCarousel = (mainCarousel, thumbCarousel) => () => {
+    thumbCarousel.scrollTo(mainCarousel.selectedScrollSnap());
+    selectThumbBtn(mainCarousel, thumbCarousel);
+  };
 
-	const selectThumbBtn = (mainCarousel, thumbCarousel) => {
-		const previous = mainCarousel.previousScrollSnap();
-		const selected = mainCarousel.selectedScrollSnap();
-		thumbCarousel
-			.slideNodes()
-			[previous].querySelector(".embla__slide__thumbnail")
-			.classList.remove("opacity-1");
-		thumbCarousel
-			.slideNodes()
-			[previous].querySelector(".embla__slide__thumbnail")
-			.classList.add("opacity-20");
-		thumbCarousel
-			.slideNodes()
-			[selected].querySelector(".embla__slide__thumbnail")
-			.classList.add("opacity-1");
-		thumbCarousel
-			.slideNodes()
-			[selected].querySelector(".embla__slide__thumbnail")
-			.classList.remove("opacity-20");
-	};
+  const selectThumbBtn = (mainCarousel, thumbCarousel) => {
+    const previous = mainCarousel.previousScrollSnap();
+    const selected = mainCarousel.selectedScrollSnap();
+    thumbCarousel
+      .slideNodes()
+      [previous].querySelector(".embla__slide__thumbnail")
+      .classList.remove("opacity-1");
+    thumbCarousel
+      .slideNodes()
+      [previous].querySelector(".embla__slide__thumbnail")
+      .classList.add("opacity-20");
+    thumbCarousel
+      .slideNodes()
+      [selected].querySelector(".embla__slide__thumbnail")
+      .classList.add("opacity-1");
+    thumbCarousel
+      .slideNodes()
+      [selected].querySelector(".embla__slide__thumbnail")
+      .classList.remove("opacity-20");
+  };
 
-	const mainCarouselWrap = document.getElementById("main-carousel");
-	const mainCarouselView = mainCarouselWrap.querySelector(".embla__viewport");
-	const mainCarousel = EmblaCarousel(mainCarouselView, {
-		selectedClass: "",
-		loop: false,
-		skipSnaps: false,
-	});
+  const mainCarouselWrap = document.getElementById("main-carousel");
+  const mainCarouselView = mainCarouselWrap.querySelector(".embla__viewport");
+  const mainCarousel = EmblaCarousel(mainCarouselView, {
+    selectedClass: "",
+    loop: false,
+    skipSnaps: false,
+  });
 
-	const thumbCarouselWrap = document.getElementById("thumb-carousel");
-	const thumbCarouselView =
-		thumbCarouselWrap.querySelector(".embla__viewport");
-	const thumbCarousel = EmblaCarousel(thumbCarouselView, {
-		selectedClass: "",
-		containScroll: "keepSnaps",
-		dragFree: true,
-	});
+  const thumbCarouselWrap = document.getElementById("thumb-carousel");
+  const thumbCarouselView = thumbCarouselWrap.querySelector(".embla__viewport");
+  const thumbCarousel = EmblaCarousel(thumbCarouselView, {
+    selectedClass: "",
+    containScroll: "keepSnaps",
+    dragFree: true,
+  });
 
-	thumbCarousel.slideNodes().forEach((thumbNode, index) => {
-		const onClick = onThumbClick(mainCarousel, thumbCarousel, index);
-		thumbNode.addEventListener("click", onClick, false);
-	});
+  thumbCarousel.slideNodes().forEach((thumbNode, index) => {
+    const onClick = onThumbClick(mainCarousel, thumbCarousel, index);
+    thumbNode.addEventListener("click", onClick, false);
+  });
 
-	const syncThumbCarousel = followMainCarousel(mainCarousel, thumbCarousel);
-	mainCarousel.on("select", syncThumbCarousel);
-	thumbCarousel.on("init", syncThumbCarousel);
+  const syncThumbCarousel = followMainCarousel(mainCarousel, thumbCarousel);
+  mainCarousel.on("select", syncThumbCarousel);
+  thumbCarousel.on("init", syncThumbCarousel);
 </script>

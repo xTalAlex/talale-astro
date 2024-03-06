@@ -4,17 +4,31 @@ import { Image } from "astro:assets";
 
 const certificates = await getCollection("certificates");
 
-certificates.sort((a,b) => (a.data.obtainedAt < b.data.obtainedAt) ? 1 : ((b.data.obtainedAt < a.data.obtainedAt) ? -1 : 0));
+certificates.sort((a, b) =>
+  a.data.obtainedAt < b.data.obtainedAt
+    ? 1
+    : b.data.obtainedAt < a.data.obtainedAt
+      ? -1
+      : 0,
+);
 ---
 
 <div class="carousel carousel-end rounded-box">
-	{
-		certificates.filter( c => !c.data.hidden ).map( certificate => (
-			<div class="carousel-item">
-				<a href={certificate.data.image}>
-					<Image height="480" width="480" class="object-contain" src={certificate.data.image} alt={certificate.data.title} />
-				</a>
-			</div>
-		))
-	}
+  {
+    certificates
+      .filter((c) => !c.data.hidden)
+      .map((certificate) => (
+        <div class="carousel-item">
+          <a href={certificate.data.image}>
+            <Image
+              height="480"
+              width="480"
+              class="object-contain"
+              src={certificate.data.image}
+              alt={certificate.data.title}
+            />
+          </a>
+        </div>
+      ))
+  }
 </div>

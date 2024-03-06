@@ -1,14 +1,13 @@
 <div class="card text-center">
-	<div class="card-content">
-		Dimensioni del tuo schermo: 
-		<span id="screenInfo"></span>
-	</div>
+  <div class="card-content">
+    Dimensioni del tuo schermo:
+    <span id="screenInfo"></span>
+  </div>
 </div>
 
 <script>
-	let viewportHeight = window.innerHeight;
-	let viewportWidth = window.innerWidth;
-	document.getElementById(
-		"screenInfo"
-	).innerHTML = `<b>${viewportWidth}</b> x <b>${viewportHeight}</b>`;
+  let viewportHeight = window.innerHeight;
+  let viewportWidth = window.innerWidth;
+  document.getElementById("screenInfo").innerHTML =
+    `<b>${viewportWidth}</b> x <b>${viewportHeight}</b>`;
 </script>

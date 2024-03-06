@@ -4,109 +4,142 @@ import { gamesCount } from "@data/switch-games";
 import { lastDeployDate, formatDate } from "../utils";
 ---
 
-<div class="form-control mx-auto w-full relative">
-	<div class="join">
-		<input type="text" id="search-input" placeholder="Focus: ctrl+c | Clear: ctrl+x" class="join-item placeholder:text-xs input input-bordered w-full" />
-		<button class="btn uppercase join-item btn-error btn-square" id="clear-button">
-			<Icon class="h-6 w-6 stroke-current" name="pixelarticons:close" />
-
-		</button>
-		<button class="btn uppercase join-item btn-primary btn-square" id="search-button">
-			<Icon class="h-6 w-6 stroke-current" name="pixelarticons:search" />
-		</button>
-	</div>
+<div class="form-control relative mx-auto w-full">
+  <div class="join">
+    <input
+      type="text"
+      id="search-input"
+      placeholder="Focus: ctrl+c | Clear: ctrl+x"
+      class="input join-item input-bordered w-full placeholder:text-xs"
+    />
+    <button
+      class="btn btn-square btn-error join-item uppercase"
+      id="clear-button"
+    >
+      <Icon class="h-6 w-6 stroke-current" name="pixelarticons:close" />
+    </button>
+    <button
+      class="btn btn-square btn-primary join-item uppercase"
+      id="search-button"
+    >
+      <Icon class="h-6 w-6 stroke-current" name="pixelarticons:search" />
+    </button>
+  </div>
 </div>
 
-<div class="mt-12 flex w-full h-24 justify-center items-center" id="search-results">
-	<div class="cursor-default stats shadow bg-primary text-primary-content">
-		<div class="stat">
-			<div class="stat-title font-semibold text-primary-content">Numero di titoli</div>
-			<div class="stat-value">{gamesCount}</div>
-			<div class="stat-desc font-semibold text-primary-content">Ultimo aggiornamento { formatDate(lastDeployDate) }</div>
-		</div>
-	</div>
+<div
+  class="mt-12 flex h-24 w-full items-center justify-center"
+  id="search-results"
+>
+  <div class="stats cursor-default bg-primary text-primary-content shadow">
+    <div class="stat">
+      <div class="stat-title font-semibold text-primary-content">
+        Numero di titoli
+      </div>
+      <div class="stat-value">{gamesCount}</div>
+      <div class="stat-desc font-semibold text-primary-content">
+        Ultimo aggiornamento {formatDate(lastDeployDate)}
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
-    import Fuse from "fuse.js";
-    import { searchOptions } from "../fuse-helpers.js";
-    import { lastDeployDate, delayFunction, toTrimmedAlphanumeric, formatDate } from "../utils.js";
-    import Config from "../site_config.json";
-    var response = await fetch("/searchindex.json");
-    const data = await response.json();
-    const fuse = new Fuse(data, searchOptions);
-    
-    const search = async () => {
-        var query = toTrimmedAlphanumeric(document.getElementById('search-input').value);
-        if(query.length > 2){
-            const res = fuse.search(query);
-            var html = '';
-            if(res.length){
-                html += '<div class="flex space-x-3 h-full justify-start items-center overflow-x-hidden overflow-y-hidden select-none cursor-grab active:cursor-grabbing">';
-                for (let i = 0; i < res.length; i++) {
-                    html+= `
+  import Fuse from "fuse.js";
+  import { searchOptions } from "../fuse-helpers.js";
+  import {
+    lastDeployDate,
+    delayFunction,
+    toTrimmedAlphanumeric,
+    formatDate,
+  } from "../utils.js";
+  import Config from "../site_config.json";
+  var response = await fetch("/searchindex.json");
+  const data = await response.json();
+  const fuse = new Fuse(data, searchOptions);
+
+  const search = async () => {
+    var query = toTrimmedAlphanumeric(
+      document.getElementById("search-input").value,
+    );
+    if (query.length > 2) {
+      const res = fuse.search(query);
+      var html = "";
+      if (res.length) {
+        html +=
+          '<div class="flex space-x-3 h-full justify-start items-center overflow-x-hidden overflow-y-hidden select-none cursor-grab active:cursor-grabbing">';
+        for (let i = 0; i < res.length; i++) {
+          html += `
                         <a href="/nintendo-switch/${getPageNumberByRef(res[i].refIndex)}#${res[i].item.slug}" draggable="false">
                             <div class="whitespace-nowrap badge badge-lg badge-primary font-semibold badge-outline">${res[i].item.name}</div>    
                         </a>
                     `;
-                }
-                html += '</div>'
-            }
-            else{
-                html = `
+        }
+        html += "</div>";
+      } else {
+        html = `
                     <div>
                         <img class="h-24" src="/images/gargoyles.png" />
                         <h4 class='text-center text-lg'> <b>Nessun risultato</b> </h4>
                     </div>
                 `;
-            }
-            document.getElementById('search-results').innerHTML = html;
-            window.history.replaceState(null,'','?query=' + encodeURIComponent(query));
-            let pos = { top: 0, left: 0, x: 0, y: 0 };
-            const mouseMoveHandler = function (e) {
-                // How far the mouse has been moved
-                const dx = e.clientX - pos.x;
-                const dy = e.clientY - pos.y;
+      }
+      document.getElementById("search-results").innerHTML = html;
+      window.history.replaceState(
+        null,
+        "",
+        "?query=" + encodeURIComponent(query),
+      );
+      let pos = { top: 0, left: 0, x: 0, y: 0 };
+      const mouseMoveHandler = function (e) {
+        // How far the mouse has been moved
+        const dx = e.clientX - pos.x;
+        const dy = e.clientY - pos.y;
 
-                // Scroll the element
-                document.getElementById('search-results').children[0].scrollTop = pos.top - dy;
-                document.getElementById('search-results').children[0].scrollLeft = pos.left - dx;
-            };
-            const mouseUpHandler = function () {
-                document.removeEventListener('mousemove', mouseMoveHandler);
-                document.removeEventListener('mouseup', mouseUpHandler);
-            };
-            const mouseDownHandler = function (e) {
-                pos = {
-                    // The current scroll
-                    left: document.getElementById('search-results').children[0].scrollLeft,
-                    top: document.getElementById('search-results').children[0].scrollTop,
-                    // Get the current mouse position
-                    x: e.clientX,
-                    y: e.clientY,
-                };
-                document.addEventListener('mousemove', mouseMoveHandler);
-                document.addEventListener('mouseup', mouseUpHandler);
-            };
-            document.getElementById('search-results').children[0].addEventListener('mousedown', mouseDownHandler);
-        }
-    };
+        // Scroll the element
+        document.getElementById("search-results").children[0].scrollTop =
+          pos.top - dy;
+        document.getElementById("search-results").children[0].scrollLeft =
+          pos.left - dx;
+      };
+      const mouseUpHandler = function () {
+        document.removeEventListener("mousemove", mouseMoveHandler);
+        document.removeEventListener("mouseup", mouseUpHandler);
+      };
+      const mouseDownHandler = function (e) {
+        pos = {
+          // The current scroll
+          left: document.getElementById("search-results").children[0]
+            .scrollLeft,
+          top: document.getElementById("search-results").children[0].scrollTop,
+          // Get the current mouse position
+          x: e.clientX,
+          y: e.clientY,
+        };
+        document.addEventListener("mousemove", mouseMoveHandler);
+        document.addEventListener("mouseup", mouseUpHandler);
+      };
+      document
+        .getElementById("search-results")
+        .children[0].addEventListener("mousedown", mouseDownHandler);
+    }
+  };
 
-    const quickSearch = async(query: string) => {
-        const res = fuse.search(query);
-        if(res.length){
-            let gameUrl = `/nintendo-switch/${getPageNumberByRef(res[0].refIndex)}#${res[0].item.slug}`;
-            window.location.href = gameUrl;
-        }
-    };
+  const quickSearch = async (query: string) => {
+    const res = fuse.search(query);
+    if (res.length) {
+      let gameUrl = `/nintendo-switch/${getPageNumberByRef(res[0].refIndex)}#${res[0].item.slug}`;
+      window.location.href = gameUrl;
+    }
+  };
 
-    const getPageNumberByRef = (ref) => {
-        return Math.max(Math.ceil(ref/Config.gamesPerPage), 1);
-    };
+  const getPageNumberByRef = (ref) => {
+    return Math.max(Math.ceil(ref / Config.gamesPerPage), 1);
+  };
 
-    const clear = () => {
-        document.getElementById('search-input').value = "";
-        document.getElementById('search-results').innerHTML = `
+  const clear = () => {
+    document.getElementById("search-input").value = "";
+    document.getElementById("search-results").innerHTML = `
             <div class="cursor-default stats shadow bg-primary text-primary-content">
                 <div class="stat">
                 <div class="stat-title font-semibold text-primary-content">Numero di titoli</div>
@@ -115,37 +148,36 @@ import { lastDeployDate, formatDate } from "../utils";
                 </div>
             </div>
         `;
-        window.history.replaceState(null,'', window.location.pathname );
-    };
+    window.history.replaceState(null, "", window.location.pathname);
+  };
 
-    document.getElementById('search-input').onkeyup = delayFunction(search, 300);
-    document.getElementById('search-button').onclick = search;
-    document.getElementById('clear-button').onclick = clear;
+  document.getElementById("search-input").onkeyup = delayFunction(search, 300);
+  document.getElementById("search-button").onclick = search;
+  document.getElementById("clear-button").onclick = clear;
 
-    document.addEventListener('keyup', (event) => {
-      if (event.ctrlKey && event.key === 'c') {
-        event.preventDefault();
-        document.getElementById('search-input').focus();
-      }
-    });
-    document.addEventListener('keyup', (event) => {
-      if (event.ctrlKey && event.key === 'x') {
-        event.preventDefault();
-        clear();
-      }
-    });
-
-    document.addEventListener('quickSearch', (event) => {
-        if(event.detail) quickSearch(event.detail);
-    })
-
-    var params = (new URL(document.location)).searchParams;
-    var query = params.get('query');
-    if(query) {
-        document.getElementById('search-input').value = decodeURIComponent(query);
-        search();
+  document.addEventListener("keyup", (event) => {
+    if (event.ctrlKey && event.key === "c") {
+      event.preventDefault();
+      document.getElementById("search-input").focus();
     }
-    else if(document.getElementById('search-input').value) {
-        search();
+  });
+  document.addEventListener("keyup", (event) => {
+    if (event.ctrlKey && event.key === "x") {
+      event.preventDefault();
+      clear();
     }
+  });
+
+  document.addEventListener("quickSearch", (event) => {
+    if (event.detail) quickSearch(event.detail);
+  });
+
+  var params = new URL(document.location).searchParams;
+  var query = params.get("query");
+  if (query) {
+    document.getElementById("search-input").value = decodeURIComponent(query);
+    search();
+  } else if (document.getElementById("search-input").value) {
+    search();
+  }
 </script>

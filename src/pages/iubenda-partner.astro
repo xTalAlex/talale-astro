@@ -1,13 +1,16 @@
 ---
 import Layout from "@layouts/Layout.astro";
 
-import *  as mdDoc from "@content/markdown/iubenda-partner.md";
+import * as mdDoc from "@content/markdown/iubenda-partner.md";
 
 const Content = mdDoc.Content;
 ---
 
-<Layout title={mdDoc.frontmatter.title} description={mdDoc.frontmatter.description}>
-	<div class="px-5 md:mx-auto container w-full max-w-5xl prose prose-lg pt-12">
-		<Content />
-	</div>
+<Layout
+  title={mdDoc.frontmatter.title}
+  description={mdDoc.frontmatter.description}
+>
+  <div class="container prose prose-lg w-full max-w-5xl px-5 pt-12 md:mx-auto">
+    <Content />
+  </div>
 </Layout>

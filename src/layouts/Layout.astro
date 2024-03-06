@@ -1,12 +1,12 @@
 ---
 export interface Props {
-	title?: string;
-	description?: string;
-	ogType?: string;
-	ogImage?: string;
-	ogImageAlt?: string;
-	noindex?: boolean;
-	frontmatter?: Props;
+  title?: string;
+  description?: string;
+  ogType?: string;
+  ogImage?: string;
+  ogImageAlt?: string;
+  noindex?: boolean;
+  frontmatter?: Props;
 }
 
 import "@fontsource/chakra-petch";
@@ -20,159 +20,164 @@ import Footer from "@components/Footer.astro";
 import Modal from "@components/vue/Modal.vue";
 import BackToTop from "@components/BackToTop.astro";
 import IubendaCookieSolution from "@components/IubendaCookieSolution.astro";
+import TawkToWidget from "@components/TawkToWidget.astro";
 import Alert from "@components/Alert.astro";
 import RadioMenu from "@components/vue/RadioMenu.vue";
 
-const { title = null , description = Config.description, ogType = "website", ogImage = Config.url + "/images/sharepreview.png", ogImageAlt = "Website Header", noindex = false } = Astro.props.frontmatter || Astro.props;
+const {
+  title = null,
+  description = Config.description,
+  ogType = "website",
+  ogImage = Config.url + "/images/sharepreview.png",
+  ogImageAlt = "Website Header",
+  noindex = false,
+} = Astro.props.frontmatter || Astro.props;
 
-const {COOKIEBOT_ID, IUBENDA_SITE_ID, IUBENDA_POLICY_ID, GOOGLE_SEARCH_CONSOLE_ID, GOOGLE_ANALYTICS_ID, TAWKTO_WIDGET_URL } = import.meta.env;
+const {
+  COOKIEBOT_ID,
+  IUBENDA_SITE_ID,
+  IUBENDA_POLICY_ID,
+  GOOGLE_SEARCH_CONSOLE_ID,
+  GOOGLE_ANALYTICS_ID,
+  TAWKTO_WIDGET_URL,
+} = import.meta.env;
 const canonical = Astro.url.href;
-const fullTitle = title ? (ogType == "article" ? title + " | " + Config.title : Config.title + " | " + title ) : Config.title + " | " + Config.motto;
+const fullTitle = title
+  ? ogType == "article"
+    ? title + " | " + Config.title
+    : Config.title + " | " + title
+  : Config.title + " | " + Config.motto;
 
 const openGraph = {
-	basic : {
-		title : title ?? Config.title,
-		type: ogType,
-		image: ogImage,
-		url: canonical,
-	},
-	image: {
-		alt: ogImageAlt
-	},
+  basic: {
+    title: title ?? Config.title,
+    type: ogType,
+    image: ogImage,
+    url: canonical,
+  },
+  image: {
+    alt: ogImageAlt,
+  },
 };
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it" class="scroll-smooth">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
 
-		<SEO 
-			title={fullTitle} 
-			description={description} 
-			canonical={canonical}
-			openGraph={openGraph} 
-			noindex={noindex}
-		/>
+    <SEO
+      title={fullTitle}
+      description={description}
+      canonical={canonical}
+      openGraph={openGraph}
+      noindex={noindex}
+    />
 
-		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
-		<link rel="alternate" type="application/rss+xml" title={`${Config.title + " | " + Config.motto}`} href={`${Config.url}/rss.xml`} />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={`${Config.title + " | " + Config.motto}`}
+      href={`${Config.url}/rss.xml`}
+    />
 
-		{
-			COOKIEBOT_ID && (
-				<script type="text/javascript"
-					id="Cookiebot"
-					src="https://consent.cookiebot.com/uc.js"
-					data-cbid={`${COOKIEBOT_ID}`}
-					async
-				></script>
-			)
-		}
+    {
+      COOKIEBOT_ID && (
+        <script
+          type="text/javascript"
+          id="Cookiebot"
+          src="https://consent.cookiebot.com/uc.js"
+          data-cbid={`${COOKIEBOT_ID}`}
+          async
+        />
+      )
+    }
 
-		{
-			(IUBENDA_SITE_ID && IUBENDA_POLICY_ID) && (
-				<IubendaCookieSolution
-					siteId={IUBENDA_SITE_ID}
-					policyId={IUBENDA_POLICY_ID}
-				/>
-			)
-		}
+    {
+      IUBENDA_SITE_ID && IUBENDA_POLICY_ID && (
+        <IubendaCookieSolution
+          siteId={IUBENDA_SITE_ID}
+          policyId={IUBENDA_POLICY_ID}
+        />
+      )
+    }
 
-		<meta name="google-adsense-account" content="ca-pub-1599248063497322">
+    <meta name="google-adsense-account" content="ca-pub-1599248063497322" />
 
-		{
-			GOOGLE_SEARCH_CONSOLE_ID && (
-				<meta name="google-site-verification" content={GOOGLE_SEARCH_CONSOLE_ID}/>
-			)
-		}
+    {
+      GOOGLE_SEARCH_CONSOLE_ID && (
+        <meta
+          name="google-site-verification"
+          content={GOOGLE_SEARCH_CONSOLE_ID}
+        />
+      )
+    }
 
-		{
-			GOOGLE_ANALYTICS_ID && (
-				<script class="_iub_cs_activate"
-					type={`${(COOKIEBOT_ID || IUBENDA_SITE_ID) ? "text/plain" : "text/javascript"}`}
-					async
-					src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
-					data-cookieconsent="statistics"
-					data-iub-purposes="4"
-				></script>
-				<script data-gaid={GOOGLE_ANALYTICS_ID} class="_iub_cs_activate-inline" type="text/plain">
-					window.dataLayer = window.dataLayer || [];
-					function gtag() {
-						dataLayer.push(arguments);
-					}
-					gtag("js", new Date());
+    {
+      GOOGLE_ANALYTICS_ID && (
+        <script
+          class="_iub_cs_activate"
+          type={`${COOKIEBOT_ID || IUBENDA_SITE_ID ? "text/plain" : "text/javascript"}`}
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
+          data-cookieconsent="statistics"
+          data-iub-purposes="4"
+        />
+      )
+    }
+    <script data-gaid={GOOGLE_ANALYTICS_ID}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", document.currentScript.dataset.gaid);
+    </script>
 
-					gtag("config", document.currentScript.dataset.gaid);
-				</script>
-			)
-		}
+    <script>
+      import netlifyIdentity from "netlify-identity-widget";
+      window.netlifyIdentity = netlifyIdentity;
+      document.dispatchEvent(new Event("identityLoaded"));
+    </script>
 
-		<script>
-			import netlifyIdentity from "netlify-identity-widget";
-			window.netlifyIdentity = netlifyIdentity;
-			document.dispatchEvent(new Event("identityLoaded"));
-		</script>
+    <script is:inline>
+      if (localStorage.getItem("theme") === null) {
+        document.documentElement.setAttribute("data-theme", "halloween");
+      } else
+        document.documentElement.setAttribute(
+          "data-theme",
+          localStorage.getItem("theme"),
+        );
+    </script>
+  </head>
+  <body class="font-sans">
+    <Navbar />
+    <main class="mb-32 pt-16">
+      <Alert />
+      <slot />
+    </main>
+    <Footer />
 
-		<script is:inline>
-			if (localStorage.getItem("theme") === null) {
-			document.documentElement.setAttribute("data-theme", "halloween");
-			} else
-			document.documentElement.setAttribute("data-theme",localStorage.getItem("theme"));
-		</script>
+    <RadioMenu client:only="vue" />
 
-	</head>
-	<body class="font-sans">
-		<Navbar />
-		<main class="pt-16 mb-32">
-			<Alert/>
-			<slot />
-		</main>
-		<Footer />
+    <BackToTop />
 
-		<RadioMenu client:only="vue" />
+    <Modal client:only="vue" />
 
-		<BackToTop />
-
-		<Modal client:only="vue"/>
-
-		{
-			TAWKTO_WIDGET_URL && (
-				<script class="_iub_cs_activate-inline"
-					type={`${(COOKIEBOT_ID || IUBENDA_SITE_ID) ? "text/plain" : "text/javascript"}`}
-					data-cookieconsent="preferences, statistics"
-					data-iub-purposes="2,4"
-					data-widget={TAWKTO_WIDGET_URL}
-				>
-					var Tawk_API=Tawk_API||{};
-					window.Tawk_API.onLoad = function(){
-						document.dispatchEvent(
-							new CustomEvent("tawktoLoaded")
-						);
-					};
-					window.Tawk_API.onOfflineSubmit = function(data){
-						gtag && gtag('event', 'form_submit', {
-							'form_name': 'tawkto_offline_form'
-						});
-					};
-					window.Tawk_API.onChatStarted = function(){
-						gtag && gtag('event', 'chat_start', {
-						});
-					};
-					var Tawk_LoadStart=new Date();
-					(function () {
-						var s1 = document.createElement("script"),
-							s0 = document.getElementsByTagName("script")[0];
-						s1.async = true;
-						s1.src = document.currentScript.dataset.widget;
-						s1.charset = "UTF-8";
-						s1.setAttribute("crossorigin", "*");
-						s0.parentNode.insertBefore(s1, s0);
-					})();
-				</script>
-			)
-		}
-	</body>
+    {
+      TAWKTO_WIDGET_URL && (
+        <TawkToWidget
+          class="_iub_cs_activate-inline"
+          type={`${COOKIEBOT_ID || IUBENDA_SITE_ID ? "text/plain" : "text/javascript"}`}
+          data-cookieconsent="preferences, statistics"
+          data-iub-purposes="2,4"
+          data-widget={TAWKTO_WIDGET_URL}
+        />
+      )
+    }
+  </body>
 </html>

@@ -3,29 +3,29 @@ import { Icon } from "astro-icon/components";
 ---
 
 <button
-	class="btn uppercase btn-ghost hidden fixed bottom-4 left-4 md:bottom-6 md:left-6 z-50 btn-circle"
-	id="backToTop"
-	title="Torna in cima"
+  class="btn btn-circle btn-ghost fixed bottom-4 left-4 z-50 hidden uppercase md:bottom-6 md:left-6"
+  id="backToTop"
+  title="Torna in cima"
 >
-	<Icon class="h-6 w-6 stroke-current" name="pixelarticons:corner-right-up" />
+  <Icon class="h-6 w-6 stroke-current" name="pixelarticons:corner-right-up" />
 </button>
 
 <script>
-    let backToTopButton = document.getElementById("backToTop");
+  let backToTopButton = document.getElementById("backToTop");
 
-    function checkScroll() {
-        if (document.querySelector("html").scrollTop > 100) {
-            if (backToTopButton.classList.contains("hidden"))
-                backToTopButton.classList.remove("hidden");
-        } else {
-            backToTopButton.classList.add("hidden");
-        }
+  function checkScroll() {
+    if (document.querySelector("html").scrollTop > 100) {
+      if (backToTopButton.classList.contains("hidden"))
+        backToTopButton.classList.remove("hidden");
+    } else {
+      backToTopButton.classList.add("hidden");
     }
+  }
 
-    function goTop() {
-        document.querySelector("html").scrollTop = 0;
-    }
+  function goTop() {
+    document.querySelector("html").scrollTop = 0;
+  }
 
-    window.addEventListener("scroll", checkScroll);
-    backToTopButton.onclick = goTop;
+  window.addEventListener("scroll", checkScroll);
+  backToTopButton.onclick = goTop;
 </script>

@@ -1,7 +1,7 @@
 /**
- * 
+ *
  * https://www.youtube.com/embed/${video_id}
- * 
+ *
  */
 
 // const episodes = [
@@ -137,14 +137,14 @@
 //         title: "Pingen si dirige a sud",
 //         video_id: "AaYLnss0eRk",
 //         summary: null,
-//     }, 
+//     },
 //     {
 //         season: 1,
 //         number: 20,
 //         title: "Alla ricerca dei Rari Medal",
 //         video_id: "DfdY82V474g",
 //         summary: null,
-//     }, 
+//     },
 //     {
 //         season: 1,
 //         number: 21,
@@ -373,4 +373,4 @@
 
 const episodes = [];
 
-export  { episodes };
+export { episodes };

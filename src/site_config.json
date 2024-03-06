@@ -1,93 +1,93 @@
 {
-	"blogCategory": "Informatica",
-	"messageBoxError": "Si è verificato un errore!",
-	"piva": "03838670127",
-	"prices": {
-		"standard": 750,
-		"custom": 2000,
-		"support": 200
-	},
-	"gamesPerPage": 18,
-	"motto": "Realizzazione e ristrutturazione di Siti Web, ECommerce ed Applicazioni Web.",
-	"blogUrl": "https://talale.altervista.org",
-	"url": "https://talale.it",
-	"messageBoxPlaceholder": "Lascia un messaggio",
-	"cta": "Contattami",
-	"biography": "Nato nel 1993, abito in provincia di Varese, laureato in Informatica Musicale. \nQuando non sono impegnato a scrivere codice, mi piace dedicarmi a musica e videogiochi: interessi che alimentano mente, spirito, creatività e immaginazione.",
-	"google_calendar_url": "https://calendar.app.google/tVjy3FpV4NCTqsUP6",
-	"google_calendar_cta": "Prenota una telefonata",
-	"frameworks": [
-		{
-			"name": "Laravel",
-			"logo": "/uploads/laravel.svg",
-			"url": "https://laravel.com/"
-		},
-		{
-			"name": "Astro",
-			"logo": "/uploads/astro.svg",
-			"url": "https://astro.build/"
-		},
-		{
-			"name": "Tailwind",
-			"url": "https://tailwindcss.com/",
-			"logo": "/uploads/tailwindcss.svg"
-		},
-		{
-			"name": "Livewire",
-			"logo": "/uploads/livewire.svg",
-			"url": "https://laravel-livewire.com/"
-		},
-		{
-			"name": "Vue",
-			"logo": "/uploads/vue.svg",
-			"url": "https://vuejs.org/"
-		},
-		{
-			"name": "Alpine",
-			"logo": "/uploads/alpinejs.svg",
-			"url": "https://alpinejs.dev/"
-		}
-	],
-	"subtitle": "Sviluppatore Web Freelance a Varese",
-	"title": "Alessandro Talamona",
-	"description": "Siti web su misura per distinguersi dalla concorrenza. Creazione, ristrutturazione e gestione di Siti Aziendali, ECommerce, Blog, Siti Vetrina, Applicazioni Web e Gestionali per qualunque tipo di attività.",
-	"features": [
-		{
-			"title": "Tema Custom e Responsive",
-			"description": "Il tuo sito web sarà la tua identità online e offrirà un'esperienza di navigazione ottimale per tutti i tuoi clienti su tutti i dispositivi."
-		},
-		{
-			"title": "Funzionalità ad hoc e integrazione API",
-			"description": "Automatizza processi, ottimizza l'esperienza utente e offri nuovi servizi ai tuoi clienti."
-		},
-		{
-			"title": "Informazioni e moduli di contatto",
-			"description": "Fornisci ai tuoi utenti tutte le informazioni di cui hanno bisogno e facilita il contatto con la tua azienda grazie a moduli di contatto personalizzati e intuitivi. Raccogli i dati necessari per rispondere alle loro esigenze in modo efficiente e tempestivo."
-		},
-		{
-			"title": "Branding e Logo wordmark",
-			"description": "Crea un'immagine aziendale distintiva e coerente per tutti i tuoi canali di comunicazione. Se non hai ancora un logo, la sua realizzazione è inclusa, insieme alla scelta dei font, dei colori e altre linee guida grafiche."
-		},
-		{
-			"title": "Ricerca immagini stock",
-			"description": "Arricchisci i tuoi contenuti e cattura l'attenzione dei visitatori con foto, illustrazioni, vettori e video."
-		},
-		{
-			"title": "Integrazione Tag Google",
-			"description": "Monitora il traffico, le conversioni e il comportamento degli utenti sul tuo sito web. Ottieni dati e insights preziosi per ottimizzare le tue strategie di marketing e migliorare i risultati della tua attività."
-		},
-		{
-			"title": "Ottimizzazione SEO & Performance",
-			"description": "Migliora la visibilità online del tuo sito web con una strategia SEO by design. Aumenta il traffico organico, la velocità di caricamento e l'usabilità, favorendo il posizionamento tra i primi risultati nelle ricerche Google."
-		},
-		{
-			"title": "Cookie Policy compliant e GDPR",
-			"description": "Gestisci i cookie in modo conforme al GDPR con le soluzioni di Iubenda e strumenti simili, oppure integrando i documenti del tuo legale di fiducia."
-		},
-		{
-			"title": "Gestione Hosting, Dominio (HTTPS) e Email",
-			"description": "Dalla registrazione del dominio all'attivazione di caselle email personalizzate, mi occupo di tutto quello che serve per garantirti un servizio di hosting sicuro, efficiente e performante. Il tuo sito web sarà sempre online e raggiungibile, con la massima protezione SSL (HTTPS)."
-		}
-	],
-	"messageBoxSuccess": "Messaggio inviato!"
+  "blogCategory": "Informatica",
+  "messageBoxError": "Si è verificato un errore!",
+  "piva": "03838670127",
+  "prices": {
+    "standard": 750,
+    "custom": 2000,
+    "support": 200
+  },
+  "gamesPerPage": 18,
+  "motto": "Realizzazione e ristrutturazione di Siti Web, ECommerce ed Applicazioni Web.",
+  "blogUrl": "https://talale.altervista.org",
+  "url": "https://talale.it",
+  "messageBoxPlaceholder": "Lascia un messaggio",
+  "cta": "Contattami",
+  "biography": "Nato nel 1993, abito in provincia di Varese, laureato in Informatica Musicale. \nQuando non sono impegnato a scrivere codice, mi piace dedicarmi a musica e videogiochi: interessi che alimentano mente, spirito, creatività e immaginazione.",
+  "google_calendar_url": "https://calendar.app.google/tVjy3FpV4NCTqsUP6",
+  "google_calendar_cta": "Prenota una telefonata",
+  "frameworks": [
+    {
+      "name": "Laravel",
+      "logo": "/uploads/laravel.svg",
+      "url": "https://laravel.com/"
+    },
+    {
+      "name": "Astro",
+      "logo": "/uploads/astro.svg",
+      "url": "https://astro.build/"
+    },
+    {
+      "name": "Tailwind",
+      "url": "https://tailwindcss.com/",
+      "logo": "/uploads/tailwindcss.svg"
+    },
+    {
+      "name": "Livewire",
+      "logo": "/uploads/livewire.svg",
+      "url": "https://laravel-livewire.com/"
+    },
+    {
+      "name": "Vue",
+      "logo": "/uploads/vue.svg",
+      "url": "https://vuejs.org/"
+    },
+    {
+      "name": "Alpine",
+      "logo": "/uploads/alpinejs.svg",
+      "url": "https://alpinejs.dev/"
+    }
+  ],
+  "subtitle": "Sviluppatore Web Freelance a Varese",
+  "title": "Alessandro Talamona",
+  "description": "Siti web su misura per distinguersi dalla concorrenza. Creazione, ristrutturazione e gestione di Siti Aziendali, ECommerce, Blog, Siti Vetrina, Applicazioni Web e Gestionali per qualunque tipo di attività.",
+  "features": [
+    {
+      "title": "Tema Custom e Responsive",
+      "description": "Il tuo sito web sarà la tua identità online e offrirà un'esperienza di navigazione ottimale per tutti i tuoi clienti su tutti i dispositivi."
+    },
+    {
+      "title": "Funzionalità ad hoc e integrazione API",
+      "description": "Automatizza processi, ottimizza l'esperienza utente e offri nuovi servizi ai tuoi clienti."
+    },
+    {
+      "title": "Informazioni e moduli di contatto",
+      "description": "Fornisci ai tuoi utenti tutte le informazioni di cui hanno bisogno e facilita il contatto con la tua azienda grazie a moduli di contatto personalizzati e intuitivi. Raccogli i dati necessari per rispondere alle loro esigenze in modo efficiente e tempestivo."
+    },
+    {
+      "title": "Branding e Logo wordmark",
+      "description": "Crea un'immagine aziendale distintiva e coerente per tutti i tuoi canali di comunicazione. Se non hai ancora un logo, la sua realizzazione è inclusa, insieme alla scelta dei font, dei colori e altre linee guida grafiche."
+    },
+    {
+      "title": "Ricerca immagini stock",
+      "description": "Arricchisci i tuoi contenuti e cattura l'attenzione dei visitatori con foto, illustrazioni, vettori e video."
+    },
+    {
+      "title": "Integrazione Tag Google",
+      "description": "Monitora il traffico, le conversioni e il comportamento degli utenti sul tuo sito web. Ottieni dati e insights preziosi per ottimizzare le tue strategie di marketing e migliorare i risultati della tua attività."
+    },
+    {
+      "title": "Ottimizzazione SEO & Performance",
+      "description": "Migliora la visibilità online del tuo sito web con una strategia SEO by design. Aumenta il traffico organico, la velocità di caricamento e l'usabilità, favorendo il posizionamento tra i primi risultati nelle ricerche Google."
+    },
+    {
+      "title": "Cookie Policy compliant e GDPR",
+      "description": "Gestisci i cookie in modo conforme al GDPR con le soluzioni di Iubenda e strumenti simili, oppure integrando i documenti del tuo legale di fiducia."
+    },
+    {
+      "title": "Gestione Hosting, Dominio (HTTPS) e Email",
+      "description": "Dalla registrazione del dominio all'attivazione di caselle email personalizzate, mi occupo di tutto quello che serve per garantirti un servizio di hosting sicuro, efficiente e performante. Il tuo sito web sarà sempre online e raggiungibile, con la massima protezione SSL (HTTPS)."
+    }
+  ],
+  "messageBoxSuccess": "Messaggio inviato!"
 }

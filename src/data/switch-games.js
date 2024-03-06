@@ -12,15 +12,15 @@ var end_time;
 
 start_time = Date.now();
 
-/** 
- * 
- * Additional fields: 
+/**
+ *
+ * Additional fields:
  *  version_title, total_rating_count, storyline, created_at
  *  websites.url, video.video_id, similar_games.slug,
  *  game_modes.name,
  * */
-do{
-	let query = `
+do {
+  let query = `
         fields 
             name, slug, category, status, summary, total_rating, url, first_release_date,  
             genres.name, themes.name, cover.url, artworks.url, screenshots.url,
@@ -38,15 +38,21 @@ do{
         limit ${limit};
         offset ${offset};
     `;
-	newGames = await getGames(query);
-	games = games.concat(newGames);
-	offset += limit;
-}while(newGames.length == limit && import.meta.env.PROD);
+  newGames = await getGames(query);
+  games = games.concat(newGames);
+  offset += limit;
+} while (newGames.length == limit && import.meta.env.PROD);
 
 end_time = Date.now();
 
 const gamesCount = games.length;
 
-console.log("Fetched " + gamesCount + " games in " + Math.round( (end_time-start_time)/1000 ) + "s");
+console.log(
+  "Fetched " +
+    gamesCount +
+    " games in " +
+    Math.round((end_time - start_time) / 1000) +
+    "s",
+);
 
 export { games, gamesCount };

@@ -3,29 +3,28 @@ import Config from "../site_config.json";
 ---
 
 <link
-	href="https://calendar.google.com/calendar/scheduling-button-script.css"
-	rel="stylesheet"
+  href="https://calendar.google.com/calendar/scheduling-button-script.css"
+  rel="stylesheet"
 />
 <script
-	src="https://calendar.google.com/calendar/scheduling-button-script.js" 
-	async
-></script>
+  src="https://calendar.google.com/calendar/scheduling-button-script.js"
+  async></script>
 <script
-	data-gc-url={Config.google_calendar_url}
-	data-gc-cta={Config.google_calendar_cta}
+  data-gc-url={Config.google_calendar_url}
+  data-gc-cta={Config.google_calendar_cta}
 >
-    var gcUrl = document.currentScript.dataset.gcUrl;
-    var gcCta = document.currentScript.dataset.gcCta;
-    (function () {
-        var target = document.currentScript;
-        window.addEventListener("load", function () {
-            calendar.schedulingButton.load({
-                url: gcUrl,
-                color: "#ff972a",
-                label: gcCta,
-                target,
-            });
-        });
-    })();
-    window.calendar = window.calendar || {};
+  var gcUrl = document.currentScript.dataset.gcUrl;
+  var gcCta = document.currentScript.dataset.gcCta;
+  (function () {
+    var target = document.currentScript;
+    window.addEventListener("load", function () {
+      calendar.schedulingButton.load({
+        url: gcUrl,
+        color: "#ff972a",
+        label: gcCta,
+        target,
+      });
+    });
+  })();
+  window.calendar = window.calendar || {};
 </script>

@@ -1,91 +1,96 @@
 ---
 import { Icon } from "astro-icon/components";
 ---
-<div class="hidden alert place-content-evenly transition duration-500 ease-in-out shadow-lg fixed top-16 bg-opacity-90 backdrop-blur-2xl z-40 inset-x-0 rounded-none"
-	id="t-alert"
+
+<div
+  class="alert fixed inset-x-0 top-16 z-40 hidden place-content-evenly rounded-none bg-opacity-90 shadow-lg backdrop-blur-2xl transition duration-500 ease-in-out"
+  id="t-alert"
 >
-	<div>
-		<Icon class="stroke-current flex-shrink-0 w-6 h-6" name="pixelarticons:notification"/>
-	</div>
-	<div class="max-w-sm mx-auto text-center">
-		<h3 class="font-bold text-base" id="t-alert-title">Titolo</h3>
-		<div class="mt-1 text-sm font-semibold" id="t-alert-message">Messaggio</div>
-	</div>
-	<div>
-		<button class="btn uppercase btn-neutral" id="t-alert-close">&times</button>
-	</div>
+  <div>
+    <Icon
+      class="h-6 w-6 flex-shrink-0 stroke-current"
+      name="pixelarticons:notification"
+    />
+  </div>
+  <div class="mx-auto max-w-sm text-center">
+    <h3 class="text-base font-bold" id="t-alert-title">Titolo</h3>
+    <div class="mt-1 text-sm font-semibold" id="t-alert-message">Messaggio</div>
+  </div>
+  <div>
+    <button class="btn btn-neutral uppercase" id="t-alert-close">&times</button>
+  </div>
 </div>
 
 <script is:inline>
-    const alert = document.querySelector('#t-alert');
-    const alertTitle = document.querySelector('#t-alert-title');
-    const alertMessage = document.querySelector('#t-alert-message');
-    const alertCloseButton = document.querySelector('#t-alert-close');
+  const alert = document.querySelector("#t-alert");
+  const alertTitle = document.querySelector("#t-alert-title");
+  const alertMessage = document.querySelector("#t-alert-message");
+  const alertCloseButton = document.querySelector("#t-alert-close");
 
-    const setStyle = (style) => {
-        alert.classList.forEach( (classItem,i) => {
-                if(classItem.startsWith('alert-')) alert.classList.remove(classItem);
-            }
-        );
-
-        switch(style){
-            case('success'): 
-                alert.classList.add('alert-success','text-success-content');
-                break;
-            case('error'): 
-                alert.classList.add('alert-error','text-error-content');
-                break;
-            case('warning'): 
-                alert.classList.add('alert-warning','text-warning-content');
-                break;
-            case('primary'): 
-                alert.classList.add('bg-primary','text-primary-content');
-                break;
-            case('secondary'): 
-                alert.classList.add('bg-secondary','text-secondary-content');
-                break;
-            case('accent'): 
-                alert.classList.add('bg-accent','text-accent-content');
-                break;
-            default: 
-                alert.classList.add('alert-info','text-info-content');
-                break;
-        }
-    };
-
-    const close = () => {
-        alert.classList.add('opacity-0');
-        setTimeout( () => {
-            alert.classList.add('hidden');
-            alert.classList.remove('opacity-0');
-        }, 1500);
-    };
-
-    alertCloseButton.addEventListener('click', () => {
-        close();
+  const setStyle = (style) => {
+    alert.classList.forEach((classItem, i) => {
+      if (classItem.startsWith("alert-")) alert.classList.remove(classItem);
     });
 
-    window.notify = (message, title = null, style = null) => {
-        document.dispatchEvent(
-            new CustomEvent("notify", { detail: {
-                title: title,
-                message: message,
-                style: style?.toLowerCase()
-            } })
-        );
+    switch (style) {
+      case "success":
+        alert.classList.add("alert-success", "text-success-content");
+        break;
+      case "error":
+        alert.classList.add("alert-error", "text-error-content");
+        break;
+      case "warning":
+        alert.classList.add("alert-warning", "text-warning-content");
+        break;
+      case "primary":
+        alert.classList.add("bg-primary", "text-primary-content");
+        break;
+      case "secondary":
+        alert.classList.add("bg-secondary", "text-secondary-content");
+        break;
+      case "accent":
+        alert.classList.add("bg-accent", "text-accent-content");
+        break;
+      default:
+        alert.classList.add("alert-info", "text-info-content");
+        break;
     }
+  };
 
-    document.addEventListener('notify', (event) => {
-        if(event.detail && event.detail.message) {
-            if(event.detail.title) { 
-                alertTitle.innerHTML = event.detail.title;
-                alertTitle.classList.remove('hidden');
-            }
-            else alertTitle.classList.add('hidden');
-            alertMessage.innerHTML = event.detail.message;
-            if(event.detail.style) setStyle(event.detail.style);
-            alert.classList.remove('hidden');
-        }
-        setTimeout( close , 10000 );
-    })
+  const close = () => {
+    alert.classList.add("opacity-0");
+    setTimeout(() => {
+      alert.classList.add("hidden");
+      alert.classList.remove("opacity-0");
+    }, 1500);
+  };
+
+  alertCloseButton.addEventListener("click", () => {
+    close();
+  });
+
+  window.notify = (message, title = null, style = null) => {
+    document.dispatchEvent(
+      new CustomEvent("notify", {
+        detail: {
+          title: title,
+          message: message,
+          style: style?.toLowerCase(),
+        },
+      }),
+    );
+  };
+
+  document.addEventListener("notify", (event) => {
+    if (event.detail && event.detail.message) {
+      if (event.detail.title) {
+        alertTitle.innerHTML = event.detail.title;
+        alertTitle.classList.remove("hidden");
+      } else alertTitle.classList.add("hidden");
+      alertMessage.innerHTML = event.detail.message;
+      if (event.detail.style) setStyle(event.detail.style);
+      alert.classList.remove("hidden");
+    }
+    setTimeout(close, 10000);
+  });
 </script>

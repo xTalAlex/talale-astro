@@ -5,16 +5,19 @@ import image404 from "@assets/images/mdf.gif";
 import { Image } from "astro:assets";
 ---
 
-<Layout 
-	title="404 - Pagina Non Trovata"
-	description="Pagina non trovata"
+<Layout title="404 - Pagina Non Trovata" description="Pagina non trovata">
+  <div class="container mx-auto pt-6">
+    <div class="card">
+      <div class="card-body items-center">
+        <h2 class="card-title text-5xl font-bold md:text-7xl">
+          Pagina Non Trovata
+        </h2>
+        <Image
+          class="mt-6 h-[60vh] w-auto object-cover"
+          alt="Maria De Filippi 404"
+          src={image404}
+        />
+      </div>
+    </div>
+  </div></Layout
 >
-	<div class="container mx-auto pt-6">
-		<div class="card">
-			<div class="card-body items-center">
-				<h2 class="card-title text-5xl md:text-7xl font-bold">Pagina Non Trovata</h2>
-				<Image class="h-[60vh] w-auto object-cover mt-6" alt="Maria De Filippi 404" src={image404}>
-			</div>
-		</div>
-	</div>
-</Layout>
