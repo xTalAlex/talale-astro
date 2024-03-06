@@ -18,7 +18,7 @@ const { page } = Astro.props;
 
 <Layout
   title={`Catalogo Nintendo Switch - Pagina ${page.currentPage}`}
-  description="Catalogo con le informazioni su tutti i giochi per Nintendo Switch messe a disposizione da IGDB.com"
+  description="Catalogo con le informazioni sui giochi in uscita per Nintendo Switch messe a disposizione da IGDB.com"
   noindex={page.currentPage != 1}
 >
   <div class="container w-full max-w-5xl px-5 md:mx-auto">
@@ -102,7 +102,7 @@ const { page } = Astro.props;
             <div class="card-body mx-auto max-w-xs md:w-full">
               <h2 class="card-title text-base" id={game.name}>
                 {game.url && (
-                  <a href={game.url} class="l link" target="_blank">
+                  <a href={game.url} class="link" target="_blank">
                     {game.name}
                     <span>
                       {game.platforms?.length == 1 && (
@@ -165,8 +165,11 @@ const { page } = Astro.props;
                         >
                           <a
                             href={
-                              company.company.websites &&
-                              company.company.websites[0].url
+                              (company.company.websites?.[0].url.startsWith(
+                                "http",
+                              )
+                                ? ""
+                                : "//") + company.company.websites?.[0].url
                             }
                             target="_blank"
                           >
@@ -175,9 +178,7 @@ const { page } = Astro.props;
                               width="24"
                               class="h-6 rounded-full object-fill"
                               alt={company.company.name}
-                              src={
-                                company.company.logo && company.company.logo.url
-                              }
+                              src={company.company.logo?.url}
                             />
                           </a>
                         </div>

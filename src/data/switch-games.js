@@ -2,10 +2,12 @@ import { getGames, getConsole } from "@lib/igdb";
 
 const platform = await getConsole("Nintendo Switch");
 const today = new Date();
+const fromReleaseDate = new Date().setFullYear(today.getFullYear() - 1);
+const toReleaseDate = new Date().setFullYear(today.getFullYear() + 2);
 
 var games = [];
 var newGames = [];
-var limit = import.meta.PROD ? 500 : 50;
+var limit = 500;
 var offset = 0;
 var start_time;
 var end_time;
@@ -23,17 +25,18 @@ do {
   let query = `
         fields 
             name, slug, category, status, summary, total_rating, url, first_release_date,  
-            genres.name, themes.name, cover.url, artworks.url, screenshots.url,
+            genres.name, themes.name, cover.url, artworks.url, screenshots.url, language_supports.language.locale,
             involved_companies.company.name, involved_companies.company.logo.url, involved_companies.company.websites.url;
         sort first_release_date desc;
         where platforms = (${platform.id})
+                & language_supports.language.locale = ("it-IT","en-US")
                 & summary != null
                 & genres != null
                 & involved_companies != null
                 & cover != null
                 & ( status = 0 | status = null )
-                & first_release_date > ${Math.floor(new Date("2017.03.03").getTime() / 1000)}
-                & first_release_date < ${Math.floor(today.setMonth(today.getMonth() + 1) / 1000)}
+                & first_release_date > ${Math.floor(fromReleaseDate / 1000)}
+                & first_release_date < ${Math.floor(toReleaseDate / 1000)}
                 & category = (0,8,9);
         limit ${limit};
         offset ${offset};
@@ -41,7 +44,7 @@ do {
   newGames = await getGames(query);
   games = games.concat(newGames);
   offset += limit;
-} while (newGames.length == limit && import.meta.env.PROD);
+} while (newGames.length == limit);
 
 end_time = Date.now();
 
