@@ -7,9 +7,13 @@ import icon from "astro-icon";
 import db from "@astrojs/db";
 import sentry from "@sentry/astro";
 
+import netlify from "@astrojs/netlify";
+
 // https://astro.build/config
 export default defineConfig({
   site: Config.url,
+  output: "hybrid",
+  adapter: netlify(),
   integrations: [
     tailwind({
       config: {

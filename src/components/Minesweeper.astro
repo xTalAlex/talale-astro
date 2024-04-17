@@ -81,10 +81,10 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
   const cells = Array.from(document.getElementsByClassName("minesweeper-cell"));
   const refresh = document.getElementById("refresh") as HTMLButtonElement;
   const itemFoundFanfare = document.getElementById(
-    "itemFoundFanfare",
+    "itemFoundFanfare"
   ) as HTMLAudioElement;
   const electrodeCry = document.getElementById(
-    "electrodeCry",
+    "electrodeCry"
   ) as HTMLAudioElement;
 
   const init = () => {
@@ -101,7 +101,7 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
         "text-info",
         "text-warning",
         "text-error",
-        "text-gray-300",
+        "text-gray-300"
       );
       cell.classList.add("bg-gray-400");
     });
@@ -131,11 +131,11 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
       var cells = adjacentCells(
         getCoordinates(id).col,
         getCoordinates(id).row,
-        boardSize,
+        boardSize
       );
       cells.forEach(
         (cell) =>
-          table[cell.col][cell.row] != "X" && table[cell.col][cell.row]++,
+          table[cell.col][cell.row] != "X" && table[cell.col][cell.row]++
       );
     });
   };
@@ -164,7 +164,7 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
       cell.classList.add(
         table[coordinates.col][coordinates.row] > 3
           ? colorsTable[3]
-          : colorsTable[table[coordinates.col][coordinates.row]],
+          : colorsTable[table[coordinates.col][coordinates.row]]
       );
     }
     checkedCtr++;
@@ -181,7 +181,7 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
           ) {
             checkCell(cell.col * boardSize + cell.row);
           }
-        },
+        }
       );
     } else {
       cell.classList.remove("text-transparent");
@@ -236,7 +236,7 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
     confetti(
       Object.assign({}, { origin: { y: 0.7 } }, opts, {
         particleCount: Math.floor(200 * particleRatio),
-      }),
+      })
     );
   };
 
@@ -263,7 +263,7 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
 
   const storeResult = async (victory: boolean) => {
     if (window.netlifyIdentity.currentUser()) {
-      const response = await fetch("/.netlify/functions/player-update", {
+      const response = await fetch("/api/users/update", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

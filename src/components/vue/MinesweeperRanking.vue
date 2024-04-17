@@ -80,12 +80,14 @@ function lastUpdateLabel(date) {
 }
 
 function fetchRanks() {
-  fetch("/.netlify/functions/players-ranking").then((response) => {
+  // /.netlify/functions/players-ranking
+  fetch("/api/users/ranking").then((response) => {
     if (response.ok) {
       response.json().then((data) => {
-        if (data.ranking) {
-          players.value = data?.ranking;
-        }
+        players.value = data;
+        // if (data.ranking) {
+        //   players.value = data?.ranking;
+        // }
       });
     }
   });

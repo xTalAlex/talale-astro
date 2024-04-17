@@ -6,3 +6,12 @@
 
 - Episodi Yattaman
 - Episodi Cacciatori di Draghi
+
+# Eventi GA
+
+- "form_submit" con parametro "form_name" = messagebox | tawkto_offline_form
+- "chat_start" per invio messaggio tawkto
+- "calendar_meeting_created" per prenotazione Google Calendar via Zapier
+- "contact_link_click" sui bottoni Whatsapp e Email tramite classe "ga-contact-link"
+- "game_won" e "game_lost" per minesweeper
+- "radio_play"
