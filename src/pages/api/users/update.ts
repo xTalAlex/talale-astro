@@ -1,7 +1,7 @@
-import type { APIRoute } from "astro";
-import { db, User, eq } from "astro:db";
-
 export const prerender = false;
+
+import { db, User, eq } from "astro:db";
+import type { APIRoute } from "astro";
 
 export const POST: APIRoute = async ({ request }) => {
   if (request.headers.get("Content-Type") === "application/json") {
