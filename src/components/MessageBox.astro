@@ -107,6 +107,7 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
     ) {
       const data = new FormData(document.forms[0]);
       data.set("message", document.getElementById("message").value.trim());
+      data.delete("privacy_check");
       document.getElementById("message").disabled = true;
       document.getElementById("submitButton").disabled = true;
       document.getElementById("submitButton").classList.add("loading");
