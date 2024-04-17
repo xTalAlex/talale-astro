@@ -13,7 +13,9 @@ import netlify from "@astrojs/netlify";
 export default defineConfig({
   site: Config.url,
   output: "hybrid",
-  adapter: netlify(),
+  adapter: netlify({
+    imageCDN: false,
+  }),
   integrations: [
     tailwind({
       config: {
