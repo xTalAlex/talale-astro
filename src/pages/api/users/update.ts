@@ -1,8 +1,6 @@
 import type { APIRoute } from "astro";
 import { db, User, eq } from "astro:db";
 
-export const prerender = false;
-
 export const POST: APIRoute = async ({ request }) => {
   await db.insert(User).values({ author, content });
   return new Response(null);
