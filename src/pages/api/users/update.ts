@@ -2,9 +2,6 @@ import type { APIRoute } from "astro";
 import { db, User, eq } from "astro:db";
 
 export const POST: APIRoute = async ({ request }) => {
-  await db.insert(User).values({ author, content });
-  return new Response(null);
-
   if (request.headers.get("Content-Type") === "application/json") {
     const body = await request.json();
     const user = body.user; // validate id name email
