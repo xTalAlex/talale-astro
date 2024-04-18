@@ -51,6 +51,7 @@ function searchGame(slug) {
 // Wishlisted games releaseDate must be between -1 year and +1 lastDeployDate
 function removeOutdatedGames() {
   items.value.forEach((item) =>
+    !item.releaseDate ||
     item.releaseDate < Math.floor(fromReleaseDate / 1000) ||
     item.releaseDate > Math.floor(toReleaseDate / 1000)
       ? removeWishlistItem(item)

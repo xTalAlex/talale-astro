@@ -1,14 +1,9 @@
 ---
-import { getCollection } from "astro:content";
 import Config from "../site_config.json";
 import profilePic from "@assets/images/IoTramonto.jpg";
+import googleBadge from "@assets/images/google-ads-skillshop.png";
 import { Image } from "astro:assets";
 import { marked } from "marked";
-
-const certificates = await getCollection("certificates");
-const bestCertificate = certificates
-  .filter((c) => c.data.title.includes("professionale"))
-  .slice(-1)[0];
 ---
 
 <div class="mb-auto mt-0 h-full items-stretch space-y-10">
@@ -41,27 +36,28 @@ const bestCertificate = certificates
     <a href="/cv" class="btn btn-primary max-w-xs uppercase">Curriculum</a>
   </div>
   <div class="mt-10 flex items-center justify-center gap-2">
-    {
-      bestCertificate && (
-        <div class="relative grid size-16 flex-none place-items-center overflow-hidden rounded-full bg-white">
-          <span class="loading loading-spinner loading-lg absolute inset-0 z-0 m-auto size-10 text-primary" />
-          <a
-            href="https://www.credential.net/profile/talale/wallet#gs.5a4y5e"
-            target="_blank"
-            role="img"
-            aria-label="Alessandro Talamona's Credentials wallet"
-          >
-            <Image
-              class="z-10 size-14 scale-125 object-cover"
-              width="200"
-              height="200"
-              src={bestCertificate.data.logo}
-              alt={bestCertificate.data.title}
-            />
-          </a>
-        </div>
-      )
-    }
+    <div
+      class="relative grid size-16 flex-none place-items-center overflow-hidden rounded-full bg-white"
+    >
+      <span
+        class="loading loading-spinner loading-lg absolute inset-0 z-0 m-auto size-10 text-primary"
+      ></span>
+      <a
+        href="https://www.credential.net/profile/talale/wallet#gs.5a4y5e"
+        target="_blank"
+        role="img"
+        aria-label="Alessandro Talamona's Credentials wallet"
+      >
+        <Image
+          class="z-10 size-14 scale-125 object-cover"
+          width="200"
+          height="200"
+          src={googleBadge}
+          alt="Corsi e attestati"
+        />
+      </a>
+    </div>
+
     <div class="">
       <a
         href="/iubenda-partner"

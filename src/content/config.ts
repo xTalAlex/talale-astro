@@ -19,20 +19,6 @@ const projectCollection = defineCollection({
     }),
 });
 
-const certificateCollection = defineCollection({
-  // schema: rssSchema.extend({
-  //   gallery: z.array(z.string()).optional()
-  // }),
-  schema: ({ image }) =>
-    z.object({
-      logo: z.string().optional(),
-      title: z.string(),
-      image: z.string(),
-      obtainedAt: z.date(),
-      hidden: z.boolean().optional(),
-    }),
-});
-
 // 3. Export a single `collections` object to register your collection(s)
 //    This key should match your collection directory name in "src/content"
 export const collections = {
