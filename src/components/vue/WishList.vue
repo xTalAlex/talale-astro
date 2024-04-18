@@ -2,7 +2,7 @@
   <div>
     <div
       v-if="items.length"
-      class="carousel-start carousel mt-12 w-full space-x-4 overflow-y-visible rounded-box bg-neutral p-4"
+      class="carousel carousel-start mt-12 w-full space-x-4 overflow-y-visible rounded-box bg-neutral p-4"
     >
       <div
         v-for="item in items"
@@ -28,9 +28,10 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import { useStore } from "@nanostores/vue";
 import { wishlist, removeWishlistItem } from "@lib/wishlistStore";
+import { lastDeployDate } from "../../utils";
 
 const $wishlist = useStore(wishlist);
 //const $isWishlistOpen = useStore(isWishlistOpen);
@@ -46,4 +47,23 @@ function slideId(gameId) {
 function searchGame(slug) {
   document.dispatchEvent(new CustomEvent("quickSearch", { detail: slug }));
 }
+
+// Wishlisted games releaseDate must be between -1 year and +1 lastDeployDate
+function removeOutdatedGames() {
+  const fromReleaseDate = Math.floor(
+    new Date().setFullYear(lastDeployDate.getFullYear() - 1) / 1000,
+  );
+  const toReleaseDate = Math.floor(
+    new Date().setMonth(lastDeployDate.getMonth() + 1) / 1000,
+  );
+  items.value.forEach((item) =>
+    item.releaseDate > fromReleaseDate || item.releaseDate < toReleaseDate
+      ? removeWishlistItem(item)
+      : null,
+  );
+}
+
+onMounted(() => {
+  removeOutdatedGames();
+});
 </script>

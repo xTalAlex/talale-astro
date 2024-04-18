@@ -32,6 +32,7 @@ const props = defineProps({
   id: String,
   name: String,
   imgSrc: String,
+  releaseDate: Number,
 });
 
 const game = computed(() => {
@@ -39,6 +40,7 @@ const game = computed(() => {
     id: props.id,
     name: props.name,
     imgSrc: props.imgSrc,
+    releaseDate: props.releaseDate,
   };
 });
 

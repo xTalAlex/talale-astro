@@ -53,6 +53,7 @@ const storeAsUserMetadata = (data) => {
   }
 };
 
+// replace local wishlist with remote one
 const setWishlist = () => {
   if (window.netlifyIdentity.currentUser().user_metadata.wishlist) {
     wishlist.set(window.netlifyIdentity.currentUser().user_metadata.wishlist);

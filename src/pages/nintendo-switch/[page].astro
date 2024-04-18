@@ -18,7 +18,7 @@ const { page } = Astro.props;
 
 <Layout
   title={`Catalogo Nintendo Switch - Pagina ${page.currentPage}`}
-  description="Catalogo con le informazioni sui giochi in uscita per Nintendo Switch messe a disposizione da IGDB.com"
+  description="Catalogo con le informazioni messe a disposizione da IGDB.com sui giochi per Nintendo Switch rilasciati nell'ultimo anno"
   noindex={page.currentPage != 1}
 >
   <div class="container w-full max-w-5xl px-5 md:mx-auto">
@@ -71,7 +71,7 @@ const { page } = Astro.props;
                             class="w-full object-cover"
                             src={artwork.url.replace(
                               "t_thumb",
-                              "t_screenshot_big",
+                              "t_screenshot_big"
                             )}
                             alt={`Artwork ${id + 1}`}
                           />
@@ -86,7 +86,7 @@ const { page } = Astro.props;
                             class="w-full object-cover"
                             src={screenshot.url.replace(
                               "t_thumb",
-                              "t_screenshot_big",
+                              "t_screenshot_big"
                             )}
                             alt={`Screenshot ${id + 1}`}
                           />
@@ -166,7 +166,7 @@ const { page } = Astro.props;
                           <a
                             href={
                               (company.company.websites?.[0].url.startsWith(
-                                "http",
+                                "http"
                               )
                                 ? ""
                                 : "//") + company.company.websites?.[0].url
@@ -182,7 +182,7 @@ const { page } = Astro.props;
                             />
                           </a>
                         </div>
-                      ),
+                      )
                   )}
                 </div>
               </div>
@@ -192,6 +192,7 @@ const { page } = Astro.props;
                   id={game.slug}
                   name={game.name}
                   imgSrc={game.cover?.url}
+                  releaseDate={game.first_release_date}
                 />
               </div>
             </div>
