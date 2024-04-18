@@ -1,6 +1,10 @@
 import { DateTime } from "luxon";
 
 const lastDeployDate = new Date();
+const fromReleaseDate = new Date().setFullYear(
+  lastDeployDate.getFullYear() - 1,
+);
+const toReleaseDate = new Date().setMonth(lastDeployDate.getMonth() + 1);
 
 const formatDate = (date, format = "short") => {
   ["longest", "long", "short"].includes(format.toLowerCase())
@@ -65,6 +69,8 @@ const slugify = (text) => {
 
 export {
   lastDeployDate,
+  fromReleaseDate,
+  toReleaseDate,
   formatDate,
   adjacentCells,
   delayFunction,

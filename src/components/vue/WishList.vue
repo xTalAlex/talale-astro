@@ -31,7 +31,7 @@
 import { computed, onMounted } from "vue";
 import { useStore } from "@nanostores/vue";
 import { wishlist, removeWishlistItem } from "@lib/wishlistStore";
-import { lastDeployDate } from "../../utils";
+import { fromReleaseDate, toReleaseDate } from "src/utils";
 
 const $wishlist = useStore(wishlist);
 //const $isWishlistOpen = useStore(isWishlistOpen);
@@ -50,14 +50,9 @@ function searchGame(slug) {
 
 // Wishlisted games releaseDate must be between -1 year and +1 lastDeployDate
 function removeOutdatedGames() {
-  const fromReleaseDate = Math.floor(
-    new Date().setFullYear(lastDeployDate.getFullYear() - 1) / 1000,
-  );
-  const toReleaseDate = Math.floor(
-    new Date().setMonth(lastDeployDate.getMonth() + 1) / 1000,
-  );
   items.value.forEach((item) =>
-    item.releaseDate > fromReleaseDate || item.releaseDate < toReleaseDate
+    item.releaseDate < Math.floor(fromReleaseDate / 1000) ||
+    item.releaseDate > Math.floor(toReleaseDate / 1000)
       ? removeWishlistItem(item)
       : null,
   );

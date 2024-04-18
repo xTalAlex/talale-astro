@@ -1,9 +1,7 @@
 import { getGames, getConsole } from "@lib/igdb";
+import { fromReleaseDate, toReleaseDate } from "src/utils";
 
 const platform = await getConsole("Nintendo Switch");
-const today = new Date();
-const fromReleaseDate = new Date().setFullYear(today.getFullYear() - 1);
-const toReleaseDate = new Date().setMonth(today.getMonth() + 1);
 
 var games = [];
 var newGames = [];

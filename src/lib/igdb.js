@@ -15,7 +15,7 @@ async function fetchAPI(query = "", config = null) {
     .then((response) => response.json())
     .catch((error) => {
       throw new Error(
-        "!Errore WP API: " +
+        "!Errore IGDB API: " +
           query +
           " [ " +
           error.message +
@@ -44,7 +44,10 @@ export async function authenticate() {
     const error = await res.json();
 
     throw new Error(
-      "!Errore WP API: authenticate [ " + error.message + " ] \n " + error.Docs,
+      "!Errore IGDB API: authenticate [ " +
+        error.message +
+        " ] \n " +
+        error.Docs,
     );
   }
 }
