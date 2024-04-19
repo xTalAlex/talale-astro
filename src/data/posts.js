@@ -1,5 +1,5 @@
-import Config from "../site_config.json";
-const API_URL = Config.blogUrl + "/graphql";
+import Config from "@config/general.json";
+const API_URL = Config.blog.url + "/graphql";
 
 async function fetchAPI(query, { variables } = {}) {
   const headers = { "Content-Type": "application/json" };
@@ -20,7 +20,7 @@ async function fetchAPI(query, { variables } = {}) {
 async function getPosts() {
   const data = await fetchAPI(`
     {
-        posts(first: 50, where: {categoryName: "${Config.blogCategory}"}) {
+        posts(first: 50, where: {categoryName: "${Config.blog.category}"}) {
           nodes {
             id
             title

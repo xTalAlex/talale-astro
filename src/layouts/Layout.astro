@@ -13,7 +13,7 @@ import "@fontsource/chakra-petch";
 import "@fontsource/vt323";
 import "@assets/css/main.css";
 import "animate.css";
-import Config from "../site_config.json";
+import Config from "@config/general.json";
 import { SEO } from "astro-seo";
 import Navbar from "@components/Navbar.astro";
 import Footer from "@components/Footer.astro";
@@ -34,7 +34,6 @@ const {
 } = Astro.props.frontmatter || Astro.props;
 
 const {
-  COOKIEBOT_ID,
   IUBENDA_SITE_ID,
   IUBENDA_POLICY_ID,
   GOOGLE_SEARCH_CONSOLE_ID,
@@ -86,18 +85,6 @@ const openGraph = {
     />
 
     {
-      COOKIEBOT_ID && (
-        <script
-          type="text/javascript"
-          id="Cookiebot"
-          src="https://consent.cookiebot.com/uc.js"
-          data-cbid={`${COOKIEBOT_ID}`}
-          async
-        />
-      )
-    }
-
-    {
       IUBENDA_SITE_ID && IUBENDA_POLICY_ID && (
         <IubendaCookieSolution
           siteId={IUBENDA_SITE_ID}
@@ -121,7 +108,7 @@ const openGraph = {
       GOOGLE_ANALYTICS_ID && (
         <script
           class="_iub_cs_activate"
-          type={`${COOKIEBOT_ID || IUBENDA_SITE_ID ? "text/plain" : "text/javascript"}`}
+          type="text/javascript"
           async
           src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
           data-cookieconsent="statistics"
@@ -150,7 +137,7 @@ const openGraph = {
       } else
         document.documentElement.setAttribute(
           "data-theme",
-          localStorage.getItem("theme"),
+          localStorage.getItem("theme")
         );
     </script>
   </head>
@@ -172,7 +159,7 @@ const openGraph = {
       TAWKTO_WIDGET_URL && (
         <TawkToWidget
           class="_iub_cs_activate-inline"
-          type={`${COOKIEBOT_ID || IUBENDA_SITE_ID ? "text/plain" : "text/javascript"}`}
+          type="text/javascript"
           data-cookieconsent="preferences, statistics"
           data-iub-purposes="2,4"
           data-widget={TAWKTO_WIDGET_URL}

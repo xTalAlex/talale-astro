@@ -1,10 +1,13 @@
 import { DateTime } from "luxon";
+import Config from "@config/general.json";
 
 const lastDeployDate = new Date();
-const fromReleaseDate = new Date().setFullYear(
-  lastDeployDate.getFullYear() - 1,
+const fromReleaseDate = new Date().setMonth(
+  lastDeployDate.getMonth() + Config.igdb.dateFromNMonths,
 );
-const toReleaseDate = new Date().setMonth(lastDeployDate.getMonth() + 1);
+const toReleaseDate = new Date().setMonth(
+  lastDeployDate.getMonth() + Config.igdb.dateToNMonths,
+);
 
 const formatDate = (date, format = "short") => {
   ["longest", "long", "short"].includes(format.toLowerCase())

@@ -1,7 +1,8 @@
 import { getGames, getConsole } from "@lib/igdb";
-import { fromReleaseDate, toReleaseDate } from "src/utils";
+import { fromReleaseDate, toReleaseDate } from "@lib/utils";
+import Config from "@config/general.json";
 
-const platform = await getConsole("Nintendo Switch");
+const platform = await getConsole(Config.igdb.console);
 
 var games = [];
 var newGames = [];

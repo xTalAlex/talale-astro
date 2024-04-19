@@ -54,7 +54,7 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
 
 <script>
   import confetti from "canvas-confetti";
-  import { adjacentCells } from "../utils";
+  import { adjacentCells } from "@lib/utils";
 
   const electrode =
     "https://img.pokemondb.net/sprites/black-white/anim/normal/electrode.gif";
@@ -263,7 +263,7 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
 
   const storeResult = async (victory: boolean) => {
     if (window.netlifyIdentity.currentUser()) {
-      const response = await fetch("/api/users/update", {
+      const response = await fetch("/api/users/ranking", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

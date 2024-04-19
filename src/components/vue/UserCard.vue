@@ -86,7 +86,7 @@ import UserUpdate from "@components/vue/UserUpdate.vue";
 import UserInfo from "@components/vue/UserInfo.vue";
 import { useStore } from "@nanostores/vue";
 import { isLogged, userInfo, loadUser } from "@lib/authStore";
-import { formatDate } from "src/utils";
+import { formatDate } from "@lib/utils";
 
 const $isLogged = useStore(isLogged);
 const $userInfo = useStore(userInfo);

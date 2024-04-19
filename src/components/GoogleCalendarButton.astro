@@ -1,5 +1,5 @@
 ---
-import Config from "../site_config.json";
+import Config from "@config/general.json";
 ---
 
 <link
@@ -10,8 +10,8 @@ import Config from "../site_config.json";
   src="https://calendar.google.com/calendar/scheduling-button-script.js"
   async></script>
 <script
-  data-gc-url={Config.google_calendar_url}
-  data-gc-cta={Config.google_calendar_cta}
+  data-gc-url={Config.googleCalendar.url}
+  data-gc-cta={Config.googleCalendar.cta}
 >
   var gcUrl = document.currentScript.dataset.gcUrl;
   var gcCta = document.currentScript.dataset.gcCta;

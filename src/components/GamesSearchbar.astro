@@ -1,7 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
-import { gamesCount } from "@data/switch-games";
-import { lastDeployDate, formatDate } from "../utils";
+import { gamesCount } from "@data/gamesCatalog";
+import { lastDeployDate, formatDate } from "@lib/utils";
 ---
 
 <div class="form-control relative mx-auto w-full">
@@ -46,21 +46,21 @@ import { lastDeployDate, formatDate } from "../utils";
 
 <script>
   import Fuse from "fuse.js";
-  import { searchOptions } from "../fuse-helpers.js";
+  import { searchOptions } from "@lib/fuseHelpers.js";
   import {
     lastDeployDate,
     delayFunction,
     toTrimmedAlphanumeric,
     formatDate,
-  } from "../utils.js";
-  import Config from "../site_config.json";
+  } from "@lib/utils.js";
+  import Config from "@config/general.json";
   var response = await fetch("/searchindex.json");
   const data = await response.json();
   const fuse = new Fuse(data, searchOptions);
 
   const search = async () => {
     var query = toTrimmedAlphanumeric(
-      document.getElementById("search-input").value,
+      document.getElementById("search-input").value
     );
     if (query.length > 2) {
       const res = fuse.search(query);
@@ -88,7 +88,7 @@ import { lastDeployDate, formatDate } from "../utils";
       window.history.replaceState(
         null,
         "",
-        "?query=" + encodeURIComponent(query),
+        "?query=" + encodeURIComponent(query)
       );
       let pos = { top: 0, left: 0, x: 0, y: 0 };
       const mouseMoveHandler = function (e) {
@@ -134,7 +134,7 @@ import { lastDeployDate, formatDate } from "../utils";
   };
 
   const getPageNumberByRef = (ref) => {
-    return Math.max(Math.ceil(ref / Config.gamesPerPage), 1);
+    return Math.max(Math.ceil(ref / Config.igdb.gamesPerPage), 1);
   };
 
   const clear = () => {

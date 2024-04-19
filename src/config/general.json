@@ -1,0 +1,28 @@
+{
+  "url": "https://talale.it",
+  "title": "Alessandro Talamona",
+  "subtitle": "Sviluppatore Web Freelance a Varese",
+  "motto": "Realizzazione e ristrutturazione di Siti Web, ECommerce ed Applicazioni Web.",
+  "description": "Siti web su misura per distinguersi dalla concorrenza. Creazione, ristrutturazione e gestione di Siti Aziendali, ECommerce, Blog, Siti Vetrina, Applicazioni Web e Gestionali per qualunque tipo di attività.",
+  "cta": "Contattami",
+  "biography": "Nato nel 1993, abito in provincia di Varese, laureato in Informatica Musicale. \nQuando non sono impegnato a scrivere codice, mi piace dedicarmi a musica e videogiochi: interessi che alimentano mente, spirito, creatività e immaginazione.",
+  "googleCalendar": {
+    "url": "https://calendar.app.google/tVjy3FpV4NCTqsUP6",
+    "cta": "Prenota una telefonata"
+  },
+  "messagebox": {
+    "placeholder": "Lascia un messaggio",
+    "success": "Messaggio inviato!",
+    "error": "Si è verificato un errore!"
+  },
+  "blog": {
+    "url": "https://talale.altervista.org",
+    "category": "Informatica"
+  },
+  "igdb": {
+    "console": "Nintendo Switch",
+    "dateFromNMonths": -12,
+    "dateToNMonths": 1,
+    "gamesPerPage": 18
+  }
+}

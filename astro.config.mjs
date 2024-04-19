@@ -1,5 +1,5 @@
 import { defineConfig } from "astro/config";
-import Config from "./src/site_config.json";
+import Config from "./src/config/general.json";
 import tailwind from "@astrojs/tailwind";
 import vue from "@astrojs/vue";
 import sitemap from "@astrojs/sitemap";

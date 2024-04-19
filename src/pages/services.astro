@@ -2,15 +2,17 @@
 import Layout from "@layouts/Layout.astro";
 import bgImage from "@assets/images/pixelshop.png";
 import Image from "astro/components/Image.astro";
-import Config from "../site_config.json";
+import Config from "@config/freelance.json";
 import { Icon } from "astro-icon/components";
 import mascotte from "@assets/images/mascotte3.png";
 import decapDemo from "@assets/images/decapdemo.png";
 import filamentDemo from "@assets/images/filamentdemo.png";
 
-const title = "Servizi di sviluppo web";
+const titleSEO = "Servizi di sviluppo web";
+const title =
+  "Fai crescere la tua attività online con un sito web personalizzato";
 const description =
-  "Scegli il pacchetto di sviluppo web su misura per te e scopri i servizi base inclusi. Fai crescere la tua attività online con un sito web personalizzato. ";
+  "Scegli il pacchetto di sviluppo web su misura per te e scopri i servizi base inclusi.";
 
 const supportServices = [
   {
@@ -44,7 +46,7 @@ const supportServices = [
 ];
 ---
 
-<Layout title={title} description={description}>
+<Layout title={titleSEO} description={description}>
   <div
     class="container w-full max-w-5xl overflow-hidden px-5 md:mx-auto lg:overflow-visible"
   >

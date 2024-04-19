@@ -1,17 +1,17 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import { games } from "@data/switch-games";
+import { games } from "@data/gamesCatalog";
 import GamesSearchbar from "@components/GamesSearchbar.astro";
-import Config from "../../site_config.json";
+import Config from "@config/general.json";
 import Pagination from "@components/Pagination.astro";
-import { formatDate } from "../../utils";
+import { formatDate } from "@lib/utils";
 import AddToWishlist from "@components/vue/AddToWishlist.vue";
 import WishList from "@components/vue/WishList.vue";
 
 import { Image } from "astro:assets";
 
 export async function getStaticPaths({ paginate }) {
-  return paginate(games, { pageSize: Config.gamesPerPage });
+  return paginate(games, { pageSize: Config.igdb.gamesPerPage });
 }
 const { page } = Astro.props;
 ---

@@ -31,7 +31,7 @@
 import { computed, onMounted } from "vue";
 import { useStore } from "@nanostores/vue";
 import { wishlist, removeWishlistItem } from "@lib/wishlistStore";
-import { fromReleaseDate, toReleaseDate } from "src/utils";
+import { fromReleaseDate, toReleaseDate } from "@lib/utils";
 
 const $wishlist = useStore(wishlist);
 //const $isWishlistOpen = useStore(isWishlistOpen);

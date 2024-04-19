@@ -58,7 +58,7 @@
 import { ref, onMounted } from "vue";
 import { useStore } from "@nanostores/vue";
 import { isLogged } from "@lib/authStore";
-import { formatDate } from "../../utils";
+import { formatDate } from "@lib/utils";
 
 let players = ref(null);
 let open = ref(false);

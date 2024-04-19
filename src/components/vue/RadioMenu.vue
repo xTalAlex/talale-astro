@@ -107,7 +107,7 @@
 </template>
 
 <script setup>
-import { stations } from "@data/radio-stations";
+import { stations } from "@data/radioStations";
 import { useStorage } from "@lib/useStorage";
 import Hls from "hls.js";
 
