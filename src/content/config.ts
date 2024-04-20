@@ -9,7 +9,7 @@ const projectCollection = defineCollection({
   // }),
   schema: ({ image }) =>
     z.object({
-      logo: z.string().optional(),
+      thumb: z.string().optional(),
       title: z.string(),
       pubDate: z.date(),
       description: z.string(),

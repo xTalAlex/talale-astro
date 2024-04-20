@@ -1,5 +1,5 @@
 ---
-logo: /uploads/lombardaascensori.png
+thumb: /uploads/lombardaascensori.png
 title: Lombarda Ascensori
 description: Sito web ristrutturato per abbattare i costi di hosting,
   migliorandone al contempo usabilità e performance

@@ -1,0 +1,122 @@
+---
+export interface Props {
+  name: string;
+  description: string;
+  info?: string;
+  amount: number;
+  amountInfo?: string;
+  plus?: boolean;
+  features: string[];
+  includesBaseServices: boolean;
+  supportMonthsIncluded?: number;
+  background: string;
+}
+
+import Config from "@config/freelance.json";
+import { slugify } from "@lib/utils";
+import { Icon } from "astro-icon/components";
+
+const {
+  name,
+  description,
+  info = "",
+  amount,
+  amountInfo = "",
+  plus = false,
+  features,
+  includesBaseServices = false,
+  supportMonthsIncluded = 0,
+  background,
+} = Astro.props;
+
+const supportPrice = Config.prices[Config.prices.length - 1];
+
+function colorGradients(background: string) {
+  let res = "";
+  switch (background) {
+    case "primary":
+      res = "from-primary to-secondary";
+      break;
+    case "secondary":
+      res = "from-secondary to-primary";
+      break;
+    case "accent":
+      res = "from-secondary to-accent";
+      break;
+  }
+  return res;
+}
+---
+
+<div
+  class="group relative flex w-full max-w-sm cursor-default flex-col overflow-hidden rounded-xl border-0 p-6 text-primary-content shadow-xl transition duration-500 ease-in-out hover:scale-105 sm:max-w-xs lg:w-[18.5rem]"
+  id={supportPrice.name == name ? "support" : slugify(name)}
+>
+  <div
+    class=`${colorGradients(background)} absolute inset-0 -z-10 h-[200%] w-[200%] -translate-x-1/4 bg-gradient-to-br from-10% transition duration-500 group-hover:-translate-x-1/2 group-hover:-translate-y-1/2`
+  >
+  </div>
+  <div>
+    <h3 class="font-bold uppercase">{name}</h3>
+    <div>{description}</div>
+
+    <div class="mt-6 text-5xl">
+      {amount}€{plus ? "+" : ""}{
+        amountInfo ? <span class="text-sm">{amountInfo}</span> : ""
+      }
+    </div>
+    <span class="text-sm">{info}</span>
+    <div class="divider"></div>
+    <div class="mt-6 space-y-4">
+      {
+        features.map((feature) => (
+          <div class="flex">
+            <Icon
+              class="mr-2 mt-1 h-4 w-4 stroke-current"
+              name="pixelarticons:checkbox"
+            />
+            <div>{feature}</div>
+          </div>
+        ))
+      }
+      {
+        includesBaseServices && (
+          <div class="flex">
+            <Icon
+              class="mr-2 mt-1 h-4 w-4 stroke-current"
+              name="pixelarticons:checkbox"
+            />
+            <div>
+              <a class="link" href="/services#included-services">
+                Servizi base
+              </a>{" "}
+              inclusi
+            </div>
+          </div>
+        )
+      }
+      {
+        supportMonthsIncluded > 0 && (
+          <div class="flex">
+            <Icon
+              class="mr-2 mt-1 h-4 w-4 stroke-current"
+              name="pixelarticons:checkbox"
+            />
+            <div>
+              {supportMonthsIncluded} mesi di
+              <strong>{supportPrice.name}</strong> inclusi
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="mb-0 mt-auto pb-6">
+    <a href="#contacts" class="btn btn-neutral uppercase">Contattami</a>
+    <a
+      href=`/services${supportPrice.name == name ? "#support" : ""}`
+      class="btn btn-ghost uppercase">Informazioni</a
+    >
+  </div>
+</div>

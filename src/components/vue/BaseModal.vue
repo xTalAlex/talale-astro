@@ -42,9 +42,9 @@ onMounted(() => {
   };
 
   document.addEventListener("openModal", (e) => {
-    title.value = e.detail.name;
-    body.value = e.detail.description;
-    image.value = e.detail.original_image;
+    title.value = e.detail.title;
+    body.value = e.detail.body;
+    image.value = e.detail.image;
     open.value = true;
   });
 });

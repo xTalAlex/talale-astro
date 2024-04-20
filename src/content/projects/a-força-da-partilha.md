@@ -1,5 +1,5 @@
 ---
-logo: /uploads/laforzadellacondivisione.png
+thumb: /uploads/laforzadellacondivisione.png
 title: A força da partilha
 description: Ristrutturazione e restyling di un sito web per una Organizzazione
   di Volontariato

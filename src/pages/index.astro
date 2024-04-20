@@ -8,6 +8,7 @@ import MessageBox from "@components/MessageBox.astro";
 import Contacts from "@components/Contacts.astro";
 import Prices from "@components/Prices.astro";
 import Map from "@components/Map.astro";
+import GoogleCalendarButton from "@components/GoogleCalendarButton.astro";
 ---
 
 <Layout>
@@ -37,6 +38,11 @@ import Map from "@components/Map.astro";
         <div class="card-body">
           <div class="card space-y-12 bg-transparent p-0 text-primary-content">
             <MessageBox />
+            <div class="space-y-10">
+              <div class="grid place-items-center">
+                <GoogleCalendarButton />
+              </div>
+            </div>
             <Contacts />
           </div>
         </div>

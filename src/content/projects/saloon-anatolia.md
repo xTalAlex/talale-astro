@@ -1,5 +1,5 @@
 ---
-logo: /uploads/saloonanatolia.png
+thumb: /uploads/saloonanatolia.png
 title: Saloon Anatolia
 description: Ristrutturazione del sito web di un ristorante con lo scopo di
   rispecchiarne l'immagine e migliorarne il posizionamento su Google.

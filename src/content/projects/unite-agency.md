@@ -1,5 +1,5 @@
 ---
-logo: /uploads/uniteagency.png
+thumb: /uploads/uniteagency.png
 title: Unite Agency
 description: Applicazione che consente ai giocatori di Pokemon Unite di trovare
   squadre a cui unirsi

@@ -1,5 +1,5 @@
 ---
-logo: /uploads/ilpiubelsito.png
+thumb: /uploads/ilpiubelsito.png
 title: Il Blog Casuale
 description: Semplice blog realizzato in wordpress con possibilità di guadagnare tramite Ads
 link: https://talale.altervista.org/

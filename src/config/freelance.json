@@ -1,10 +1,5 @@
 {
   "piva": "03838670127",
-  "prices": {
-    "standard": 750,
-    "custom": 2000,
-    "support": 200
-  },
   "frameworks": [
     {
       "name": "Laravel",
@@ -73,6 +68,51 @@
     {
       "title": "Gestione Hosting, Dominio (HTTPS) e Email",
       "description": "Dalla registrazione del dominio all'attivazione di caselle email personalizzate, mi occupo di tutto quello che serve per garantirti un servizio di hosting sicuro, efficiente e performante. Il tuo sito web sarà sempre online e raggiungibile, con la massima protezione SSL (HTTPS)."
+    }
+  ],
+  "prices": [
+    {
+      "amountInfo": "",
+      "name": "Standard",
+      "info": "Acconto do stabilire",
+      "supportMonthsIncluded": 3,
+      "includesBaseServices": true,
+      "amount": 750,
+      "plus": true,
+      "description": "Siti vetrina, blog e landing page.",
+      "features": ["CMS custom o Wordpress", "Fino a 10 pagine"]
+    },
+    {
+      "amount": 2000,
+      "plus": true,
+      "includesBaseServices": true,
+      "supportMonthsIncluded": 1,
+      "name": "ECommerce / Custom",
+      "description": "Soluzioni per negozi online, aziende e startup.",
+      "info": "Acconto da stabilire",
+      "features": [
+        "CMS custom",
+        "Integrazione gestionale tramite API",
+        "Pagamenti con Stripe e PayPal"
+      ]
+    },
+    {
+      "amountInfo": "/mese",
+      "name": "Assistenza & Ads",
+      "info": "",
+      "supportMonthsIncluded": 0,
+      "includesBaseServices": false,
+      "amount": 200,
+      "plus": false,
+      "description": "Supporto continuato",
+      "features": [
+        "Correzione bug",
+        "Monitoraggio SEO",
+        "Campagne Google ADS",
+        "Gestione profilo Google Maps",
+        "Modifiche e aggiornamento contenuti",
+        "Assistenza"
+      ]
     }
   ]
 }

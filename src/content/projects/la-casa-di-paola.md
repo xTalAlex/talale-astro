@@ -1,5 +1,5 @@
 ---
-logo: /uploads/lacasadipaola.png
+thumb: /uploads/lacasadipaola.png
 title: La Casa di Paola
 description: Il blog della giornalista Paola Guidi
 link: https://lacasadipaola.it/

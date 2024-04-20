@@ -110,7 +110,6 @@
 import { stations } from "@data/radioStations";
 import { useStorage } from "@lib/useStorage";
 import Hls from "hls.js";
-
 import { ref, computed, onMounted } from "vue";
 
 const lastRadioStation = useStorage("lastRadioStation", stations[0]);
@@ -119,7 +118,6 @@ let open = ref(false);
 let hls = ref(null);
 let volume = ref(null);
 let isPlaying = ref(false);
-
 let supportsMediaSession = ref(false);
 
 const radioPlayer = ref(null);

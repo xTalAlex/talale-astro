@@ -1,5 +1,5 @@
 ---
-logo: /uploads/tallcommerce.png
+thumb: /uploads/tallcommerce.png
 title: TALLCommerce
 description: Demo di un ECommerce di cui si può provare il pannello di controllo
 link: https://github.com/xTalAlex/TALLCommerce#readme

@@ -18,13 +18,6 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
   <div class="grid items-start gap-20 px-10 py-20 lg:grid-cols-3">
     <div class="mb-20 lg:col-span-2 lg:mb-0">
       <LatestPosts />
-      <!-- <blockquote class="relative p-4 mt-20 border-l-4 border-neutral-content bg-base-200 max-w-md">
-                <div class="absolute inset-0 bg-gradient-to-tl blur-3xl from-primary to-secondary opacity-20"></div>
-                <p class="italic font-medium leading-relaxed text-base opacity-75">
-                    "Learning coding is like playing cards — you learn the rules, then you play, then you go back and learn the rules again, then you play again."
-                    <br/><div class="text-right">- Mozilla.org</div>
-                </p>
-            </blockquote> -->
     </div>
     <Biography />
   </div>
@@ -66,21 +59,6 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
       </a>
     </div>
   </div>
-  <!-- <div id="donate-button-container">
-        <div id="donate-button"></div>
-        <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
-        <script>
-            PayPal.Donation.Button({
-            env:'production',
-            hosted_button_id:'QUKYU3LA5B3DU',
-            image: {
-            src:'https://www.paypalobjects.com/it_IT/IT/i/btn/btn_donate_LG.gif',
-            alt:'Fai una donazione con il pulsante PayPal',
-            title:'PayPal - The safer, easier way to pay online!',
-            }
-            }).render('#donate-button');
-        </script>
-    </div> -->
   <div class="grid grid-flow-col gap-4">
     {
       !IUBENDA_POLICY_ID && (
@@ -117,6 +95,5 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
         |
       </span><div class="">P.IVA {FreelanceConfig.piva}</div>
     </div>
-    <!-- <p>Copyright © {curYear} - tutti i diritti riservati</p> -->
   </div>
 </footer>

@@ -1,5 +1,5 @@
 ---
-logo: /uploads/colombofood.png
+thumb: /uploads/colombofood.png
 title: ColomboFood
 description: Ecommerce B2B per un distributore di prodotti alimentari di Milano
 link: https://www.colombofood.it/

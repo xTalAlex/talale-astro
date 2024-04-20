@@ -48,7 +48,6 @@ function searchGame(slug) {
   document.dispatchEvent(new CustomEvent("quickSearch", { detail: slug }));
 }
 
-// Wishlisted games releaseDate must be between -1 year and +1 lastDeployDate
 function removeOutdatedGames() {
   items.value.forEach((item) =>
     !item.releaseDate ||

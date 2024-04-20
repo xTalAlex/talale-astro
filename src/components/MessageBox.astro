@@ -7,12 +7,6 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
 <div class="h-full w-full">
   <form id="messagebox" netlify name="messagebox" method="POST">
     <input type="hidden" name="form-name" value="messagebox" />
-    <!-- <div id="alertContainer" class="hidden alert shadow-lg cursor-pointer mb-2" onclick="this.classList.add('hidden')">
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span id="alertText"></span>
-            </div>
-        </div> -->
     <textarea
       id="message"
       class="textarea textarea-primary min-h-32 w-full resize-none bg-transparent"
@@ -51,21 +45,7 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
 <script>
   import Config from "@config/general.json";
 
-  // const encode = (data) => {
-  // 	return Object.keys(data)
-  // 		.map(
-  // 			(key) =>
-  // 				encodeURIComponent(key) +
-  //                 "=" +
-  //                 encodeURIComponent(data[key]),
-  // 		)
-  // 		.join("&");
-  // };
-
   const handleError = () => {
-    // document.getElementById("alertContainer").classList.add("alert-error");
-    // document.getElementById("alertContainer").classList.remove("hidden");
-    // document.getElementById("alertText").innerHTML = Config.messageBoxError;
     window.notify(Config.messagebox.error, null, "error");
     document.getElementById("message").disabled = false;
     document.getElementById("submitButton").disabled = false;
@@ -73,9 +53,6 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
   };
 
   const handleSuccess = () => {
-    // document.getElementById("alertContainer").classList.add("alert-success");
-    // document.getElementById("alertContainer").classList.remove("hidden");
-    // document.getElementById("alertText").innerHTML = Config.messageBoxSuccess;
     window.notify(Config.messagebox.success, null, "success");
     document.getElementById("message").value = "";
     document.getElementById("submitButton").classList.remove("loading");

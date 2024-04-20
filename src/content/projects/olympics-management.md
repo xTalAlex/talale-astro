@@ -1,5 +1,5 @@
 ---
-logo: /uploads/olympicsmanagement.png
+thumb: /uploads/olympicsmanagement.png
 title: Olympics Management
 description: "Homepage con CMS personalizzato per un'agenzia di sport business e
   management internazionale "

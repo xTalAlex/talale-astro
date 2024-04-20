@@ -1,5 +1,5 @@
 ---
-logo: /uploads/sbarbori.png
+thumb: /uploads/sbarbori.png
 title: Sbarbori Gioielli
 description: ECommerce per una gioielleria che gestisce due negozi in provincia di Milano
 link: https://sbarborigioielli.it/

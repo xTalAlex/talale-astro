@@ -4,6 +4,7 @@ import { Icon } from "astro-icon/components";
 export interface Props {
   currentPage: number;
   lastPage: number;
+  size?: number;
   url: string;
 }
 
@@ -35,17 +36,6 @@ if (rightEdge - leftEdge < Math.floor(size / 2) * 2) {
     )
   }
 
-  <!-- {  leftEdge > 1 &&
-        <a class={`btn uppercase md:btn-lg hidden md:flex`}
-            href={`${url}/${leftEdge - 1}`}
-        >
-            <svg class="stroke-current w-6 h-6"
-                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-            </svg>
-        </a> 
-    } -->
-
   {
     Array.from({ length: rightEdge - leftEdge + 1 }).map((item, index) => (
       <a
@@ -56,17 +46,6 @@ if (rightEdge - leftEdge < Math.floor(size / 2) * 2) {
       </a>
     ))
   }
-
-  <!-- {  rightEdge < lastPage &&
-        <a class={`btn uppercase md:btn-lg hidden md:flex`}
-            href={`${url}/${rightEdge + 1}`}
-        >
-            <svg class="stroke-current w-6 h-6"
-                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-            </svg>
-        </a> 
-    } -->
 
   {
     rightEdge < lastPage && (

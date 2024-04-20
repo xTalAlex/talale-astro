@@ -5,11 +5,7 @@ import { Image } from "astro:assets";
 const projects = await getCollection("projects");
 
 projects.sort((a, b) =>
-  a.data.pubDate < b.data.pubDate
-    ? 1
-    : b.data.pubDate < a.data.pubDate
-      ? -1
-      : 0,
+  a.data.pubDate < b.data.pubDate ? 1 : b.data.pubDate < a.data.pubDate ? -1 : 0
 );
 
 function setSize(i) {
@@ -81,7 +77,7 @@ function setSize(i) {
                 height="384"
                 width="912"
                 class={`my-auto h-full w-full object-cover ${[2, 5, 7].includes(i) ? "" : ""}`}
-                src={project.data.gallery ? project.data.gallery[0] : ""}
+                src={project.data.thumb ?? ""}
                 alt={project.data.title}
               />
             </div>

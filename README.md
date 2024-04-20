@@ -2,10 +2,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/3185917a-f914-4861-b074-275c43b204ef/deploy-status)](https://app.netlify.com/sites/talale/deploys)
 
-# Idee
-
-- Episodi Yattaman
-- Episodi Cacciatori di Draghi
+# DOC
 
 # Eventi GA
 
@@ -15,3 +12,12 @@
 - "contact_link_click" sui bottoni Whatsapp e Email tramite classe "ga-contact-link"
 - "game_won" e "game_lost" per minesweeper
 - "radio_play"
+
+## Eventi JS
+
+- identityLoaded
+  - notLogged
+  - userLoaded
+- tawktoLoaded
+- openModal - params: title,body,image
+- notify - params: title,message,style
