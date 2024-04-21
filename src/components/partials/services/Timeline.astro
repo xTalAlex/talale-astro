@@ -55,7 +55,11 @@ const steps = [
   <div class="relative mt-20">
     {
       steps.map((step, id) => (
-        <TimelineStep id={`step${id + 1}`} {...step} link={`#step${id + 2}`}>
+        <TimelineStep
+          id={`step${id + 1}`}
+          {...step}
+          link={step.link ?? `#step${id + 2}`}
+        >
           {id + 1 == steps.length && (
             <div class="mt-6">
               Assistenza e monitoraggio secondo{" "}
