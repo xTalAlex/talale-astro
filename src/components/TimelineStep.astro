@@ -1,0 +1,44 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  list: string[];
+  timing: string;
+  notes?: string[];
+  link: string;
+}
+import { Icon } from "astro-icon/components";
+
+const { id, title, list, timing, notes = [], link } = Astro.props;
+---
+
+<div class="sticky top-20 min-h-screen bg-base-100 pt-12" id={id}>
+  <h3 class="-mt-6 text-nowrap text-3xl font-bold sm:text-5xl">
+    {title}
+  </h3>
+  <div class="mt-12">
+    <div class="grid place-content-between gap-12 text-xl md:grid-cols-2">
+      <div>
+        <ul class="space-y-2">{list.map((item) => <li>{item}</li>)}</ul>
+        <slot />
+      </div>
+      <div class="w-full place-self-end text-left md:max-w-xs">
+        <div class="">
+          Tempistiche: <span class="font-bold">{timing}</span>
+        </div>
+        <div>
+          {notes.map((note) => <div class="text-sm first:mt-6">{note}</div>)}
+        </div>
+      </div>
+    </div>
+    <div class="mt-10">
+      <a href={link}>
+        <Icon
+          class="mx-auto h-6 w-6 animate-pulse stroke-current opacity-25 transition hover:opacity-100"
+          name="pixelarticons:arrow-down"
+        />
+      </a>
+    </div>
+  </div>
+  <div class="h-[50vh]"></div>
+</div>

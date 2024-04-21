@@ -114,5 +114,31 @@
         "Assistenza"
       ]
     }
+  ],
+  "supportServices": [
+    {
+      "name": "Risoluzione bug e problemi",
+      "icon": "bug"
+    },
+    {
+      "name": "Monitoraggio traffico e rendimento SEO",
+      "icon": "speed-fast"
+    },
+    {
+      "name": "Campagne google ADS",
+      "icon": "coin"
+    },
+    {
+      "name": "Gestione profilo Google Maps",
+      "icon": "map"
+    },
+    {
+      "name": "Aggiornamenti software e di sicurezza",
+      "icon": "repeat"
+    },
+    {
+      "name": "Assistenza e supporto tecnico",
+      "icon": "suitcase"
+    }
   ]
 }

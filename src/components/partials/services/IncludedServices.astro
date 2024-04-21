@@ -1,0 +1,27 @@
+---
+import Config from "@config/freelance.json";
+---
+
+<div class="mt-12 md:mt-20">
+  <h2
+    class="-mt-20 mb-10 pt-20 text-2xl font-bold uppercase"
+    id="included-services"
+  >
+    Tutto ciò di cui hai bisogno per una presenza online solida e professionale
+  </h2>
+  <div class="join join-vertical w-full space-y-2">
+    {
+      Config.features.map((service) => (
+        <div class="collapse join-item collapse-plus bg-base-200">
+          <input type="radio" name="base-services" />
+          <div class="collapse-title text-xl font-bold">{service.title}</div>
+          <div class="collapse-content">
+            <div class="py-4">
+              <p>{service.description}</p>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>

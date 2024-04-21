@@ -1,0 +1,30 @@
+---
+import Map from "@components/Map.astro";
+import MessageBox from "@components/MessageBox.astro";
+import GoogleCalendarButton from "@components/GoogleCalendarButton.astro";
+import ContactLinks from "@components/ContactLinks.astro";
+---
+
+<div
+  class="group relative -mb-32 mt-32 h-full w-full overflow-hidden md:mt-52"
+  id="contacts"
+>
+  <div class="absolute inset-0">
+    <Map />
+  </div>
+  <div class="container mx-auto px-5 py-32 lg:ml-auto lg:mr-20 lg:w-1/2">
+    <div class="card glass mt-10">
+      <div class="card-body">
+        <div class="card space-y-12 bg-transparent p-0 text-primary-content">
+          <MessageBox />
+          <div class="space-y-10">
+            <div class="grid place-items-center">
+              <GoogleCalendarButton />
+            </div>
+          </div>
+          <ContactLinks />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

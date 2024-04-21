@@ -1,0 +1,58 @@
+---
+import { Icon } from "astro-icon/components";
+import Config from "@config/freelance.json";
+---
+
+<div>
+  <div class="hidden w-full items-center gap-10 pt-20 opacity-20 sm:flex">
+    <div class="flex-none font-bold uppercase">
+      Assistenza, Manutenzione e Pubblicità
+    </div>
+    <div class="w-full">
+      <div class="h-0.5 w-full bg-neutral-content"></div>
+    </div>
+  </div>
+  <h2
+    class="-mt-12 mb-6 pt-20 text-center text-3xl font-bold uppercase md:text-4xl"
+    id="support"
+  >
+    Massima tranquillità con il pacchetto <span class="text-nowrap"
+      >Assistenza & Ads</span
+    >
+  </h2>
+  <h3 class="mt-20 text-center text-2xl">
+    Dedicati alla tua attività, non al tuo sito web: affidati alle cure di un
+    esperto
+  </h3>
+  <div class="text-center text-xl">
+    Interventi rapidi per un sito web sempre funzionante, aggiornato e
+    performante.
+  </div>
+
+  <div class="mt-20">
+    <div class="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
+      {
+        Config.supportServices.map((service) => (
+          <div class="card min-h-32 bg-base-200 px-2 pb-12 pt-12 text-center shadow-md">
+            <Icon
+              class="mx-auto size-8 stroke-secondary text-primary"
+              name={`pixelarticons:${service.icon}`}
+            />
+            <div class="mx-auto mt-4 sm:w-2/3">{service.name}</div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="mx-auto mt-20 w-fit text-center">
+    <a class="btn btn-primary btn-lg uppercase" href="/#support"
+      >Attiva il tuo servizio di assistenza oggi stesso!</a
+    >
+    <div class="mt-6">
+      Prova gratuita inclusa per i <a class="link" href="/#prices"
+        >pacchetti di sviluppo web</a
+      >
+    </div>
+  </div>
+</div>

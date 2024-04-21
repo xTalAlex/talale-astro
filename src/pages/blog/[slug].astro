@@ -1,7 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
-
 import ProseLayout from "@layouts/ProseLayout.astro";
 import { formatDate } from "@lib/utils";
 import { htmlToText } from "html-to-text";
@@ -57,7 +56,7 @@ const { post, readingTime, previousPost, nextPost } = Astro.props;
       width="458"
     />
   </div>
-  <div class="mb-6 mt-2 flex flex-col">
+  <div class="mb-6 mt-6 flex flex-col">
     <h1 class="w-full">{post.title}</h1>
     <div class="flex justify-end space-x-2">
       <div class="badge badge-accent badge-outline flex-none cursor-default">
@@ -114,3 +113,10 @@ const { post, readingTime, previousPost, nextPost } = Astro.props;
     }
   </div>
 </ProseLayout>
+
+<script>
+  const wpReadingTimeElements = document.getElementsByClassName(
+    "estimated-reading-time"
+  );
+  Array.from(wpReadingTimeElements).forEach((item) => item.remove());
+</script>

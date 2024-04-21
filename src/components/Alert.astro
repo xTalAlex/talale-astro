@@ -17,7 +17,9 @@ import { Icon } from "astro-icon/components";
     <div class="mt-1 text-sm font-semibold" id="t-alert-message">Messaggio</div>
   </div>
   <div>
-    <button class="btn btn-neutral uppercase" id="t-alert-close">&times</button>
+    <button class="btn btn-neutral btn-xs uppercase" id="t-alert-close"
+      >&times</button
+    >
   </div>
 </div>
 
@@ -77,7 +79,7 @@ import { Icon } from "astro-icon/components";
           message: message,
           style: style?.toLowerCase(),
         },
-      }),
+      })
     );
   };
 

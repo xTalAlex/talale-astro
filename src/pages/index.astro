@@ -1,14 +1,11 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import Hero from "@components/Hero.astro";
-import Frameworks from "@components/Frameworks.astro";
-import ProjectsGallery from "@components/ProjectsGallery.astro";
-import Introduction from "@components/Introduction.astro";
-import MessageBox from "@components/MessageBox.astro";
-import Contacts from "@components/Contacts.astro";
-import Prices from "@components/Prices.astro";
-import Map from "@components/Map.astro";
-import GoogleCalendarButton from "@components/GoogleCalendarButton.astro";
+import Hero from "@components/partials/home/Hero.astro";
+import Frameworks from "@components/partials/home/Frameworks.astro";
+import ProjectsGallery from "@components/partials/home/ProjectsGallery.astro";
+import Introduction from "@components/partials/home/Introduction.astro";
+import Contacts from "@components/partials/home/Contacts.astro";
+import Prices from "@components/partials/home/Prices.astro";
 ---
 
 <Layout>
@@ -22,31 +19,7 @@ import GoogleCalendarButton from "@components/GoogleCalendarButton.astro";
     <Prices />
 
     <ProjectsGallery />
-
-    <!-- <FeaturedImages /> -->
   </div>
 
-  <div
-    class="group relative -mb-32 mt-32 h-full w-full overflow-hidden md:mt-52"
-    id="contacts"
-  >
-    <div class="absolute inset-0">
-      <Map />
-    </div>
-    <div class="container mx-auto px-5 py-32 lg:ml-auto lg:mr-20 lg:w-1/2">
-      <div class="card glass mt-10">
-        <div class="card-body">
-          <div class="card space-y-12 bg-transparent p-0 text-primary-content">
-            <MessageBox />
-            <div class="space-y-10">
-              <div class="grid place-items-center">
-                <GoogleCalendarButton />
-              </div>
-            </div>
-            <Contacts />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <Contacts />
 </Layout>

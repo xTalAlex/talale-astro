@@ -1,0 +1,74 @@
+---
+import TimelineStep from "@components/TimelineStep.astro";
+
+const steps = [
+  {
+    title: "Step 1: Ricerca",
+    list: [
+      "Ricerca di mercato e analisi della concorrenza.",
+      "Formulazione degli obiettivi.",
+      "Definizione di tempistiche e budget.",
+    ],
+    timing: "1-3 giorni",
+    notes: [],
+  },
+  {
+    title: "Step 2: Progettazione",
+    list: [
+      "Creazione del logo wordmark e della brand identity.",
+      "Design template grafico.",
+      "Definizione delle funzionalità.",
+    ],
+    timing: "1 settimana*",
+    notes: [
+      "*A partire dal versamento dell'acconto",
+      "*Le tempistiche possono variare in base al numero di revisioni",
+    ],
+  },
+  {
+    title: "Step 3: Svilluppo & Test",
+    list: [
+      "Caricamento online dell'ambiente di sviluppo.",
+      "Implementazione del tema grafico.",
+      "Sviluppo backend e frontend.",
+    ],
+    timing: "1-4 settimane*",
+    notes: [
+      "*Le tempistiche possono variare in base alla complessità del progetto e al numero di revisioni",
+    ],
+  },
+  {
+    title: "Step 4: Lancio",
+    list: ["Pubblicazione del sito web.", "Formazione all'utillizzo."],
+    timing: "1-3 giorni",
+    notes: [],
+    link: "#cta",
+  },
+];
+---
+
+<div class="container w-full max-w-5xl px-5 md:mx-auto">
+  <h2 class="mt-32 text-2xl font-bold uppercase">
+    Timeline di sviluppo web trasparente
+  </h2>
+
+  <div class="relative mt-20">
+    {
+      steps.map((step, id) => (
+        <TimelineStep id={`step${id + 1}`} {...step} link={`#step${id + 2}`}>
+          {id + 1 == steps.length && (
+            <div class="mt-6">
+              Assistenza e monitoraggio secondo{" "}
+              <a class="link" href="/services#support">
+                piano mensile
+              </a>
+              .
+            </div>
+          )}
+        </TimelineStep>
+      ))
+    }
+  </div>
+</div>
+<div class="h-[50vh]"></div>
+<slot />

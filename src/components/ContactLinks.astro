@@ -27,7 +27,12 @@ import Config from "@config/general.json";
   }
   {
     Config.email && (
-      <a class="ga-contact-link" href=`mailto:${Config.email}` target="_blank" id="mail-btn">
+      <a
+        class="ga-contact-link"
+        href={`mailto:${Config.email}`}
+        target="_blank"
+        id="mail-btn"
+      >
         <svg
           aria-label="Email"
           xmlns="http://www.w3.org/2000/svg"

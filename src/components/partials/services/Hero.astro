@@ -1,0 +1,36 @@
+---
+interface Props {
+  title: string;
+  description: string;
+}
+
+import Image from "astro/components/Image.astro";
+import bgImage from "@assets/images/pixelshop.png";
+
+const { title, description } = Astro.props;
+---
+
+<div class="pb-96 md:pb-72 lg:pb-32">
+  <div class="relative">
+    <div class="my-10 max-w-xl md:ml-10 lg:ml-0">
+      <h1 class="py-12 text-4xl font-bold sm:text-5xl">
+        Fai crescere la tua attività online con un sito web personalizzato
+      </h1>
+      <h2 class="max-w-sm text-2xl">
+        {description}
+      </h2>
+    </div>
+
+    <div
+      class="absolute -bottom-80 -right-10 -z-10 md:-bottom-64 md:right-0 lg:-bottom-16"
+    >
+      <div class="relative h-64 md:h-80">
+        <div
+          class="absolute inset-0 -z-10 animate-pulse bg-gradient-to-br from-primary to-secondary opacity-40 blur-3xl"
+        >
+        </div>
+        <Image class="h-full object-cover" src={bgImage} alt={title} />
+      </div>
+    </div>
+  </div>
+</div>

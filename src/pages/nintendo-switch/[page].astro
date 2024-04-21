@@ -7,7 +7,6 @@ import Pagination from "@components/Pagination.astro";
 import { formatDate } from "@lib/utils";
 import AddToWishlist from "@components/vue/AddToWishlist.vue";
 import WishList from "@components/vue/WishList.vue";
-
 import { Image } from "astro:assets";
 
 export async function getStaticPaths({ paginate }) {
@@ -207,7 +206,6 @@ const { page } = Astro.props;
       <button id="randomPageButton" class="btn btn-accent uppercase"
         >Pagina a caso</button
       >
-      <input id="lastPageValue" type="hidden" value={page.lastPage} />
     </div>
 
     <div class="mx-auto flex justify-center">
@@ -234,9 +232,10 @@ const { page } = Astro.props;
       prevEl: ".swiper-button-prev",
     },
   });
+</script>
 
+<script define:vars={{ lastPage: page.lastPage }}>
   const randomPageButton = document.getElementById("randomPageButton");
-  const lastPage = document.getElementById("lastPageValue")?.value ?? 1;
   randomPageButton.onclick = () => {
     window.location.href =
       "/nintendo-switch/" + Math.ceil(Math.random() * lastPage);
