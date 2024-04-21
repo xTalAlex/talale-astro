@@ -1,7 +1,9 @@
 ---
+import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
 import { gamesCount } from "@data/gamesCatalog";
 import { lastDeployDate, formatDate } from "@lib/utils";
+import gargoyles from "@assets/images/gargoyles.png";
 ---
 
 <div class="form-control relative mx-auto w-full">
@@ -27,11 +29,17 @@ import { lastDeployDate, formatDate } from "@lib/utils";
   </div>
 </div>
 
-<div
-  class="mt-12 flex h-24 w-full items-center justify-center"
-  id="search-results"
->
-  <div class="stats cursor-default bg-primary text-primary-content shadow">
+<div class="mt-12 flex w-full items-center justify-center">
+  <div class="hidden select-none overflow-x-auto pb-4" id="search-results">
+  </div>
+  <div class="hidden" id="no-results">
+    <Image class="h-24 w-auto" src={gargoyles} alt="Nessun risultato" />
+    <h4 class="text-center text-lg"><b>Nessun risultato</b></h4>
+  </div>
+  <div
+    class="stats cursor-default bg-primary text-primary-content shadow"
+    id="placeholder"
+  >
     <div class="stat">
       <div class="stat-title font-semibold text-primary-content">
         Numero di titoli
@@ -47,81 +55,46 @@ import { lastDeployDate, formatDate } from "@lib/utils";
 <script>
   import Fuse from "fuse.js";
   import { searchOptions } from "@lib/fuseHelpers.js";
-  import {
-    lastDeployDate,
-    delayFunction,
-    toTrimmedAlphanumeric,
-    formatDate,
-  } from "@lib/utils.js";
+  import { delayFunction, toTrimmedAlphanumeric } from "@lib/utils.js";
   import Config from "@config/general.json";
+
+  const searchInput = document.getElementById("search-input");
+  const searchButton = document.getElementById("search-button");
+  const clearButton = document.getElementById("clear-button");
+  const placeholder = document.getElementById("placeholder");
+  const noResults = document.getElementById("no-results");
+  const searchResults = document.getElementById("search-results");
+
   var response = await fetch("/searchindex.json");
   const data = await response.json();
   const fuse = new Fuse(data, searchOptions);
 
   const search = async () => {
-    var query = toTrimmedAlphanumeric(
-      document.getElementById("search-input").value
-    );
+    var query = toTrimmedAlphanumeric(searchInput.value);
     if (query.length > 2) {
+      noResults.classList.add("hidden");
       const res = fuse.search(query);
       var html = "";
       if (res.length) {
-        html +=
-          '<div class="flex space-x-3 h-full justify-start items-center overflow-x-hidden overflow-y-hidden select-none cursor-grab active:cursor-grabbing">';
+        html += "";
         for (let i = 0; i < res.length; i++) {
           html += `
-                        <a href="/nintendo-switch/${getPageNumberByRef(res[i].refIndex)}#${res[i].item.slug}" draggable="false">
-                            <div class="whitespace-nowrap badge badge-lg badge-primary font-semibold badge-outline">${res[i].item.name}</div>    
-                        </a>
-                    `;
+              <a href="/nintendo-switch/${getPageNumberByRef(res[i].refIndex)}#${res[i].item.slug}">
+                  <div class="m-1 whitespace-nowrap badge badge-lg badge-primary font-semibold badge-outline">${res[i].item.name}</div>    
+              </a>
+          `;
         }
-        html += "</div>";
       } else {
-        html = `
-                    <div>
-                        <img class="h-24" src="/images/gargoyles.png" />
-                        <h4 class='text-center text-lg'> <b>Nessun risultato</b> </h4>
-                    </div>
-                `;
+        noResults.classList.remove("hidden");
       }
-      document.getElementById("search-results").innerHTML = html;
+      placeholder.classList.add("hidden");
+      searchResults.classList.remove("hidden");
+      searchResults.innerHTML = html;
       window.history.replaceState(
         null,
         "",
         "?query=" + encodeURIComponent(query)
       );
-      let pos = { top: 0, left: 0, x: 0, y: 0 };
-      const mouseMoveHandler = function (e) {
-        // How far the mouse has been moved
-        const dx = e.clientX - pos.x;
-        const dy = e.clientY - pos.y;
-
-        // Scroll the element
-        document.getElementById("search-results").children[0].scrollTop =
-          pos.top - dy;
-        document.getElementById("search-results").children[0].scrollLeft =
-          pos.left - dx;
-      };
-      const mouseUpHandler = function () {
-        document.removeEventListener("mousemove", mouseMoveHandler);
-        document.removeEventListener("mouseup", mouseUpHandler);
-      };
-      const mouseDownHandler = function (e) {
-        pos = {
-          // The current scroll
-          left: document.getElementById("search-results").children[0]
-            .scrollLeft,
-          top: document.getElementById("search-results").children[0].scrollTop,
-          // Get the current mouse position
-          x: e.clientX,
-          y: e.clientY,
-        };
-        document.addEventListener("mousemove", mouseMoveHandler);
-        document.addEventListener("mouseup", mouseUpHandler);
-      };
-      document
-        .getElementById("search-results")
-        .children[0].addEventListener("mousedown", mouseDownHandler);
     }
   };
 
@@ -138,27 +111,22 @@ import { lastDeployDate, formatDate } from "@lib/utils";
   };
 
   const clear = () => {
-    document.getElementById("search-input").value = "";
-    document.getElementById("search-results").innerHTML = `
-            <div class="cursor-default stats shadow bg-primary text-primary-content">
-                <div class="stat">
-                <div class="stat-title font-semibold text-primary-content">Numero di titoli</div>
-                <div class="stat-value">${data.length}</div>
-                <div class="stat-desc font-semibold text-primary-content">Ultimo aggiornamento ${formatDate(lastDeployDate)}</div>
-                </div>
-            </div>
-        `;
+    searchInput.value = "";
+    searchResults.innerHTML = "";
+    noResults.classList.add("hidden");
+    searchResults.classList.add("hidden");
+    placeholder.classList.remove("hidden");
     window.history.replaceState(null, "", window.location.pathname);
   };
 
-  document.getElementById("search-input").onkeyup = delayFunction(search, 300);
-  document.getElementById("search-button").onclick = search;
-  document.getElementById("clear-button").onclick = clear;
+  searchInput.onkeyup = delayFunction(search, 300);
+  searchButton.onclick = search;
+  clearButton.onclick = clear;
 
   document.addEventListener("keyup", (event) => {
     if (event.ctrlKey && event.key === "c") {
       event.preventDefault();
-      document.getElementById("search-input").focus();
+      searchInput.focus();
     }
   });
   document.addEventListener("keyup", (event) => {
@@ -175,9 +143,9 @@ import { lastDeployDate, formatDate } from "@lib/utils";
   var params = new URL(document.location).searchParams;
   var query = params.get("query");
   if (query) {
-    document.getElementById("search-input").value = decodeURIComponent(query);
+    searchInput.value = decodeURIComponent(query);
     search();
-  } else if (document.getElementById("search-input").value) {
+  } else if (searchInput.value) {
     search();
   }
 </script>
