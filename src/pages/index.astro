@@ -6,6 +6,7 @@ import ProjectsGallery from "@components/partials/home/ProjectsGallery.astro";
 import Introduction from "@components/partials/home/Introduction.astro";
 import Contacts from "@components/partials/home/Contacts.astro";
 import Prices from "@components/partials/home/Prices.astro";
+import VantaBirds from "@components/VantaBirds.astro";
 ---
 
 <Layout>
@@ -19,6 +20,10 @@ import Prices from "@components/partials/home/Prices.astro";
     <Prices />
 
     <ProjectsGallery />
+  </div>
+
+  <div id="birds-container" class="z-10 -mb-32 h-64 md:-mb-52">
+    <VantaBirds elID="birds-container" />
   </div>
 
   <Contacts />

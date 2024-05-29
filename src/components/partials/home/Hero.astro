@@ -12,11 +12,13 @@ const fullTitle = Config.title + " | " + Config.motto;
   class="hero relative -mt-16 min-h-screen max-w-none"
   style={"background-image: url(images/castelia-city-day.jfif);"}
 >
-  <div class="hero-overlay bg-opacity-60"></div>
+  <div id="heroOverlay" class="hero-overlay bg-opacity-60"></div>
   <div class="hero-content text-left text-neutral-content">
     <div class="max-w-full pl-5 md:pl-0">
       <div class="max-w-max md:pt-0">
-        <div class="group mb-2 flex flex-col md:flex-row md:justify-start">
+        <div
+          class="group mb-2 flex select-none flex-col md:flex-row md:justify-start"
+        >
           <Image
             src={mascotte}
             class="animate__animated animate__jackInTheBox -z-10 -mr-16 mb-2 h-24 w-min place-self-start drop-shadow-2xl md:h-32"
