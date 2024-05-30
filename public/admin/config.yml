@@ -121,6 +121,12 @@ collections:
                   value_type: "int",
                   min: 1,
                 }
+          - {
+              label: "Deploy Status Badge URL",
+              name: "netlifyStatusBadgeUrl",
+              hint: "Netlify deploy status badge URL",
+              widget: "string",
+            }
       - name: "freelance"
         label: "Freelance"
         file: "src/config/freelance.json"

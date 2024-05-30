@@ -1,0 +1,22 @@
+---
+export interface Props {
+  isClickable?: boolean;
+}
+
+import Config from "@config/general.json";
+
+const { isClickable = true } = Astro.props;
+---
+
+{
+  (
+    <a
+      href="https://app.netlify.com/sites/talale/deploys"
+      class={`${isClickable ? "" : "pointer-events-none"}`}
+      rel="nofollow"
+      target="_blank"
+    >
+      <img src={Config.netlifyStatusBadgeUrl} alt="Netlify Status" />
+    </a>
+  )
+}
