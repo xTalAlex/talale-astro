@@ -1,10 +1,13 @@
-import { db, User, eq } from "astro:db";
+import { db, User, eq, desc } from "astro:db";
 import type { APIRoute } from "astro";
 
 export const prerender = false;
 
 export const GET: APIRoute = async (ctx) => {
-  const users = await db.select().from(User);
+  const users = await db
+    .select()
+    .from(User)
+    .orderBy(desc(User.streak_record), desc(User.cur_streak));
   return new Response(JSON.stringify(users));
 };
 
