@@ -9,6 +9,7 @@
     "error": "Si è verificato un errore!"
   },
   "waUrl": "https://wa.me/3485650564?text=Ciao%2C%20ho%20bisogno%20di%20un%20sito%20web",
+  "netlifyStatusBadgeUrl": "https://api.netlify.com/api/v1/badges/3185917a-f914-4861-b074-275c43b204ef/deploy-status",
   "motto": "Realizzazione e ristrutturazione di Siti Web, ECommerce ed Applicazioni Web.",
   "url": "https://talale.it",
   "googleMaps": {
@@ -23,10 +24,9 @@
   },
   "subtitle": "Sviluppatore Web Freelance a Varese",
   "title": "Alessandro Talamona",
-  "netlifyStatusBadgeUrl": "https://api.netlify.com/api/v1/badges/3185917a-f914-4861-b074-275c43b204ef/deploy-status",
   "igdb": {
     "console": "Nintendo Switch",
-    "dateFromNMonths": -12,
+    "dateFromNMonths": "-6",
     "dateToNMonths": 1,
     "gamesPerPage": 18
   },
