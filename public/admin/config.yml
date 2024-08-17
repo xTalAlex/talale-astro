@@ -104,14 +104,14 @@ collections:
                   label: "Offset Data (Da)",
                   hint: "Numero di mesi rispetto alla data di deploy",
                   name: "dateFromNMonths",
-                  widget: "string",
+                  widget: "number",
                   step: 1,
                 }
               - {
                   label: "Offset Data (A)",
                   hint: "Numero di mesi rispetto alla data di deploy",
                   name: "dateToNMonths",
-                  widget: "string",
+                  widget: "number",
                   step: 1,
                 }
               - {
