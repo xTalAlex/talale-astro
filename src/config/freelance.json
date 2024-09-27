@@ -74,13 +74,16 @@
     {
       "amountInfo": "",
       "name": "Standard",
-      "info": "Acconto do stabilire",
-      "supportMonthsIncluded": 3,
-      "includesBaseServices": true,
+      "info": "Acconto da stabilire",
       "amount": 750,
       "plus": true,
+      "includesBaseServices": true,
       "description": "Siti vetrina, blog e landing page.",
-      "features": ["CMS custom o Wordpress", "Fino a 10 pagine"]
+      "features": [
+        "CMS custom o Wordpress",
+        "Fino a 10 pagine"
+      ],
+      "supportMonthsIncluded": 3
     },
     {
       "amount": 2000,
@@ -100,10 +103,9 @@
       "amountInfo": "/mese",
       "name": "Assistenza & Ads",
       "info": "",
-      "supportMonthsIncluded": 0,
-      "includesBaseServices": false,
       "amount": 200,
       "plus": false,
+      "includesBaseServices": false,
       "description": "Supporto continuato",
       "features": [
         "Correzione bug",
@@ -112,7 +114,8 @@
         "Gestione profilo Google Maps",
         "Modifiche e aggiornamento contenuti",
         "Assistenza"
-      ]
+      ],
+      "supportMonthsIncluded": 0
     }
   ],
   "supportServices": [
