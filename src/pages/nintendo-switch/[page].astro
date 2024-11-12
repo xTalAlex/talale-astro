@@ -70,7 +70,7 @@ const { page } = Astro.props;
                             class="w-full object-cover"
                             src={artwork.url.replace(
                               "t_thumb",
-                              "t_screenshot_big",
+                              "t_screenshot_big"
                             )}
                             alt={`Artwork ${id + 1}`}
                           />
@@ -85,7 +85,7 @@ const { page } = Astro.props;
                             class="w-full object-cover"
                             src={screenshot.url.replace(
                               "t_thumb",
-                              "t_screenshot_big",
+                              "t_screenshot_big"
                             )}
                             alt={`Screenshot ${id + 1}`}
                           />
@@ -101,7 +101,12 @@ const { page } = Astro.props;
             <div class="card-body mx-auto max-w-xs md:w-full">
               <h2 class="card-title text-base" id={game.name}>
                 {game.url && (
-                  <a href={game.url} class="link" target="_blank">
+                  <a
+                    href={game.url}
+                    class="link"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     {game.name}
                     <span>
                       {game.platforms?.length == 1 && (
@@ -165,12 +170,13 @@ const { page } = Astro.props;
                           <a
                             href={
                               (company.company.websites?.[0].url.startsWith(
-                                "http",
+                                "http"
                               )
                                 ? ""
                                 : "//") + company.company.websites?.[0].url
                             }
                             target="_blank"
+                            rel="noreferrer"
                           >
                             <Image
                               height="24"
@@ -181,7 +187,7 @@ const { page } = Astro.props;
                             />
                           </a>
                         </div>
-                      ),
+                      )
                   )}
                 </div>
               </div>

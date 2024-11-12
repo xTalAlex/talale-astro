@@ -15,6 +15,7 @@ const { isClickable = true } = Astro.props;
       class={`${isClickable ? "" : "pointer-events-none"}`}
       rel="nofollow"
       target="_blank"
+      rel="noreferrer"
     >
       <img src={Config.netlifyStatusBadgeUrl} alt="Netlify Status" />
     </a>
