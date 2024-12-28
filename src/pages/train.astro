@@ -1,0 +1,13 @@
+---
+import Layout from "@layouts/Layout.astro";
+import PixiTrain from "@components/PixiTrain.astro";
+
+const title = "Pixi Train";
+---
+
+<Layout title={title}>
+  <div class="container w-full max-w-5xl px-5 md:mx-auto">
+    <h1 class="py-12 text-4xl font-bold">{title}</h1>
+  </div>
+  <div><PixiTrain /></div>
+</Layout>
