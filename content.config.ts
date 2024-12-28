@@ -1,12 +1,15 @@
-// 1. Import utilities from `astro:content`
 import { z, defineCollection } from "astro:content";
+import { glob } from "astro/loaders";
 import { rssSchema } from "@astrojs/rss";
 
-// 2. Define your collection(s)
 const projectCollection = defineCollection({
   // schema: rssSchema.extend({
   //   gallery: z.array(z.string()).optional()
   // }),
+  loader: glob({
+    pattern: "**/[^_]*.{md,mdx}",
+    base: "./src/content/projects",
+  }),
   schema: ({ image }) =>
     z.object({
       thumb: z.string().optional(),
@@ -19,8 +22,6 @@ const projectCollection = defineCollection({
     }),
 });
 
-// 3. Export a single `collections` object to register your collection(s)
-//    This key should match your collection directory name in "src/content"
 export const collections = {
   projects: projectCollection,
 };

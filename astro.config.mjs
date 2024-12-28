@@ -12,7 +12,7 @@ import netlify from "@astrojs/netlify";
 // https://astro.build/config
 export default defineConfig({
   site: Config.url,
-  output: "hybrid",
+  output: "static",
   adapter: netlify({
     imageCDN: false,
   }),
