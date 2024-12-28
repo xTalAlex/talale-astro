@@ -30,7 +30,7 @@ import { Icon } from "astro-icon/components";
   const alertCloseButton = document.querySelector("#t-alert-close");
 
   const setStyle = (style) => {
-    alert.classList.forEach((classItem, i) => {
+    alert.classList.forEach((classItem) => {
       if (classItem.startsWith("alert-")) alert.classList.remove(classItem);
     });
 
@@ -79,7 +79,7 @@ import { Icon } from "astro-icon/components";
           message: message,
           style: style?.toLowerCase(),
         },
-      }),
+      })
     );
   };
 

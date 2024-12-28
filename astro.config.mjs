@@ -5,7 +5,7 @@ import vue from "@astrojs/vue";
 import sitemap from "@astrojs/sitemap";
 import icon from "astro-icon";
 import db from "@astrojs/db";
-import sentry from "@sentry/astro";
+// import sentry from "@sentry/astro";
 
 import netlify from "@astrojs/netlify";
 

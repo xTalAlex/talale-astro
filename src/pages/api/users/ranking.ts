@@ -3,7 +3,7 @@ import type { APIRoute } from "astro";
 
 export const prerender = false;
 
-export const GET: APIRoute = async (ctx) => {
+export const GET: APIRoute = async () => {
   const users = await db
     .select()
     .from(User)
@@ -48,8 +48,8 @@ export const POST: APIRoute = async ({ request }) => {
       statusText: "User created",
     });
   } else {
-    let cur_streak = victory ? Number(users[0]["cur_streak"]) + 1 : 0;
-    let streak_record =
+    const cur_streak = victory ? Number(users[0]["cur_streak"]) + 1 : 0;
+    const streak_record =
       Number(users[0]["streak_record"]) > cur_streak
         ? users[0]["streak_record"]
         : cur_streak;

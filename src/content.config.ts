@@ -1,6 +1,6 @@
 import { z, defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
-import { rssSchema } from "@astrojs/rss";
+// import { rssSchema } from "@astrojs/rss";
 
 const projectCollection = defineCollection({
   // schema: rssSchema.extend({
@@ -10,7 +10,7 @@ const projectCollection = defineCollection({
     pattern: "**/[^_]*.{md,mdx}",
     base: "./src/data/projects",
   }),
-  schema: ({ image }) =>
+  schema: () =>
     z.object({
       thumb: z.string().optional(),
       title: z.string(),
