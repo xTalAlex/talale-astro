@@ -6,8 +6,8 @@
     >
       <div
         v-for="item in items"
-        v-bind:key="item.name"
         :id="slideId(item.id)"
+        :key="item.name"
         class="carousel-item relative first:pl-4"
       >
         <img

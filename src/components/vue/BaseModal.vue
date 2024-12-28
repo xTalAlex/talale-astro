@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input type="checkbox" id="modal" class="modal-toggle" v-model="open" />
+    <input id="modal" v-model="open" type="checkbox" class="modal-toggle" />
     <label class="modal" for="modal">
       <label class="modal-box relative" for="">
         <span
@@ -17,9 +17,9 @@
             />
           </svg>
         </span>
-        <h3 class="text-lg font-bold" v-if="title" v-text="title"></h3>
-        <img class="w-full py-4" v-if="image" :src="image" />
-        <p class="py-4" v-if="body" v-text="body"></p>
+        <h3 v-if="title" class="text-lg font-bold" v-text="title"></h3>
+        <img v-if="image" class="w-full py-4" :src="image" />
+        <p v-if="body" class="py-4" v-text="body"></p>
         <div class="modal-action">
           <button class="btn uppercase" @click="open = false">Chiudi</button>
         </div>

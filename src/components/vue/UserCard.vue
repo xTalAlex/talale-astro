@@ -1,5 +1,5 @@
 <template>
-  <div class="card w-full bg-base-200 shadow-xl sm:flex-row" v-if="$isLogged">
+  <div v-if="$isLogged" class="card w-full bg-base-200 shadow-xl sm:flex-row">
     <div class="grid w-full place-items-center p-4 py-8 sm:w-1/2 md:w-1/3">
       <div class="dropdown dropdown-top">
         <div tabindex="0">
@@ -59,22 +59,22 @@
     </div>
     <div class="card w-full sm:w-1/2 md:w-2/3">
       <div class="card-body">
-        <TabsWrapper headerClass="card-title">
+        <TabsWrapper header-class="card-title">
           <TabItem title="Info">
             <UserInfo />
           </TabItem>
           <TabItem title="Modifica">
             <UserUpdate
-              :defaultName="$userInfo.name"
-              :defaultEmail="$userInfo.email"
-              @userUpdated="loadUser"
+              :default-name="$userInfo.name"
+              :default-email="$userInfo.email"
+              @user-updated="loadUser"
             />
           </TabItem>
         </TabsWrapper>
       </div>
     </div>
   </div>
-  <div class="grid place-items-center" v-else>
+  <div v-else class="grid place-items-center">
     <a class="link" @click="login">Sei disconnesso. Vai al Login.</a>
   </div>
 </template>

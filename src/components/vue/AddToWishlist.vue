@@ -29,10 +29,26 @@ const items = computed(() => {
 });
 
 const props = defineProps({
-  id: String,
-  name: String,
-  imgSrc: String,
-  releaseDate: Number,
+  id: {
+    type: String,
+    required: true,
+    default: null,
+  },
+  name: {
+    type: String,
+    required: true,
+    default: null,
+  },
+  imgSrc: {
+    type: String,
+    required: true,
+    default: null,
+  },
+  releaseDate: {
+    type: Number,
+    required: true,
+    default: null,
+  },
 });
 
 const game = computed(() => {

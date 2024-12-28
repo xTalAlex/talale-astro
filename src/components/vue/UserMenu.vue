@@ -1,10 +1,10 @@
 <template>
   <div class="dropdown dropdown-end">
     <label tabindex="0" class="avatar btn btn-circle btn-ghost uppercase">
-      <div class="h-8 w-8 rounded-full" v-if="$userInfo.avatar">
+      <div v-if="$userInfo.avatar" class="h-8 w-8 rounded-full">
         <img :src="$userInfo.avatar" :alt="$userInfo.name" />
       </div>
-      <div class="h-6 w-6" v-else>
+      <div v-else class="h-6 w-6">
         <slot />
       </div>
     </label>

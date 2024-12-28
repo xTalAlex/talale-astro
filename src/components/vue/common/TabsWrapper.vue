@@ -2,10 +2,10 @@
   <div>
     <div class="tabs-boxed tabs bg-transparent" :class="headerClass">
       <div
+        v-for="(tabTitle, index) in tabTitles"
+        :key="index"
         class="tab"
         :class="{ 'tab-active': tabTitle == selectedTabTitle }"
-        v-for="(tabTitle, index) in tabTitles"
-        v-bind:key="index"
         @click="selectedTabTitle = tabTitle"
       >
         {{ tabTitle }}
@@ -18,7 +18,13 @@
 <script setup>
 import { ref, provide, useSlots } from "vue";
 
-defineProps(["headerClass"]);
+const props = defineProps({
+  headerClass: {
+    type: String,
+    required: false,
+    default: "",
+  },
+});
 
 const slots = useSlots();
 const tabTitles = ref(slots.default().map((tab) => tab.props.title));

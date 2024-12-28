@@ -7,11 +7,7 @@
     }"
   >
     <li>
-      <div
-        class=""
-        :class="{ 'text-accent': isPlaying }"
-        v-on:click="open = !open"
-      >
+      <div class="" :class="{ 'text-accent': isPlaying }" @click="open = !open">
         <svg
           class="h-6 w-6 stroke-current transition-transform delay-200"
           :class="{ 'rotate-90': !open, 'rotate-0': open }"
@@ -43,14 +39,12 @@
           tabindex="0"
           class="menu dropdown-content -mr-1 -mt-12 w-52 rounded-box bg-base-200 text-sm font-semibold shadow-xl"
         >
-          <li v-for="(station, index) in stations" v-bind:key="index">
+          <li v-for="(station, index) in stations" :key="index">
             <a
-              v-on:click="changeStation(station)"
               :class="{ 'bg-base-300': lastRadioStation.name == station.name }"
+              @click="changeStation(station)"
             >
-              <img class="h-8 w-8" v-bind:src="station.imgSrc" />{{
-                station.name
-              }}
+              <img class="h-8 w-8" :src="station.imgSrc" />{{ station.name }}
             </a>
           </li>
         </ul>
@@ -59,7 +53,7 @@
     <li>
       <div class="dropdown dropdown-left dropdown-hover p-0">
         <label class="h-full w-full cursor-pointer px-4 py-3" tabindex="0">
-          <button class="" v-on:click="toggle">
+          <button class="" @click="toggle">
             <!-- Play -->
             <svg
               class="h-5 w-5 stroke-current"
@@ -90,18 +84,18 @@
           <li>
             <div>
               <input
+                v-model="volume"
                 class="range range-xs"
                 type="range"
-                v-model="volume"
                 min="0"
                 max="100"
-                v-on:change="setVolume"
+                @change="setVolume"
               />
             </div>
           </li>
         </ul>
       </div>
-      <audio class="hidden" ref="radioPlayer" src=""></audio>
+      <audio ref="radioPlayer" class="hidden" src=""></audio>
     </li>
   </ul>
 </template>

@@ -2,10 +2,9 @@
   <div class="card card-compact">
     <div class="card-body h-96">
       <div class="mockup-code h-64 min-w-fit space-y-2">
-        <pre
-          data-prefix="$"
-        ><code>Modifica <select class="bg-neutral text-neutral-content"
+        <pre data-prefix="$"><code>Modifica <select 
                 v-model="choice"
+                class="bg-neutral text-neutral-content"
                 @change="resetInput(); resetErrorBag(); resetSuccessMessage();" 
             >
                 <option value="name">Nome</option>
@@ -13,53 +12,65 @@
                 <option value="password">Password</option>
             </select></code></pre>
         <pre
+          v-if="choice == 'name'"
           data-prefix=">"
           :class="{
             'bg-warning text-warning-content':
               formData.name != props.defaultName,
             'bg-error text-error-content': errorBag.name,
           }"
-          v-if="choice == 'name'"
-        ><code><input class="bg-transparent" type="text" 
-                        placeholder="Nuovo Nome" v-model="formData.name"
-                        @input="resetErrorBag"
-                        /></code></pre>
+        ><code><input 
+          v-model="formData.name"
+          class="bg-transparent"
+          type="text" 
+          placeholder="Nuovo Nome"
+          @input="resetErrorBag"
+          /></code></pre>
         <pre
+          v-if="choice == 'email'"
           data-prefix=">"
           :class="{
             'bg-warning text-warning-content': formData.email != defaultEmail,
             'bg-error text-error-content': errorBag.email,
           }"
-          v-if="choice == 'email'"
-        ><code><input class="bg-transparent" type="email" 
-                        placeholder="Nuova Email" v-model="formData.email"
-                        @input="resetErrorBag"
-                        /></code></pre>
+        ><code><input 
+          v-model="formData.email"
+          class="bg-transparent" 
+          type="email"
+          placeholder="Nuova Email"
+          @input="resetErrorBag"
+        /></code></pre>
         <pre
+          v-if="choice == 'password'"
           data-prefix=">"
           :class="{ 'bg-error text-error-content': errorBag.password }"
-          v-if="choice == 'password'"
-        ><code><input class="bg-transparent" type="password" 
-                        placeholder="Nuova password" v-model="formData.password"
-                        @input="resetErrorBag"
-                        /></code></pre>
+        ><code><input 
+          v-model="formData.password"
+          class="bg-transparent" 
+          type="password"
+          placeholder="Nuova password"
+          @input="resetErrorBag"
+        /></code></pre>
         <pre
+          v-if="choice == 'password'"
           data-prefix=">"
           :class="{ 'bg-error text-error-content': errorBag.password }"
-          v-if="choice == 'password'"
-        ><code><input class="bg-transparent" type="password" 
-                        placeholder="Conferma password" v-model="formData.passwordConfirm"
-                        @input="resetErrorBag"
-                        /></code></pre>
+        ><code><input 
+          v-model="formData.passwordConfirm"
+          class="bg-transparent" 
+          type="password"
+          placeholder="Conferma password"
+          @input="resetErrorBag"
+        /></code></pre>
         <pre
+          v-show="errorBag[choice]"
           data-prefix="$"
           class="text-error"
-          v-show="errorBag[choice]"
         ><code v-text="errorBag[choice]"></code></pre>
         <pre
+          v-show="successMessage"
           data-prefix="$"
           class="text-success"
-          v-show="successMessage"
         ><code v-text="successMessage"></code></pre>
       </div>
       <div class="card-actions justify-end">
@@ -83,7 +94,18 @@
 <script setup>
 import { ref, computed } from "vue";
 
-const props = defineProps(["defaultName", "defaultEmail"]);
+const props = defineProps({
+  defaultName: {
+    type: String,
+    required: false,
+    default: "",
+  },
+  defaultEmail: {
+    type: String,
+    required: false,
+    default: "",
+  },
+});
 
 const emit = defineEmits(["userUpdated"]);
 

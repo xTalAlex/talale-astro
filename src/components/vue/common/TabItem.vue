@@ -7,7 +7,13 @@
 <script setup>
 import { inject } from "vue";
 
-defineProps(["title"]);
+const props = defineProps({
+  title: {
+    type: String,
+    required: false,
+    default: "",
+  },
+});
 
 const selectedTabTitle = inject("selectedTabTitle");
 </script>
