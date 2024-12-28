@@ -5,11 +5,7 @@ import { Image } from "astro:assets";
 const projects = await getCollection("projects");
 
 projects.sort((a, b) =>
-  a.data.pubDate < b.data.pubDate
-    ? 1
-    : b.data.pubDate < a.data.pubDate
-      ? -1
-      : 0,
+  a.data.pubDate < b.data.pubDate ? 1 : b.data.pubDate < a.data.pubDate ? -1 : 0
 );
 
 function setSize(i) {
@@ -108,7 +104,7 @@ function setSize(i) {
 </div>
 
 <script>
-  import simpleParallax from "simple-parallax-js";
+  import simpleParallax from "simple-parallax-js/vanilla";
   new simpleParallax(document.getElementsByClassName("parallax-bg-title"), {
     overflow: true,
     orientation: "left",
