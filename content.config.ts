@@ -8,7 +8,7 @@ const projectCollection = defineCollection({
   // }),
   loader: glob({
     pattern: "**/[^_]*.{md,mdx}",
-    base: "./src/content/projects",
+    base: "./src/data/projects",
   }),
   schema: ({ image }) =>
     z.object({
