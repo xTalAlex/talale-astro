@@ -79,10 +79,7 @@
       "plus": true,
       "includesBaseServices": true,
       "description": "Siti vetrina, blog e landing page.",
-      "features": [
-        "CMS custom o Wordpress",
-        "Fino a 10 pagine"
-      ],
+      "features": ["CMS custom o Wordpress", "Fino a 10 pagine"],
       "supportMonthsIncluded": 3
     },
     {

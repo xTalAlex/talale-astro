@@ -5,7 +5,11 @@ import { Image } from "astro:assets";
 const projects = await getCollection("projects");
 
 projects.sort((a, b) =>
-  a.data.pubDate < b.data.pubDate ? 1 : b.data.pubDate < a.data.pubDate ? -1 : 0
+  a.data.pubDate < b.data.pubDate
+    ? 1
+    : b.data.pubDate < a.data.pubDate
+      ? -1
+      : 0,
 );
 
 function setSize(i) {
