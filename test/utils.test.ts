@@ -1,4 +1,4 @@
-import { assert, expect, test } from "vitest";
+import { expect, test } from "vitest";
 import * as Utils from "@lib/utils";
 
 test("date is formatted", () => {
