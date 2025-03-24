@@ -19,6 +19,7 @@ const projectCollection = defineCollection({
       link: z.string(),
       gallery: z.array(z.string()).optional(),
       portfolio: z.boolean().optional(),
+      featured: z.boolean().optional(),
     }),
 });
 

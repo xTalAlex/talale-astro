@@ -42,6 +42,12 @@ collections:
           widget: "boolean",
           default: false,
         }
+      - {
+          label: "Featured",
+          name: "featured",
+          widget: "boolean",
+          default: false,
+        }
       - label: "Galleria"
         name: "gallery"
         widget: "list"
