@@ -1,5 +1,6 @@
 ---
 import Config from "@config/general.json";
+import { Icon } from "astro-icon/components";
 
 const { IUBENDA_POLICY_ID } = import.meta.env;
 ---
@@ -12,7 +13,21 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
       class="textarea textarea-primary min-h-32 w-full resize-none bg-transparent"
       name="message"
       maxlength="300"
-      placeholder={Config.messagebox.placeholder}></textarea>
+      placeholder={Config.messagebox.placeholder}
+      required></textarea>
+    <label
+      class="input input-bordered input-primary flex items-center gap-2 bg-transparent"
+    >
+      <Icon class="h-4 w-4 opacity-50" name="pixelarticons:mail" />
+      <input
+        type="email"
+        id="email"
+        name="email"
+        class="grow"
+        placeholder="Email"
+        required
+      />
+    </label>
     <div class="form-control">
       <label class="label cursor-pointer justify-start space-x-2">
         <input
@@ -48,12 +63,14 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
   const handleError = () => {
     window.notify(Config.messagebox.error, null, "error");
     document.getElementById("message").disabled = false;
+    document.getElementById("email").disabled = false;
     document.getElementById("submitButton").disabled = false;
     document.getElementById("submitButton").classList.remove("loading");
   };
 
   const handleSuccess = () => {
     window.notify(Config.messagebox.success, null, "success");
+    document.getElementById("message").value = "";
     document.getElementById("message").value = "";
     document.getElementById("submitButton").classList.remove("loading");
     trackGoogleEvent();
@@ -80,11 +97,13 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
     event.preventDefault();
     if (
       document.getElementById("message").value.trim() != "" &&
+      document.getElementById("email").value.trim() != "" &&
       document.getElementById("privacy_check").checked
     ) {
       const data = new FormData(document.forms[0]);
       data.set("message", document.getElementById("message").value.trim());
       document.getElementById("message").disabled = true;
+      document.getElementById("email").disabled = true;
       document.getElementById("submitButton").disabled = true;
       document.getElementById("submitButton").classList.add("loading");
       fetch("/", {
