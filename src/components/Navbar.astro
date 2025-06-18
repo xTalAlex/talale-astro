@@ -5,6 +5,33 @@ import Config from "@config/general.json";
 import mascotte from "@assets/images/mascotte.svg";
 import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
+
+const portfolioLinks = [
+  {
+    label: "Progetti",
+    href: "/#portfolio",
+  },
+  {
+    label: "Campo Minato",
+    href: "/electrode-minesweeper",
+  },
+  {
+    label: "Pitch Detection",
+    href: "/pitch-detection",
+  },
+  {
+    label: "PixiJS Train",
+    href: "/train",
+  },
+  {
+    label: "Catalogo Nintendo Switch",
+    href: "/nintendo-switch/1",
+  },
+  {
+    label: "Blog",
+    href: "#latest-posts",
+  },
+];
 ---
 
 <div
@@ -26,11 +53,13 @@ import { Image } from "astro:assets";
         <li>
           <a> Portfolio </a>
           <ul class="">
-            <li><a href="/#portfolio">Progetti</a></li>
-            <li><a href="/electrode-minesweeper">Campo Minato</a></li>
-            <li><a href="/pitch-detection">Pitch Detection</a></li>
-            <li><a href="/nintendo-switch/1">Catalogo Nintendo Switch</a></li>
-            <li><a href="#latest-posts">Blog</a></li>
+            {
+              portfolioLinks.map((link) => (
+                <li>
+                  <a href={link.href}>{link.label}</a>
+                </li>
+              ))
+            }
           </ul>
         </li>
         <li>
@@ -71,11 +100,13 @@ import { Image } from "astro:assets";
           tabindex="0"
           class="menu dropdown-content mt-px min-w-max rounded-box bg-base-300 text-base"
         >
-          <li><a href="/#portfolio">Portfolio</a></li>
-          <li><a href="/electrode-minesweeper">Campo Minato</a></li>
-          <li><a href="/pitch-detection">Pitch Detection</a></li>
-          <li><a href="/nintendo-switch/1">Catalogo Nintendo Switch</a></li>
-          <li><a href="#latest-posts">Blog</a></li>
+          {
+            portfolioLinks.map((link) => (
+              <li>
+                <a href={link.href}>{link.label}</a>
+              </li>
+            ))
+          }
         </ul>
       </li>
       <li><a href="/#prices">Prezzi</a></li>
