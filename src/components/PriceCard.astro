@@ -103,8 +103,10 @@ function colorGradients(background: string) {
               name="pixelarticons:checkbox"
             />
             <div>
-              {supportMonthsIncluded} mesi di
-              <strong>{supportPrice.name}</strong> inclusi
+              {supportMonthsIncluded}{" "}
+              {supportMonthsIncluded == 1 ? "mese" : "mesi"} di
+              <strong>{supportPrice.name}</strong>{" "}
+              {supportMonthsIncluded == 1 ? "incluso" : "inclusi"}
             </div>
           </div>
         )
