@@ -1,13 +1,17 @@
 <template>
   <ul
-    class="group menu glass fixed top-10 z-30 rounded-box p-1 transition-transform delay-200 ease-in-out"
+    class="group menu glass rounded-box fixed top-10 z-30 p-1 transition-transform delay-200 ease-in-out"
     :class="{
-      'right-1 -translate-x-0 translate-y-10 rotate-0': open,
+      'right-1 translate-x-0 translate-y-10 rotate-0': open,
       'right-0 translate-x-16 -rotate-90': !open,
     }"
   >
     <li>
-      <div class="" :class="{ 'text-accent': isPlaying }" @click="open = !open">
+      <div
+        class="flex items-center justify-center p-2"
+        :class="{ 'text-accent': isPlaying }"
+        @click="open = !open"
+      >
         <svg
           class="h-6 w-6 stroke-current transition-transform delay-200"
           :class="{ 'rotate-90': !open, 'rotate-0': open }"
@@ -21,9 +25,12 @@
         </svg>
       </div>
     </li>
-    <li>
-      <div class="dropdown dropdown-left dropdown-hover p-0">
-        <label class="h-full w-full cursor-pointer px-4 py-3" tabindex="0">
+    <li class="z-10">
+      <div class="dropdown dropdown-left dropdown-hover">
+        <div
+          class="flex h-full w-full cursor-pointer items-center justify-center p-2"
+          tabindex="0"
+        >
           <svg
             class="h-6 w-6 stroke-current"
             xmlns="http://www.w3.org/2000/svg"
@@ -34,10 +41,10 @@
               d="M10 13h6V5h6v4h-4v10h-8v-6zm2 2v2h4v-2h-4zM2 17h6v2H2v-2zm6-4H2v2h6v-2zM2 9h12v2H2V9zm12-4H2v2h12V5z"
             />
           </svg>
-        </label>
+        </div>
         <ul
           tabindex="0"
-          class="menu dropdown-content -mr-1 -mt-12 w-52 rounded-box bg-base-200 text-sm font-semibold shadow-xl"
+          class="menu dropdown-content rounded-box bg-base-200 -mt-12 -mr-1 w-52 text-sm font-semibold shadow-xl"
         >
           <li v-for="(station, index) in stations" :key="index">
             <a
@@ -50,13 +57,16 @@
         </ul>
       </div>
     </li>
-    <li>
-      <div class="dropdown dropdown-left dropdown-hover p-0">
-        <label class="h-full w-full cursor-pointer px-4 py-3" tabindex="0">
-          <button class="" @click="toggle">
+    <li class="z-0">
+      <div class="dropdown dropdown-left dropdown-hover">
+        <div
+          class="flex h-full w-full cursor-pointer items-center justify-center p-2"
+          @click="toggle"
+        >
+          <div>
             <!-- Play -->
             <svg
-              class="h-5 w-5 stroke-current"
+              class="h-6 w-6 stroke-current"
               :class="{ hidden: isPlaying }"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -68,18 +78,18 @@
             </svg>
             <!-- Pause -->
             <svg
-              class="h-5 w-5 stroke-current"
+              class="h-6 w-6 stroke-current"
               :class="{ hidden: !isPlaying }"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
             >
               <path fill="currentColor" d="M10 4H5v16h5V4zm9 0h-5v16h5V4z" />
             </svg>
-          </button>
-        </label>
+          </div>
+        </div>
         <ul
           tabindex="0"
-          class="menu dropdown-content -z-10 -mr-1 mt-1 w-52 rounded-box bg-base-200 shadow-xl"
+          class="menu dropdown-content rounded-box bg-base-200 mt-1 -mr-1 w-52 shadow-xl"
         >
           <li>
             <div>
@@ -95,9 +105,9 @@
           </li>
         </ul>
       </div>
-      <audio ref="radioPlayer" class="hidden" src=""></audio>
     </li>
   </ul>
+  <audio ref="radioPlayer" class="hidden" src=""></audio>
 </template>
 
 <script setup>
