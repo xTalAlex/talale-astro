@@ -70,7 +70,7 @@ const { page } = Astro.props;
                             class="w-full object-cover"
                             src={artwork.url.replace(
                               "t_thumb",
-                              "t_screenshot_big"
+                              "t_screenshot_big",
                             )}
                             alt={`Artwork ${id + 1}`}
                           />
@@ -85,7 +85,7 @@ const { page } = Astro.props;
                             class="w-full object-cover"
                             src={screenshot.url.replace(
                               "t_thumb",
-                              "t_screenshot_big"
+                              "t_screenshot_big",
                             )}
                             alt={`Screenshot ${id + 1}`}
                           />
@@ -170,7 +170,7 @@ const { page } = Astro.props;
                           <a
                             href={
                               (company.company.websites?.[0].url.startsWith(
-                                "http"
+                                "http",
                               )
                                 ? ""
                                 : "//") + company.company.websites?.[0].url
@@ -187,7 +187,7 @@ const { page } = Astro.props;
                             />
                           </a>
                         </div>
-                      )
+                      ),
                   )}
                 </div>
               </div>

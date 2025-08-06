@@ -3,7 +3,7 @@ import * as Utils from "@lib/utils";
 
 test("date is formatted", () => {
   expect(Utils.formatDate("2024-03-05T18:27:37.043Z", "short")).toBe(
-    "5/3/2024",
+    "05/03/2024",
   );
   expect(Utils.formatDate("2024-03-05T18:27:37.043Z", "long")).toBe(
     "5 mar 2024",
