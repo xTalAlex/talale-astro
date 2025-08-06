@@ -1,25 +1,36 @@
-@import "tailwindcss/base";
+@import "tailwindcss";
 
-@import "tailwindcss/components";
+@plugin "@tailwindcss/typography";
+
+@import "./daisy.css";
+
+@import "./animations.css";
+
 @import "swiper/css";
 @import "swiper/css/navigation";
 @import "swiper/css/pagination";
 
-@import "tailwindcss/utilities";
+@theme {
+  --font-sans: "Chakra Petch", sans-serif;
+  --font-mono: "VT323", monospace;
+
+  --breakpoint-print: print;
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+}
 
 :root {
-  --swiper-theme-color: theme("colors.base-content") !important;
-  /*
-    * --swiper-navigation-color: "#000";
-    * --swiper-pagination-color: "#fff"; 
-    */
+  --swiper-theme-color: var("--colors-base-content") !important;
 }
 
 .swiper-pagination-bullet {
-  background-color: theme("colors.base-content") !important;
+  background-color: var("--colors-base-content") !important;
   opacity: 1 !important;
 }
 
 .swiper-pagination-bullet-active {
-  background-color: theme("colors.primary") !important;
+  background-color: var("--colors-primary") !important;
 }

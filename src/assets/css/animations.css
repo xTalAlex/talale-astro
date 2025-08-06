@@ -1,0 +1,43 @@
+@theme {
+  --animate-shine: shine 1s;
+  --animate-wiggle: wiggle 2s ease-in-out infinite;
+  --animate-marquee: marquee 10s linear infinite;
+  --animate-gradient: animatedgradient 2s ease infinite alternate;
+}
+
+@keyframes shine {
+  100% {
+    left: 125%;
+  }
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

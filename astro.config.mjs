@@ -1,27 +1,23 @@
 import { defineConfig } from "astro/config";
 import Config from "./src/config/general.json";
-import tailwind from "@astrojs/tailwind";
 import vue from "@astrojs/vue";
 import sitemap from "@astrojs/sitemap";
 import icon from "astro-icon";
 import db from "@astrojs/db";
-// import sentry from "@sentry/astro";
-
 import netlify from "@astrojs/netlify";
+import tailwindcss from "@tailwindcss/vite";
+// import sentry from "@sentry/astro";
 
 // https://astro.build/config
 export default defineConfig({
   site: Config.url,
   output: "static",
+
   adapter: netlify({
     imageCDN: false,
   }),
+
   integrations: [
-    tailwind({
-      config: {
-        applyBaseStyles: false,
-      },
-    }),
     vue({
       appEntrypoint: "/src/_app",
     }),
@@ -46,4 +42,8 @@ export default defineConfig({
     //   },
     // }),
   ],
+
+  vite: {
+    plugins: [tailwindcss()],
+  },
 });
