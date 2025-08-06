@@ -128,16 +128,6 @@ const openGraph = {
       window.netlifyIdentity = netlifyIdentity;
       document.dispatchEvent(new Event("identityLoaded"));
     </script>
-
-    <script is:inline>
-      if (localStorage.getItem("theme") === null) {
-        document.documentElement.setAttribute("data-theme", "halloween");
-      } else
-        document.documentElement.setAttribute(
-          "data-theme",
-          localStorage.getItem("theme"),
-        );
-    </script>
   </head>
   <body class="font-sans">
     <Navbar />
