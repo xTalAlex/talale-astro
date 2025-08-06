@@ -43,7 +43,7 @@ const { page } = Astro.props;
       {
         page.data.map((game) => (
           <div
-            class="card card-compact h-full w-full bg-base-100 shadow-xl"
+            class="card card-sm bg-base-100 h-full w-full shadow-xl"
             id={game.slug}
           >
             {(game.cover || game.screenshots) && (
@@ -70,7 +70,7 @@ const { page } = Astro.props;
                             class="w-full object-cover"
                             src={artwork.url.replace(
                               "t_thumb",
-                              "t_screenshot_big",
+                              "t_screenshot_big"
                             )}
                             alt={`Artwork ${id + 1}`}
                           />
@@ -85,7 +85,7 @@ const { page } = Astro.props;
                             class="w-full object-cover"
                             src={screenshot.url.replace(
                               "t_thumb",
-                              "t_screenshot_big",
+                              "t_screenshot_big"
                             )}
                             alt={`Screenshot ${id + 1}`}
                           />
@@ -146,14 +146,14 @@ const { page } = Astro.props;
               <div class="flex flex-col space-y-1">
                 <div class="flex h-12 w-full flex-nowrap space-x-2 overflow-x-auto overflow-y-hidden">
                   {game.genres?.map((genre) => (
-                    <div class="badge badge-primary badge-sm whitespace-nowrap font-semibold">
+                    <div class="badge badge-primary badge-sm font-semibold whitespace-nowrap">
                       {genre.name}
                     </div>
                   ))}
                 </div>
                 <div class="flex h-12 w-full flex-nowrap space-x-2 overflow-x-auto overflow-y-hidden">
                   {game.themes?.map((theme) => (
-                    <div class="badge badge-secondary badge-sm whitespace-nowrap font-semibold">
+                    <div class="badge badge-secondary badge-sm font-semibold whitespace-nowrap">
                       {theme.name}
                     </div>
                   ))}
@@ -170,7 +170,7 @@ const { page } = Astro.props;
                           <a
                             href={
                               (company.company.websites?.[0].url.startsWith(
-                                "http",
+                                "http"
                               )
                                 ? ""
                                 : "//") + company.company.websites?.[0].url
@@ -187,7 +187,7 @@ const { page } = Astro.props;
                             />
                           </a>
                         </div>
-                      ),
+                      )
                   )}
                 </div>
               </div>

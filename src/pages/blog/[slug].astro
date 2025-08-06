@@ -56,7 +56,7 @@ const { post, readingTime, previousPost, nextPost } = Astro.props;
       width="458"
     />
   </div>
-  <div class="mb-6 mt-6 flex flex-col">
+  <div class="mt-6 mb-6 flex flex-col">
     <h1 class="w-full">{post.title}</h1>
     <div class="flex justify-end space-x-2">
       <div class="badge badge-accent badge-outline flex-none cursor-default">
@@ -84,7 +84,7 @@ const { post, readingTime, previousPost, nextPost } = Astro.props;
             class="h-6 w-6 stroke-current"
             name="pixelarticons:chevron-left"
           />
-          <span class="w-48 overflow-hidden overflow-ellipsis whitespace-nowrap sm:w-32 lg:w-64">
+          <span class="w-48 overflow-hidden text-ellipsis whitespace-nowrap sm:w-32 lg:w-64">
             {previousPost.title}
           </span>
         </a>
@@ -99,7 +99,7 @@ const { post, readingTime, previousPost, nextPost } = Astro.props;
           title={nextPost.title}
           class="btn btn-ghost w-full justify-end uppercase sm:w-auto sm:space-x-2"
         >
-          <span class="w-48 overflow-hidden overflow-ellipsis whitespace-nowrap sm:w-32 lg:w-64">
+          <span class="w-48 overflow-hidden text-ellipsis whitespace-nowrap sm:w-32 lg:w-64">
             {nextPost.title}
           </span>
           <Icon
@@ -116,7 +116,7 @@ const { post, readingTime, previousPost, nextPost } = Astro.props;
 
 <script>
   const wpReadingTimeElements = document.getElementsByClassName(
-    "estimated-reading-time",
+    "estimated-reading-time"
   );
   Array.from(wpReadingTimeElements).forEach((item) => item.remove());
 </script>

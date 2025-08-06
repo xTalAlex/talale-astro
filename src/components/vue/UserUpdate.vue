@@ -1,5 +1,5 @@
 <template>
-  <div class="card card-compact">
+  <div class="card card-sm">
     <div class="card-body h-96">
       <div class="mockup-code h-64 min-w-fit space-y-2">
         <pre data-prefix="$"><code>Modifica <select 

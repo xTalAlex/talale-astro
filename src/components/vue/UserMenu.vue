@@ -10,7 +10,7 @@
     </label>
     <ul
       tabindex="0"
-      class="menu-compact menu dropdown-content mt-3 w-52 rounded-box bg-base-300 p-2 shadow"
+      class="menu-compact menu dropdown-content rounded-box bg-base-300 mt-3 w-52 p-2 shadow-sm"
     >
       <li v-if="$isLogged"><a href="/profile">Profilo</a></li>
       <li v-if="$isLogged && $userInfo.isAdmin"><a href="/admin">Admin</a></li>

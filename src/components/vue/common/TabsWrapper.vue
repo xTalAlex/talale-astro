@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="tabs-boxed tabs bg-transparent" :class="headerClass">
+    <div class="tabs-box tabs bg-transparent" :class="headerClass">
       <div
         v-for="(tabTitle, index) in tabTitles"
         :key="index"

@@ -7,52 +7,54 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
 
 <div class="h-full w-full">
   <form id="messagebox" netlify name="messagebox" method="POST">
-    <input type="hidden" name="form-name" value="messagebox" />
-    <textarea
-      id="message"
-      class="textarea textarea-primary min-h-32 w-full resize-none bg-transparent"
-      name="message"
-      maxlength="300"
-      placeholder={Config.messagebox.placeholder}
-      required></textarea>
-    <label
-      class="input input-bordered input-primary flex items-center gap-2 bg-transparent"
-    >
-      <Icon class="h-4 w-4 opacity-50" name="pixelarticons:mail" />
-      <input
-        type="email"
-        id="email"
-        name="email"
-        class="grow"
-        placeholder="Email"
-        required
-      />
-    </label>
-    <div class="form-control">
-      <label class="label cursor-pointer justify-start space-x-2">
-        <input
-          type="checkbox"
-          class="checkbox-primary checkbox checkbox-sm"
-          id="privacy_check"
-        />
-        <span class="label-text text-neutral"
-          >Ho letto e accetto la <a
-            class="link"
-            target="_blank"
-            rel="noreferrer"
-            href={`https://www.iubenda.com/privacy-policy/${IUBENDA_POLICY_ID}`}
-            >Privacy Policy</a
-          >.</span
-        >
-      </label>
-    </div>
-    <div class="card-actions mt-2 justify-center">
-      <button
-        id="submitButton"
-        type="submit"
-        class="btn btn-primary uppercase disabled:text-primary-content/50"
-        disabled>Invia</button
+    <div class="space-y-2">
+      <input type="hidden" name="form-name" value="messagebox" />
+      <textarea
+        id="message"
+        class="textarea textarea-primary min-h-32 w-full resize-none bg-transparent"
+        name="message"
+        maxlength="300"
+        placeholder={Config.messagebox.placeholder}
+        required></textarea>
+      <label
+        class="input input-primary flex w-full items-center gap-2 bg-transparent"
       >
+        <Icon class="h-4 w-4 opacity-50" name="pixelarticons:mail" />
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="grow"
+          placeholder="Email"
+          required
+        />
+      </label>
+      <fieldset class="fieldset">
+        <label class="label cursor-pointer justify-start space-x-2">
+          <input
+            type="checkbox"
+            class="checkbox-primary checkbox checkbox-sm"
+            id="privacy_check"
+          />
+          <span class="label-text text-neutral"
+            >Ho letto e accetto la <a
+              class="link"
+              target="_blank"
+              rel="noreferrer"
+              href={`https://www.iubenda.com/privacy-policy/${IUBENDA_POLICY_ID}`}
+              >Privacy Policy</a
+            >.</span
+          >
+        </label>
+      </fieldset>
+      <div class="card-actions mt-2 justify-center">
+        <button
+          id="submitButton"
+          type="submit"
+          class="btn btn-primary disabled:text-primary-content/50 uppercase"
+          disabled>Invia</button
+        >
+      </div>
     </div>
   </form>
 </div>

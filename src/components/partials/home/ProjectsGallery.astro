@@ -11,7 +11,7 @@ projects.sort(
       ? 1
       : b.data.pubDate < a.data.pubDate
         ? -1
-        : 0),
+        : 0)
 );
 
 function setSize(i) {
@@ -58,7 +58,7 @@ function setSize(i) {
   id="portfolio"
 >
   <div
-    class="parallax-bg-title absolute -top-24 select-none text-[32rem] font-bold uppercase tracking-tighter opacity-10"
+    class="parallax-bg-title absolute -top-24 text-[32rem] font-bold tracking-tighter uppercase opacity-10 select-none"
   >
     Portfolio
   </div>
@@ -78,7 +78,7 @@ function setSize(i) {
               "group card relative h-full w-full overflow-hidden shadow-xl"
             }
           >
-            <div class="absolute inset-0 z-0 transition duration-1000 ease-in-out group-hover:scale-125 group-hover:blur">
+            <div class="absolute inset-0 z-0 transition duration-1000 ease-in-out group-hover:scale-125 group-hover:blur-sm">
               <Image
                 height="384"
                 width="912"
@@ -87,7 +87,7 @@ function setSize(i) {
                 alt={project.data.title}
               />
             </div>
-            <div class="card-body z-10 cursor-default select-none items-center justify-center space-y-4 text-neutral-content opacity-0 transition ease-in group-hover:bg-neutral group-hover:bg-opacity-80 group-hover:opacity-100">
+            <div class="card-body text-neutral-content group-hover:bg-neutral/80 z-10 cursor-default items-center justify-center space-y-4 opacity-0 transition ease-in select-none group-hover:opacity-100">
               <h2 class="card-title">{project.data.title}</h2>
               <div class="mx-auto max-w-sm text-center">
                 <p>{project.data.description}</p>

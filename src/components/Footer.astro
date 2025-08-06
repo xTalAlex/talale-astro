@@ -15,7 +15,7 @@ import NetlifyStatus from "@components/NetlifyStatus.astro";
 const { IUBENDA_POLICY_ID } = import.meta.env;
 ---
 
-<footer class="footer footer-center bg-base-200 pb-24 pt-10">
+<footer class="footer footer-horizontal footer-center bg-base-200 pt-10 pb-24">
   <div class="grid items-start gap-20 px-10 py-20 lg:grid-cols-3">
     <div class="mb-20 lg:col-span-2 lg:mb-0">
       <LatestPosts />
@@ -23,11 +23,11 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
     <Biography />
   </div>
   <div class="pb-12"><ScreenSize /></div>
-  <div class="collapse collapse-plus max-w-2xl cursor-pointer">
+  <div class="collapse-plus collapse max-w-2xl cursor-pointer">
     <input type="checkbox" />
     <div class="collapse-title text-left font-semibold">Referral</div>
     <div
-      class="collapse-content flex flex-col items-center justify-center space-y-2 sm:flex-row sm:space-x-2 sm:space-y-0"
+      class="collapse-content flex flex-col items-center justify-center space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2"
     >
       <a
         href="https://www.digitalocean.com/?refcode=4c50de6f8f9f&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge"
@@ -35,7 +35,7 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
         rel="noreferrer"
       >
         <Image
-          class="h-16 w-52 rounded bg-white object-contain"
+          class="h-16 w-52 rounded-sm bg-white object-contain"
           src="https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%202.svg"
           alt="DigitalOcean Referral Badge"
           height="64"
@@ -48,7 +48,7 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
         rel="noreferrer"
       >
         <Image
-          class="h-16 w-52 rounded bg-white object-contain"
+          class="h-16 w-52 rounded-sm bg-white object-contain"
           src={IubendaLogo}
           alt="Iubenda Referral Badge"
         />
@@ -59,7 +59,7 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
         rel="noreferrer"
       >
         <Image
-          class="h-16 w-52 rounded bg-white object-contain"
+          class="h-16 w-52 rounded-sm bg-white object-contain"
           src={AmazonPrimeLogo}
           alt="Prova Amazon Prime"
         />

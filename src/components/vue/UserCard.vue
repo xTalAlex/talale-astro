@@ -1,5 +1,5 @@
 <template>
-  <div v-if="$isLogged" class="card w-full bg-base-200 shadow-xl sm:flex-row">
+  <div v-if="$isLogged" class="card bg-base-200 w-full shadow-xl sm:flex-row">
     <div class="grid w-full place-items-center p-4 py-8 sm:w-1/2 md:w-1/3">
       <div class="dropdown dropdown-top">
         <div tabindex="0">
@@ -7,9 +7,7 @@
             class="avatar"
             :class="{ online: $isLogged, offline: !$isLogged }"
           >
-            <div
-              class="mask mask-squircle h-24 w-24 bg-base-content bg-opacity-10 p-px"
-            >
+            <div class="mask mask-squircle bg-base-content/10 h-24 w-24 p-px">
               <img
                 :src="$userInfo.avatar"
                 width="94"
@@ -35,7 +33,7 @@
       <div class="w-full text-center">
         <div class="text-lg font-extrabold">{{ $userInfo.name }}</div>
         <div
-          class="my-3 text-sm text-base-content/70"
+          class="text-base-content/70 my-3 text-sm"
           :class="{ 'text-warning': !$userInfo.confirmed_at }"
         >
           {{ $userInfo.email }}

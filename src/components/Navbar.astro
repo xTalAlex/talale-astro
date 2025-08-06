@@ -35,7 +35,7 @@ const portfolioLinks = [
 ---
 
 <div
-  class="navbar fixed z-50 h-16 bg-base-300/50 font-semibold backdrop-blur-2xl"
+  class="navbar bg-base-300/50 fixed z-50 h-16 font-semibold backdrop-blur-2xl"
 >
   <div class="navbar-start">
     <div class="dropdown">
@@ -43,12 +43,12 @@ const portfolioLinks = [
         <Icon class="h-5 w-5 stroke-current" name="pixelarticons:menu" />
       </label>
       <ul
-        class="menu dropdown-content mt-3 w-52 rounded-box bg-base-300 p-2 shadow"
+        class="menu dropdown-content rounded-box bg-base-300 mt-3 w-52 p-2 shadow-sm"
         tabindex="0"
       >
         <li><a href="/">Home</a></li>
         <li>
-          <a href="/#contacts" class="uppercase text-primary">{Config.cta}</a>
+          <a href="/#contacts" class="text-primary uppercase">{Config.cta}</a>
         </li>
         <li>
           <a> Portfolio </a>
@@ -68,7 +68,7 @@ const portfolioLinks = [
       </ul>
     </div>
     <a href="/" class="btn btn-ghost hidden text-xl normal-case lg:flex">
-      <div class="-mr-1 -mt-1 h-6 w-8 overflow-hidden">
+      <div class="-mt-1 -mr-1 h-6 w-8 overflow-hidden">
         <Image
           class="h-14 w-8 object-cover object-left"
           src={mascotte}
@@ -98,7 +98,7 @@ const portfolioLinks = [
         </a>
         <ul
           tabindex="0"
-          class="menu dropdown-content mt-px min-w-max rounded-box bg-base-300 text-base"
+          class="menu dropdown-content rounded-box bg-base-300 mt-px min-w-max text-base"
         >
           {
             portfolioLinks.map((link) => (

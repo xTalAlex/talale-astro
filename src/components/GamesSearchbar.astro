@@ -6,13 +6,13 @@ import { lastDeployDate, formatDate } from "@lib/utils";
 import gargoyles from "@assets/images/gargoyles.png";
 ---
 
-<div class="form-control relative mx-auto w-full">
+<fieldset class="fieldset relative mx-auto">
   <div class="join">
     <input
       type="text"
       id="search-input"
       placeholder="Focus: ctrl+c | Clear: ctrl+x"
-      class="input join-item input-bordered w-full placeholder:text-xs"
+      class="input join-item w-full placeholder:text-xs"
     />
     <button
       class="btn btn-square btn-error join-item uppercase"
@@ -27,25 +27,25 @@ import gargoyles from "@assets/images/gargoyles.png";
       <Icon class="h-6 w-6 stroke-current" name="pixelarticons:search" />
     </button>
   </div>
-</div>
+</fieldset>
 
 <div class="mt-12 flex w-full items-center justify-center">
-  <div class="hidden select-none overflow-x-auto pb-4" id="search-results">
+  <div class="hidden overflow-x-auto pb-4 select-none" id="search-results">
   </div>
   <div class="hidden" id="no-results">
     <Image class="h-24 w-auto" src={gargoyles} alt="Nessun risultato" />
     <h4 class="text-center text-lg"><b>Nessun risultato</b></h4>
   </div>
   <div
-    class="stats cursor-default bg-primary text-primary-content shadow"
+    class="stats bg-primary text-primary-content cursor-default shadow-sm"
     id="placeholder"
   >
     <div class="stat">
-      <div class="stat-title font-semibold text-primary-content">
+      <div class="stat-title text-primary-content font-semibold">
         Numero di titoli
       </div>
       <div class="stat-value">{gamesCount}</div>
-      <div class="stat-desc font-semibold text-primary-content">
+      <div class="stat-desc text-primary-content font-semibold">
         Ultimo aggiornamento {formatDate(lastDeployDate)}
       </div>
     </div>
@@ -93,7 +93,7 @@ import gargoyles from "@assets/images/gargoyles.png";
       window.history.replaceState(
         null,
         "",
-        "?query=" + encodeURIComponent(query),
+        "?query=" + encodeURIComponent(query)
       );
     }
   };
