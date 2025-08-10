@@ -1,0 +1,78 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { getAllCharacters } from "@lib/disney.js";
+
+const title = "Personaggi Disney";
+const description =
+  "Ottieni le informazioni dei tuoi personaggi Disney preferiti e visualizzale graficamente grazie a disneyapi.dev.";
+---
+
+<Layout title={title} description={description}>
+  <div
+    class="container w-full max-w-5xl overflow-hidden px-5 md:mx-auto lg:overflow-visible"
+  >
+    <h1 class="py-12 text-4xl font-bold">{title}</h1>
+    <p class="">{description}</p>
+
+    <div class="mt-12 grid place-items-center">
+      <button id="load-characters-button" class="btn btn-primary"
+        >Carica Personaggi</button
+      >
+      <div
+        id="characters-container"
+        class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
+      >
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import { getAllCharacters } from "../lib/disney.js";
+
+    document
+      .getElementById("load-characters-button")
+      ?.addEventListener("click", async () => {
+        try {
+          const characters = await getAllCharacters({ page: 2 });
+          const container = document.getElementById("characters-container");
+
+          if (container) {
+            container.innerHTML = characters
+              .map(
+                (character) => `
+              <div class="border rounded-lg p-4 shadow-md">
+                <img
+                  src="${character.imageUrl}"
+                  alt="${character.name}"
+                  class="w-full h-48 object-cover rounded mb-2"
+                />
+                <h3 class="font-bold text-lg">${character.name}</h3>
+                <p class="text-sm text-gray-600">
+                  Films: ${character.films?.join(", ") || "Nessuno"}
+                </p>
+                <p class="text-sm text-gray-600">
+                  Short Films: ${character.shortFilms?.join(", ") || "Nessuno"}
+                </p>
+                <p class="text-sm text-gray-600">
+                  TV Shows: ${character.tvShows?.join(", ") || "Nessuno"}
+                </p>
+                <p class="text-sm text-gray-600">
+                  Video Games: ${character.videoGames?.join(", ") || "Nessuno"}
+                </p>
+                <p class="text-sm text-gray-600">
+                  Allies: ${character.allies?.join(", ") || "Nessuno"}
+                </p>
+                <p class="text-sm text-gray-600">
+                    Enemies: ${character.enemies?.join(", ") || "Nessuno"}
+                </p>
+              </div>
+            `
+              )
+              .join("");
+          }
+        } catch (error) {
+          console.error("Errore nel caricamento:", error);
+        }
+      });
+  </script>
+</Layout>
