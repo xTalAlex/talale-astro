@@ -58,7 +58,7 @@ export function authenticated() {
   );
 }
 
-export async function getNintentoSwitch() {
+export async function getNintendoSwitch2() {
   if (!authenticated()) await authenticate();
   const data = await fetchAPI("platforms", {
     method: "POST",
@@ -68,7 +68,7 @@ export async function getNintentoSwitch() {
     },
     body: `
             fields *;
-            where name = "Nintendo Switch";
+            where name = "Nintendo Switch 2";
             limit 1;
         `,
   });
@@ -92,6 +92,36 @@ export async function getConsole(name) {
   });
 
   return data[0];
+}
+
+export async function getGameStatuses() {
+  if (!authenticated()) await authenticate();
+  const data = await fetchAPI("game_statuses", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Client-ID": API_CLIENT,
+      Authorization: "Bearer " + AUTH.access_token,
+    },
+    body: "fields *;",
+  });
+
+  return data;
+}
+
+export async function getGameTypes() {
+  if (!authenticated()) await authenticate();
+  const data = await fetchAPI("game_types", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Client-ID": API_CLIENT,
+      Authorization: "Bearer " + AUTH.access_token,
+    },
+    body: "fields *;",
+  });
+
+  return data;
 }
 
 export async function getGames(query) {

@@ -23,7 +23,7 @@ start_time = Date.now();
 do {
   let query = `
         fields 
-            name, slug, category, status, summary, total_rating, url, first_release_date,  
+            name, slug, game_type.type, game_status, summary, total_rating, url, first_release_date,  
             genres.name, themes.name, cover.url, artworks.url, screenshots.url, language_supports.language.locale,
             involved_companies.company.name, involved_companies.company.logo.url, involved_companies.company.websites.url;
         sort first_release_date desc;
@@ -33,10 +33,10 @@ do {
                 & genres != null
                 & involved_companies != null
                 & cover != null
-                & ( status = 0 | status = null )
+                & (game_status = null | game_status = 0)
                 & first_release_date > ${Math.floor(fromReleaseDate / 1000)}
                 & first_release_date < ${Math.floor(toReleaseDate / 1000)}
-                & category = (0,8,9);
+                & game_type = (0,3,8,11);
         limit ${limit};
         offset ${offset};
     `;
