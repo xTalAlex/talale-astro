@@ -68,7 +68,7 @@ export async function getNintentoSwitch() {
     },
     body: `
             fields *;
-            where name = "Nintendo Switch";
+            where name = "Nintendo Switch2";
             limit 1;
         `,
   });
