@@ -45,9 +45,9 @@ const { post, readingTime, previousPost, nextPost } = Astro.props;
     ? post.featuredImage.altText
     : post.featuredImage.title}
 >
-  <div class="h-96 bg-white">
+  <div class="h-96 overflow-hidden bg-white">
     <Image
-      class="m-auto h-full w-auto object-contain"
+      class="mx-auto mt-auto mb-auto h-full w-auto object-contain"
       src={post.featuredImage.sourceUrl}
       alt={post.featuredImage.altText?.length
         ? post.featuredImage.altText
