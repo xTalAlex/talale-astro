@@ -2,7 +2,7 @@
   <div
     ref="toggle"
     tabindex="0"
-    class="collapse collapse-arrow h-max cursor-pointer rounded-box border border-base-300 bg-base-100"
+    class="collapse-arrow rounded-box border-base-300 bg-base-100 collapse h-max cursor-pointer border"
     :class="{ 'collapse-open': open, 'collapse-close': !open }"
   >
     <div class="collapse-title text-xl font-medium" @click="collapse">
@@ -13,7 +13,7 @@
         <div v-if="!players" class="flex h-32 items-center justify-center">
           <progress class="progress progress-primary w-56"></progress>
         </div>
-        <table v-else-if="players.length" class="table table-zebra w-full">
+        <table v-else-if="players.length" class="table-zebra table w-full">
           <thead>
             <tr>
               <th></th>
@@ -47,7 +47,7 @@
         </div>
       </div>
 
-      <div v-if="!$isLogged" class="mt-4 flex justify-start text-warning">
+      <div v-if="!$isLogged" class="text-warning mt-4 flex justify-start">
         <a class="link" @click="login">Per classificarti devi essere loggato</a>
       </div>
     </div>

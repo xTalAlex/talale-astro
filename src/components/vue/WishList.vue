@@ -2,7 +2,7 @@
   <div>
     <div
       v-if="items.length"
-      class="carousel carousel-start mt-12 w-full space-x-4 overflow-y-visible rounded-box bg-neutral p-4"
+      class="carousel carousel-start rounded-box bg-neutral mt-12 w-full space-x-4 overflow-y-visible p-4"
     >
       <div
         v-for="item in items"
@@ -13,11 +13,11 @@
         <img
           :src="item.imgSrc"
           :alt="item.name"
-          class="cursor-pointer rounded-box"
+          class="rounded-box cursor-pointer"
           @click="searchGame(item.id)"
         />
         <button
-          class="btn glass btn-xs absolute -right-1 -top-1 z-10 uppercase"
+          class="btn glass btn-xs absolute -top-1 -right-1 z-10 uppercase"
           @click="removeWishlistItem(item)"
         >
           &times;

@@ -4,7 +4,7 @@
     <label class="modal" for="modal">
       <label class="modal-box relative" for="">
         <span
-          class="btn btn-circle btn-sm absolute right-2 top-2 uppercase"
+          class="btn btn-circle btn-sm absolute top-2 right-2 uppercase"
           @click="open = false"
         >
           <svg

@@ -27,7 +27,7 @@ if (rightEdge - leftEdge < Math.floor(size / 2) * 2) {
 <div class="join">
   {
     leftEdge > 1 && (
-      <a class={"btn join-item uppercase md:btn-lg"} href={`${url}/1`}>
+      <a class={"btn join-item md:btn-lg uppercase"} href={`${url}/1`}>
         <Icon
           class="h-6 w-6 stroke-current"
           name="pixelarticons:chevron-left"
@@ -39,7 +39,7 @@ if (rightEdge - leftEdge < Math.floor(size / 2) * 2) {
   {
     Array.from({ length: rightEdge - leftEdge + 1 }).map((item, index) => (
       <a
-        class={`btn join-item uppercase md:btn-lg ${currentPage == leftEdge + index ? "btn-active" : ""}`}
+        class={`btn join-item md:btn-lg uppercase ${currentPage == leftEdge + index ? "btn-active" : ""}`}
         href={`${url}/${leftEdge + index}`}
       >
         {leftEdge + index}
@@ -50,7 +50,7 @@ if (rightEdge - leftEdge < Math.floor(size / 2) * 2) {
   {
     rightEdge < lastPage && (
       <a
-        class={"btn join-item uppercase md:btn-lg"}
+        class={"btn join-item md:btn-lg uppercase"}
         href={`${url}/${lastPage}`}
       >
         <Icon

@@ -49,7 +49,7 @@ function colorGradients(background: string) {
 ---
 
 <div
-  class="group relative flex w-full max-w-sm cursor-default flex-col overflow-hidden rounded-xl border-0 p-6 text-primary-content shadow-xl transition duration-500 ease-in-out hover:scale-105 sm:max-w-xs lg:w-[18.5rem]"
+  class="group text-primary-content relative flex w-full max-w-sm cursor-default flex-col overflow-hidden rounded-xl border-0 p-6 shadow-xl transition duration-500 ease-in-out hover:scale-105 sm:max-w-xs lg:w-[18.5rem]"
   id={supportPrice.name == name ? "support" : slugify(name)}
 >
   <div
@@ -72,7 +72,7 @@ function colorGradients(background: string) {
         features.map((feature) => (
           <div class="flex">
             <Icon
-              class="mr-2 mt-1 h-4 w-4 stroke-current"
+              class="mt-1 mr-2 h-4 w-4 stroke-current"
               name="pixelarticons:checkbox"
             />
             <div>{feature}</div>
@@ -83,7 +83,7 @@ function colorGradients(background: string) {
         includesBaseServices && (
           <div class="flex">
             <Icon
-              class="mr-2 mt-1 h-4 w-4 stroke-current"
+              class="mt-1 mr-2 h-4 w-4 stroke-current"
               name="pixelarticons:checkbox"
             />
             <div>
@@ -99,7 +99,7 @@ function colorGradients(background: string) {
         supportMonthsIncluded > 0 && (
           <div class="flex">
             <Icon
-              class="mr-2 mt-1 h-4 w-4 stroke-current"
+              class="mt-1 mr-2 h-4 w-4 stroke-current"
               name="pixelarticons:checkbox"
             />
             <div>
@@ -114,7 +114,7 @@ function colorGradients(background: string) {
     </div>
   </div>
   <div class="divider"></div>
-  <div class="mb-0 mt-auto pb-6">
+  <div class="mt-auto mb-0 pb-6">
     <a href="#contacts" class="btn btn-neutral uppercase">Contattami</a>
     <a
       href={`/services${supportPrice.name == name ? "#support" : ""}`}
