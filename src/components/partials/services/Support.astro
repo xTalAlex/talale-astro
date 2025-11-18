@@ -9,7 +9,7 @@ import Config from "@config/freelance.json";
       Assistenza, Manutenzione e Pubblicità
     </div>
     <div class="w-full">
-      <div class="h-0.5 w-full bg-neutral-content"></div>
+      <div class="bg-neutral-content h-0.5 w-full"></div>
     </div>
   </div>
   <h2
@@ -33,9 +33,9 @@ import Config from "@config/freelance.json";
     <div class="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
       {
         Config.supportServices.map((service) => (
-          <div class="card min-h-32 bg-base-200 px-2 pb-12 pt-12 text-center shadow-md">
+          <div class="card bg-base-200 min-h-32 px-2 pt-12 pb-12 text-center shadow-md">
             <Icon
-              class="mx-auto size-8 stroke-secondary text-primary"
+              class="stroke-secondary text-primary mx-auto size-8"
               name={`pixelarticons:${service.icon}`}
             />
             <div class="mx-auto mt-4 sm:w-2/3">{service.name}</div>

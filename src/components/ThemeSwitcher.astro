@@ -16,7 +16,7 @@ import { Icon } from "astro-icon/components";
   } else
     document.documentElement.setAttribute(
       "data-theme",
-      localStorage.getItem("theme")
+      localStorage.getItem("theme"),
     );
 
   if (localStorage.getItem("theme") === null) {

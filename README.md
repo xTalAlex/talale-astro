@@ -28,5 +28,4 @@
 - services CTA upgrade
 - template ecommerce con crystallize
 - template con decap
-- fix vitest
-- simple-parallax update
+- test coverage npm

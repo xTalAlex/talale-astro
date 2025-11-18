@@ -23,14 +23,14 @@
 }
 
 :root {
-  --swiper-theme-color: var("--colors-base-content") !important;
+  --swiper-theme-color: var(--colors-base-content) !important;
 }
 
 .swiper-pagination-bullet {
-  background-color: var("--colors-base-content") !important;
+  background-color: var(--colors-base-content) !important;
   opacity: 1 !important;
 }
 
 .swiper-pagination-bullet-active {
-  background-color: var("--colors-primary") !important;
+  background-color: var(--colors-primary) !important;
 }

@@ -12,7 +12,7 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
 <div class="">
   <div class="mb-24 flex items-center justify-center">
     <div class="">
-      <div class="relative flex border-4 border-accent">
+      <div class="border-accent relative flex border-4">
         {
           table.map((col, colId) => {
             return (
@@ -20,7 +20,7 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
                 {table.map((row, rowId) => {
                   return (
                     <div
-                      class="minesweeper-cell z-10 grid h-8 w-8 cursor-pointer select-none place-items-center border-2 border-neutral-content text-center font-black shadow-inner hover:border-accent active:shadow-none md:h-10 md:w-10"
+                      class="minesweeper-cell border-neutral-content hover:border-accent z-10 grid h-8 w-8 cursor-pointer place-items-center border-2 text-center font-black shadow-inner select-none active:shadow-none md:h-10 md:w-10"
                       id={`${colId * boardSize + rowId}`}
                     />
                   );

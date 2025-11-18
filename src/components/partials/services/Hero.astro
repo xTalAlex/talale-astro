@@ -22,11 +22,11 @@ const { title, description } = Astro.props;
     </div>
 
     <div
-      class="absolute -bottom-80 -right-10 -z-10 md:-bottom-64 md:right-0 lg:-bottom-16"
+      class="absolute -right-10 -bottom-80 -z-10 md:right-0 md:-bottom-64 lg:-bottom-16"
     >
       <div class="relative h-64 md:h-80">
         <div
-          class="absolute inset-0 -z-10 animate-pulse bg-gradient-to-br from-primary to-secondary opacity-40 blur-3xl"
+          class="from-primary to-secondary absolute inset-0 -z-10 animate-pulse bg-gradient-to-br opacity-40 blur-3xl"
         >
         </div>
         <Image class="h-full object-cover" src={bgImage} alt={title} />

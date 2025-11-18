@@ -13,7 +13,7 @@ const { class: className } = Astro.props;
     Dal Blog
   </div>
   <div
-    class="absolute inset-0 z-0 bg-gradient-to-tl from-primary to-secondary opacity-10 blur-3xl"
+    class="from-primary to-secondary absolute inset-0 z-0 bg-gradient-to-tl opacity-10 blur-3xl"
   >
   </div>
   <div class="relative z-10">
@@ -26,7 +26,7 @@ const { class: className } = Astro.props;
             </div>
             <div class="ml-5 flex flex-col items-start text-left">
               <a href={`/blog/${post.slug}`}>
-                <div class="link text-lg text-primary" set:html={post.title} />
+                <div class="link text-primary text-lg" set:html={post.title} />
               </a>
               <div class="line-clamp-3 max-w-md" set:html={post.excerpt} />
             </div>
