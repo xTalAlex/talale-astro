@@ -1,0 +1,60 @@
+---
+const requestLinkUrl = "https://share.zight.com/re/talale-it";
+
+/**
+ * CloudAppRecorder.isSupported returns a boolean wether or not we support the browser.
+ * This lets you show/hide recording capabilities within your own interface
+ *
+ * console.logs in the SDK callback methods won't log anything
+ *
+ * @see https://support.zight.com/hc/en-us/articles/8907129235735-Zight-Record-SDK-Embed-Zight-in-Your-Product?utm_campaign=Newsletter&utm_content=Feature&utm_medium=email_action&utm_source=customer.io
+ */
+
+const { ZIGHT_API_KEY } = import.meta.env;
+---
+
+<button class="btn btn-primary" id="recorder-button">Zight</button>
+
+<script data-api-key={ZIGHT_API_KEY}>
+  const options = {
+    apiKey: document.currentScript.dataset.apiKey,
+    guestId: null, // optional. Must be unique Specify your own user id for videos
+    namePrefix: null, // optional. Specify a prefix for the video name
+    thumbnailOptions: { width: 400, height: 200, playicon: true }, // optional. Lets you specify the size of the thumbnail that will be returned with thumbnailUrl
+    onCompleted: function ({ shareUrl, thumbnailUrl, embedUrl }) {
+      // Use the share url which is Zight's url : share.zight.com/<hashid>
+      // use the embed url which lets you add an iframe to playback the video
+      // Use the thumbnail url which lets you show a preview of the video (ex: on a clickable element)
+
+      // Opens the link in a new tab
+      window.open(shareUrl, "_blank");
+    },
+    /** 
+     * function returning newStatus which can be idle, restarting, countdown, or recording 
+     * Upon completion of a recording, this function is returning 3 types of urls:
+            shareUrl which is Zight url : Zight Screen Recorder for Mac, Windows, Chrome, & iOS <hashid>
+            embedUrl which lets you add an iframe to playback the video
+            thumbnailUrl which lets you display a preview of the video
+     * */
+    onStatusChange: function (newStatus) {
+      if (newStatus == "recording") {
+        // Disable the start recording button since we are already recording
+      }
+    },
+  };
+
+  window.initializeZight = function () {
+    const el = document.getElementById("recorder-button");
+    if (window.CloudAppRecorder?.isSupported()) {
+      el.addEventListener("click", () => {
+        window.CloudAppRecorder.start(options);
+      });
+      el.style.display = "block";
+    } else {
+      el.style.display = "none";
+    }
+  };
+</script>
+<script
+  src="https://downloads.zight.com/webrecorder/v7.114.0/zight.js"
+  onload="initializeZight()"></script>
