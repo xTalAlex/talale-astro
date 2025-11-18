@@ -32,21 +32,18 @@ const props = defineProps({
   id: {
     type: String,
     required: true,
-    default: null,
   },
   name: {
     type: String,
     required: true,
-    default: null,
   },
   imgSrc: {
     type: String,
     required: true,
-    default: null,
   },
   releaseDate: {
     type: Number,
-    required: true,
+    required: false,
     default: null,
   },
 });
