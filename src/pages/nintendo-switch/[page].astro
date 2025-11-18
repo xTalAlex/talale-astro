@@ -7,7 +7,6 @@ import Pagination from "@components/Pagination.astro";
 import { formatDate } from "@lib/utils";
 import AddToWishlist from "@components/vue/AddToWishlist.vue";
 import WishList from "@components/vue/WishList.vue";
-import { Image } from "astro:assets";
 
 export async function getStaticPaths({ paginate }) {
   return paginate(games, { pageSize: Config.igdb.gamesPerPage });
@@ -52,19 +51,20 @@ const { page } = Astro.props;
                   <div class="swiper-wrapper">
                     {game.cover && (
                       <div class="swiper-slide bg-neutral">
-                        <Image
+                        <img
                           height="192"
                           width="320"
                           class="mx-auto h-full object-cover"
                           src={game.cover.url.replace("t_thumb", "t_cover_big")}
                           alt={game.name}
+                          loading="lazy"
                         />
                       </div>
                     )}
                     {game.artworks &&
                       game.artworks.map((artwork, id) => (
                         <div class="swiper-slide">
-                          <Image
+                          <img
                             height="192"
                             width="320"
                             class="w-full object-cover"
@@ -73,13 +73,14 @@ const { page } = Astro.props;
                               "t_screenshot_big"
                             )}
                             alt={`Artwork ${id + 1}`}
+                            loading="lazy"
                           />
                         </div>
                       ))}
                     {game.screenshots &&
                       game.screenshots.map((screenshot, id) => (
                         <div class="swiper-slide">
-                          <Image
+                          <img
                             height="192"
                             width="320"
                             class="w-full object-cover"
@@ -88,6 +89,7 @@ const { page } = Astro.props;
                               "t_screenshot_big"
                             )}
                             alt={`Screenshot ${id + 1}`}
+                            loading="lazy"
                           />
                         </div>
                       ))}
@@ -178,12 +180,13 @@ const { page } = Astro.props;
                             target="_blank"
                             rel="noreferrer"
                           >
-                            <Image
+                            <img
                               height="24"
                               width="24"
                               class="h-6 rounded-full object-fill"
                               alt={company.company.name}
                               src={company.company.logo?.url}
+                              loading="lazy"
                             />
                           </a>
                         </div>
