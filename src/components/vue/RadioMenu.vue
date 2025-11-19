@@ -3,7 +3,7 @@
     class="group menu glass rounded-box fixed top-10 z-30 p-1 transition-transform delay-200 ease-in-out"
     :class="{
       'right-1 translate-x-0 translate-y-10 rotate-0': open,
-      'right-0 translate-x-16 -rotate-90': !open,
+      '-right-1 translate-x-16 -rotate-90': !open,
     }"
   >
     <li>
