@@ -1,5 +1,5 @@
 export async function getTawktoHash(email) {
-  const data = await fetch("/.netlify/functions/tawkto-hash", {
+  const data = await fetch("/api/tawkto-hash", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
