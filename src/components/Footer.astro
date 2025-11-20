@@ -67,13 +67,6 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
     </div>
   </div>
   <div class="grid grid-flow-col gap-4">
-    {
-      !IUBENDA_POLICY_ID && (
-        <a href="/privacy-policy.html" target="_blank">
-          Privacy Policy Custom
-        </a>
-      )
-    }
     {IUBENDA_POLICY_ID && <IubendaPolicy policyId={IUBENDA_POLICY_ID} />}
     <a href="/rss.xml"
       ><Image

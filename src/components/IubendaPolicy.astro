@@ -1,4 +1,6 @@
 ---
+import { Icon } from "astro-icon/components";
+
 export interface Props {
   policyId: string;
 }
@@ -6,13 +8,22 @@ export interface Props {
 const { policyId } = Astro.props;
 ---
 
-<a
-  href={`https://www.iubenda.com/privacy-policy/${policyId}`}
-  class="iubenda-white no-brand iubenda-noiframe iubenda-embed iubenda-noiframe"
-  title="Privacy Policy"
->
-  Privacy Policy
-</a>
+<div class="join join">
+  <a
+    href={`https://www.iubenda.com/privacy-policy/${policyId}`}
+    class="join-item iubenda-white no-brand iubenda-noiframe iubenda-embed iubenda-noiframe"
+    title="Privacy Policy"
+  >
+    Privacy Policy
+  </a>
+  <a class="join-item link link-hover" href="/privacy-policy"
+    ><Icon
+      class="h-4 w-4 stroke-current pt-1"
+      name="pixelarticons:external-link"
+    /></a
+  >
+</div>
+
 <a
   href={`https://www.iubenda.com/privacy-policy/${policyId}/cookie-policy`}
   class="iubenda-white no-brand iubenda-noiframe iubenda-embed iubenda-noiframe"
