@@ -7,6 +7,7 @@ import {
   getDoc,
   addDoc,
   updateDoc,
+  runTransaction,
   orderBy,
   query,
   where,
@@ -28,59 +29,14 @@ export const db = getFirestore(app);
 export const usersCollection = collection(db, "users");
 
 /**
- * @throws {Error} If Firestore query fails
- */
-export const getUsersRanking = async () => {
-  const result = await getDocs(
-    query(
-      usersCollection,
-      orderBy("streakRecord", "desc"),
-      orderBy("curStreak", "desc"),
-    ),
-  );
-
-  return result.docs.map((doc) => {
-    const user = doc.data();
-    return {
-      id: doc.id,
-      ...user,
-    };
-  });
-};
-
-/**
- * @param {string} secondaryId The auth database ID ('sub' from Auth0)
- * @throws {Error} If Firestore query fails
- */
-export const getUserBySecondaryId = async (secondaryId) => {
-  const result = await getDocs(
-    query(usersCollection, where("secondaryId", "==", secondaryId)),
-  );
-
-  const docData = result?.docs?.[0];
-  const data = docData?.data();
-  return data
-    ? {
-        id: docData.id,
-        secondaryId: data.secondaryId,
-        name: data.name,
-        email: data.email,
-        streakRecord: data.streakRecord || 0,
-        curStreak: data.curStreak || 0,
-        createdAt: data.createdAt,
-        updatedAt: data.updatedAt,
-      }
-    : null;
-};
-
-/**
  * @throws {Error} If Firestore operation fails
  */
 export const createUser = async (userData) => {
+  const now = Date.now();
   const docRef = await addDoc(usersCollection, {
     ...userData,
-    createdAt: Date.now(),
-    updatedAt: Date.now(),
+    createdAt: now,
+    updatedAt: now,
   });
   return docRef.id;
 };
@@ -94,6 +50,31 @@ export const updateUser = async (userId, userData) => {
     ...userData,
     updatedAt: Date.now(),
   });
+};
+
+/**
+ * @param {string} secondaryId The auth database ID ('sub' from Auth0)
+ * @throws {Error} If Firestore query fails
+ */
+export const getUserBySecondaryId = async (secondaryId) => {
+  const querySnapshot = await getDocs(
+    query(usersCollection, where("secondaryId", "==", secondaryId)),
+  );
+
+  const docData = querySnapshot?.docs?.[0];
+  const data = docData?.data();
+  return data
+    ? {
+        id: docData.id,
+        secondaryId: data.secondaryId,
+        name: data.name,
+        email: data.email,
+        streakRecord: data.streakRecord || 0,
+        curStreak: data.curStreak || 0,
+        createdAt: data.createdAt,
+        updatedAt: data.updatedAt,
+      }
+    : null;
 };
 
 /**
@@ -125,5 +106,88 @@ export const updateUserWishlist = async (userId, wishlist) => {
       items: wishlist.items,
       updatedAt: wishlist.updatedAt ?? Date.now(),
     },
+  });
+};
+
+/**
+ * @throws {Error} If Firestore query fails
+ */
+export const getRankings = async () => {
+  const querySnapshot = await getDocs(
+    query(
+      usersCollection,
+      orderBy("streakRecord", "desc"),
+      orderBy("curStreak", "desc"),
+    ),
+  );
+
+  return querySnapshot.docs.map((doc) => {
+    const user = doc.data();
+    return {
+      id: doc.id,
+      ...user,
+    };
+  });
+};
+
+/**
+ * @param {string} secondaryId The auth database ID ('sub' from Auth0)
+ * @param {Object<{name: string, email:string, victory: boolean}>} rankingData User data to create/update
+ * @returns {Promise<{created: boolean, userId: string, curStreak: number, streakRecord: number}>}
+ * @throws {Error} If Firestore transaction fails
+ */
+export const upsertRanking = async (secondaryId, rankingData) => {
+  return await runTransaction(db, async (transaction) => {
+    let created = false;
+    let userId = "";
+    let curStreak = 0;
+    let streakRecord = 0;
+
+    const querySnapshot = await getDocs(
+      query(usersCollection, where("secondaryId", "==", secondaryId)),
+    );
+
+    const now = Date.now();
+
+    if (querySnapshot.empty) {
+      const newUserRef = doc(usersCollection);
+
+      created = true;
+      userId = newUserRef.id;
+      curStreak = rankingData.victory ? 1 : 0;
+      streakRecord = rankingData.victory ? 1 : 0;
+
+      transaction.set(newUserRef, {
+        secondaryId,
+        name: rankingData.name,
+        email: rankingData.email,
+        streakRecord: rankingData.victory ? 1 : 0,
+        curStreak: rankingData.victory ? 1 : 0,
+        createdAt: now,
+        updatedAt: now,
+      });
+    } else {
+      const existingDoc = querySnapshot.docs[0];
+      const existingData = existingDoc.data();
+      const userRef = doc(db, "users", existingDoc.id);
+
+      created = false;
+      userId = existingDoc.id;
+      curStreak = rankingData.victory ? Number(existingData.curStreak) + 1 : 0;
+      streakRecord =
+        Number(existingData.streakRecord) > curStreak
+          ? existingData.streakRecord
+          : curStreak;
+
+      transaction.update(userRef, {
+        name: rankingData.name,
+        email: rankingData.email,
+        streakRecord: streakRecord,
+        curStreak: curStreak,
+        updatedAt: now,
+      });
+    }
+
+    return { created, userId, curStreak, streakRecord };
   });
 };
