@@ -7,9 +7,9 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/3185917a-f914-4861-b074-275c43b204ef/deploy-status)](https://app.netlify.com/sites/talale/deploys)
 [![Built with Astro](https://astro.badg.es/v2/built-with-astro/tiny.svg)](https://astro.build)
 
-_Personal website e portfolio built with modern web technologies_
+_Personal website & portfolio built with modern web technologies_
 
-[🌐 Live Demo](https://talale.it) • [📝 Report Bug](https://github.com/xTalAlex/talale-astro/issues) • [✨ Request Feature](https://github.com/xTalAlex/talale-astro/issues)
+[🌐 Live](https://talale.it) • [📝 Report Bug](https://github.com/xTalAlex/talale-astro/issues)
 
 </div>
 

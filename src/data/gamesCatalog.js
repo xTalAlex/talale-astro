@@ -8,10 +8,10 @@ var games = [];
 var newGames = [];
 var limit = 500;
 var offset = 0;
-var start_time;
-var end_time;
+var startTime;
+var endTime;
 
-start_time = Date.now();
+startTime = Date.now();
 
 /**
  *
@@ -45,7 +45,7 @@ do {
   offset += limit;
 } while (newGames.length == limit);
 
-end_time = Date.now();
+endTime = Date.now();
 
 const gamesCount = games.length;
 
@@ -53,7 +53,7 @@ console.log(
   "Fetched " +
     gamesCount +
     " games in " +
-    Math.round((end_time - start_time) / 1000) +
+    Math.round((endTime - startTime) / 1000) +
     "s",
 );
 

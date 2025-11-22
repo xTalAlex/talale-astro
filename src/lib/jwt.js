@@ -6,8 +6,10 @@ export const verifyAuth0Token = async (request, issuer, audience) => {
   // JWKS (JSON Web Key Set) contains public keys for token verification
   const JWKS = createRemoteJWKSet(new URL(".well-known/jwks.json", issuer));
 
+  const normalizedIsuer = issuer.endsWith("/") ? issuer : issuer + "/";
+
   const result = await jwtVerify(token, JWKS, {
-    issuer: issuer,
+    issuer: normalizedIsuer,
     audience: audience,
   });
 

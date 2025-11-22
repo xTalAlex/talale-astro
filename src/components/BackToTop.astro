@@ -4,7 +4,7 @@ import { Icon } from "astro-icon/components";
 
 <button
   class="btn btn-circle btn-ghost fixed bottom-4 left-4 z-50 hidden uppercase md:bottom-6 md:left-6"
-  id="backToTop"
+  id="back-to-top"
   title="Torna in cima"
 >
   <Icon class="h-6 w-6 stroke-current" name="pixelarticons:corner-right-up" />
@@ -12,7 +12,7 @@ import { Icon } from "astro-icon/components";
 
 <script>
   const htmlElement = document.querySelector("html");
-  const backToTopButton = document.getElementById("backToTop");
+  const backToTopButton = document.getElementById("back-to-top");
 
   function checkScroll() {
     if (htmlElement && backToTopButton) {
@@ -30,7 +30,7 @@ import { Icon } from "astro-icon/components";
   }
 
   if (htmlElement && backToTopButton) {
-    window.addEventListener("scroll", checkScroll);
+    document.addEventListener("scroll", checkScroll);
     backToTopButton.onclick = goTop;
   }
 </script>

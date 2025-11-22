@@ -54,8 +54,8 @@ import gargoyles from "@assets/images/gargoyles.png";
 
 <script>
   import Fuse from "fuse.js";
-  import { searchOptions } from "@lib/fuseHelpers.js";
-  import { delayFunction, toTrimmedAlphanumeric } from "@lib/utils.js";
+  import { searchOptions } from "@lib/fuseHelpers";
+  import { delayFunction, toTrimmedAlphanumeric } from "@lib/utils";
   import Config from "@config/general.json";
 
   const searchInput = document.getElementById("search-input");
@@ -93,7 +93,7 @@ import gargoyles from "@assets/images/gargoyles.png";
       window.history.replaceState(
         null,
         "",
-        "?query=" + encodeURIComponent(query),
+        "?query=" + encodeURIComponent(query)
       );
     }
   };

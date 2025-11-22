@@ -12,7 +12,7 @@ const title = "Alessandro Talamona - CV";
   <div class="container w-full max-w-5xl px-5 md:mx-auto">
     <h1 class="py-12 text-center text-4xl font-bold">{title}</h1>
 
-    <div id="cvContent">
+    <div id="cv-content">
       <div
         class="grid sm:grid-cols-2 md:grid-cols-3 print:grid-cols-3 print:text-xs"
       >
@@ -219,7 +219,7 @@ const title = "Alessandro Talamona - CV";
           </p>
           <div class="text-right">
             <p class="mt-2">
-              Vedano Olona, <span id="curDate"></span>
+              Vedano Olona, <span id="cur-date"></span>
             </p>
             <div>
               <Image
@@ -236,11 +236,11 @@ const title = "Alessandro Talamona - CV";
 </Layout>
 
 <script type="text/javascript">
-  const curDate = document.getElementById("curDate");
+  const curDate = document.getElementById("cur-date");
   curDate.innerHTML = new Date().toLocaleDateString();
 
   const handlePrint = () => {
-    const cvContent = document.getElementById("cvContent").innerHTML;
+    const cvContent = document.getElementById("cv-content").innerHTML;
     const bodyContent = document.body.innerHTML;
     document.body.innerHTML = cvContent;
     document.getElementById("print").classList.add("hidden");

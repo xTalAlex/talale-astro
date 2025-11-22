@@ -12,7 +12,7 @@
     "decap": "npx decap-server",
     "test": "vitest",
     "lint": "npx eslint src",
-    "prettier": "npx prettier ./src --write",
+    "prettier": "npx prettier ./src --write --list-different",
     "check": "astro check"
   },
   "dependencies": {

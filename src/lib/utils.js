@@ -10,7 +10,7 @@ const toReleaseDate = new Date().setMonth(
 );
 
 const formatDate = (date, format = "short") => {
-  ["longest", "long", "short"].includes(format.toLowerCase())
+  format = ["longest", "long", "short"].includes(format.toLowerCase())
     ? format.toLowerCase()
     : "long";
   switch (format.toLowerCase()) {

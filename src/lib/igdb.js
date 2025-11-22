@@ -8,7 +8,11 @@ const API_URL = import.meta.env.IGDB_ENDPOINT;
 const API_CLIENT = import.meta.env.IGDB_CLIENT;
 const API_SECRET = import.meta.env.IGDB_SECRET;
 
-var AUTH = {};
+var authToken = {
+  accessToken: null,
+  expiresIn: 0,
+  lastAuth: null,
+};
 
 async function fetchAPI(query = "", config = null) {
   const res = await fetch(`${API_URL}/${query}`, config)
@@ -38,8 +42,13 @@ export async function authenticate() {
   });
 
   if (res.ok) {
-    AUTH = await res.json();
-    AUTH.last_auth = Date.now();
+    const { access_token: accessToken, expires_in: expiresIn } =
+      await res.json();
+    authToken = {
+      accessToken,
+      expiresIn,
+      lastAuth: Date.now(),
+    };
   } else {
     const error = await res.json();
 
@@ -54,7 +63,8 @@ export async function authenticate() {
 
 export function authenticated() {
   return (
-    AUTH.last_auth != undefined && Date.now < AUTH.expires_in + AUTH.last_auth
+    authToken.lastAuth != null &&
+    Date.now() < authToken.expiresIn + authToken.lastAuth
   );
 }
 
@@ -64,7 +74,7 @@ export async function getNintendoSwitch2() {
     method: "POST",
     headers: {
       "Client-ID": API_CLIENT,
-      Authorization: "Bearer " + AUTH.access_token,
+      Authorization: "Bearer " + authToken.accessToken,
     },
     body: `
             fields *;
@@ -82,7 +92,7 @@ export async function getConsole(name) {
     method: "POST",
     headers: {
       "Client-ID": API_CLIENT,
-      Authorization: "Bearer " + AUTH.access_token,
+      Authorization: "Bearer " + authToken.accessToken,
     },
     body: `
             fields *;
@@ -101,7 +111,7 @@ export async function getGameStatuses() {
     headers: {
       Accept: "application/json",
       "Client-ID": API_CLIENT,
-      Authorization: "Bearer " + AUTH.access_token,
+      Authorization: "Bearer " + authToken.accessToken,
     },
     body: "fields *;",
   });
@@ -116,7 +126,7 @@ export async function getGameTypes() {
     headers: {
       Accept: "application/json",
       "Client-ID": API_CLIENT,
-      Authorization: "Bearer " + AUTH.access_token,
+      Authorization: "Bearer " + authToken.accessToken,
     },
     body: "fields *;",
   });
@@ -130,7 +140,7 @@ export async function getGames(query) {
     method: "POST",
     headers: {
       "Client-ID": API_CLIENT,
-      Authorization: "Bearer " + AUTH.access_token,
+      Authorization: "Bearer " + authToken.accessToken,
     },
     body: query,
   });

@@ -34,7 +34,7 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
           <input
             type="checkbox"
             class="checkbox-primary checkbox checkbox-sm"
-            id="privacy_check"
+            id="privacy-check"
           />
           <span class="label-text text-neutral"
             >Ho letto e accetto la <a
@@ -49,7 +49,7 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
       </fieldset>
       <div class="card-actions mt-2 justify-center">
         <button
-          id="submitButton"
+          id="submit-button"
           type="submit"
           class="btn btn-primary disabled:text-primary-content/50 uppercase"
           disabled>Invia</button
@@ -62,19 +62,30 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
 <script>
   import Config from "@config/general.json";
 
+  const messageInput = document.getElementById(
+    "message",
+  ) as HTMLTextAreaElement;
+  const emailInput = document.getElementById("email") as HTMLInputElement;
+  const privacyCheckbox = document.getElementById(
+    "privacy-check",
+  ) as HTMLInputElement;
+  const submitButton = document.getElementById(
+    "submit-button",
+  ) as HTMLButtonElement;
+
   const handleError = () => {
     window.notify(Config.messagebox.error, null, "error");
-    document.getElementById("message").disabled = false;
-    document.getElementById("email").disabled = false;
-    document.getElementById("submitButton").disabled = false;
-    document.getElementById("submitButton").classList.remove("loading");
+    messageInput.disabled = false;
+    emailInput.disabled = false;
+    submitButton.disabled = false;
+    submitButton.classList.remove("loading");
   };
 
   const handleSuccess = () => {
     window.notify(Config.messagebox.success, null, "success");
-    document.getElementById("message").value = "";
-    document.getElementById("message").value = "";
-    document.getElementById("submitButton").classList.remove("loading");
+    messageInput.value = "";
+    messageInput.value = "";
+    submitButton.classList.remove("loading");
     trackGoogleEvent();
   };
 
@@ -85,29 +96,27 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
       });
   };
 
-  document
-    .getElementById("privacy_check")
-    .addEventListener("change", function () {
-      if (this.checked) {
-        document.getElementById("submitButton").disabled = false;
-      } else {
-        document.getElementById("submitButton").disabled = true;
-      }
-    });
+  privacyCheckbox.addEventListener("change", function () {
+    if (this.checked) {
+      submitButton.disabled = false;
+    } else {
+      submitButton.disabled = true;
+    }
+  });
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (
-      document.getElementById("message").value.trim() != "" &&
-      document.getElementById("email").value.trim() != "" &&
-      document.getElementById("privacy_check").checked
+      messageInput.value.trim() != "" &&
+      emailInput.value.trim() != "" &&
+      privacyCheckbox.checked
     ) {
       const data = new FormData(document.forms[0]);
-      data.set("message", document.getElementById("message").value.trim());
-      document.getElementById("message").disabled = true;
-      document.getElementById("email").disabled = true;
-      document.getElementById("submitButton").disabled = true;
-      document.getElementById("submitButton").classList.add("loading");
+      data.set("message", messageInput.value.trim());
+      messageInput.disabled = true;
+      emailInput.disabled = true;
+      submitButton.disabled = true;
+      submitButton.classList.add("loading");
       fetch("/", {
         method: "POST",
         headers: {

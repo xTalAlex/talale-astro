@@ -1,9 +1,4 @@
 import { ref, watch } from "vue";
-/**
- *
- * import name = useStorage(name);
- *
- */
 
 export function useStorage(key, defaultVal = null) {
   let storedVal = read();

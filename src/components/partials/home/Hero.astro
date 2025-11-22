@@ -8,11 +8,11 @@ const fullTitle = Config.title + " | " + Config.motto;
 ---
 
 <div
-  id="heroContainer"
+  id="hero-container"
   class="hero relative -mt-16 min-h-screen max-w-none"
   style={"background-image: url(images/castelia-city-day.jfif);"}
 >
-  <div id="heroOverlay" class="hero-overlay bg-neutral/60"></div>
+  <div id="hero-overlay" class="hero-overlay bg-neutral/60"></div>
   <div class="hero-content text-neutral-content text-left">
     <div class="max-w-full pl-5 md:pl-0">
       <div class="max-w-max md:pt-0">
@@ -58,7 +58,7 @@ const fullTitle = Config.title + " | " + Config.motto;
   const eveningBG = "images/castelia-city-evening.jfif";
   const nightBG = "images/castelia-city-night.jfif";
 
-  const container = document.getElementById("heroContainer");
+  const container = document.getElementById("hero-container");
   const currentTime = new Date().getHours();
 
   if (currentTime >= 6 && currentTime < 12)
