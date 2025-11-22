@@ -1,32 +1,59 @@
 import { createRemoteJWKSet, jwtVerify } from "jose";
 
+/**
+ * @param {Request} request
+ * @param {string} issuer
+ * @param {string} audience
+ * @returns {Promise<{
+ *  token: string|null,
+ *  result: import("jose").JWTVerifyResult|null,
+ *  error: string|null
+ * }>}
+ */
 export const verifyAuth0Token = async (request, issuer, audience) => {
+  const normalizedIssuer = issuer.endsWith("/") ? issuer : issuer + "/";
   const token = extractBearerToken(request);
+  let JWKS = null;
+  let result = null;
+  let error = null;
 
-  // JWKS (JSON Web Key Set) contains public keys for token verification
-  const JWKS = createRemoteJWKSet(new URL(".well-known/jwks.json", issuer));
+  if (!token) {
+    error = "Missing or invalid Authorization header";
+  } else {
+    try {
+      JWKS = createRemoteJWKSet(
+        new URL(".well-known/jwks.json", normalizedIssuer),
+      );
+    } catch (e) {
+      error = e instanceof Error ? e.message : "Failed to create JWKS";
+    }
 
-  const normalizedIsuer = issuer.endsWith("/") ? issuer : issuer + "/";
+    try {
+      result = await jwtVerify(token, JWKS, {
+        issuer: normalizedIssuer,
+        audience: audience,
+      });
+    } catch (e) {
+      error = e instanceof Error ? e.message : "Token verification failed";
+    }
+  }
 
-  const result = await jwtVerify(token, JWKS, {
-    issuer: normalizedIsuer,
-    audience: audience,
-  });
-
-  return { token, result };
+  return { result, error };
 };
 
+/**
+ * @param {Request} request
+ * @returns {string|null}
+ */
 const extractBearerToken = (request) => {
   const authorization = request.headers.get("Authorization") ?? "";
 
   const [type, token, ...parts] = authorization
-    .replace(/\s+/g, " ") // Replace multiple spaces with a single space
+    .replace(/\s+/g, " ")
     .trim()
     .split(" ");
 
-  if (type !== "Bearer" || parts.length !== 0) {
-    throw new Error("Missing or invalid Authorization header");
-  }
+  const isValid = type === "Bearer" && token && parts.length === 0;
 
-  return token;
+  return isValid ? token : null;
 };
