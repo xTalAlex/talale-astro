@@ -1,5 +1,5 @@
 ---
-
+import AuthManager from "@components/AuthManager.astro";
 ---
 
 <!doctype html>
@@ -12,24 +12,33 @@
 
     <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url" />
 
-    <script
-      is:inline
-      src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </head>
 
   <body style="min-height: 100vh; min-width: min-content;">
-    <script
-      is:inline
-      src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
-    <script is:inline>
-      CMS.registerPreviewStyle("/admin/preview.css");
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", () => {
-          window.netlifyIdentity.on("logout", () => {
-            document.location.href = "/";
+    <AuthManager />
+
+    <script>
+      import { adminCheck } from "@lib/auth";
+
+      const loadAdminPanel = () => {
+        adminCheck()
+          .then((isAdmin) => {
+            if (isAdmin) {
+              CMS?.registerPreviewStyle("/admin/preview.css");
+            } else {
+              throw "Unauthorized";
+            }
+          })
+          .catch((error) => {
+            window.location.href = "/";
           });
-        });
-      }
+      };
+
+      loadAdminPanel();
+      document.addEventListener("loggedIn", () => {
+        loadAdminPanel();
+      });
     </script>
   </body>
 </html>
