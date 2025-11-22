@@ -20,9 +20,10 @@ import Footer from "@components/Footer.astro";
 import BaseModal from "@components/vue/BaseModal.vue";
 import BackToTop from "@components/BackToTop.astro";
 import IubendaCookieSolution from "@components/IubendaCookieSolution.astro";
-import TawkToWidget from "@components/TawkToWidget.astro";
+import TawktoWidget from "@components/TawktoWidget.astro";
 import Alert from "@components/Alert.astro";
 import RadioMenu from "@components/vue/RadioMenu.vue";
+import AuthManager from "@components/AuthManager.astro";
 
 const {
   title = null,
@@ -123,11 +124,7 @@ const openGraph = {
       gtag("config", document.currentScript.dataset.gaid);
     </script>
 
-    <script>
-      import netlifyIdentity from "netlify-identity-widget";
-      window.netlifyIdentity = netlifyIdentity;
-      document.dispatchEvent(new Event("identityLoaded"));
-    </script>
+    <AuthManager />
   </head>
   <body class="font-sans">
     <Navbar />
@@ -145,7 +142,7 @@ const openGraph = {
 
     {
       TAWKTO_WIDGET_URL && (
-        <TawkToWidget
+        <TawktoWidget
           class="_iub_cs_activate-inline"
           type="text/javascript"
           data-cookieconsent="preferences, statistics"

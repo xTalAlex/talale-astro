@@ -116,6 +116,7 @@ npm run check        # Check Astro project for errors
 | `loggedOut`     | User logged out successfully | -                           |
 | `openModal`     | Open modal dialog            | `title`, `body`, `image`    |
 | `notify`        | Show notification            | `title`, `message`, `style` |
+| `tawktoLoaded`  | Tawto script loaded          | -                           |
 
 ## 🗺️ Roadmap
 

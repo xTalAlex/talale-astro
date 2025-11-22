@@ -1,8 +1,33 @@
+<script>
+  import { isLogged, userInfo } from "@lib/authStore";
+  import { setTawktoAttributes } from "@lib/tawktoUtils";
+
+  const setTawktoUserAttributes = () => {
+    if (isLogged.get()) {
+      setTawktoAttributes({
+        name: userInfo.get().name,
+        email: userInfo.get().email,
+      });
+    }
+  };
+
+  document.addEventListener("loggedIn", () => {
+    setTawktoUserAttributes();
+  });
+
+  document.addEventListener("tawktoLoaded", () => {
+    setTawktoUserAttributes();
+  });
+</script>
+
 <script {...Astro.props}>
   var Tawk_API = Tawk_API || {};
+  var Tawk_LoadStart = new Date();
+
   window.Tawk_API.onLoad = function () {
     document.dispatchEvent(new CustomEvent("tawktoLoaded"));
   };
+
   window.Tawk_API.onOfflineSubmit = function (data) {
     window.gtag &&
       window.gtag("event", "form_submit", {
@@ -12,7 +37,7 @@
   window.Tawk_API.onChatStarted = function () {
     window.gtag && window.gtag("event", "chat_start", {});
   };
-  var Tawk_LoadStart = new Date();
+
   (function () {
     var s1 = document.createElement("script"),
       s0 = document.getElementsByTagName("script")[0];
