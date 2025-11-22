@@ -1,0 +1,36 @@
+<script>
+  import { authCheck, getUser, login, logout } from "@lib/auth";
+  import { setAuthenticatedUser, clearAuthenticatedUser } from "@lib/authStore";
+
+  async function loadIdentity() {
+    const isLogged = await authCheck().catch((error) => {
+      console.error(error);
+      return false;
+    });
+
+    if (isLogged) {
+      const user = await getUser().catch((error) => {
+        console.error(error);
+        return false;
+      });
+      if (user) {
+        setAuthenticatedUser(user);
+        document.dispatchEvent(new CustomEvent("loggedIn"));
+      } else {
+        clearAuthenticatedUser();
+        document.dispatchEvent(new CustomEvent("loggedOut"));
+      }
+    }
+  }
+
+  document.addEventListener("requestLogin", () => {
+    login().then(() => {
+      loadIdentity();
+    });
+  });
+  document.addEventListener("requestLogout", () => {
+    logout();
+  });
+
+  loadIdentity();
+</script>
