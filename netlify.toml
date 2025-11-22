@@ -4,24 +4,5 @@
   status = 301
   force = true
 
-[[redirects]]
-  from = "/admin/*"
-  to = "/admin/:splat"
-  force = true
-  status = 200
-  conditions = {Role = ["admin"]}
-
-[[redirects]]
-  from = "/medabots"
-  to = "/"
-  status = 410
-  force = true
-
-[[redirects]]
-  from = "/medabots/*"
-  to = "/"
-  status = 410
-  force = true
-
 [functions]
   directory = "functions"
