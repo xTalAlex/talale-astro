@@ -4,12 +4,51 @@ import { games } from "@data/gamesCatalog";
 import GamesSearchbar from "@components/GamesSearchbar.astro";
 import Config from "@config/general.json";
 import Pagination from "@components/Pagination.astro";
-import { formatDate } from "@lib/utils";
-import AddToWishlist from "@components/vue/AddToWishlist.vue";
 import WishList from "@components/vue/WishList.vue";
+import GameCard from "@components/GameCard.astro";
 
 export async function getStaticPaths({ paginate }) {
-  return paginate(games, { pageSize: Config.igdb.gamesPerPage });
+  const normalizedGames = games.map((game) => {
+    return {
+      slug: game.slug,
+      name: game.name,
+      cover: {
+        url: game.cover?.url?.replace("t_thumb", "t_cover_big"),
+        thumb: game.cover?.url,
+      },
+      screenshots: game.screenshots?.map((screenshot) => ({
+        url: screenshot.url.replace("t_thumb", "t_screenshot_big"),
+      })),
+      artworks: game.artworks?.map((artwork) => ({
+        url: artwork.url.replace("t_thumb", "t_screenshot_big"),
+      })),
+      url: game.url,
+      platforms: game.platforms?.map((platform) => ({
+        id: platform.id,
+        name: platform.name,
+      })),
+      totalRating: game.total_rating,
+      firstReleaseDate: game.first_release_date,
+      summary: game.summary,
+      genres: game.genres?.map((genre) => ({
+        id: genre.id,
+        name: genre.name,
+      })),
+      themes: game.themes?.map((theme) => ({
+        id: theme.id,
+        name: theme.name,
+      })),
+      involvedCompanies: game.involved_companies?.map((company) => ({
+        id: company.id,
+        name: company.name,
+        logo: company.logo,
+        websites: company.websites?.map((website) =>
+          website.url.startsWith("http") ? website.url : `//${website.url}`
+        ),
+      })),
+    };
+  });
+  return paginate(normalizedGames, { pageSize: Config.igdb.gamesPerPage });
 }
 const { page } = Astro.props;
 ---
@@ -34,196 +73,35 @@ const { page } = Astro.props;
 
     <WishList client:only="vue" />
 
-    <div class="divider"></div>
+    {
+      page.data.length > 0 && (
+        <>
+          <div class="divider" />
 
-    <div
-      class="mx-auto mt-12 grid h-max place-items-center gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3"
-    >
-      {
-        page.data.map((game) => (
-          <div
-            class="card card-sm bg-base-100 h-full w-full shadow-xl"
-            id={game.slug}
-          >
-            {(game.cover || game.screenshots) && (
-              <figure>
-                <div class="swiper h-48 max-w-xs md:w-full">
-                  <div class="swiper-wrapper">
-                    {game.cover && (
-                      <div class="swiper-slide bg-neutral">
-                        <img
-                          height="192"
-                          width="320"
-                          class="mx-auto h-full object-cover"
-                          src={game.cover.url.replace("t_thumb", "t_cover_big")}
-                          alt={game.name}
-                          loading="lazy"
-                        />
-                      </div>
-                    )}
-                    {game.artworks &&
-                      game.artworks.map((artwork, id) => (
-                        <div class="swiper-slide">
-                          <img
-                            height="192"
-                            width="320"
-                            class="w-full object-cover"
-                            src={artwork.url.replace(
-                              "t_thumb",
-                              "t_screenshot_big",
-                            )}
-                            alt={`Artwork ${id + 1}`}
-                            loading="lazy"
-                          />
-                        </div>
-                      ))}
-                    {game.screenshots &&
-                      game.screenshots.map((screenshot, id) => (
-                        <div class="swiper-slide">
-                          <img
-                            height="192"
-                            width="320"
-                            class="w-full object-cover"
-                            src={screenshot.url.replace(
-                              "t_thumb",
-                              "t_screenshot_big",
-                            )}
-                            alt={`Screenshot ${id + 1}`}
-                            loading="lazy"
-                          />
-                        </div>
-                      ))}
-                  </div>
-                  <div class="swiper-pagination" />
-                  <div class="swiper-button-prev" />
-                  <div class="swiper-button-next" />
-                </div>
-              </figure>
-            )}
-            <div class="card-body mx-auto max-w-xs md:w-full">
-              <h2 class="card-title text-base" id={game.name}>
-                {game.url && (
-                  <a
-                    href={game.url}
-                    class="link"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {game.name}
-                    <span>
-                      {game.platforms?.length == 1 && (
-                        <div class="badge badge-accent badge-xs">Exclusive</div>
-                      )}
-                    </span>
-                  </a>
-                )}
-                {!game.url && (
-                  <span>
-                    {game.name}
-                    <span>
-                      {game.platforms?.length == 1 && (
-                        <div class="badge badge-accent badge-xs">Exclusive</div>
-                      )}
-                    </span>
-                  </span>
-                )}
-              </h2>
-              <div class="flex justify-between">
-                <div>
-                  {game.total_rating && (
-                    <div class="badge badge-primary font-bold">
-                      {Math.round(game.total_rating)}
-                    </div>
-                  )}
-                </div>
-                <div>
-                  {game.first_release_date && (
-                    <div class="badge badge-ghost badge-xs">
-                      {formatDate(new Date(game.first_release_date * 1000))}
-                    </div>
-                  )}
-                </div>
-              </div>
-              <p class="my-6 h-28 overflow-y-auto text-xs">{game.summary}</p>
-              <div class="flex flex-col space-y-1">
-                <div class="flex h-12 w-full flex-nowrap space-x-2 overflow-x-auto overflow-y-hidden">
-                  {game.genres?.map((genre) => (
-                    <div class="badge badge-primary badge-sm font-semibold whitespace-nowrap">
-                      {genre.name}
-                    </div>
-                  ))}
-                </div>
-                <div class="flex h-12 w-full flex-nowrap space-x-2 overflow-x-auto overflow-y-hidden">
-                  {game.themes?.map((theme) => (
-                    <div class="badge badge-secondary badge-sm font-semibold whitespace-nowrap">
-                      {theme.name}
-                    </div>
-                  ))}
-                </div>
-                <div class="flex h-8 justify-center space-x-2">
-                  {game.involved_companies?.map(
-                    (company) =>
-                      company.company.logo &&
-                      company.company.websites && (
-                        <div
-                          class="tooltip tooltip-top"
-                          data-tip={company.company.name}
-                        >
-                          <a
-                            href={
-                              (company.company.websites?.[0].url.startsWith(
-                                "http",
-                              )
-                                ? ""
-                                : "//") + company.company.websites?.[0].url
-                            }
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            <img
-                              height="24"
-                              width="24"
-                              class="h-6 rounded-full object-fill"
-                              alt={company.company.name}
-                              src={company.company.logo?.url}
-                              loading="lazy"
-                            />
-                          </a>
-                        </div>
-                      ),
-                  )}
-                </div>
-              </div>
-              <div class="card-actions justify-end">
-                <AddToWishlist
-                  client:only="vue"
-                  id={game.slug}
-                  name={game.name}
-                  imgSrc={game.cover?.url}
-                  releaseDate={game.first_release_date}
-                />
-              </div>
-            </div>
+          <div class="mx-auto mt-12 grid h-max place-items-center gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+            {page.data.map((game) => (
+              <GameCard game={game} />
+            ))}
           </div>
-        ))
-      }
-    </div>
 
-    <div class="divider"></div>
+          <div class="divider" />
 
-    <div class="mx-auto mb-6 flex justify-center">
-      <button id="randomPageButton" class="btn btn-accent uppercase"
-        >Pagina a caso</button
-      >
-    </div>
+          <div class="mx-auto mb-6 flex justify-center">
+            <button id="random-page-button" class="btn btn-accent uppercase">
+              Pagina a caso
+            </button>
+          </div>
 
-    <div class="mx-auto flex justify-center">
-      <Pagination
-        currentPage={page.currentPage}
-        lastPage={page.lastPage}
-        url="/nintendo-switch"
-      />
-    </div>
+          <div class="mx-auto flex justify-center">
+            <Pagination
+              currentPage={page.currentPage}
+              lastPage={page.lastPage}
+              url="/nintendo-switch"
+            />
+          </div>
+        </>
+      )
+    }
   </div>
 </Layout>
 
@@ -243,8 +121,8 @@ const { page } = Astro.props;
   });
 </script>
 
-<script define:vars={{ lastPage: page.lastPage }} is:inline>
-  const randomPageButton = document.getElementById("randomPageButton");
+<script define:vars={{ lastPage: page.lastPage }}>
+  const randomPageButton = document.getElementById("random-page-button");
   randomPageButton.onclick = () => {
     window.location.href =
       "/nintendo-switch/" + Math.ceil(Math.random() * lastPage);

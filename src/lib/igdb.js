@@ -4,7 +4,7 @@
  *
  **/
 
-const API_URL = import.meta.env.IGDB_ENDPOINT;
+const API_URL = import.meta.env.IGDB_ENDPOINT ?? "https://api.igdb.com/v4";
 const API_CLIENT = import.meta.env.IGDB_CLIENT;
 const API_SECRET = import.meta.env.IGDB_SECRET;
 
@@ -15,23 +15,32 @@ var authToken = {
 };
 
 async function fetchAPI(query = "", config = null) {
-  const res = await fetch(`${API_URL}/${query}`, config)
-    .then((response) => response.json())
-    .catch((error) => {
-      throw new Error(
-        "!Errore IGDB API: " +
-          query +
-          " [ " +
-          error.message +
-          " ] \n " +
-          error.Docs,
-      );
-    });
+  if (!authenticated()) await authenticate();
+
+  const res =
+    API_CLIENT && API_SECRET
+      ? await fetch(`${API_URL}/${query}`, config)
+          .then((response) => response.json())
+          .catch((error) => {
+            throw new Error(
+              "!Errore IGDB API: " +
+                query +
+                " [ " +
+                error.message +
+                " ] \n " +
+                error.Docs,
+            );
+          })
+      : null;
 
   return res;
 }
 
 export async function authenticate() {
+  if (!API_CLIENT || !API_SECRET) {
+    return null;
+  }
+
   const url = new URL("https://id.twitch.tv/oauth2/token");
   url.searchParams.append("client_id", API_CLIENT);
   url.searchParams.append("client_secret", API_SECRET);
@@ -69,7 +78,6 @@ export function authenticated() {
 }
 
 export async function getNintendoSwitch2() {
-  if (!authenticated()) await authenticate();
   const data = await fetchAPI("platforms", {
     method: "POST",
     headers: {
@@ -83,11 +91,10 @@ export async function getNintendoSwitch2() {
         `,
   });
 
-  return data[0];
+  return data?.[0] ?? null;
 }
 
 export async function getConsole(name) {
-  if (!authenticated()) await authenticate();
   const data = await fetchAPI("platforms", {
     method: "POST",
     headers: {
@@ -101,11 +108,10 @@ export async function getConsole(name) {
         `,
   });
 
-  return data[0];
+  return data?.[0] ?? null;
 }
 
 export async function getGameStatuses() {
-  if (!authenticated()) await authenticate();
   const data = await fetchAPI("game_statuses", {
     method: "POST",
     headers: {
@@ -116,11 +122,10 @@ export async function getGameStatuses() {
     body: "fields *;",
   });
 
-  return data;
+  return data ?? [];
 }
 
 export async function getGameTypes() {
-  if (!authenticated()) await authenticate();
   const data = await fetchAPI("game_types", {
     method: "POST",
     headers: {
@@ -131,11 +136,10 @@ export async function getGameTypes() {
     body: "fields *;",
   });
 
-  return data;
+  return data ?? [];
 }
 
 export async function getGames(query) {
-  if (!authenticated()) await authenticate();
   const data = await fetchAPI("games", {
     method: "POST",
     headers: {
@@ -145,7 +149,7 @@ export async function getGames(query) {
     body: query,
   });
 
-  return data;
+  return data ?? [];
 }
 
 //search endpoint
