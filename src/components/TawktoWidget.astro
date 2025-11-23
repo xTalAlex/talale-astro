@@ -1,3 +1,7 @@
+---
+const { class: className = "", ...dataAttrs } = Astro.props;
+---
+
 <script>
   import { isLogged, userInfo } from "@lib/authStore";
   import { setTawktoAttributes } from "@lib/tawktoUtils";
@@ -20,7 +24,7 @@
   });
 </script>
 
-<script {...Astro.props}>
+<script class:list={[className]} {...dataAttrs}>
   var Tawk_API = Tawk_API || {};
   var Tawk_LoadStart = new Date();
 

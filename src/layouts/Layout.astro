@@ -41,7 +41,12 @@ const {
   GOOGLE_ANALYTICS_ID,
   TAWKTO_WIDGET_URL,
 } = import.meta.env;
+
 const canonical = Astro.url.href;
+
+const typeOptinScript =
+  IUBENDA_POLICY_ID && IUBENDA_SITE_ID ? "text/plain" : "text/javascript";
+
 const fullTitle = title
   ? ogType == "article"
     ? title + " | " + Config.title
@@ -107,7 +112,7 @@ const openGraph = {
       GOOGLE_ANALYTICS_ID && (
         <script
           class="_iub_cs_activate"
-          type="text/javascript"
+          type={typeOptinScript}
           async
           src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
           data-cookieconsent="statistics"
@@ -144,7 +149,7 @@ const openGraph = {
       TAWKTO_WIDGET_URL && (
         <TawktoWidget
           class="_iub_cs_activate-inline"
-          type="text/javascript"
+          type={typeOptinScript}
           data-cookieconsent="preferences, statistics"
           data-iub-purposes="2,4"
           data-widget={TAWKTO_WIDGET_URL}
