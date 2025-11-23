@@ -75,14 +75,14 @@
       </div>
       <div class="card-actions justify-end">
         <button
-          class="btn uppercase"
+          class="btn btn-secondary uppercase"
           :class="{
             btnColor,
             'btn-disabled': !isValueChanged || successMessage,
             loading: loading,
           }"
-          :disable="!isValueChanged || successMessage"
-          @click="updateUser"
+          :disabled="!isValueChanged || successMessage"
+          @click="submit"
         >
           Salva
         </button>
@@ -92,6 +92,7 @@
 </template>
 
 <script setup>
+import { updateUser } from "@lib/auth";
 import { ref, computed } from "vue";
 
 const props = defineProps({
@@ -149,7 +150,7 @@ const isValueChanged = computed(() => {
 const btnColor = computed(() => {
   let color = "btn-secondary";
   //if(successMessage.value) color = 'btn-success';
-  if (errorBag[choice.value]) color = "btn-error";
+  if (errorBag.value[choice.value]) color = "btn-error";
   return color;
 });
 
@@ -183,7 +184,7 @@ function validate() {
   return isValid;
 }
 
-function updateUser() {
+function submit() {
   if (!loading.value && !successMessage.value && isValueChanged.value) {
     successMessage.value = null;
     loading.value = true;
@@ -191,7 +192,7 @@ function updateUser() {
     if (validate()) {
       switch (choice.value) {
         case "name":
-          data = { data: { full_name: formData.value.name } };
+          data = { username: formData.value.name };
           break;
         case "email":
           data = { email: formData.value.email };
@@ -202,18 +203,21 @@ function updateUser() {
         default:
           break;
       }
-      window.netlifyIdentity
-        .currentUser()
-        .update(data)
-        .then(() => {
-          // (user)
-          successMessage.value = successMessages[choice.value];
+      updateUser(data)
+        .then(async (response) => {
+          const result = await response.json();
+          if (response.ok) {
+            successMessage.value = successMessages[choice.value];
+          } else {
+            errorBag.value[choice.value] =
+              result.error || "Errore durante l'aggiornamento";
+          }
           loading.value = false;
           emit("userUpdated");
         })
         .catch((error) => {
           loading.value = false;
-          errorBag.value[choice.value] = error;
+          errorBag.value[choice.value] = error.message || error;
         });
     } else loading.value = false;
   }
