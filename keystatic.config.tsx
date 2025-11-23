@@ -24,7 +24,7 @@ export default config({
       slugField: "title",
       path: "src/content/projects/*",
       format: { contentField: "content" },
-      columns: ["pubDate", "thumb"],
+      columns: ["pubDate"],
       // entryLayout: "content",
       schema: {
         title: fields.slug({
