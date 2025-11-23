@@ -9,7 +9,6 @@
     "build": "astro build --remote",
     "preview": "astro preview",
     "astro": "astro",
-    "decap": "npx decap-server",
     "test": "vitest",
     "lint": "npx eslint src",
     "prettier": "npx prettier ./src --write --list-different",

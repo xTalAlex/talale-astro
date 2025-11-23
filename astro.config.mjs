@@ -8,9 +8,7 @@ import tailwindcss from "@tailwindcss/vite";
 import react from "@astrojs/react";
 import markdoc from "@astrojs/markdoc";
 import keystatic from "@keystatic/astro";
-// import sentry from "@sentry/astro";
 
-// https://astro.build/config
 export default defineConfig({
   site: Config.url,
   output: "static",
@@ -26,21 +24,15 @@ export default defineConfig({
     icon(),
     sitemap({
       filter: (page) =>
-        page !== "https://talale.it/admin/" &&
-        page !== "https://talale.it/privacy-policy/" &&
-        page !== "https://talale.it/cookie-policy/" &&
-        page !== "https://talale.it/profile/" &&
+        !/^https:\/\/talale\.it\/admin/.test(page) &&
+        !/^https:\/\/talale\.it\/keystatic/.test(page) &&
+        !/^https:\/\/talale\.it\/privacy-policy/.test(page) &&
+        !/^https:\/\/talale\.it\/cookie-policy/.test(page) &&
+        !/^https:\/\/talale\.it\/profile/.test(page) &&
         !/https:\/\/talale\.it\/nintendo-switch\/([2-9](\d*)|1(\d+))\//.test(
           page,
-        ) &&
-        !/^https:\/\/talale\.it\/medabots/.test(page),
-    }), // sentry({
-    //   dsn: "https://6e8081bce1069ada88740b7adf6088c4@o4506858882334720.ingest.us.sentry.io/4506858899439616",
-    //   sourceMapsUploadOptions: {
-    //     project: "javascript-astro",
-    //     authToken: process.env.SENTRY_AUTH_TOKEN,
-    //   },
-    // }),
+        ),
+    }),
     react(),
     markdoc(),
     keystatic(),
