@@ -106,7 +106,10 @@ export const normalizeUser = (auth0User) => {
         emailVerified: dbProfile?.email_verified ?? auth0User.email_verified,
         createdAt: auth0User[claimsNamespace + "/created_at"],
         updatedAt: auth0User.updated_at,
-        name: dbProfile?.username ?? auth0User.nickname,
+        name:
+          auth0User[claimsNamespace + "/username_cs"] ??
+          dbProfile?.username ??
+          auth0User.nickname,
         avatar:
           auth0User.picture ??
           "https://robohash.org/" +

@@ -40,6 +40,12 @@ export const POST: APIRoute = async ({ request }) => {
       updatedData.email_verified = false;
     }
 
+    if (updatedData.username) {
+      updatedData.user_metadata = {
+        username_cs: updatedData.username,
+      };
+    }
+
     updated = await updateUser(userId, updatedData).catch((e) => {
       if (e instanceof Error) {
         const auth0Error = e as any;
