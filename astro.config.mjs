@@ -5,6 +5,9 @@ import sitemap from "@astrojs/sitemap";
 import icon from "astro-icon";
 import netlify from "@astrojs/netlify";
 import tailwindcss from "@tailwindcss/vite";
+import react from "@astrojs/react";
+import markdoc from "@astrojs/markdoc";
+import keystatic from "@keystatic/astro";
 // import sentry from "@sentry/astro";
 
 // https://astro.build/config
@@ -20,6 +23,7 @@ export default defineConfig({
     vue({
       appEntrypoint: "/src/_app",
     }),
+    icon(),
     sitemap({
       filter: (page) =>
         page !== "https://talale.it/admin/" &&
@@ -30,15 +34,16 @@ export default defineConfig({
           page,
         ) &&
         !/^https:\/\/talale\.it\/medabots/.test(page),
-    }),
-    icon(),
-    // sentry({
+    }), // sentry({
     //   dsn: "https://6e8081bce1069ada88740b7adf6088c4@o4506858882334720.ingest.us.sentry.io/4506858899439616",
     //   sourceMapsUploadOptions: {
     //     project: "javascript-astro",
     //     authToken: process.env.SENTRY_AUTH_TOKEN,
     //   },
     // }),
+    react(),
+    markdoc(),
+    keystatic(),
   ],
 
   vite: {

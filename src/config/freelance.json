@@ -1,34 +1,103 @@
 {
   "piva": "03838670127",
+  "prices": [
+    {
+      "name": "Standard",
+      "description": "Siti vetrina, blog e landing page.",
+      "info": "Acconto da stabilire",
+      "amount": 750,
+      "plus": true,
+      "features": ["CMS custom o Wordpress", "Fino a 10 pagine"],
+      "includesBaseServices": true,
+      "supportMonthsIncluded": 3
+    },
+    {
+      "name": "ECommerce / Custom",
+      "description": "Soluzioni per negozi online, aziende e startup.",
+      "info": "Acconto da stabilire",
+      "amount": 2000,
+      "plus": true,
+      "features": [
+        "CMS custom",
+        "Integrazione gestionale tramite API",
+        "Pagamenti con Stripe e PayPal"
+      ],
+      "includesBaseServices": true,
+      "supportMonthsIncluded": 1
+    },
+    {
+      "name": "Assistenza & Ads",
+      "description": "Supporto continuato",
+      "amount": 200,
+      "amountInfo": "/mese",
+      "plus": false,
+      "features": [
+        "Correzione bug",
+        "Monitoraggio SEO",
+        "Campagne Google ADS",
+        "Gestione profilo Google Maps",
+        "Modifiche e aggiornamento contenuti",
+        "Assistenza"
+      ],
+      "includesBaseServices": false,
+      "supportMonthsIncluded": 0
+    }
+  ],
+  "supportServices": [
+    {
+      "name": "Risoluzione bug e problemi",
+      "icon": "bug"
+    },
+    {
+      "name": "Monitoraggio traffico e rendimento SEO",
+      "icon": "speed-fast"
+    },
+    {
+      "name": "Campagne google ADS",
+      "icon": "coin"
+    },
+    {
+      "name": "Gestione profilo Google Maps",
+      "icon": "map"
+    },
+    {
+      "name": "Aggiornamenti software e di sicurezza",
+      "icon": "repeat"
+    },
+    {
+      "name": "Assistenza e supporto tecnico",
+      "icon": "suitcase"
+    }
+  ],
   "frameworks": [
     {
       "name": "Laravel",
-      "logo": "/uploads/laravel.svg",
+      "logo": "/uploads/frameworks/0/logo.svg",
       "url": "https://laravel.com/"
     },
     {
       "name": "Astro",
-      "logo": "/uploads/astro.svg",
+      "logo": "/uploads/frameworks/1/logo.svg",
       "url": "https://astro.build/"
     },
     {
       "name": "Tailwind",
-      "url": "https://tailwindcss.com/",
-      "logo": "/uploads/tailwindcss.svg"
+      "logo": "/uploads/frameworks/2/logo.svg",
+      "url": "https://tailwindcss.com/"
     },
     {
       "name": "Livewire",
-      "logo": "/uploads/livewire.svg",
+      "logo": "/uploads/frameworks/3/logo.svg",
       "url": "https://laravel-livewire.com/"
     },
     {
       "name": "Vue",
-      "logo": "/uploads/vue.svg",
+      "logo": "/uploads/frameworks/4/logo.svg",
       "url": "https://vuejs.org/"
     },
     {
       "name": "Alpine",
-      "logo": "/uploads/alpinejs.svg",
+      "logo": "/uploads/frameworks/5/logo.svg",
       "url": "https://alpinejs.dev/"
     }
   ],
@@ -68,77 +137,6 @@
     {
       "title": "Gestione Hosting, Dominio (HTTPS) e Email",
       "description": "Dalla registrazione del dominio all'attivazione di caselle email personalizzate, mi occupo di tutto quello che serve per garantirti un servizio di hosting sicuro, efficiente e performante. Il tuo sito web sarà sempre online e raggiungibile, con la massima protezione SSL (HTTPS)."
-    }
-  ],
-  "prices": [
-    {
-      "amountInfo": "",
-      "name": "Standard",
-      "info": "Acconto da stabilire",
-      "amount": 750,
-      "plus": true,
-      "includesBaseServices": true,
-      "description": "Siti vetrina, blog e landing page.",
-      "features": ["CMS custom o Wordpress", "Fino a 10 pagine"],
-      "supportMonthsIncluded": 3
-    },
-    {
-      "amount": 2000,
-      "plus": true,
-      "includesBaseServices": true,
-      "supportMonthsIncluded": 1,
-      "name": "ECommerce / Custom",
-      "description": "Soluzioni per negozi online, aziende e startup.",
-      "info": "Acconto da stabilire",
-      "features": [
-        "CMS custom",
-        "Integrazione gestionale tramite API",
-        "Pagamenti con Stripe e PayPal"
-      ]
-    },
-    {
-      "amountInfo": "/mese",
-      "name": "Assistenza & Ads",
-      "info": "",
-      "amount": 200,
-      "plus": false,
-      "includesBaseServices": false,
-      "description": "Supporto continuato",
-      "features": [
-        "Correzione bug",
-        "Monitoraggio SEO",
-        "Campagne Google ADS",
-        "Gestione profilo Google Maps",
-        "Modifiche e aggiornamento contenuti",
-        "Assistenza"
-      ],
-      "supportMonthsIncluded": 0
-    }
-  ],
-  "supportServices": [
-    {
-      "name": "Risoluzione bug e problemi",
-      "icon": "bug"
-    },
-    {
-      "name": "Monitoraggio traffico e rendimento SEO",
-      "icon": "speed-fast"
-    },
-    {
-      "name": "Campagne google ADS",
-      "icon": "coin"
-    },
-    {
-      "name": "Gestione profilo Google Maps",
-      "icon": "map"
-    },
-    {
-      "name": "Aggiornamenti software e di sicurezza",
-      "icon": "repeat"
-    },
-    {
-      "name": "Assistenza e supporto tecnico",
-      "icon": "suitcase"
     }
   ]
 }
