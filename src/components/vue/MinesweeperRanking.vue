@@ -30,13 +30,13 @@
             >
               <td>{{ index + 1 }}</td>
               <td>{{ player.name }}</td>
-              <td>{{ player.streak_record }}</td>
+              <td>{{ player.streakRecord }}</td>
               <td>
                 <div
                   class="tooltip tooltip-left"
-                  :data-tip="lastUpdateLabel(player.updated_at)"
+                  :data-tip="lastUpdateLabel(player.updatedAt)"
                 >
-                  {{ player.cur_streak }}
+                  {{ player.curStreak }}
                 </div>
               </td>
             </tr>
@@ -48,7 +48,9 @@
       </div>
 
       <div v-if="!$isLogged" class="text-warning mt-4 flex justify-start">
-        <a class="link" @click="login">Per classificarti devi essere loggato</a>
+        <a class="link" @click="handleLogin"
+          >Per classificarti devi essere loggato</a
+        >
       </div>
     </div>
   </div>
@@ -59,6 +61,7 @@ import { ref, onMounted } from "vue";
 import { useStore } from "@nanostores/vue";
 import { isLogged } from "@lib/authStore";
 import { formatDate } from "@lib/utils";
+import { getRankings } from "@lib/database";
 
 let players = ref(null);
 let open = ref(false);
@@ -71,8 +74,8 @@ function collapse() {
   open.value = !open.value;
 }
 
-function login() {
-  window.netlifyIdentity.open();
+function handleLogin() {
+  document.dispatchEvent(new CustomEvent("requestLogin"));
 }
 
 function lastUpdateLabel(date) {
@@ -80,16 +83,8 @@ function lastUpdateLabel(date) {
 }
 
 function fetchRanks() {
-  // /.netlify/functions/players-ranking
-  fetch("/api/users/ranking").then((response) => {
-    if (response.ok) {
-      response.json().then((data) => {
-        players.value = data;
-        // if (data.ranking) {
-        //   players.value = data?.ranking;
-        // }
-      });
-    }
+  getRankings().then((data) => {
+    players.value = data;
   });
 }
 
@@ -98,9 +93,8 @@ function refreshRanking() {
 }
 
 onMounted(() => {
-  window.addEventListener("refreshRanking", () => {
+  document.addEventListener("refreshRanking", () => {
     refreshRanking();
   });
-  window.dispatchEvent(new CustomEvent("refreshRanking"));
 });
 </script>

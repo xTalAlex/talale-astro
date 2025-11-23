@@ -1,8 +1,8 @@
 ---
 import { Icon } from "astro-icon/components";
 import MinesweeperRanking from "@components/vue/MinesweeperRanking.vue";
-import electrodeCry from "@assets/audio/electrode.mp3";
-import itemFoundFanfare from "@assets/audio/pokemon_rby_item_found_fanfare.mp3";
+import electrodeCrySound from "@assets/audio/electrode.mp3";
+import itemFoundFanfareSound from "@assets/audio/pokemon_rby_item_found_fanfare.mp3";
 
 const boardSize = 10;
 var table = new Array(boardSize);
@@ -31,8 +31,8 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
         }
       </div>
 
-      <audio class="hidden" id="electrodeCry" src={electrodeCry}></audio>
-      <audio class="hidden" id="itemFoundFanfare" src={itemFoundFanfare}
+      <audio class="hidden" id="electrode-cry" src={electrodeCrySound}></audio>
+      <audio class="hidden" id="item-found-fanfare" src={itemFoundFanfareSound}
       ></audio>
 
       <div class="mt-6 text-center">
@@ -53,6 +53,8 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
 <script>
   import confetti from "canvas-confetti";
   import { adjacentCells } from "@lib/utils";
+  import { isLogged, userInfo } from "@lib/authStore";
+  import { getAccessToken } from "@lib/auth";
 
   const electrode =
     "https://img.pokemondb.net/sprites/black-white/anim/normal/electrode.gif";
@@ -79,10 +81,10 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
   const cells = Array.from(document.getElementsByClassName("minesweeper-cell"));
   const refresh = document.getElementById("refresh") as HTMLButtonElement;
   const itemFoundFanfare = document.getElementById(
-    "itemFoundFanfare",
+    "item-found-fanfare"
   ) as HTMLAudioElement;
   const electrodeCry = document.getElementById(
-    "electrodeCry",
+    "electrode-cry"
   ) as HTMLAudioElement;
 
   const init = () => {
@@ -99,7 +101,7 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
         "text-info",
         "text-warning",
         "text-error",
-        "text-gray-300",
+        "text-gray-300"
       );
       cell.classList.add("bg-gray-400");
     });
@@ -129,11 +131,11 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
       var cells = adjacentCells(
         getCoordinates(id).col,
         getCoordinates(id).row,
-        boardSize,
+        boardSize
       );
       cells.forEach(
         (cell) =>
-          table[cell.col][cell.row] != "X" && table[cell.col][cell.row]++,
+          table[cell.col][cell.row] != "X" && table[cell.col][cell.row]++
       );
     });
   };
@@ -162,7 +164,7 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
       cell.classList.add(
         table[coordinates.col][coordinates.row] > 3
           ? colorsTable[3]
-          : colorsTable[table[coordinates.col][coordinates.row]],
+          : colorsTable[table[coordinates.col][coordinates.row]]
       );
     }
     checkedCtr++;
@@ -179,7 +181,7 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
           ) {
             checkCell(cell.col * boardSize + cell.row);
           }
-        },
+        }
       );
     } else {
       cell.classList.remove("text-transparent");
@@ -234,7 +236,7 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
     confetti(
       Object.assign({}, { origin: { y: 0.7 } }, opts, {
         particleCount: Math.floor(200 * particleRatio),
-      }),
+      })
     );
   };
 
@@ -260,18 +262,25 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
   });
 
   const storeResult = async (victory: boolean) => {
-    if (window.netlifyIdentity.currentUser()) {
+    if (isLogged.get()) {
       const response = await fetch("/api/users/ranking", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          //Authorization: `Bearer ${await window.netlifyIdentity.currentUser().jwt()}`
+          Authorization: `Bearer ${await getAccessToken()}`,
         },
         body: JSON.stringify({
-          user: window.netlifyIdentity.currentUser(),
+          id: userInfo.get().id,
+          email: userInfo.get().email,
+          name: userInfo.get().name,
           victory: victory,
         }),
-      }).then((res) => window.dispatchEvent(new CustomEvent("refreshRanking")));
+      })
+        .then((res) => {
+          if (!res.ok) console.error("Failed to store result", res.statusText);
+          document.dispatchEvent(new CustomEvent("refreshRanking"));
+        })
+        .catch((error) => console.error(error));
     }
   };
 
