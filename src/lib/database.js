@@ -11,6 +11,7 @@ import {
   orderBy,
   query,
   where,
+  Timestamp,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -32,7 +33,7 @@ export const usersCollection = collection(db, "users");
  * @throws {Error} If Firestore operation fails
  */
 export const createUser = async (userData) => {
-  const now = Date.now();
+  const now = Timestamp.now();
   const docRef = await addDoc(usersCollection, {
     ...userData,
     streakRecord: userData.streakRecord ?? 0,
@@ -50,7 +51,7 @@ export const updateUser = async (userId, userData) => {
   const userRef = doc(db, "users", userId);
   await updateDoc(userRef, {
     ...userData,
-    updatedAt: Date.now(),
+    updatedAt: Timestamp.now(),
   });
 };
 
@@ -73,8 +74,8 @@ export const getUserBySecondaryId = async (secondaryId) => {
         email: data.email,
         streakRecord: data.streakRecord || 0,
         curStreak: data.curStreak || 0,
-        createdAt: data.createdAt,
-        updatedAt: data.updatedAt,
+        createdAt: data.createdAt.toDate(),
+        updatedAt: data.updatedAt.toDate(),
       }
     : null;
 };
@@ -87,10 +88,15 @@ export const getUserWishlist = async (userId) => {
   const userRef = doc(db, "users", userId);
   const userDoc = await getDoc(userRef);
 
-  let wishlist = { items: [], updatedAt: Date.now() };
+  let wishlist = null;
   if (userDoc.exists()) {
     const userData = userDoc.data();
-    wishlist = userData.wishlist || wishlist;
+    if (userData?.wishlist?.updatedAt) {
+      userData.wishlist.updatedAt = userData.wishlist.updatedAt.toDate();
+    }
+    wishlist = userData.wishlist || { items: [], updatedAt: Timestamp.now() };
+  } else {
+    wishlist = null;
   }
 
   return wishlist;
@@ -106,7 +112,9 @@ export const updateUserWishlist = async (userId, wishlist) => {
   await updateDoc(userRef, {
     wishlist: {
       items: wishlist.items,
-      updatedAt: wishlist.updatedAt ?? Date.now(),
+      updatedAt: wishlist.updatedAt
+        ? Timestamp.fromMillis(wishlist.updatedAt)
+        : Timestamp.now(),
     },
   });
 };
@@ -149,7 +157,7 @@ export const upsertRanking = async (secondaryId, rankingData) => {
       query(usersCollection, where("secondaryId", "==", secondaryId)),
     );
 
-    const now = Date.now();
+    const now = Timestamp.now();
 
     if (querySnapshot.empty) {
       const newUserRef = doc(usersCollection);
