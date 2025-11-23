@@ -35,6 +35,8 @@ export const createUser = async (userData) => {
   const now = Date.now();
   const docRef = await addDoc(usersCollection, {
     ...userData,
+    streakRecord: userData.streakRecord ?? 0,
+    curStreak: userData.curStreak ?? 0,
     createdAt: now,
     updatedAt: now,
   });
