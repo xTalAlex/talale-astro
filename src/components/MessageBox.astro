@@ -62,15 +62,16 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
 <script>
   import Config from "@config/general.json";
 
+  const form = document.getElementById("messagebox") as HTMLFormElement;
   const messageInput = document.getElementById(
-    "message",
+    "message"
   ) as HTMLTextAreaElement;
   const emailInput = document.getElementById("email") as HTMLInputElement;
   const privacyCheckbox = document.getElementById(
-    "privacy-check",
+    "privacy-check"
   ) as HTMLInputElement;
   const submitButton = document.getElementById(
-    "submit-button",
+    "submit-button"
   ) as HTMLButtonElement;
 
   const handleError = () => {
@@ -96,21 +97,21 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
       });
   };
 
-  privacyCheckbox.addEventListener("change", function () {
-    if (this.checked) {
-      submitButton.disabled = false;
-    } else {
-      submitButton.disabled = true;
-    }
+  const isFormFilled = () => {
+    return (
+      messageInput.value.trim() != "" &&
+      emailInput.value.trim() != "" &&
+      privacyCheckbox.checked
+    );
+  };
+
+  form.addEventListener("input", function () {
+    submitButton.disabled = !isFormFilled();
   });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (
-      messageInput.value.trim() != "" &&
-      emailInput.value.trim() != "" &&
-      privacyCheckbox.checked
-    ) {
+    if (isFormFilled()) {
       const data = new FormData(document.forms[0]);
       data.set("message", messageInput.value.trim());
       messageInput.disabled = true;
