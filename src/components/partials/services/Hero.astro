@@ -4,7 +4,7 @@ interface Props {
   description: string;
 }
 
-import Image from "astro/components/Image.astro";
+import { Image } from "astro:assets";
 import bgImage from "@assets/images/pixelshop.png";
 
 const { title, description } = Astro.props;
