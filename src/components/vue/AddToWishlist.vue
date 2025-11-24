@@ -22,12 +22,6 @@ import {
   wishlistContains,
 } from "@lib/wishlistStore";
 
-const $wishlist = useStore(wishlist);
-
-const items = computed(() => {
-  return Object.values($wishlist.value["items"]);
-});
-
 const props = defineProps({
   id: {
     type: String,
@@ -48,6 +42,14 @@ const props = defineProps({
   },
 });
 
+const $wishlist = useStore(wishlist);
+
+const loading = ref(false);
+
+const items = computed(() => {
+  return Object.values($wishlist.value["items"]);
+});
+
 const game = computed(() => {
   return {
     id: props.id,
@@ -57,13 +59,7 @@ const game = computed(() => {
   };
 });
 
-let isWishlisted = ref(wishlistContains(game.value));
-
-function toggleItem() {
-  isWishlisted.value
-    ? removeWishlistItem(game.value)
-    : addWishlistItem(game.value);
-}
+const isWishlisted = ref(wishlistContains(game.value));
 
 watch(
   items,
@@ -72,4 +68,10 @@ watch(
   },
   { deep: true },
 );
+
+function toggleItem() {
+  isWishlisted.value
+    ? removeWishlistItem(game.value)
+    : addWishlistItem(game.value);
+}
 </script>

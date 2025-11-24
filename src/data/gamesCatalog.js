@@ -13,6 +13,7 @@ var limit = 500;
 var offset = 0;
 var startTime;
 var endTime;
+var platformId = platform?.id ?? 508;
 
 startTime = Date.now();
 
@@ -30,8 +31,8 @@ do {
             genres.name, themes.name, cover.url, artworks.url, screenshots.url, language_supports.language.locale,
             involved_companies.company.name, involved_companies.company.logo.url, involved_companies.company.websites.url;
         sort first_release_date desc;
-        where ${platform ? `platforms = (${platform.id}) & ` : ""}
-                language_supports.language.locale = ("it-IT","en-US")
+        where platforms = (${platformId})
+                & language_supports.language.locale = ("it-IT","en-US")
                 & summary != null
                 & genres != null
                 & involved_companies != null

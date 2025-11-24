@@ -25,21 +25,31 @@ async function initAuth0Management() {
 }
 
 export const sendVerificationEmail = async (userId, identity) => {
-  return await auth0Management.jobs.verificationEmail.create({
-    user_id: userId,
-    identity,
-  });
+  return await auth0Management.jobs.verificationEmail
+    .create({
+      user_id: userId,
+      identity,
+    })
+    .catch((error) => {
+      throw error.body ?? error;
+    });
 };
 
 export const updateUser = async (userId, data) => {
-  return await auth0Management.users.update(userId, {
-    ...data,
-    connection: auth0DBConnection,
-  });
+  return await auth0Management.users
+    .update(userId, {
+      ...data,
+      connection: auth0DBConnection,
+    })
+    .catch((error) => {
+      throw error.body ?? error;
+    });
 };
 
 export const deleteUser = async (userId) => {
-  return await auth0Management.users.delete(userId);
+  return await auth0Management.users.delete(userId).catch((error) => {
+    throw error.body ?? error;
+  });
 };
 
 await initAuth0Management();

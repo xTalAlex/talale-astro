@@ -46,19 +46,16 @@ export const POST: APIRoute = async ({ request }) => {
       };
     }
 
-    updated = await updateUser(userId, updatedData).catch((e) => {
-      if (e instanceof Error) {
-        const auth0Error = e as any;
-        if (
-          auth0Error.statusCode === 400 ||
-          e.message.includes("invalid") ||
-          e.message.includes("not allowed")
-        ) {
-          status = 400;
-        }
-        error = e.message;
+    updated = await updateUser(userId + "c", updatedData).catch((e) => {
+      if (
+        e?.statusCode === 400 ||
+        e.message.includes("invalid") ||
+        e.message.includes("not allowed")
+      ) {
+        status = 400;
       }
-      return null;
+      error = e.message ?? e;
+      return false;
     });
 
     if (updated) {

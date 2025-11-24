@@ -123,8 +123,8 @@ npm run check        # Check Astro project for errors
 - [ ] **eBay API Integration** - Display product listings
 - [ ] **Services CTA Upgrade** - Enhanced call-to-action components
 - [ ] **E-commerce Template** - Integration with Crystallize
-- [ ] **Decap CMS Template** - Enhanced content management
 - [ ] **Test Coverage** - Improve npm test coverage
+- [ ] **Throttling wishlist DB operations** - Avoid DB calls spam
 
 ---
 
