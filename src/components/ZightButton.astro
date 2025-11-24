@@ -1,0 +1,38 @@
+---
+export interface Props {
+  mode?: "recorder" | "request";
+  class?: string;
+  iconClass?: string;
+  hiddenIcon?: boolean;
+}
+
+import { Image } from "astro:assets";
+import Config from "@config/general.json";
+import zightIcon from "@assets/images/zight-icon.png";
+import zightLogo from "@assets/images/zight-logo.svg";
+
+const zightRequestLink = Config.zight?.requestLink;
+
+const {
+  mode = "recorder",
+  class: className,
+  iconClass,
+  hiddenIcon = true,
+} = Astro.props;
+---
+
+{
+  mode == "request" ? (
+    <a class:list={["btn", "glass", "text-neutral"]} href={zightRequestLink}>
+      <span>Video messaggio</span>
+      <Image class:list={["inline", "size-8"]} src={zightIcon} alt="Zight" />
+    </a>
+  ) : (
+    <div class:list={className} onclick="startRecording()">
+      <slot />
+      {!hiddenIcon && (
+        <Image class:list={iconClass} src={zightLogo} alt="Zight" />
+      )}
+    </div>
+  )
+}

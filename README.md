@@ -108,15 +108,18 @@ npm run check        # Check Astro project for errors
 
 ### JavaScript Events
 
-| Event           | Description                  | Parameters                  |
-| --------------- | ---------------------------- | --------------------------- |
-| `requestLogin`  | Trigger login flow           | -                           |
-| `requestLogout` | Trigger logout flow          | -                           |
-| `loggedIn`      | User logged in successfully  | -                           |
-| `loggedOut`     | User logged out successfully | -                           |
-| `openModal`     | Open modal dialog            | `title`, `body`, `image`    |
-| `notify`        | Show notification            | `title`, `message`, `style` |
-| `tawktoLoaded`  | Tawto script loaded          | -                           |
+| Event                       | Description                   | Parameters                               |
+| --------------------------- | ----------------------------- | ---------------------------------------- |
+| `requestLogin`              | Trigger login flow            | -                                        |
+| `requestLogout`             | Trigger logout flow           | -                                        |
+| `loggedIn`                  | User logged in successfully   | -                                        |
+| `loggedOut`                 | User logged out successfully  | -                                        |
+| `openModal`                 | Open modal dialog             | `title`, `body`, `image`                 |
+| `notify`                    | Show notification             | `title`, `message`, `style`              |
+| `tawktoLoaded`              | Tawto script loaded           | -                                        |
+| `startVideoRecording`       | Trigger video recording       | -                                        |
+| `videoRecorded`             | Video recording completed     | - `shareUrl`, `thumbnailUrl`, `embedUrl` |
+| `videoRecorderStatusChange` | Video recorder status changed | - `newStatus`                            |
 
 ## 🗺️ Roadmap
 

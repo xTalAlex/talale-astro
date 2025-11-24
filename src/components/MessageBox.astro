@@ -1,6 +1,7 @@
 ---
 import Config from "@config/general.json";
 import { Icon } from "astro-icon/components";
+import ZightButton from "./ZightButton.astro";
 
 const { IUBENDA_POLICY_ID } = import.meta.env;
 ---
@@ -16,6 +17,14 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
         maxlength="300"
         placeholder={Config.messagebox.placeholder}
         required></textarea>
+      <div class="mx-auto mb-4">
+        <ZightButton mode="recorder">
+          <button type="button" class="btn btn-xs btn-ghost btn-secondary">
+            <Icon class="h-4 w-4 opacity-50" name="pixelarticons:camera-add" />
+            <span>Allega registrazione</span>
+          </button>
+        </ZightButton>
+      </div>
       <label
         class="input input-primary flex w-full items-center gap-2 bg-transparent"
       >
@@ -57,83 +66,87 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
       </div>
     </div>
   </form>
-</div>
 
-<script>
-  import Config from "@config/general.json";
+  <script>
+    import Config from "@config/general.json";
 
-  const form = document.getElementById("messagebox") as HTMLFormElement;
-  const messageInput = document.getElementById(
-    "message"
-  ) as HTMLTextAreaElement;
-  const emailInput = document.getElementById("email") as HTMLInputElement;
-  const privacyCheckbox = document.getElementById(
-    "privacy-check"
-  ) as HTMLInputElement;
-  const submitButton = document.getElementById(
-    "submit-button"
-  ) as HTMLButtonElement;
+    const form = document.getElementById("messagebox") as HTMLFormElement;
+    const messageInput = document.getElementById(
+      "message"
+    ) as HTMLTextAreaElement;
+    const emailInput = document.getElementById("email") as HTMLInputElement;
+    const privacyCheckbox = document.getElementById(
+      "privacy-check"
+    ) as HTMLInputElement;
+    const submitButton = document.getElementById(
+      "submit-button"
+    ) as HTMLButtonElement;
 
-  const handleError = () => {
-    window.notify(Config.messagebox.error, null, "error");
-    messageInput.disabled = false;
-    emailInput.disabled = false;
-    submitButton.disabled = false;
-    submitButton.classList.remove("loading");
-  };
+    const isFormFilled = () => {
+      return (
+        messageInput.value.trim() != "" &&
+        emailInput.value.trim() != "" &&
+        privacyCheckbox.checked
+      );
+    };
 
-  const handleSuccess = () => {
-    window.notify(Config.messagebox.success, null, "success");
-    messageInput.value = "";
-    messageInput.value = "";
-    submitButton.classList.remove("loading");
-    trackGoogleEvent();
-  };
-
-  const trackGoogleEvent = () => {
-    window.gtag &&
-      window.gtag("event", "form_submit", {
-        form_name: "messagebox",
-      });
-  };
-
-  const isFormFilled = () => {
-    return (
-      messageInput.value.trim() != "" &&
-      emailInput.value.trim() != "" &&
-      privacyCheckbox.checked
-    );
-  };
-
-  form.addEventListener("input", function () {
-    submitButton.disabled = !isFormFilled();
-  });
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    if (isFormFilled()) {
-      const data = new FormData(document.forms[0]);
-      data.set("message", messageInput.value.trim());
-      messageInput.disabled = true;
-      emailInput.disabled = true;
-      submitButton.disabled = true;
-      submitButton.classList.add("loading");
-      fetch("/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams(data).toString(),
-      })
-        .then((res) => {
-          if (res.status == 200) handleSuccess(res);
-          else handleError(res);
-        })
-        .catch((error) => {
-          handleError(error);
+    const trackGoogleEvent = () => {
+      window.gtag &&
+        window.gtag("event", "form_submit", {
+          form_name: "messagebox",
         });
-    }
-  };
+    };
 
-  document.forms[0].onsubmit = handleSubmit;
-</script>
+    const handleError = () => {
+      window.notify(Config.messagebox.error, null, "error");
+      messageInput.disabled = false;
+      emailInput.disabled = false;
+      submitButton.disabled = false;
+      submitButton.classList.remove("loading");
+    };
+
+    const handleSuccess = () => {
+      window.notify(Config.messagebox.success, null, "success");
+      messageInput.value = "";
+      emailInput.value = "";
+      submitButton.classList.remove("loading");
+      trackGoogleEvent();
+    };
+
+    const handleSubmit = (event: SubmitEvent) => {
+      event.preventDefault();
+      if (isFormFilled()) {
+        const data = new FormData(form);
+        data.set("message", messageInput.value.trim());
+        messageInput.disabled = true;
+        emailInput.disabled = true;
+        submitButton.disabled = true;
+        submitButton.classList.add("loading");
+        fetch("/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams(data as any).toString(),
+        })
+          .then((res) => {
+            if (res.status == 200) handleSuccess();
+            else handleError();
+          })
+          .catch((error) => {
+            handleError();
+          });
+      }
+    };
+
+    form.addEventListener("input", () => {
+      submitButton.disabled = !isFormFilled();
+    });
+    form.addEventListener("submit", handleSubmit);
+
+    document.addEventListener("videoRecorded", ({ detail }) => {
+      const { shareUrl } = detail;
+      messageInput.value += `\n\nHo registrato un video messaggio: ${shareUrl}`;
+    });
+  </script>
+</div>

@@ -145,6 +145,11 @@ export default config({
               "Impostazioni per il bottone di prenotazione calendario",
           },
         ),
+        zight: fields.object({
+          requestLink: fields.url({
+            label: "Request Link",
+          }),
+        }),
         messagebox: fields.object(
           {
             placeholder: fields.text({

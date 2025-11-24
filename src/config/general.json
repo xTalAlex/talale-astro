@@ -16,6 +16,9 @@
     "url": "https://calendar.app.google/tVjy3FpV4NCTqsUP6",
     "cta": "Prenota una telefonata"
   },
+  "zight": {
+    "requestLink": "https://share.zight.com/re/talale-it"
+  },
   "messagebox": {
     "placeholder": "Lascia un messaggio",
     "success": "Messaggio inviato!",

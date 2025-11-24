@@ -1,0 +1,40 @@
+---
+const ZIGHT_API_KEY = import.meta.env.ZIGHT_API_KEY;
+---
+
+<script data-api-key={ZIGHT_API_KEY}>
+  const options = {
+    apiKey: document.currentScript.dataset.apiKey,
+    thumbnailOptions: { width: 400, height: 200, playicon: true },
+    onCompleted: function ({ shareUrl, thumbnailUrl, embedUrl }) {
+      document.dispatchEvent(
+        new CustomEvent("videoRecorded", {
+          detail: { shareUrl, thumbnailUrl, embedUrl },
+        })
+      );
+    },
+    /**
+     * @param {string} newStatus - The new status to set. Possible values: 'idle', 'restarting', 'countdown', or 'recording'
+     */
+    onStatusChange: function (newStatus) {
+      document.dispatchEvent(
+        new CustomEvent("videoRecorderStatusChange", {
+          detail: { newStatus },
+        })
+      );
+    },
+  };
+
+  document.addEventListener("startVideoRecording", () => {
+    window.CloudAppRecorder?.isSupported()
+      ? window.CloudAppRecorder.start(options)
+      : window.alert?.("Il tuo browser non supporta Zight Recorder.");
+  });
+
+  document.startRecording = function () {
+    document.dispatchEvent(new CustomEvent("startVideoRecording"));
+  };
+</script>
+<script
+  src="https://downloads.zight.com/webrecorder/v7.114.0/zight.js"
+  is:inline></script>
