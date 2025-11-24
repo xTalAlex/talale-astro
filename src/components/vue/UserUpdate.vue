@@ -2,14 +2,15 @@
   <div class="card card-sm">
     <div class="card-body h-96">
       <div class="mockup-code h-64 min-w-fit space-y-2">
-        <pre data-prefix="$"><code>Modifica <select 
+        <pre data-prefix="$"><code><select 
                 v-model="choice"
                 class="bg-neutral text-neutral-content"
                 @change="resetInput(); resetErrorBag(); resetSuccessMessage();" 
             >
-                <option value="name">Nome</option>
-                <option value="email">Email</option>
-                <option value="password">Password</option>
+                <option value="name">Modifica Nome</option>
+                <option value="email">Modifica Email</option>
+                <option value="password">Modifica Password</option>
+                <option value="delete">Elimina Account</option>
             </select></code></pre>
         <pre
           v-if="choice == 'name'"
@@ -63,6 +64,19 @@
           @input="resetErrorBag"
         /></code></pre>
         <pre
+          v-if="choice == 'delete'"
+          data-prefix=">"
+          :class="{
+            'bg-error text-error-content': errorBag.delete,
+          }"
+        ><code><input 
+          v-model="formData.deleteConfirm"
+          class="bg-transparent" 
+          type="text"
+          placeholder="sudo delete"
+          @input="resetErrorBag"
+        /></code></pre>
+        <pre
           v-show="errorBag[choice]"
           data-prefix="$"
           class="text-error"
@@ -75,16 +89,16 @@
       </div>
       <div class="card-actions justify-end">
         <button
-          class="btn btn-secondary uppercase"
+          class="btn uppercase"
           :class="{
-            btnColor,
+            [btnColor]: true,
             'btn-disabled': !isValueChanged || successMessage,
             loading: loading,
           }"
           :disabled="!isValueChanged || successMessage"
           @click="submit"
         >
-          Salva
+          {{ choice == "delete" ? "Elimina" : "Salva" }}
         </button>
       </div>
     </div>
@@ -92,7 +106,7 @@
 </template>
 
 <script setup>
-import { updateUser } from "@lib/auth";
+import { updateUser, deleteUser } from "@lib/auth";
 import { ref, computed } from "vue";
 
 const props = defineProps({
@@ -114,6 +128,7 @@ const successMessages = {
   name: "Nome aggiornato!",
   email: "Email di conferma inviata al nuovo indirizzo!",
   password: "Password aggiornata!",
+  delete: "Account eliminato con successo!",
 };
 
 const choice = ref("name");
@@ -123,11 +138,13 @@ const formData = ref({
   email: props.defaultEmail,
   password: null,
   passwordConfirm: null,
+  deleteConfirm: null,
 });
 const errorBag = ref({
   name: null,
   email: null,
   password: null,
+  delete: null,
 });
 const successMessage = ref(null);
 
@@ -136,6 +153,9 @@ const isValueChanged = computed(() => {
   switch (choice.value) {
     case "password":
       changed = formData.value.password && formData.value.passwordConfirm;
+      break;
+    case "delete":
+      changed = formData.value.deleteConfirm === "sudo delete";
       break;
     case "name":
       changed = formData.value[choice.value] != props.defaultName;
@@ -150,7 +170,8 @@ const isValueChanged = computed(() => {
 const btnColor = computed(() => {
   let color = "btn-secondary";
   //if(successMessage.value) color = 'btn-success';
-  if (errorBag.value[choice.value]) color = "btn-error";
+  if (choice.value === "delete") color = "btn-error";
+  else if (errorBag.value[choice.value]) color = "btn-error";
   return color;
 });
 
@@ -159,6 +180,7 @@ function resetInput() {
   formData.value.email = props.defaultEmail;
   formData.value.password = null;
   formData.value.passwordConfirm = null;
+  formData.value.deleteConfirm = null;
 }
 
 function resetErrorBag() {
@@ -166,6 +188,7 @@ function resetErrorBag() {
     name: null,
     email: null,
     password: null,
+    delete: null,
   };
 }
 
@@ -181,6 +204,12 @@ function validate() {
       isValid = false;
     }
   }
+  if (choice.value == "delete") {
+    if (formData.value.deleteConfirm !== "sudo delete") {
+      errorBag.value.delete = "Comando non riconosciuto";
+      isValid = false;
+    }
+  }
   return isValid;
 }
 
@@ -190,35 +219,54 @@ function submit() {
     loading.value = true;
     var data = null;
     if (validate()) {
-      switch (choice.value) {
-        case "name":
-          data = { username: formData.value.name };
-          break;
-        case "email":
-          data = { email: formData.value.email };
-          break;
-        case "password":
-          data = { password: formData.value.password };
-          break;
-        default:
-          break;
+      if (choice.value === "delete") {
+        deleteUser()
+          .then(async (response) => {
+            const result = await response.json();
+            if (response.ok) {
+              successMessage.value = successMessages[choice.value];
+              document.dispatchEvent(new CustomEvent("requestLogout"));
+            } else {
+              errorBag.value[choice.value] =
+                result.error || "Errore durante l'eliminazione";
+            }
+            loading.value = false;
+          })
+          .catch((error) => {
+            loading.value = false;
+            errorBag.value[choice.value] = error.message || error;
+          });
+      } else {
+        switch (choice.value) {
+          case "name":
+            data = { username: formData.value.name };
+            break;
+          case "email":
+            data = { email: formData.value.email };
+            break;
+          case "password":
+            data = { password: formData.value.password };
+            break;
+          default:
+            break;
+        }
+        updateUser(data)
+          .then(async (response) => {
+            const result = await response.json();
+            if (response.ok) {
+              successMessage.value = successMessages[choice.value];
+            } else {
+              errorBag.value[choice.value] =
+                result.error || "Errore durante l'aggiornamento";
+            }
+            loading.value = false;
+            emit("userUpdated");
+          })
+          .catch((error) => {
+            loading.value = false;
+            errorBag.value[choice.value] = error.message || error;
+          });
       }
-      updateUser(data)
-        .then(async (response) => {
-          const result = await response.json();
-          if (response.ok) {
-            successMessage.value = successMessages[choice.value];
-          } else {
-            errorBag.value[choice.value] =
-              result.error || "Errore durante l'aggiornamento";
-          }
-          loading.value = false;
-          emit("userUpdated");
-        })
-        .catch((error) => {
-          loading.value = false;
-          errorBag.value[choice.value] = error.message || error;
-        });
     } else loading.value = false;
   }
 }

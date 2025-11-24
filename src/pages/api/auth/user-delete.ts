@@ -23,17 +23,23 @@ export const POST: APIRoute = async ({ request }) => {
     error = "Could not identify user";
   } else {
     const userId = verificationResult.result.payload.sub;
-    deleted = await deleteUser(userId).catch((e) => {
-      if (
-        e?.statusCode === 400 ||
-        e.message.includes("invalid") ||
-        e.message.includes("not allowed")
-      ) {
-        status = 400;
-      }
-      error = e.message ?? e;
-      return false;
-    });
+    deleted = await deleteUser(userId)
+      .then(() => {
+        status = 200;
+        error = "";
+        return true;
+      })
+      .catch((e) => {
+        if (
+          e?.statusCode === 400 ||
+          e.message.includes("invalid") ||
+          e.message.includes("not allowed")
+        ) {
+          status = 400;
+        }
+        error = e.message ?? e;
+        return false;
+      });
   }
 
   return new Response(JSON.stringify({ deleted, ...(error && { error }) }), {
