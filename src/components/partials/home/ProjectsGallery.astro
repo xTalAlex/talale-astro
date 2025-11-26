@@ -11,7 +11,7 @@ projects.sort(
       ? 1
       : b.data.pubDate < a.data.pubDate
         ? -1
-        : 0),
+        : 0)
 );
 
 function setSize(i) {
@@ -54,7 +54,7 @@ function setSize(i) {
 ---
 
 <div
-  class="relative mt-96 grid grid-cols-1 gap-2 overflow-hidden pt-64 lg:grid-cols-12"
+  class="relative grid grid-cols-1 gap-2 overflow-hidden pt-64 sm:mt-64 lg:grid-cols-12"
   id="portfolio"
 >
   <div
@@ -77,8 +77,9 @@ function setSize(i) {
             class={
               "group card relative h-full w-full overflow-hidden shadow-xl"
             }
+            tabindex="0"
           >
-            <div class="absolute inset-0 z-0 transition duration-1000 ease-in-out group-hover:scale-125 group-hover:blur-sm">
+            <div class="absolute inset-0 z-0 transition duration-1000 ease-in-out group-hover:scale-125 group-hover:blur-sm group-focus:scale-125 group-focus:blur-sm">
               <Image
                 height="384"
                 width="912"
@@ -87,7 +88,7 @@ function setSize(i) {
                 alt={project.data.title}
               />
             </div>
-            <div class="card-body text-neutral-content group-hover:bg-neutral/80 z-10 cursor-default items-center justify-center space-y-4 opacity-0 transition ease-in select-none group-hover:opacity-100">
+            <div class="card-body text-neutral-content group-hover:bg-neutral/80 group-focus:bg-neutral/80 z-10 cursor-default items-center justify-center space-y-4 opacity-0 transition ease-in select-none group-hover:opacity-100 group-focus:opacity-100">
               <h2 class="card-title">{project.data.title}</h2>
               <div class="mx-auto max-w-sm text-center">
                 <p>{project.data.description}</p>
