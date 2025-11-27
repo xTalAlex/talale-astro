@@ -1,0 +1,45 @@
+---
+import { Image } from "astro:assets";
+import IubendaLogo from "@assets/images/iubenda-logo.png";
+import AmazonPrimeLogo from "@assets/images/amazon-prime-logo.png";
+---
+
+<div class="collapse-plus bg-base-300 collapse w-full cursor-pointer">
+  <input type="checkbox" />
+  <div class="collapse-title text-left font-semibold">Referral</div>
+  <div
+    class="collapse-content flex flex-col items-center justify-center space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2"
+  >
+    <a
+      href="https://www.digitalocean.com/?refcode=4c50de6f8f9f&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge"
+      target="_blank"
+      rel="noreferrer"
+    >
+      <img
+        class="h-16 w-52 rounded-sm bg-white object-contain"
+        src="https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%202.svg"
+        alt="DigitalOcean Referral Badge"
+        height="64"
+        width="208"
+      />
+    </a>
+    <a href="http://iubenda.refr.cc/talale93" target="_blank" rel="noreferrer">
+      <Image
+        class="h-16 w-52 rounded-sm bg-white object-contain"
+        src={IubendaLogo}
+        alt="Iubenda Referral Badge"
+      />
+    </a>
+    <a
+      href="https://www.amazon.it/provaprime?tag=gz-blog-21&ascsubtag=0-f-n-av_talale"
+      target="_blank"
+      rel="noreferrer"
+    >
+      <Image
+        class="h-16 w-52 rounded-sm bg-white object-contain"
+        src={AmazonPrimeLogo}
+        alt="Prova Amazon Prime"
+      />
+    </a>
+  </div>
+</div>
