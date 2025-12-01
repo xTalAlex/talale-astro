@@ -5,11 +5,14 @@ import AddToWishlist from "@components/vue/AddToWishlist.vue";
 const { game } = Astro.props;
 ---
 
-<div class="card card-sm bg-base-100 h-full w-full shadow-xl" id={game.slug}>
+<div
+  class="card card-sm bg-base-100 h-full w-full pt-6 shadow-xl sm:pt-0"
+  id={game.slug}
+>
   {
     (game.cover?.url || game.screenshots) && (
       <figure>
-        <div class="swiper h-48 max-w-xs md:w-full">
+        <div class="swiper h-48 w-full max-w-xs">
           <div class="swiper-wrapper">
             {game.cover && (
               <div class="swiper-slide bg-neutral">

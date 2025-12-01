@@ -7,9 +7,11 @@
         >
           <div class="card w-96">
             <div class="card-body">
-              <button class="btn glass text-neutral uppercase">
-                Bottone in Vetro di Murano
-              </button>
+              <div class="mx-auto">
+                <button class="btn glass text-neutral uppercase">
+                  Bottone in Vetro di Murano
+                </button>
+              </div>
             </div>
           </div>
         </div>
