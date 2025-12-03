@@ -13,21 +13,22 @@ const title = "Blog";
     <div class="grid md:grid-cols-2">
       {
         posts.map((post) => (
-          <div class="group text-neutral-content relative overflow-hidden">
-            <div class="from-neutral absolute inset-0 z-10 bg-gradient-to-t transition duration-500" />
+          <a
+            href={`/blog/${post.slug}`}
+            class="group text-neutral-content relative block overflow-hidden"
+          >
+            <div class="from-neutral absolute inset-0 z-10 bg-linear-to-t transition duration-500" />
             <img
               class="z-0 h-64 w-full object-cover transition duration-500 group-hover:scale-105"
               src={post.featuredImage.sourceUrl}
               alt={post.title}
             />
             <div class="absolute inset-x-4 bottom-4 z-20">
-              <a href={`/blog/${post.slug}`} class="text-xl font-bold">
-                {post.title}
-              </a>
+              <h2 class="text-xl font-bold">{post.title}</h2>
               <div class="hidden text-sm">{formatDate(post.date, "short")}</div>
               <div class="hidden max-w-md" set:html={post.excerpt} />
             </div>
-          </div>
+          </a>
         ))
       }
     </div>
