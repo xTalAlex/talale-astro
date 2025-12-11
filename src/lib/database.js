@@ -136,6 +136,8 @@ export const getRankings = async () => {
     return {
       id: doc.id,
       ...user,
+      createdAt: user.createdAt.toDate(),
+      updatedAt: user.updatedAt.toDate(),
     };
   });
 };
