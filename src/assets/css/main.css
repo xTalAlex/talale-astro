@@ -13,8 +13,6 @@
 @theme {
   --font-sans: "Chakra Petch", sans-serif;
   --font-mono: "VT323", monospace;
-
-  --breakpoint-print: print;
 }
 
 @utility container {

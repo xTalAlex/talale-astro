@@ -2,6 +2,7 @@
 import Config from "@config/general.json";
 import profilePic from "@assets/images/IoTramonto.jpg";
 import googleBadge from "@assets/images/google-ads-skillshop.png";
+import IubendaBadge from "@assets/images/iubenda-badge.png";
 import { Image } from "astro:assets";
 import { marked } from "marked";
 ---
@@ -64,8 +65,10 @@ import { marked } from "marked";
         class=""
         title="iubenda Certified Bronze Partner"
       >
-        <img
-          src="https://www.iubenda.com/partner/bronze@2x.png"
+        <Image
+          role="img"
+          aria-label="Iubenda Partner Badge"
+          src={IubendaBadge}
           alt="iubenda Certified Bronze Partner"
           width="204"
           height="72"
