@@ -128,6 +128,10 @@ npm run check        # Check Astro project for errors
 - [ ] **E-commerce Template** - Integration with Crystallize
 - [ ] **Test Coverage** - Improve npm test coverage
 - [ ] **Throttling wishlist DB operations** - Avoid DB calls spam
+- [ ] **IGDB backend API** - Handle operations via API endpoints
+- [ ] **Auth via BetterAuth** - Replacing current Auth0
+- [ ] **AI chatbot** - For example for project estimates
+- [ ] **Digimon API** - For fun
 
 ---
 
