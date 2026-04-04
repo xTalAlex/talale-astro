@@ -15,7 +15,12 @@ export const userInfo = map({
 });
 
 export function setAuthenticatedUser(user) {
-  Object.entries(user).forEach(([key, value]) => {
+  const normalizedUser = {
+    ...user,
+    avatar: user.image ?? user.avatar ?? null,
+    isAdmin: user.role === "admin",
+  };
+  Object.entries(normalizedUser).forEach(([key, value]) => {
     userInfo.setKey(key, value);
   });
   isLogged.set(true);
@@ -40,10 +45,6 @@ export async function loadUser() {
   });
   const user = session?.data?.user ?? null;
   if (user) {
-    setAuthenticatedUser({
-      ...user,
-      avatar: user.image ?? null,
-      isAdmin: user.role === "admin",
-    });
+    setAuthenticatedUser(user);
   }
 }

@@ -9,10 +9,7 @@
     });
 
     if (session?.user) {
-      setAuthenticatedUser({
-        ...session.user,
-        avatar: session.user.image ?? null,
-      });
+      setAuthenticatedUser(session.user);
       document.dispatchEvent(new CustomEvent("loggedIn"));
     } else {
       clearAuthenticatedUser();
