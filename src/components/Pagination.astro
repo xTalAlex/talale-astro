@@ -37,7 +37,7 @@ if (rightEdge - leftEdge < Math.floor(size / 2) * 2) {
   }
 
   {
-    Array.from({ length: rightEdge - leftEdge + 1 }).map((item, index) => (
+    Array.from({ length: rightEdge - leftEdge + 1 }).map((_, index) => (
       <a
         class={`btn join-item md:btn-lg uppercase ${currentPage == leftEdge + index ? "btn-active" : ""}`}
         href={`${url}/${leftEdge + index}`}

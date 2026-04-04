@@ -2,6 +2,7 @@
 import Layout from "@layouts/Layout.astro";
 import { posts } from "@data/posts";
 import { formatDate } from "@lib/utils";
+import type { Post } from "@src/types";
 
 const title = "Blog";
 ---
@@ -12,7 +13,7 @@ const title = "Blog";
 
     <div class="grid md:grid-cols-2">
       {
-        posts.map((post) => (
+        posts.map((post: Post) => (
           <a
             href={`/blog/${post.slug}`}
             class="group text-neutral-content relative block overflow-hidden"

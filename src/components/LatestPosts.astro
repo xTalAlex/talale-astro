@@ -1,6 +1,7 @@
 ---
 import { posts } from "@data/posts";
 import { formatDate } from "@lib/utils";
+import type { Post } from "@src/types";
 
 const { class: className } = Astro.props;
 ---
@@ -19,7 +20,7 @@ const { class: className } = Astro.props;
   <div class="relative z-10">
     <ul class="space-y-10">
       {
-        posts.slice(0, 4).map((post) => (
+        posts.slice(0, 4).map((post: Post) => (
           <li class="grid">
             <div class="badge badge-secondary badge-sm mb-2 w-24 place-self-end">
               {formatDate(post.date, "short")}

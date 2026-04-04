@@ -7,7 +7,7 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
 ---
 
 <div class="h-full w-full">
-  <form id="messagebox" netlify name="messagebox" method="POST">
+  <form id="messagebox" data-netlify="true" name="messagebox" method="POST">
     <div class="space-y-2">
       <input type="hidden" name="form-name" value="messagebox" />
       <textarea
@@ -98,7 +98,7 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
     };
 
     const handleError = () => {
-      window.notify(Config.messagebox.error, null, "error");
+      window.notify?.(Config.messagebox.error, null, "error");
       messageInput.disabled = false;
       emailInput.disabled = false;
       submitButton.disabled = false;
@@ -106,7 +106,7 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
     };
 
     const handleSuccess = () => {
-      window.notify(Config.messagebox.success, null, "success");
+      window.notify?.(Config.messagebox.success, null, "success");
       messageInput.value = "";
       emailInput.value = "";
       submitButton.classList.remove("loading");
@@ -133,7 +133,7 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
             if (res.status == 200) handleSuccess();
             else handleError();
           })
-          .catch((error) => {
+          .catch((_error) => {
             handleError();
           });
       }
@@ -144,8 +144,8 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
     });
     form.addEventListener("submit", handleSubmit);
 
-    document.addEventListener("videoRecorded", ({ detail }) => {
-      const { shareUrl } = detail;
+    document.addEventListener("videoRecorded", (event) => {
+      const { shareUrl } = (event as CustomEvent<{ shareUrl: string }>).detail;
       if (messageInput.value.length > 0) {
         messageInput.value += "\n";
       }

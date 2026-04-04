@@ -1,4 +1,4 @@
-export function getTawktoHash(email) {
+export async function getTawktoHash(email) {
   return fetch("/api/tawkto-hash", {
     method: "POST",
     headers: {

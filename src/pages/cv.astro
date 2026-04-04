@@ -235,13 +235,12 @@ const title = "Alessandro Talamona - CV";
   </div>
 </Layout>
 
-<script type="text/javascript">
+<script is:inline type="text/javascript">
   const curDate = document.getElementById("cur-date");
   curDate.innerHTML = new Date().toLocaleDateString();
 
   const handlePrint = () => {
     const cvContent = document.getElementById("cv-content").innerHTML;
-    const bodyContent = document.body.innerHTML;
     document.body.innerHTML = cvContent;
     document.getElementById("print").classList.add("hidden");
     window.print();

@@ -7,17 +7,17 @@
   <div class="absolute inset-0 z-10"></div>
 </div>
 
-<script is:inline src="https://pixijs.download/release/pixi.js">
-  import { addSyntheticTrailingComment } from "typescript";
-</script>
+<script>
+  import * as PIXI from 'pixi.js';
 
-<script is:inline>
+  type SmokeGroup = PIXI.Graphics & { tick: number };
+
   const app = new PIXI.Application();
 
   const trainContainer = new PIXI.Container();
 
   (async () => {
-    const container = document.getElementById("train");
+    const container = document.getElementById("train") as HTMLElement;
     const width = container.clientWidth;
     const height = Math.min(600, window.innerHeight * 0.75);
 
@@ -42,7 +42,7 @@
     addSmokes(app, trainContainer);
   })();
 
-  function addStars(app) {
+  function addStars(app: PIXI.Application) {
     const graphics = new PIXI.Graphics();
     const starCount = 20;
     const starPoints = 5;
@@ -62,7 +62,7 @@
     app.stage.addChild(graphics);
   }
 
-  async function addMoon(app) {
+  async function addMoon(app: PIXI.Application) {
     const moonSvg = await PIXI.Assets.load({
       src: "/uploads/moon.svg",
       data: {
@@ -84,14 +84,14 @@
     app.stage.addChild(graphics);
   }
 
-  function addMountains(app) {
+  function addMountains(app: PIXI.Application) {
     const group1 = createMountainGroup(app);
     const group2 = createMountainGroup(app);
 
     group2.x = app.screen.width;
     app.stage.addChild(group1, group2);
 
-    app.ticker.add((time) => {
+    app.ticker.add((time: PIXI.Ticker) => {
       // Calculate the amount of distance to move the mountain groups per tick.
       const dx = time.deltaTime * 0.5;
 
@@ -109,7 +109,7 @@
     });
   }
 
-  function createMountainGroup(app) {
+  function createMountainGroup(app: PIXI.Application) {
     const graphics = new PIXI.Graphics();
     const width = app.screen.width / 2;
     const startY = app.screen.height;
@@ -163,7 +163,7 @@
     return graphics;
   }
 
-  function createTree(width, height) {
+  function createTree(width: number, height: number) {
     const trunkWidth = 30;
     const trunkHeight = height / 4;
     const trunkColor = 0x563929;
@@ -192,12 +192,12 @@
     return graphics;
   }
 
-  function addTrees(app) {
+  function addTrees(app: PIXI.Application) {
     const treeWidth = 200;
     const y = app.screen.height - 20;
     const spacing = 15;
     const count = app.screen.width / (treeWidth + spacing) + 1;
-    const trees = [];
+    const trees: PIXI.Graphics[] = [];
 
     for (let index = 0; index < count; index++) {
       const treeHeight = 225 + Math.random() * 50;
@@ -211,7 +211,7 @@
       trees.push(tree);
     }
 
-    app.ticker.add((time) => {
+    app.ticker.add((time: PIXI.Ticker) => {
       const dx = time.deltaTime * 2;
 
       trees.forEach((tree) => {
@@ -224,7 +224,7 @@
     });
   }
 
-  function addGround(app) {
+  function addGround(app: PIXI.Application) {
     const width = app.screen.width;
     const groundHeight = 20;
     const groundY = app.screen.height;
@@ -240,7 +240,7 @@
     const plankGap = 20;
     const plankCount = width / (plankWidth + plankGap) + 1;
     const plankY = groundY - groundHeight;
-    const planks = [];
+    const planks: PIXI.Graphics[] = [];
 
     for (let index = 0; index < plankCount; index++) {
       const plank = new PIXI.Graphics()
@@ -252,7 +252,7 @@
       planks.push(plank);
     }
 
-    app.ticker.add((time) => {
+    app.ticker.add((time: PIXI.Ticker) => {
       const dx = time.deltaTime * 6;
 
       planks.forEach((plank) => {
@@ -273,7 +273,7 @@
     app.stage.addChild(rail);
   }
 
-  function createTrainHead(app) {
+  function createTrainHead(app: PIXI.Application) {
     const container = new PIXI.Container();
 
     const frontHeight = 100;
@@ -376,7 +376,7 @@
 
     container.addChild(graphics, backWheel, midWheel, frontWheel);
 
-    app.ticker.add((time) => {
+    app.ticker.add((time: PIXI.Ticker) => {
       const dr = time.deltaTime * 0.15;
 
       backWheel.rotation += dr * (smallWheelRadius / bigWheelRadius);
@@ -387,7 +387,7 @@
     return container;
   }
 
-  function createTrainWheel(radius) {
+  function createTrainWheel(radius: number) {
     const strokeThickness = radius / 3;
     const innerRadius = radius - strokeThickness;
 
@@ -477,7 +477,7 @@
 
     container.addChild(graphics, backWheel, frontWheel);
 
-    app.ticker.add((time) => {
+    app.ticker.add((time: PIXI.Ticker) => {
       const dr = time.deltaTime * 0.15;
 
       backWheel.rotation += dr;
@@ -487,9 +487,9 @@
     return container;
   }
 
-  function addTrain(app, container) {
+  function addTrain(app: PIXI.Application, container: PIXI.Container) {
     const head = createTrainHead(app);
-    const carriage = createTrainCarriage(app);
+    const carriage = createTrainCarriage();
 
     carriage.x = -carriage.width;
 
@@ -511,7 +511,7 @@
 
     trainContainer.y = baseY;
 
-    app.ticker.add((time) => {
+    app.ticker.add((time: PIXI.Ticker) => {
       elapsed += time.deltaTime;
       const offset =
         (Math.sin(elapsed * 0.5 * speed) * 0.5 + 0.5) * shakeDistance;
@@ -520,15 +520,15 @@
     });
   }
 
-  function addSmokes(app, trainContainer) {
+  function addSmokes(app: PIXI.Application, trainContainer: PIXI.Container) {
     const groupCount = 5;
     const particleCount = 7;
-    const groups = [];
+    const groups: SmokeGroup[] = [];
     const baseX = trainContainer.x + 170;
     const baseY = trainContainer.y - 120;
 
     for (let index = 0; index < groupCount; index++) {
-      const smokeGroup = new PIXI.Graphics();
+      const smokeGroup = new PIXI.Graphics() as SmokeGroup;
 
       for (let i = 0; i < particleCount; i++) {
         const radius = 20 + Math.random() * 20;
@@ -548,7 +548,7 @@
       groups.push(smokeGroup);
     }
 
-    app.ticker.add((time) => {
+    app.ticker.add((time: PIXI.Ticker) => {
       const dt = time.deltaTime * 0.01;
 
       groups.forEach((group) => {

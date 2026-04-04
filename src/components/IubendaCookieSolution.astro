@@ -7,7 +7,7 @@ export interface Props {
 const { siteId, policyId } = Astro.props;
 ---
 
-<script type="text/javascript" data-site-id={siteId} data-policy-id={policyId}>
+<script is:inline type="text/javascript" data-site-id={siteId} data-policy-id={policyId}>
   var _iub = _iub || [];
   _iub.csConfiguration = {
     countryDetection: true,
@@ -41,9 +41,10 @@ const { siteId, policyId } = Astro.props;
     },
   };
 </script>
-<script type="text/javascript" src={`//cs.iubenda.com/sync/${siteId}.js`}
+<script is:inline type="text/javascript" src={`//cs.iubenda.com/sync/${siteId}.js`}
 ></script>
 <script
+  is:inline
   type="text/javascript"
   src="//cdn.iubenda.com/cs/iubenda_cs.js"
   charset="UTF-8"

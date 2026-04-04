@@ -2,7 +2,7 @@
 const ZIGHT_API_KEY = import.meta.env.ZIGHT_API_KEY;
 ---
 
-<script data-api-key={ZIGHT_API_KEY}>
+<script is:inline data-api-key={ZIGHT_API_KEY}>
   const options = {
     apiKey: document.currentScript.dataset.apiKey,
     thumbnailOptions: { width: 400, height: 200, playicon: true },

@@ -30,15 +30,18 @@ const description =
   <script>
     import { audioUtils } from "@lib/audioUtils";
 
-    const setupAudioContext = async function (stream) {
-      const context = new (window.AudioContext || window.webkitAudioContext)();
+    const canvasEl = document.getElementById("canvas") as HTMLCanvasElement;
+
+    const setupAudioContext = async function (stream: MediaStream) {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      const context = new AudioCtx();
       const source = context.createMediaStreamSource(stream);
       const analyser = context.createAnalyser();
       analyser.fftSize = 2048;
       source.connect(analyser);
       //source.connect(context.destination);
 
-      audioUtils.setupCanvasContext(canvas);
+      audioUtils.setupCanvasContext(canvasEl);
       const bufferLength = analyser.fftSize;
       const dataArray = new Uint8Array(bufferLength);
       const bufferLengthAlt = analyser.frequencyBinCount;
@@ -63,7 +66,7 @@ const description =
       }
       draw();
 
-      function displayNote(pitch) {
+      function displayNote(pitch: { frequency: number; note: string }) {
         if (
           pitch.frequency !== -1 &&
           audioUtils.pitchIsSimilarTo(
@@ -78,9 +81,9 @@ const description =
           previousValueToDisplay = pitch.frequency;
           smoothingCount = 0;
         }
-        document.getElementById("frequency").innerText =
+        (document.getElementById("frequency") as HTMLElement).innerText =
           (pitch.frequency > 0 ? pitch.frequency : 0) + " Hz";
-        document.getElementById("note").innerText =
+        (document.getElementById("note") as HTMLElement).innerText =
           pitch.frequency > 0 ? pitch.note : "...";
       }
     };

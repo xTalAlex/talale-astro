@@ -6,49 +6,15 @@ import Config from "@config/general.json";
 import Pagination from "@components/Pagination.astro";
 import WishList from "@components/vue/WishList.vue";
 import GameCard from "@components/GameCard.astro";
+import type { GetStaticPathsOptions, Page } from "astro";
+import type { NormalizedGame } from "@src/types";
 
-export async function getStaticPaths({ paginate }) {
-  const normalizedGames = games.map((game) => {
-    return {
-      slug: game.slug,
-      name: game.name,
-      cover: {
-        url: game.cover?.url?.replace("t_thumb", "t_cover_big"),
-        thumb: game.cover?.url,
-      },
-      screenshots: game.screenshots?.map((screenshot) => ({
-        url: screenshot.url.replace("t_thumb", "t_screenshot_big"),
-      })),
-      artworks: game.artworks?.map((artwork) => ({
-        url: artwork.url.replace("t_thumb", "t_screenshot_big"),
-      })),
-      url: game.url,
-      platforms: game.platforms?.map((platform) => ({
-        id: platform.id,
-        name: platform.name,
-      })),
-      totalRating: game.total_rating,
-      firstReleaseDate: game.first_release_date,
-      summary: game.summary,
-      genres: game.genres?.map((genre) => ({
-        id: genre.id,
-        name: genre.name,
-      })),
-      themes: game.themes?.map((theme) => ({
-        id: theme.id,
-        name: theme.name,
-      })),
-      involvedCompanies: game.involved_companies?.map((company) => ({
-        id: company.id,
-        name: company.name,
-        logo: company.logo,
-        websites: company.websites?.map((website) =>
-          website.url.startsWith("http") ? website.url : `//${website.url}`
-        ),
-      })),
-    };
-  });
-  return paginate(normalizedGames, { pageSize: Config.igdb.gamesPerPage });
+interface Props {
+  page: Page<NormalizedGame>;
+}
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  return paginate(games, { pageSize: Config.igdb.gamesPerPage });
 }
 const { page } = Astro.props;
 ---
@@ -121,7 +87,7 @@ const { page } = Astro.props;
   });
 </script>
 
-<script define:vars={{ lastPage: page.lastPage }}>
+<script is:inline define:vars={{ lastPage: page.lastPage }}>
   const randomPageButton = document.getElementById("random-page-button");
   randomPageButton.onclick = () => {
     window.location.href =

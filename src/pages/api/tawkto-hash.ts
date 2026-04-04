@@ -1,6 +1,5 @@
 import type { APIRoute } from "astro";
-import Base64 from "crypto-js/enc-base64";
-import hmacSHA256 from "crypto-js/hmac-sha256";
+import CryptoJS from "crypto-js";
 
 export const prerender = false;
 
@@ -21,7 +20,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     const key = import.meta.env.TAWKTO_SECRET_KEY;
 
-    const hash = Base64.stringify(hmacSHA256(email, key));
+    const hash = CryptoJS.enc.Base64.stringify(CryptoJS.HmacSHA256(email, key));
 
     console.log(email, "-", hash);
 

@@ -58,12 +58,12 @@ import gargoyles from "@assets/images/gargoyles.png";
   import { delayFunction, toTrimmedAlphanumeric } from "@lib/utils";
   import Config from "@config/general.json";
 
-  const searchInput = document.getElementById("search-input");
-  const searchButton = document.getElementById("search-button");
-  const clearButton = document.getElementById("clear-button");
-  const placeholder = document.getElementById("placeholder");
-  const noResults = document.getElementById("no-results");
-  const searchResults = document.getElementById("search-results");
+  const searchInput = document.getElementById("search-input") as HTMLInputElement;
+  const searchButton = document.getElementById("search-button") as HTMLButtonElement;
+  const clearButton = document.getElementById("clear-button") as HTMLButtonElement;
+  const placeholder = document.getElementById("placeholder") as HTMLElement;
+  const noResults = document.getElementById("no-results") as HTMLElement;
+  const searchResults = document.getElementById("search-results") as HTMLElement;
 
   var response = await fetch("/searchindex.json");
   const data = await response.json();
@@ -78,9 +78,10 @@ import gargoyles from "@assets/images/gargoyles.png";
       if (res.length) {
         html += "";
         for (let i = 0; i < res.length; i++) {
+          const item = res[i].item as { slug: string; name: string };
           html += `
-              <a href="/nintendo-switch/${getPageNumberByRef(res[i].refIndex)}#${res[i].item.slug}">
-                  <div class="m-1 whitespace-nowrap badge badge-lg badge-primary font-semibold badge-outline">${res[i].item.name}</div>    
+              <a href="/nintendo-switch/${getPageNumberByRef(res[i].refIndex)}#${item.slug}">
+                  <div class="m-1 whitespace-nowrap badge badge-lg badge-primary font-semibold badge-outline">${item.name}</div>    
               </a>
           `;
         }
@@ -101,12 +102,13 @@ import gargoyles from "@assets/images/gargoyles.png";
   const quickSearch = async (query: string) => {
     const res = fuse.search(query);
     if (res.length) {
-      let gameUrl = `/nintendo-switch/${getPageNumberByRef(res[0].refIndex)}#${res[0].item.slug}`;
+      const item = res[0].item as { slug: string };
+      let gameUrl = `/nintendo-switch/${getPageNumberByRef(res[0].refIndex)}#${item.slug}`;
       window.location.href = gameUrl;
     }
   };
 
-  const getPageNumberByRef = (ref) => {
+  const getPageNumberByRef = (ref: number) => {
     return Math.max(Math.ceil(ref / Config.igdb.gamesPerPage), 1);
   };
 
@@ -137,10 +139,11 @@ import gargoyles from "@assets/images/gargoyles.png";
   });
 
   document.addEventListener("quickSearch", (event) => {
-    if (event.detail) quickSearch(event.detail);
+    const detail = (event as CustomEvent<string>).detail;
+    if (detail) quickSearch(detail);
   });
 
-  var params = new URL(document.location).searchParams;
+  var params = new URL(window.location.href).searchParams;
   var query = params.get("query");
   if (query) {
     searchInput.value = decodeURIComponent(query);

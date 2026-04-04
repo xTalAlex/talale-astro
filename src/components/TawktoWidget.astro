@@ -24,15 +24,15 @@ const { class: className = "", ...dataAttrs } = Astro.props;
   });
 </script>
 
-<script class:list={[className]} {...dataAttrs}>
-  var Tawk_API = Tawk_API || {};
-  var Tawk_LoadStart = new Date();
+<script is:inline class:list={[className]} {...dataAttrs}>
+  window.Tawk_API = window.Tawk_API || {};
+  window.Tawk_LoadStart = new Date();
 
   window.Tawk_API.onLoad = function () {
     document.dispatchEvent(new CustomEvent("tawktoLoaded"));
   };
 
-  window.Tawk_API.onOfflineSubmit = function (data) {
+  window.Tawk_API.onOfflineSubmit = function (_data) {
     window.gtag &&
       window.gtag("event", "form_submit", {
         form_name: "tawkto_offline_form",
@@ -47,7 +47,6 @@ const { class: className = "", ...dataAttrs } = Astro.props;
       s0 = document.getElementsByTagName("script")[0];
     s1.async = true;
     s1.src = document.currentScript.dataset.widget;
-    s1.charset = "UTF-8";
     s1.setAttribute("crossorigin", "*");
     s0.parentNode.insertBefore(s1, s0);
   })();

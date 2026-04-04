@@ -56,7 +56,7 @@ const fullTitle = Config.title + " | " + Config.motto;
   const eveningBG = "images/castelia-city-evening.jfif";
   const nightBG = "images/castelia-city-night.jfif";
 
-  const container = document.getElementById("hero-container");
+  const container = document.getElementById("hero-container") as HTMLElement;
   const currentTime = new Date().getHours();
 
   if (currentTime >= 6 && currentTime < 12)

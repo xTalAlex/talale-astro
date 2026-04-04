@@ -3,7 +3,7 @@
   import { setAuthenticatedUser, clearAuthenticatedUser } from "@lib/authStore";
 
   async function loadIdentity() {
-    const { data: session, error } = await authClient.getSession().catch((e) => {
+    const { data: session } = await authClient.getSession().catch((e) => {
       console.error(e);
       return { data: null, error: e };
     });

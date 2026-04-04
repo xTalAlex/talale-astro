@@ -1,8 +1,9 @@
 ---
 import { formatDate } from "@lib/utils";
 import AddToWishlist from "@components/vue/AddToWishlist.vue";
+import type { NormalizedGame } from "@src/types";
 
-const { game } = Astro.props;
+const { game } = Astro.props as { game: NormalizedGame };
 ---
 
 <div
@@ -163,8 +164,8 @@ const { game } = Astro.props;
         client:only="vue"
         id={game.slug}
         name={game.name}
-        imgSrc={game.cover?.thumb}
-        releaseDate={game.firstReleaseDate}
+        imgSrc={game.cover?.thumb ?? ""}
+        releaseDate={game.firstReleaseDate ?? 0}
       />
     </div>
   </div>

@@ -14,10 +14,10 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
     <div class="">
       <div class="border-accent relative flex border-4">
         {
-          table.map((col, colId) => {
+          table.map((_col, colId) => {
             return (
               <div class="text-neutral-content">
-                {table.map((row, rowId) => {
+                {table.map((_row, rowId) => {
                   return (
                     <div
                       class="minesweeper-cell border-neutral-content hover:border-accent z-10 grid h-8 w-8 cursor-pointer place-items-center border-2 text-center font-black shadow-inner select-none active:shadow-none md:h-10 md:w-10"
@@ -156,14 +156,14 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
       electrodeCry.play();
       storeResult(false);
       trackGoogleEvent("game_lost");
-      setTimeout(showBombs(id), 2000);
+      showBombs(id);
       return;
     } else {
       cell.innerHTML = table[coordinates.col][coordinates.row];
       cell.classList.add(
         table[coordinates.col][coordinates.row] > 3
           ? colorsTable[3]
-          : colorsTable[table[coordinates.col][coordinates.row]]
+          : colorsTable[table[coordinates.col][coordinates.row] as 0 | 1 | 2 | 3]
       );
     }
     checkedCtr++;
@@ -191,7 +191,7 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
     refresh.disabled = true;
     var remainingBombs = bombs.filter((id) => id != excludeId);
     remainingBombs.forEach((id, i) => {
-      let cell = document.getElementById(id);
+      let cell = document.getElementById(String(id));
       setTimeout(() => {
         cell &&
           (cell.innerHTML = `<img class="h-5 w-5 md:h-6 md:w-6" src='${electrode}'/>`);
@@ -262,7 +262,7 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
 
   const storeResult = async (victory: boolean) => {
     if (isLogged.get()) {
-      const response = await fetch("/api/ranking", {
+      await fetch("/api/ranking", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
