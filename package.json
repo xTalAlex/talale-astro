@@ -13,7 +13,8 @@
     "lint": "npx eslint src",
     "prettier": "npx prettier ./src --write --list-different",
     "check": "astro check",
-    "prisma": "prisma"
+    "prisma": "prisma",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@astrojs/markdoc": "^0.15.9",
