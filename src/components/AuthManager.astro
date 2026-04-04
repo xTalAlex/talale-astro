@@ -24,8 +24,9 @@
         loadIdentity();
       });
   });
-  document.addEventListener("requestLogout", () => {
-    authClient.signOut();
+  document.addEventListener("requestLogout", async () => {
+    await authClient.signOut();
+    window.location.reload();
   });
 
   loadIdentity();
