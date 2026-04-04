@@ -5,7 +5,6 @@ import { Icon } from "astro-icon/components";
 
 <dialog id="login_modal" class="modal">
   <div class="modal-box">
-
     <form method="dialog">
       <button class="btn btn-circle btn-sm absolute top-2 right-2 uppercase">
         &times;
@@ -15,13 +14,13 @@ import { Icon } from "astro-icon/components";
     <h3 class="text-lg font-bold">Login</h3>
 
     <!-- Inline alert -->
-      <div
-        id="login-modal-alert"
-        role="alert"
-        class="mt-2 alert alert-error alert-soft hidden"
-      >
-        <span id="login-modal-alert-message"></span>
-      </div>
+    <div
+      id="login-modal-alert"
+      role="alert"
+      class="alert alert-error alert-soft mt-2 hidden"
+    >
+      <span id="login-modal-alert-message"></span>
+    </div>
 
     <!-- Email & Password -->
     <div class="mt-4 space-y-2">
@@ -91,9 +90,13 @@ import { Icon } from "astro-icon/components";
     alertMessage.textContent = message;
     alertBox.classList.remove("hidden");
     alertBox.classList.add("animate__animated", "animate__fadeIn");
-    alertBox.addEventListener("animationend", () => {
-      alertBox.classList.remove("animate__animated", "animate__fadeIn");
-    }, { once: true });
+    alertBox.addEventListener(
+      "animationend",
+      () => {
+        alertBox.classList.remove("animate__animated", "animate__fadeIn");
+      },
+      { once: true },
+    );
   }
 
   document.addEventListener("loginError", (e: Event) => {

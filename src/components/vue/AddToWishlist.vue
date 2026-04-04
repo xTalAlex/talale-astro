@@ -13,13 +13,13 @@
 </template>
 
 <script setup>
+import { useStore } from "@nanostores/vue";
 import {
   wishlist,
   addWishlistItem,
   removeWishlistItem,
   wishlistContains,
 } from "@src/lib/wishlistStore";
-import { useStore } from "@nanostores/vue";
 import { ref, computed, watch } from "vue";
 
 const props = defineProps({

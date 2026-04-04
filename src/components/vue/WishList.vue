@@ -28,9 +28,9 @@
 </template>
 
 <script setup>
+import { useStore } from "@nanostores/vue";
 import { fromReleaseDate, toReleaseDate } from "@src/lib/utils";
 import { wishlist, removeWishlistItem } from "@src/lib/wishlistStore";
-import { useStore } from "@nanostores/vue";
 import { computed, onMounted } from "vue";
 
 const $wishlist = useStore(wishlist);

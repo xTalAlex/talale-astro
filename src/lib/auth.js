@@ -1,10 +1,10 @@
+import { i18n } from "@better-auth/i18n";
 import { PrismaPg } from "@prisma/adapter-pg";
+import Config from "@src/config/general.json";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { admin } from "better-auth/plugins";
-import { i18n } from "@better-auth/i18n";
 import { MailtrapClient } from "mailtrap";
-import Config from "@src/config/general.json";
 
 import { PrismaClient } from "../../prisma/generated/client";
 

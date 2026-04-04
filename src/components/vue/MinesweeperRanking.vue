@@ -57,9 +57,9 @@
 </template>
 
 <script setup>
+import { useStore } from "@nanostores/vue";
 import { isLogged } from "@src/lib/authStore";
 import { formatDate } from "@src/lib/utils";
-import { useStore } from "@nanostores/vue";
 import { ref, onMounted } from "vue";
 
 let players = ref(null);

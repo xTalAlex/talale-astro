@@ -75,13 +75,13 @@
 </template>
 
 <script setup>
+import { useStore } from "@nanostores/vue";
 import TabItem from "@src/components/vue/common/TabItem.vue";
 import TabsWrapper from "@src/components/vue/common/TabsWrapper.vue";
 import UserInfo from "@src/components/vue/UserInfo.vue";
 import UserUpdate from "@src/components/vue/UserUpdate.vue";
 import { isLogged, userInfo, loadUser } from "@src/lib/authStore";
 import { formatDate } from "@src/lib/utils";
-import { useStore } from "@nanostores/vue";
 import { onMounted } from "vue";
 
 const $isLogged = useStore(isLogged);
