@@ -63,7 +63,7 @@ document.addEventListener("requestPasswordReset", async (e: Event) => {
   } else {
     const { error } = await authClient.requestPasswordReset({
       email,
-      redirectTo: "/",
+      redirectTo: "/reset-password",
     });
     if (error) {
       document.dispatchEvent(
