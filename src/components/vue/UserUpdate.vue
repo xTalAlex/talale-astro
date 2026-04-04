@@ -106,7 +106,7 @@
 </template>
 
 <script setup>
-import { updateUser, deleteUser } from "@lib/auth";
+import { updateUser, deleteUser, changePassword, changeEmail } from "@lib/auth-client";
 import { ref, computed } from "vue";
 
 const props = defineProps({
@@ -217,18 +217,16 @@ function submit() {
   if (!loading.value && !successMessage.value && isValueChanged.value) {
     successMessage.value = null;
     loading.value = true;
-    var data = null;
     if (validate()) {
       if (choice.value === "delete") {
         deleteUser()
-          .then(async (response) => {
-            const result = await response.json();
-            if (response.ok) {
+          .then(({ error }) => {
+            if (!error) {
               successMessage.value = successMessages[choice.value];
               document.dispatchEvent(new CustomEvent("requestLogout"));
             } else {
               errorBag.value[choice.value] =
-                result.error || "Errore durante l'eliminazione";
+                error.message || "Errore durante l'eliminazione";
             }
             loading.value = false;
           })
@@ -237,35 +235,40 @@ function submit() {
             errorBag.value[choice.value] = error.message || error;
           });
       } else {
+        let action = null;
         switch (choice.value) {
           case "name":
-            data = { username: formData.value.name };
+            action = updateUser({ name: formData.value.name });
             break;
           case "email":
-            data = { email: formData.value.email };
+            action = changeEmail({ newEmail: formData.value.email, callbackURL: "/" });
             break;
           case "password":
-            data = { password: formData.value.password };
-            break;
-          default:
+            action = changePassword({
+              newPassword: formData.value.password,
+              currentPassword: formData.value.passwordConfirm,
+            });
             break;
         }
-        updateUser(data)
-          .then(async (response) => {
-            const result = await response.json();
-            if (response.ok) {
-              successMessage.value = successMessages[choice.value];
-            } else {
-              errorBag.value[choice.value] =
-                result.error || "Errore durante l'aggiornamento";
-            }
-            loading.value = false;
-            emit("userUpdated");
-          })
-          .catch((error) => {
-            loading.value = false;
-            errorBag.value[choice.value] = error.message || error;
-          });
+        if (action) {
+          action
+            .then(({ error }) => {
+              if (!error) {
+                successMessage.value = successMessages[choice.value];
+              } else {
+                errorBag.value[choice.value] =
+                  error.message || "Errore durante l'aggiornamento";
+              }
+              loading.value = false;
+              emit("userUpdated");
+            })
+            .catch((error) => {
+              loading.value = false;
+              errorBag.value[choice.value] = error.message || error;
+            });
+        } else {
+          loading.value = false;
+        }
       }
     } else loading.value = false;
   }

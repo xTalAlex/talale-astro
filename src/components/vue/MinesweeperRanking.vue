@@ -61,7 +61,6 @@ import { ref, onMounted } from "vue";
 import { useStore } from "@nanostores/vue";
 import { isLogged } from "@lib/authStore";
 import { formatDate } from "@lib/utils";
-import { getRankings } from "@lib/database";
 
 let players = ref(null);
 let open = ref(false);
@@ -83,9 +82,11 @@ function lastUpdateLabel(date) {
 }
 
 function fetchRanks() {
-  getRankings().then((data) => {
-    players.value = data;
-  });
+  fetch("/api/ranking")
+    .then((res) => res.json())
+    .then(({ rankings }) => {
+      players.value = rankings;
+    });
 }
 
 function refreshRanking() {

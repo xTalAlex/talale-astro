@@ -1,35 +1,32 @@
 <script>
-  import { authCheck, getUser, login, logout } from "@lib/auth";
+  import { authClient } from "@lib/auth-client";
   import { setAuthenticatedUser, clearAuthenticatedUser } from "@lib/authStore";
 
   async function loadIdentity() {
-    const isLogged = await authCheck().catch((error) => {
-      console.error(error);
-      return false;
+    const { data: session, error } = await authClient.getSession().catch((e) => {
+      console.error(e);
+      return { data: null, error: e };
     });
 
-    if (isLogged) {
-      const user = await getUser().catch((error) => {
-        console.error(error);
-        return false;
+    if (session?.user) {
+      setAuthenticatedUser({
+        ...session.user,
+        avatar: session.user.image ?? null,
       });
-      if (user) {
-        setAuthenticatedUser(user);
-        document.dispatchEvent(new CustomEvent("loggedIn"));
-      } else {
-        clearAuthenticatedUser();
-        document.dispatchEvent(new CustomEvent("loggedOut"));
-      }
+      document.dispatchEvent(new CustomEvent("loggedIn"));
+    } else {
+      clearAuthenticatedUser();
+      document.dispatchEvent(new CustomEvent("loggedOut"));
     }
   }
 
   document.addEventListener("requestLogin", () => {
-    login().then(() => {
+    authClient.signIn.social({ provider: "google", callbackURL: "/" }).then(() => {
       loadIdentity();
     });
   });
   document.addEventListener("requestLogout", () => {
-    logout();
+    authClient.signOut();
   });
 
   loadIdentity();

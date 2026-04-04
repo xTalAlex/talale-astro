@@ -22,5 +22,4 @@ pnpm-debug.log*
 # Local Netlify folder
 .netlify
 
-cypress/screenshots/
-cypress/downloads/
+prisma/generated/

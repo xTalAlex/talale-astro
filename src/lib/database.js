@@ -1,202 +1,93 @@
-import { initializeApp } from "firebase/app";
-import {
-  getFirestore,
-  collection,
-  doc,
-  getDocs,
-  getDoc,
-  addDoc,
-  updateDoc,
-  runTransaction,
-  orderBy,
-  query,
-  where,
-  Timestamp,
-} from "firebase/firestore";
-
-const firebaseConfig = {
-  apiKey: import.meta.env.PUBLIC_FIREBASE_API_KEY,
-  authDomain: import.meta.env.PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.PUBLIC_FIREBASE_APP_ID,
-};
-
-const app = initializeApp(firebaseConfig);
-
-export const db = getFirestore(app);
-
-export const usersCollection = collection(db, "users");
+import prisma from "@lib/prisma";
 
 /**
- * @throws {Error} If Firestore operation fails
- */
-export const createUser = async (userData) => {
-  const now = Timestamp.now();
-  const docRef = await addDoc(usersCollection, {
-    ...userData,
-    streakRecord: userData.streakRecord ?? 0,
-    curStreak: userData.curStreak ?? 0,
-    createdAt: now,
-    updatedAt: now,
-  });
-  return docRef.id;
-};
-
-/**
- * @throws {Error} If Firestore operation fails
- */
-export const updateUser = async (userId, userData) => {
-  const userRef = doc(db, "users", userId);
-  await updateDoc(userRef, {
-    ...userData,
-    updatedAt: Timestamp.now(),
-  });
-};
-
-/**
- * @param {string} secondaryId The auth database ID ('sub' from Auth0)
- * @throws {Error} If Firestore query fails
- */
-export const getUserBySecondaryId = async (secondaryId) => {
-  const querySnapshot = await getDocs(
-    query(usersCollection, where("secondaryId", "==", secondaryId)),
-  );
-
-  const docData = querySnapshot?.docs?.[0];
-  const data = docData?.data();
-  return data
-    ? {
-        id: docData.id,
-        secondaryId: data.secondaryId,
-        name: data.name,
-        email: data.email,
-        streakRecord: data.streakRecord || 0,
-        curStreak: data.curStreak || 0,
-        createdAt: data.createdAt.toDate(),
-        updatedAt: data.updatedAt.toDate(),
-      }
-    : null;
-};
-
-/**
- * @param {string} userId The Firestore user document ID for the User
- * @throws {Error} If Firestore query fails
+ * @param {string} userId
+ * @throws {Error} If database operation fails
  */
 export const getUserWishlist = async (userId) => {
-  const userRef = doc(db, "users", userId);
-  const userDoc = await getDoc(userRef);
+  const items = await prisma.wishlistItem.findMany({
+    where: { userId },
+    orderBy: { addedAt: "asc" },
+  });
 
-  let wishlist = null;
-  if (userDoc.exists()) {
-    const userData = userDoc.data();
-    if (userData?.wishlist?.updatedAt) {
-      userData.wishlist.updatedAt = userData.wishlist.updatedAt.toDate();
-    }
-    wishlist = userData.wishlist || { items: [], updatedAt: Timestamp.now() };
-  } else {
-    wishlist = null;
-  }
-
-  return wishlist;
+  return {
+    items: items.map((item) => ({
+      id: item.itemId,
+      name: item.name,
+      imgSrc: item.imgSrc,
+      releaseDate: item.releaseDate,
+      addedAt: item.addedAt,
+    })),
+    updatedAt: items.at(-1)?.addedAt ?? new Date(),
+  };
 };
 
 /**
- * @param {string} userId  The Firestore user document ID for the User
- * @param {object} wishlist
- * @throws {Error} If Firestore operation fails
+ * @param {string} userId
+ * @param {{ items: Array<{id: string|number}>, updatedAt: number|null }} wishlistData
+ * @throws {Error} If database operation fails
  */
-export const updateUserWishlist = async (userId, wishlist) => {
-  const userRef = doc(db, "users", userId);
-  await updateDoc(userRef, {
-    wishlist: {
-      items: wishlist.items,
-      updatedAt: wishlist.updatedAt
-        ? Timestamp.fromMillis(wishlist.updatedAt)
-        : Timestamp.now(),
-    },
+export const updateUserWishlist = async (userId, wishlistData) => {
+  await prisma.$transaction(async (tx) => {
+    await tx.wishlistItem.deleteMany({ where: { userId } });
+
+    if (wishlistData.items.length) {
+      await tx.wishlistItem.createMany({
+        data: wishlistData.items.map((item) => ({
+          userId,
+          itemId: String(item.id),
+          name: item.name ?? null,
+          imgSrc: item.imgSrc ?? null,
+          releaseDate: item.releaseDate ?? null,
+        })),
+      });
+    }
   });
 };
 
 /**
- * @throws {Error} If Firestore query fails
+ * @throws {Error} If database operation fails
  */
 export const getRankings = async () => {
-  const querySnapshot = await getDocs(
-    query(
-      usersCollection,
-      orderBy("streakRecord", "desc"),
-      orderBy("curStreak", "desc"),
-    ),
-  );
-
-  return querySnapshot.docs.map((doc) => {
-    const user = doc.data();
-    return {
-      id: doc.id,
-      ...user,
-      createdAt: user.createdAt.toDate(),
-      updatedAt: user.updatedAt.toDate(),
-    };
+  const rankings = await prisma.ranking.findMany({
+    orderBy: [{ streakRecord: "desc" }, { curStreak: "desc" }],
+    include: { user: { select: { name: true, email: true } } },
   });
+
+  return rankings.map((r) => ({
+    id: r.userId,
+    name: r.user.name,
+    email: r.user.email,
+    streakRecord: r.streakRecord,
+    curStreak: r.curStreak,
+    updatedAt: r.updatedAt,
+  }));
 };
 
 /**
- * @param {string} secondaryId The auth database ID ('sub' from Auth0)
- * @param {Object<{name: string, email:string, victory: boolean}>} rankingData User data to create/update
+ * @param {string} userId
+ * @param {{ name: string, email: string, victory: boolean }} rankingData
  * @returns {Promise<{created: boolean, userId: string, curStreak: number, streakRecord: number}>}
- * @throws {Error} If Firestore transaction fails
+ * @throws {Error} If database operation fails
  */
-export const upsertRanking = async (secondaryId, rankingData) => {
-  return await runTransaction(db, async (transaction) => {
+export const upsertRanking = async (userId, rankingData) => {
+  return await prisma.$transaction(async (tx) => {
+    const existing = await tx.ranking.findUnique({ where: { userId } });
     let created = false;
-    let userId = "";
     let curStreak = 0;
     let streakRecord = 0;
 
-    const querySnapshot = await getDocs(
-      query(usersCollection, where("secondaryId", "==", secondaryId)),
-    );
-
-    const now = Timestamp.now();
-
-    if (querySnapshot.empty) {
-      const newUserRef = doc(usersCollection);
-
+    if (!existing) {
       created = true;
-      userId = newUserRef.id;
       curStreak = rankingData.victory ? 1 : 0;
       streakRecord = rankingData.victory ? 1 : 0;
-
-      transaction.set(newUserRef, {
-        secondaryId,
-        name: rankingData.name,
-        email: rankingData.email,
-        streakRecord: rankingData.victory ? 1 : 0,
-        curStreak: rankingData.victory ? 1 : 0,
-        createdAt: now,
-        updatedAt: now,
-      });
+      await tx.ranking.create({ data: { userId, curStreak, streakRecord } });
     } else {
-      const existingDoc = querySnapshot.docs[0];
-      const existingData = existingDoc.data();
-      const userRef = doc(db, "users", existingDoc.id);
-
-      created = false;
-      userId = existingDoc.id;
-      curStreak = rankingData.victory ? Number(existingData.curStreak) + 1 : 0;
-      streakRecord =
-        Number(existingData.streakRecord) > curStreak
-          ? existingData.streakRecord
-          : curStreak;
-
-      transaction.update(userRef, {
-        name: rankingData.name,
-        email: rankingData.email,
-        streakRecord: streakRecord,
-        curStreak: curStreak,
-        updatedAt: now,
+      curStreak = rankingData.victory ? existing.curStreak + 1 : 0;
+      streakRecord = Math.max(existing.streakRecord, curStreak);
+      await tx.ranking.update({
+        where: { userId },
+        data: { curStreak, streakRecord },
       });
     }
 

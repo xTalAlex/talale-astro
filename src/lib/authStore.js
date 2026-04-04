@@ -1,5 +1,5 @@
 import { atom, map } from "nanostores";
-import { getFreshUser } from "@lib/auth";
+import { authClient } from "@lib/auth-client";
 
 export const isLogged = atom(false);
 
@@ -34,9 +34,16 @@ export function clearAuthenticatedUser() {
 }
 
 export async function loadUser() {
-  const user = await getFreshUser().catch((error) => {
+  const session = await authClient.getSession().catch((error) => {
     console.error("Failed to load authenticated user", error);
     return null;
   });
-  if (user) setAuthenticatedUser(user);
+  const user = session?.data?.user ?? null;
+  if (user) {
+    setAuthenticatedUser({
+      ...user,
+      avatar: user.image ?? null,
+      isAdmin: user.role === "admin",
+    });
+  }
 }

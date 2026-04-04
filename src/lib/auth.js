@@ -1,124 +1,50 @@
-import { createAuth0Client } from "@auth0/auth0-spa-js";
-import Config from "@config/general.json";
+import { betterAuth } from "better-auth";
+import { prismaAdapter } from "better-auth/adapters/prisma";
+import { PrismaClient } from "../../prisma/generated/client";
+import { PrismaPg } from "@prisma/adapter-pg";
+import { admin } from "better-auth/plugins";
+import { MailtrapClient } from "mailtrap";
 
-export const auth0Domain = import.meta.env.PUBLIC_AUTH0_DOMAIN;
-export const auth0ClientId = import.meta.env.PUBLIC_AUTH0_CLIENT_ID;
-export const claimsNamespace = Config.url.trimEnd("/");
+const adapter = new PrismaPg({
+  connectionString: import.meta.env.DATABASE_URL,
+});
 
-let auth0Client = null;
+const prisma = new PrismaClient({adapter});
 
-async function initAuth0() {
-  auth0Client = await createAuth0Client({
-    domain: auth0Domain,
-    clientId: auth0ClientId,
-    authorizationParams: {
-      redirect_uri: window.location.origin,
-      audience: Config.url,
+const mailtrap = new MailtrapClient({ token: import.meta.env.MAILTRAP_API_TOKEN });
+
+export const auth = betterAuth({
+    baseURL: import.meta.env.BETTER_AUTH_URL,
+    database: prismaAdapter(prisma, {
+        provider: "postgresql",
+    }),
+    emailAndPassword: { 
+        enabled: true,
+        requireEmailVerification: true,
     },
-  });
-
-  // Clean url after login with redirect
-  if (
-    window.location.search.includes("code=") &&
-    window.location.search.includes("state=")
-  ) {
-    await auth0Client.handleRedirectCallback();
-    window.history.replaceState({}, document.title, window.location.pathname);
-  }
-}
-
-export const login = (popup = true) => {
-  if (popup) {
-    return auth0Client.loginWithPopup().catch((error) => {
-      if (error.message !== "Popup closed") {
-        console.error(error);
-        throw error;
-      }
-    });
-  } else {
-    return auth0Client.loginWithRedirect();
-  }
-};
-
-export const logout = () => {
-  return auth0Client.logout({
-    logoutParams: {
-      returnTo: window.location.origin,
+    emailVerification: {
+        sendOnSignUp: true,
+        autoSignInAfterVerification: true,
+        sendVerificationEmail: async ({ user, url }) => {
+            await mailtrap.send({
+                to: [{ email: user.email, name: user.name }],
+                from: { email: import.meta.env.MAILTRAP_SENDER_EMAIL, name: import.meta.env.MAILTRAP_SENDER_NAME },
+                subject: "Verifica il tuo indirizzo email",
+                html: `<p>Clicca <a href="${url}">qui</a> per verificare il tuo indirizzo email.</p>`,
+            });
+        },
     },
-  });
-};
-
-export const authCheck = async () => {
-  return await auth0Client.isAuthenticated();
-};
-
-export const adminCheck = async () => {
-  const user = await getUser();
-  return user?.isAdmin ?? false;
-};
-
-export const getUser = async () => {
-  const user = await auth0Client.getUser();
-  return normalizeUser(user);
-};
-
-export const getFreshUser = async () => {
-  await auth0Client.getTokenSilently({ cacheMode: "off" });
-  const user = await auth0Client.getUser();
-  return normalizeUser(user);
-};
-
-export const getAccessToken = async () => {
-  return await auth0Client.getTokenSilently();
-};
-
-export const updateUser = async (data) => {
-  return fetch("/api/auth/user-update", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${await getAccessToken()}`,
+    socialProviders: { 
+        google: { 
+            clientId: import.meta.env.GOOGLE_AUTH_CLIENT_ID, 
+            clientSecret: import.meta.env.GOOGLE_AUTH_CLIENT_SECRET, 
+        }, 
     },
-    body: JSON.stringify(data),
-  });
-};
-
-export const deleteUser = async () => {
-  return fetch("/api/auth/user-delete", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${await getAccessToken()}`,
+    user: {
+        deleteUser: { enabled: true },
+        changeEmail: { enabled: true },
     },
-  });
-};
-
-/**
- * Normalize user object for authStore usage
- */
-export const normalizeUser = (auth0User) => {
-  const dbProfile = auth0User?.[claimsNamespace + "/db_profile"];
-
-  return dbProfile || auth0User
-    ? {
-        id: auth0User?.sub,
-        email: dbProfile?.email ?? auth0User.email,
-        emailVerified: dbProfile?.email_verified ?? auth0User.email_verified,
-        createdAt: auth0User[claimsNamespace + "/created_at"],
-        updatedAt: auth0User.updated_at,
-        name:
-          auth0User[claimsNamespace + "/username_cs"] ??
-          dbProfile?.username ??
-          auth0User.nickname,
-        avatar:
-          auth0User.picture ??
-          "https://robohash.org/" +
-            encodeURIComponent(dbProfile?.email ?? auth0User.email ?? "") +
-            ".png?bgset=bg1",
-        isAdmin:
-          auth0User[claimsNamespace + "/roles"]?.includes("admin") ?? false,
-      }
-    : null;
-};
-
-await initAuth0();
+    plugins: [
+        admin() 
+    ]
+});

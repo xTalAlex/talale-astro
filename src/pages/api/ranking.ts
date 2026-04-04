@@ -1,7 +1,6 @@
 import type { APIRoute } from "astro";
+import { auth } from "@lib/auth";
 import { getRankings, upsertRanking } from "@lib/database";
-import { verifyAuth0Token } from "@lib/jwt";
-import { auth0Issuer, auth0Audience } from "@lib/auth0Management";
 
 export const prerender = false;
 
@@ -64,16 +63,9 @@ export const POST: APIRoute = async ({ request }) => {
   let result = null;
   let error = "Failed to update ranking";
 
-  const verificationResult = await verifyAuth0Token(
-    request,
-    auth0Issuer,
-    auth0Audience,
-  );
+  const session = await auth.api.getSession({ headers: request.headers });
 
-  if (verificationResult.error) {
-    status = 403;
-    error = verificationResult.error;
-  } else if (!verificationResult.result?.payload?.sub) {
+  if (!session?.user) {
     status = 403;
     error = "Could not identify user";
   } else {
