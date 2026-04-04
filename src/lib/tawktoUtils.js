@@ -16,7 +16,7 @@ export async function getTawktoHash(email) {
 }
 
 export function setTawktoAttributes({ name, email }) {
-  if (email && name && window.Tawk_API) {
+  if (email && name && typeof window.Tawk_API?.setAttributes === "function") {
     getTawktoHash(email).then((data) => {
       window.Tawk_API.setAttributes({
         name: name,
