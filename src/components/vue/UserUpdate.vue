@@ -46,6 +46,17 @@
           data-prefix=">"
           :class="{ 'bg-error text-error-content': errorBag.password }"
         ><code><input 
+          v-model="formData.currentPassword"
+          class="bg-transparent" 
+          type="password"
+          placeholder="Password attuale"
+          @input="resetErrorBag"
+        /></code></pre>
+        <pre
+          v-if="choice == 'password'"
+          data-prefix=">"
+          :class="{ 'bg-error text-error-content': errorBag.password }"
+        ><code><input 
           v-model="formData.password"
           class="bg-transparent" 
           type="password"
@@ -141,6 +152,7 @@ const loading = ref(false);
 const formData = ref({
   name: props.defaultName,
   email: props.defaultEmail,
+  currentPassword: null,
   password: null,
   passwordConfirm: null,
   deleteConfirm: null,
@@ -157,7 +169,7 @@ const isValueChanged = computed(() => {
   let changed = false;
   switch (choice.value) {
     case "password":
-      changed = formData.value.password && formData.value.passwordConfirm;
+      changed = formData.value.currentPassword && formData.value.password && formData.value.passwordConfirm;
       break;
     case "delete":
       changed = formData.value.deleteConfirm === "sudo delete";
@@ -183,6 +195,7 @@ const btnColor = computed(() => {
 function resetInput() {
   formData.value.name = props.defaultName;
   formData.value.email = props.defaultEmail;
+  formData.value.currentPassword = null;
   formData.value.password = null;
   formData.value.passwordConfirm = null;
   formData.value.deleteConfirm = null;
@@ -254,7 +267,7 @@ function submit() {
           case "password":
             action = changePassword({
               newPassword: formData.value.password,
-              currentPassword: formData.value.passwordConfirm,
+              currentPassword: formData.value.currentPassword,
             });
             break;
         }
