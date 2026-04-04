@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro";
-import { auth } from "@lib/auth";
-import { getRankings, upsertRanking } from "@lib/database";
+import { auth } from "@src/lib/auth";
+import { getRankings, upsertRanking } from "@src/lib/database";
 
 export const prerender = false;
 

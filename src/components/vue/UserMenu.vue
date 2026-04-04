@@ -29,7 +29,7 @@
 </template>
 
 <script setup>
-import { isLogged, userInfo } from "@lib/authStore";
+import { isLogged, userInfo } from "@src/lib/authStore";
 import { useStore } from "@nanostores/vue";
 
 const $isLogged = useStore(isLogged);

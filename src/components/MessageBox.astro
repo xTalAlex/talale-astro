@@ -1,5 +1,5 @@
 ---
-import Config from "@config/general.json";
+import Config from "@src/config/general.json";
 import { Icon } from "astro-icon/components";
 
 import ZightButton from "./ZightButton.astro";
@@ -69,7 +69,7 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
   </form>
 
   <script>
-    import Config from "@config/general.json";
+    import Config from "@src/config/general.json";
 
     const form = document.getElementById("messagebox") as HTMLFormElement;
     const messageInput = document.getElementById(

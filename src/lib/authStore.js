@@ -1,4 +1,4 @@
-import { authClient } from "@lib/auth-client";
+import { authClient } from "@src/lib/auth-client";
 import { atom, map } from "nanostores";
 
 export const isLogged = atom(false);

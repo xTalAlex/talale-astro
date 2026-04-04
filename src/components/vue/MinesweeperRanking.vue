@@ -57,8 +57,8 @@
 </template>
 
 <script setup>
-import { isLogged } from "@lib/authStore";
-import { formatDate } from "@lib/utils";
+import { isLogged } from "@src/lib/authStore";
+import { formatDate } from "@src/lib/utils";
 import { useStore } from "@nanostores/vue";
 import { ref, onMounted } from "vue";
 

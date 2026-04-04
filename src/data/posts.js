@@ -1,4 +1,4 @@
-import Config from "@config/general.json";
+import Config from "@src/config/general.json";
 const API_URL = Config.blog.url + "/graphql";
 
 async function fetchAPI(query, { variables } = {}) {

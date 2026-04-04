@@ -1,7 +1,7 @@
 ---
-import electrodeCrySound from "@assets/audio/electrode.mp3";
-import itemFoundFanfareSound from "@assets/audio/pokemon_rby_item_found_fanfare.mp3";
-import MinesweeperRanking from "@components/vue/MinesweeperRanking.vue";
+import electrodeCrySound from "@src/assets/audio/electrode.mp3";
+import itemFoundFanfareSound from "@src/assets/audio/pokemon_rby_item_found_fanfare.mp3";
+import MinesweeperRanking from "@src/components/vue/MinesweeperRanking.vue";
 import { Icon } from "astro-icon/components";
 
 const boardSize = 10;
@@ -51,8 +51,8 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
 </div>
 
 <script>
-  import { isLogged, userInfo } from "@lib/authStore";
-  import { adjacentCells } from "@lib/utils";
+  import { isLogged, userInfo } from "@src/lib/authStore";
+  import { adjacentCells } from "@src/lib/utils";
   import confetti from "canvas-confetti";
 
   const electrode =

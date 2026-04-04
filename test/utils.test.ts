@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import * as Utils from "@lib/utils";
+import * as Utils from "@src/lib/utils";
 
 test("date is formatted", () => {
   expect(Utils.formatDate("2024-03-05T18:27:37.043Z", "short")).toBe(

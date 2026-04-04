@@ -18,7 +18,7 @@ import {
   addWishlistItem,
   removeWishlistItem,
   wishlistContains,
-} from "@lib/wishlistStore";
+} from "@src/lib/wishlistStore";
 import { useStore } from "@nanostores/vue";
 import { ref, computed, watch } from "vue";
 

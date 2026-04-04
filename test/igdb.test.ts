@@ -1,5 +1,5 @@
 import { test, expect } from "vitest";
-import { getConsole } from "@lib/igdb";
+import { getConsole } from "@src/lib/igdb";
 
 test("can fetch console from IGDB", async () => {
   const platform = await getConsole("Nintendo Switch 2");

@@ -1,5 +1,5 @@
 ---
-import Layout from "@layouts/Layout.astro";
+import Layout from "@src/layouts/Layout.astro";
 
 const title = "Pitch Detection";
 const description =
@@ -28,7 +28,7 @@ const description =
   </div>
 
   <script>
-    import { audioUtils } from "@lib/audioUtils";
+    import { audioUtils } from "@src/lib/audioUtils";
 
     const canvasEl = document.getElementById("canvas") as HTMLCanvasElement;
 

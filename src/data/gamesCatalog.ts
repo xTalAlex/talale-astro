@@ -1,6 +1,6 @@
-import { getGames, getConsole } from "@lib/igdb";
-import { fromReleaseDate, toReleaseDate } from "@lib/utils";
-import Config from "@config/general.json";
+import { getGames, getConsole } from "@src/lib/igdb";
+import { fromReleaseDate, toReleaseDate } from "@src/lib/utils";
+import Config from "@src/config/general.json";
 import type {
   Game as IgdbGame,
   Cover,

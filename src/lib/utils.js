@@ -1,4 +1,4 @@
-import Config from "@config/general.json";
+import Config from "@src/config/general.json";
 import { DateTime } from "luxon";
 
 const lastDeployDate = new Date();

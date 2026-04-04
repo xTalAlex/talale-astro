@@ -3,8 +3,8 @@ const { class: className = "", ...dataAttrs } = Astro.props;
 ---
 
 <script>
-  import { isLogged, userInfo } from "@lib/authStore";
-  import { setTawktoAttributes } from "@lib/tawktoUtils";
+  import { isLogged, userInfo } from "@src/lib/authStore";
+  import { setTawktoAttributes } from "@src/lib/tawktoUtils";
 
   const setTawktoUserAttributes = () => {
     if (isLogged.get()) {

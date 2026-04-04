@@ -111,8 +111,8 @@
 </template>
 
 <script setup>
-import { stations } from "@data/radioStations";
-import { useStorage } from "@lib/useStorage";
+import { stations } from "@src/data/radioStations";
+import { useStorage } from "@src/lib/useStorage";
 import Hls from "hls.js";
 import { ref, computed, onMounted } from "vue";
 

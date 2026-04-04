@@ -75,12 +75,12 @@
 </template>
 
 <script setup>
-import TabItem from "@components/vue/common/TabItem.vue";
-import TabsWrapper from "@components/vue/common/TabsWrapper.vue";
-import UserInfo from "@components/vue/UserInfo.vue";
-import UserUpdate from "@components/vue/UserUpdate.vue";
-import { isLogged, userInfo, loadUser } from "@lib/authStore";
-import { formatDate } from "@lib/utils";
+import TabItem from "@src/components/vue/common/TabItem.vue";
+import TabsWrapper from "@src/components/vue/common/TabsWrapper.vue";
+import UserInfo from "@src/components/vue/UserInfo.vue";
+import UserUpdate from "@src/components/vue/UserUpdate.vue";
+import { isLogged, userInfo, loadUser } from "@src/lib/authStore";
+import { formatDate } from "@src/lib/utils";
 import { useStore } from "@nanostores/vue";
 import { onMounted } from "vue";
 

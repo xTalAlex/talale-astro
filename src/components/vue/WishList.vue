@@ -28,8 +28,8 @@
 </template>
 
 <script setup>
-import { fromReleaseDate, toReleaseDate } from "@lib/utils";
-import { wishlist, removeWishlistItem } from "@lib/wishlistStore";
+import { fromReleaseDate, toReleaseDate } from "@src/lib/utils";
+import { wishlist, removeWishlistItem } from "@src/lib/wishlistStore";
 import { useStore } from "@nanostores/vue";
 import { computed, onMounted } from "vue";
 

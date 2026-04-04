@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro";
-import { auth } from "@lib/auth";
-import { getUserWishlist, updateUserWishlist } from "@lib/database";
+import { auth } from "@src/lib/auth";
+import { getUserWishlist, updateUserWishlist } from "@src/lib/database";
 
 export const prerender = false;
 

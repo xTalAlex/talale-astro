@@ -1,7 +1,7 @@
 ---
-import gargoyles from "@assets/images/gargoyles.png";
-import { gamesCount } from "@data/gamesCatalog";
-import { lastDeployDate, formatDate } from "@lib/utils";
+import gargoyles from "@src/assets/images/gargoyles.png";
+import { gamesCount } from "@src/data/gamesCatalog";
+import { lastDeployDate, formatDate } from "@src/lib/utils";
 import { Icon } from "astro-icon/components";
 import { Image } from "astro:assets";
 ---
@@ -53,9 +53,9 @@ import { Image } from "astro:assets";
 </div>
 
 <script>
-  import Config from "@config/general.json";
-  import { searchOptions } from "@lib/fuseHelpers";
-  import { delayFunction, toTrimmedAlphanumeric } from "@lib/utils";
+  import Config from "@src/config/general.json";
+  import { searchOptions } from "@src/lib/fuseHelpers";
+  import { delayFunction, toTrimmedAlphanumeric } from "@src/lib/utils";
   import Fuse from "fuse.js";
 
   const searchInput = document.getElementById(

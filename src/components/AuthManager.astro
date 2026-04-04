@@ -1,6 +1,6 @@
 <script>
-  import { authClient } from "@lib/auth-client";
-  import { setAuthenticatedUser, clearAuthenticatedUser } from "@lib/authStore";
+  import { authClient } from "@src/lib/auth-client";
+  import { setAuthenticatedUser, clearAuthenticatedUser } from "@src/lib/authStore";
 
   async function loadIdentity() {
     const { data: session } = await authClient.getSession().catch((e) => {
