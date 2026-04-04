@@ -14,10 +14,10 @@ import "@fontsource/vt323";
 import "@src/assets/css/main.css";
 import "animate.css";
 import Alert from "@src/components/Alert.astro";
-import AuthManager from "@src/components/AuthManager.astro";
 import BackToTop from "@src/components/BackToTop.astro";
 import Footer from "@src/components/Footer.astro";
 import IubendaCookieSolution from "@src/components/IubendaCookieSolution.astro";
+import LoginModal from "@src/components/LoginModal.astro";
 import Navbar from "@src/components/Navbar.astro";
 import TawktoWidget from "@src/components/TawktoWidget.astro";
 import BaseModal from "@src/components/vue/BaseModal.vue";
@@ -131,7 +131,7 @@ const openGraph = {
       gtag("config", document.currentScript.dataset.gaid);
     </script>
 
-    <AuthManager />
+    <script src="@src/lib/authManager.ts"></script>
   </head>
   <body class="font-sans">
     <Navbar />
@@ -147,7 +147,8 @@ const openGraph = {
 
     <BaseModal client:only="vue" />
 
-    {}
+    <LoginModal />
+
     <Zight />
 
     {

@@ -111,7 +111,7 @@ import {
   deleteUser,
   changePassword,
   changeEmail,
-} from "@src/lib/auth-client";
+} from "@src/lib/authClient";
 import { ref, computed } from "vue";
 
 const props = defineProps({

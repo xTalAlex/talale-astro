@@ -1,0 +1,139 @@
+---
+import GoogleButton from "@src/components/GoogleButton.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<dialog id="login_modal" class="modal">
+  <div class="modal-box">
+
+    <form method="dialog">
+      <button class="btn btn-circle btn-sm absolute top-2 right-2 uppercase">
+        &times;
+      </button>
+    </form>
+
+    <h3 class="text-lg font-bold">Login</h3>
+
+    <!-- Inline alert -->
+      <div
+        id="login-modal-alert"
+        role="alert"
+        class="mt-2 alert alert-error alert-soft hidden"
+      >
+        <span id="login-modal-alert-message"></span>
+      </div>
+
+    <!-- Email & Password -->
+    <div class="mt-4 space-y-2">
+      <label class="input input-primary flex w-full items-center gap-2">
+        <Icon class="h-4 w-4 opacity-50" name="pixelarticons:mail" />
+        <input
+          id="login-email"
+          type="email"
+          class="grow"
+          placeholder="Email"
+          required
+        />
+      </label>
+      <label class="input input-primary flex w-full items-center gap-2">
+        <Icon class="h-4 w-4 opacity-50" name="pixelarticons:lock" />
+        <input
+          id="login-password"
+          type="password"
+          class="grow"
+          placeholder="Password"
+          required
+        />
+      </label>
+      <div class="mt-4 flex justify-center">
+        <button
+          id="login-submit"
+          type="button"
+          class="btn btn-primary disabled:text-primary-content/50 uppercase"
+          data-action="login-email"
+        >
+          Accedi
+        </button>
+      </div>
+    </div>
+
+    <div class="divider text-xs uppercase">oppure</div>
+
+    <!-- Social Login -->
+    <div class="flex justify-center" data-action="login-google">
+      <GoogleButton />
+    </div>
+
+    <!-- Forgot Password -->
+    <div class="modal-action justify-start">
+      <button
+        type="button"
+        class="link link-hover text-xs"
+        data-action="password-reset"
+      >
+        Password dimenticata?
+      </button>
+    </div>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+
+<script>
+  const modal = document.getElementById("login_modal") as HTMLDialogElement;
+  const alertBox = document.getElementById("login-modal-alert") as HTMLElement;
+  const alertMessage = document.getElementById(
+    "login-modal-alert-message",
+  ) as HTMLElement;
+
+  function showAlert(message: string) {
+    alertMessage.textContent = message;
+    alertBox.classList.remove("hidden");
+    alertBox.classList.add("animate__animated", "animate__fadeIn");
+    alertBox.addEventListener("animationend", () => {
+      alertBox.classList.remove("animate__animated", "animate__fadeIn");
+    }, { once: true });
+  }
+
+  document.addEventListener("loginError", (e: Event) => {
+    showAlert((e as CustomEvent).detail.message);
+  });
+
+  document.addEventListener("passwordResetError", (e: Event) => {
+    showAlert((e as CustomEvent).detail.message);
+  });
+
+  modal?.addEventListener("close", () => {
+    alertBox.classList.add("hidden");
+  });
+
+  modal?.addEventListener("click", (e) => {
+    const target = (e.target as HTMLElement).closest(
+      "[data-action]",
+    ) as HTMLElement | null;
+    if (!target) return;
+
+    const email = (document.getElementById("login-email") as HTMLInputElement)
+      ?.value;
+
+    if (target.dataset.action === "login-email") {
+      const password = (
+        document.getElementById("login-password") as HTMLInputElement
+      )?.value;
+      document.dispatchEvent(
+        new CustomEvent("attemptLogin", {
+          detail: { method: "email", email, password },
+        }),
+      );
+    } else if (target.dataset.action === "login-google") {
+      document.dispatchEvent(
+        new CustomEvent("attemptLogin", { detail: { method: "google" } }),
+      );
+    } else if (target.dataset.action === "password-reset") {
+      document.dispatchEvent(
+        new CustomEvent("requestPasswordReset", { detail: { email } }),
+      );
+    }
+  });
+</script>
