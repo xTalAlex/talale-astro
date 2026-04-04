@@ -21,9 +21,11 @@
   }
 
   document.addEventListener("requestLogin", () => {
-    authClient.signIn.social({ provider: "google", callbackURL: "/" }).then(() => {
-      loadIdentity();
-    });
+    authClient.signIn
+      .social({ provider: "google", callbackURL: "/" })
+      .then(() => {
+        loadIdentity();
+      });
   });
   document.addEventListener("requestLogout", () => {
     authClient.signOut();

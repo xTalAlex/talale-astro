@@ -26,7 +26,7 @@ declare module "simple-parallax-js/vanilla" {
         | Element[]
         | HTMLCollectionOf<Element>
         | NodeListOf<Element>,
-      options?: SimpleParallaxOptions
+      options?: SimpleParallaxOptions,
     );
     destroy(): void;
   }

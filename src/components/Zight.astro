@@ -10,7 +10,7 @@ const ZIGHT_API_KEY = import.meta.env.ZIGHT_API_KEY;
       document.dispatchEvent(
         new CustomEvent("videoRecorded", {
           detail: { shareUrl, thumbnailUrl, embedUrl },
-        })
+        }),
       );
     },
     /**
@@ -20,7 +20,7 @@ const ZIGHT_API_KEY = import.meta.env.ZIGHT_API_KEY;
       document.dispatchEvent(
         new CustomEvent("videoRecorderStatusChange", {
           detail: { newStatus },
-        })
+        }),
       );
     },
   };

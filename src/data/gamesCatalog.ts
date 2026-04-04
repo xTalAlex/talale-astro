@@ -1,7 +1,18 @@
 import { getGames, getConsole } from "@lib/igdb";
 import { fromReleaseDate, toReleaseDate } from "@lib/utils";
 import Config from "@config/general.json";
-import type { Game as IgdbGame, Cover, Artwork, Screenshot, Genre, Theme, InvolvedCompany, Company, CompanyLogo, CompanyWebsite } from "igdb-api-types";
+import type {
+  Game as IgdbGame,
+  Cover,
+  Artwork,
+  Screenshot,
+  Genre,
+  Theme,
+  InvolvedCompany,
+  Company,
+  CompanyLogo,
+  CompanyWebsite,
+} from "igdb-api-types";
 import type { NormalizedGame } from "@src/types";
 
 const platform = await getConsole(Config.igdb.console).catch((error) => {
@@ -84,14 +95,18 @@ export const games: NormalizedGame[] = rawGames.map((game) => ({
   summary: game.summary,
   genres: (game.genres as Genre[])?.map((g) => ({ id: g.id, name: g.name! })),
   themes: (game.themes as Theme[])?.map((t) => ({ id: t.id, name: t.name! })),
-  involvedCompanies: (game.involved_companies as InvolvedCompany[])?.map((ic) => {
-    const company = ic.company as Company;
-    return {
-      id: company.id,
-      name: company.name ?? "",
-      logo: (company.logo as CompanyLogo | undefined)?.url,
-      websites: (company.websites as CompanyWebsite[] | undefined)
-        ?.map((w) => w.url?.startsWith("http") ? w.url! : `//${w.url!}`) ?? [],
-    };
-  }),
+  involvedCompanies: (game.involved_companies as InvolvedCompany[])?.map(
+    (ic) => {
+      const company = ic.company as Company;
+      return {
+        id: company.id,
+        name: company.name ?? "",
+        logo: (company.logo as CompanyLogo | undefined)?.url,
+        websites:
+          (company.websites as CompanyWebsite[] | undefined)?.map((w) =>
+            w.url?.startsWith("http") ? w.url! : `//${w.url!}`,
+          ) ?? [],
+      };
+    },
+  ),
 }));

@@ -8,7 +8,7 @@
 </div>
 
 <script>
-  import * as PIXI from 'pixi.js';
+  import * as PIXI from "pixi.js";
 
   type SmokeGroup = PIXI.Graphics & { tick: number };
 
@@ -132,7 +132,7 @@
         startXMiddle + width / 2,
         startY - heightMiddle,
         startXMiddle + width,
-        startY
+        startY,
       )
       .fill({ color: colorMiddle })
 
@@ -144,7 +144,7 @@
         startXLeft + width / 2,
         startY - heightLeft,
         startXLeft + width,
-        startY
+        startY,
       )
       .fill({ color: colorLeft })
 
@@ -156,7 +156,7 @@
         startXRight + width / 2,
         startY - heightRight,
         startXRight + width,
-        startY
+        startY,
       )
       .fill({ color: colorRight });
 
@@ -310,13 +310,13 @@
       .moveTo(chimneyStartX, chimneyStartY)
       .lineTo(
         chimneyStartX - chimneyTopOffset,
-        chimneyStartY - chimneyHeight + chimneyDomeHeight
+        chimneyStartY - chimneyHeight + chimneyDomeHeight,
       )
       .quadraticCurveTo(
         chimneyStartX + chimneyBaseWidth / 2,
         chimneyStartY - chimneyHeight - chimneyDomeHeight,
         chimneyStartX + chimneyBaseWidth + chimneyTopOffset,
-        chimneyStartY - chimneyHeight + chimneyDomeHeight
+        chimneyStartY - chimneyHeight + chimneyDomeHeight,
       )
       .lineTo(chimneyStartX + chimneyBaseWidth, chimneyStartY)
       .fill({ color: 0x121212 })
@@ -327,7 +327,7 @@
         -frontHeight,
         frontWidth + frontRadius + cabinRadius,
         frontHeight,
-        frontRadius
+        frontRadius,
       )
       .fill({ color: 0x7f3333 })
 
@@ -340,7 +340,7 @@
         -roofExcess / 2,
         cabinRadius - cabinHeight - roofHeight,
         cabinWidth + roofExcess,
-        roofHeight
+        roofHeight,
       )
       .fill({ color: 0x52431c })
 
@@ -354,7 +354,7 @@
         doorStartY + offset,
         windowWidth,
         windowHeight,
-        10
+        10,
       )
       .fill({ color: 0x848484 });
 
@@ -403,13 +403,13 @@
           -strokeThickness / 2,
           -innerRadius,
           strokeThickness,
-          innerRadius * 2
+          innerRadius * 2,
         )
         .rect(
           -innerRadius,
           -strokeThickness / 2,
           innerRadius * 2,
-          strokeThickness
+          strokeThickness,
         )
         .fill({ color: 0x4f4f4f })
     );
@@ -435,7 +435,7 @@
         -containerHeight,
         containerWidth,
         containerHeight,
-        containerRadius
+        containerRadius,
       )
       .fill({ color: 0x725f19 })
 
@@ -444,7 +444,7 @@
         0,
         containerRadius - containerHeight - edgeHeight,
         containerWidth + edgeExcess,
-        edgeHeight
+        edgeHeight,
       )
       .fill({ color: 0x52431c })
 
@@ -453,13 +453,13 @@
         containerWidth + edgeExcess / 2,
         -connectorOffsetY - connectorHeight,
         connectorWidth,
-        connectorHeight
+        connectorHeight,
       )
       .rect(
         containerWidth + edgeExcess / 2,
         -connectorOffsetY - connectorHeight * 2 - connectorGap,
         connectorWidth,
-        connectorHeight
+        connectorHeight,
       )
       .fill({ color: 0x121212 });
 

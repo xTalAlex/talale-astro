@@ -103,4 +103,3 @@ isLogged.subscribe((logged) => {
     loadWishlist();
   }
 });
-

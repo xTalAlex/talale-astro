@@ -106,7 +106,12 @@
 </template>
 
 <script setup>
-import { updateUser, deleteUser, changePassword, changeEmail } from "@lib/auth-client";
+import {
+  updateUser,
+  deleteUser,
+  changePassword,
+  changeEmail,
+} from "@lib/auth-client";
 import { ref, computed } from "vue";
 
 const props = defineProps({
@@ -241,7 +246,10 @@ function submit() {
             action = updateUser({ name: formData.value.name });
             break;
           case "email":
-            action = changeEmail({ newEmail: formData.value.email, callbackURL: "/" });
+            action = changeEmail({
+              newEmail: formData.value.email,
+              callbackURL: "/",
+            });
             break;
           case "password":
             action = changePassword({
