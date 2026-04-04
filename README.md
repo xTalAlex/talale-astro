@@ -30,6 +30,9 @@ _Personal website & portfolio built with modern web technologies_
 - **Framework:** [Astro](https://astro.build)
 - **UI Components:** Vue.js
 - **Styling:** DaisyUI + Custom CSS
+- **Auth:** [Better Auth](https://better-auth.com) (Email/Password, Google OAuth)
+- **ORM:** [Prisma](https://www.prisma.io) (PostgreSQL)
+- **Email:** [Mailtrap](https://mailtrap.io)
 - **Analytics:** Google Analytics
 - **Deployment:** Netlify
 - **Testing:** Vitest, Cypress
@@ -43,7 +46,8 @@ _Personal website & portfolio built with modern web technologies_
 - 🎮 Interactive mini-games (Minesweeper, Pitch Detection)
 - 📻 Web Radio integration
 - 🗺️ Interactive map
-- 👤 User authentication & profiles
+- 👤 User authentication & profiles (email/password, Google OAuth)
+- 🔑 Password reset flow
 - 💬 Live chat integration (Tawkto)
 - 📧 Contact forms with Google Analytics tracking
 - 🎯 Nintendo Switch games wishlist & catalog
@@ -63,6 +67,7 @@ npm run test         # Run unit tests with Vitest
 npm run lint         # Lint code with ESLint
 npm run prettier     # Format code with Prettier
 npm run check        # Check Astro project for errors
+npm run prisma       # Run Prisma CLI commands
 ```
 
 ### Project Structure
@@ -75,6 +80,7 @@ npm run check        # Check Astro project for errors
 │   ├── lib/            # Utilities & helpers
 │   ├── config/         # Configuration files
 │   └── assets/         # Static assets
+├── prisma/             # Prisma schema & migrations
 ├── public/             # Public static files
 ├── functions/          # Serverless functions
 └── test/               # Test files
@@ -111,15 +117,19 @@ npm run check        # Check Astro project for errors
 | Event                       | Description                   | Parameters                               |
 | --------------------------- | ----------------------------- | ---------------------------------------- |
 | `requestLogin`              | Trigger login flow            | -                                        |
+| `attemptLogin`              | Attempt login with credentials| `method`, `email`, `password`            |
+| `loginError`                | Login failed                  | `message`                                |
 | `requestLogout`             | Trigger logout flow           | -                                        |
 | `loggedIn`                  | User logged in successfully   | -                                        |
 | `loggedOut`                 | User logged out successfully  | -                                        |
+| `requestPasswordReset`      | Request password reset email  | `email`                                  |
+| `passwordResetError`        | Password reset failed         | `message`                                |
 | `openModal`                 | Open modal dialog             | `title`, `body`, `image`                 |
 | `notify`                    | Show notification             | `title`, `message`, `style`              |
-| `tawktoLoaded`              | Tawto script loaded           | -                                        |
+| `tawktoLoaded`              | Tawkto script loaded          | -                                        |
 | `startVideoRecording`       | Trigger video recording       | -                                        |
-| `videoRecorded`             | Video recording completed     | - `shareUrl`, `thumbnailUrl`, `embedUrl` |
-| `videoRecorderStatusChange` | Video recorder status changed | - `newStatus`                            |
+| `videoRecorded`             | Video recording completed     | `shareUrl`, `thumbnailUrl`, `embedUrl`   |
+| `videoRecorderStatusChange` | Video recorder status changed | `newStatus`                              |
 
 ## 🗺️ Roadmap
 
