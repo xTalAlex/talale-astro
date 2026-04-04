@@ -4,6 +4,7 @@ import { prismaAdapter } from "better-auth/adapters/prisma";
 import { admin } from "better-auth/plugins";
 import { i18n } from "@better-auth/i18n";
 import { MailtrapClient } from "mailtrap";
+import Config from "@src/config/general.json";
 
 import { PrismaClient } from "../../prisma/generated/client";
 
@@ -18,6 +19,7 @@ const mailtrap = new MailtrapClient({
 });
 
 export const auth = betterAuth({
+  appName: Config.title,
   baseURL: import.meta.env.BETTER_AUTH_URL,
   database: prismaAdapter(prisma, {
     provider: "postgresql",
@@ -25,6 +27,18 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: true,
+    autoSignIn: true,
+    sendResetPassword: async ({ user, url }) => {
+      await mailtrap.send({
+        to: [{ email: user.email, name: user.name }],
+        from: {
+          email: import.meta.env.MAILTRAP_SENDER_EMAIL,
+          name: import.meta.env.MAILTRAP_SENDER_NAME,
+        },
+        subject: "Reimposta la tua password",
+        html: `<p>Clicca <a href="${url}">qui</a> per reimpostare la tua password.</p>`,
+      });
+    },
   },
   emailVerification: {
     sendOnSignUp: true,
@@ -67,7 +81,8 @@ export const auth = betterAuth({
           INTERNAL_SERVER_ERROR: "Errore interno del server",
           UNABLE_TO_CREATE_USER: "Impossibile creare l'utente",
           UNABLE_TO_CREATE_SESSION: "Impossibile creare la sessione",
-          ACCOUNT_ALREADY_LINKED_TO_DIFFERENT_USER: "Account già collegato a un altro utente",
+          ACCOUNT_ALREADY_LINKED_TO_DIFFERENT_USER:
+            "Account già collegato a un altro utente",
           UNABLE_TO_LINK_ACCOUNT: "Impossibile collegare l'account",
           ACCOUNT_NOT_LINKED: "Account non collegato",
         },
