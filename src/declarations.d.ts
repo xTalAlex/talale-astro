@@ -1,3 +1,7 @@
+// @fontsource packages are CSS-only and ship no TypeScript declarations.
+// TypeScript 6 requires declarations for side-effect imports.
+declare module "@fontsource/*";
+
 // simple-parallax-js ships types only for the React module, not the vanilla submodule.
 // No @types package exists. This manual declaration is the standard TypeScript solution.
 declare module "simple-parallax-js/vanilla" {
