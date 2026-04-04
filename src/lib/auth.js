@@ -29,30 +29,38 @@ export const auth = betterAuth({
     requireEmailVerification: true,
     autoSignIn: true,
     sendResetPassword: async ({ user, url }) => {
-      await mailtrap.send({
-        to: [{ email: user.email, name: user.name }],
-        from: {
-          email: import.meta.env.MAILTRAP_SENDER_EMAIL,
-          name: import.meta.env.MAILTRAP_SENDER_NAME,
-        },
-        subject: "Reimposta la tua password",
-        html: `<p>Clicca <a href="${url}">qui</a> per reimpostare la tua password.</p>`,
-      });
+      void mailtrap
+        .send({
+          to: [{ email: user.email, name: user.name }],
+          from: {
+            email: import.meta.env.MAILTRAP_SENDER_EMAIL,
+            name: import.meta.env.MAILTRAP_SENDER_NAME,
+          },
+          subject: "Reimposta la tua password",
+          html: `<p>Clicca <a href="${url}">qui</a> per reimpostare la tua password.</p>`,
+        })
+        .catch((error) => {
+          console.error("sendResetPassword error:", error);
+        });
     },
   },
   emailVerification: {
     sendOnSignUp: true,
     autoSignInAfterVerification: true,
     sendVerificationEmail: async ({ user, url }) => {
-      await mailtrap.send({
-        to: [{ email: user.email, name: user.name }],
-        from: {
-          email: import.meta.env.MAILTRAP_SENDER_EMAIL,
-          name: import.meta.env.MAILTRAP_SENDER_NAME,
-        },
-        subject: "Verifica il tuo indirizzo email",
-        html: `<p>Clicca <a href="${url}">qui</a> per verificare il tuo indirizzo email.</p>`,
-      });
+      void mailtrap
+        .send({
+          to: [{ email: user.email, name: user.name }],
+          from: {
+            email: import.meta.env.MAILTRAP_SENDER_EMAIL,
+            name: import.meta.env.MAILTRAP_SENDER_NAME,
+          },
+          subject: "Verifica il tuo indirizzo email",
+          html: `<p>Clicca <a href="${url}">qui</a> per verificare il tuo indirizzo email.</p>`,
+        })
+        .catch((error) => {
+          console.error("sendVerificationEmail error:", error);
+        });
     },
   },
   socialProviders: {
