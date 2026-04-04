@@ -1,9 +1,10 @@
+import { PrismaPg } from "@prisma/adapter-pg";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
-import { PrismaClient } from "../../prisma/generated/client";
-import { PrismaPg } from "@prisma/adapter-pg";
 import { admin } from "better-auth/plugins";
 import { MailtrapClient } from "mailtrap";
+
+import { PrismaClient } from "../../prisma/generated/client";
 
 const adapter = new PrismaPg({
   connectionString: import.meta.env.DATABASE_URL,

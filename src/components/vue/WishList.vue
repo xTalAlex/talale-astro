@@ -28,10 +28,10 @@
 </template>
 
 <script setup>
-import { computed, onMounted } from "vue";
-import { useStore } from "@nanostores/vue";
-import { wishlist, removeWishlistItem } from "@lib/wishlistStore";
 import { fromReleaseDate, toReleaseDate } from "@lib/utils";
+import { wishlist, removeWishlistItem } from "@lib/wishlistStore";
+import { useStore } from "@nanostores/vue";
+import { computed, onMounted } from "vue";
 
 const $wishlist = useStore(wishlist);
 //const $isWishlistOpen = useStore(isWishlistOpen);

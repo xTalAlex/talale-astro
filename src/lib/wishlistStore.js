@@ -1,4 +1,5 @@
 import { atom, map } from "nanostores";
+
 import { userInfo, isLogged } from "./authStore";
 
 export const isWishlistOpen = atom(false);

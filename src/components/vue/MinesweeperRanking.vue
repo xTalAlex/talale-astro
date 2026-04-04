@@ -57,10 +57,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import { useStore } from "@nanostores/vue";
 import { isLogged } from "@lib/authStore";
 import { formatDate } from "@lib/utils";
+import { useStore } from "@nanostores/vue";
+import { ref, onMounted } from "vue";
 
 let players = ref(null);
 let open = ref(false);

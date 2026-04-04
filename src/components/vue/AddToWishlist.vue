@@ -13,14 +13,14 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from "vue";
-import { useStore } from "@nanostores/vue";
 import {
   wishlist,
   addWishlistItem,
   removeWishlistItem,
   wishlistContains,
 } from "@lib/wishlistStore";
+import { useStore } from "@nanostores/vue";
+import { ref, computed, watch } from "vue";
 
 const props = defineProps({
   id: {

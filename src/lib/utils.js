@@ -1,5 +1,5 @@
-import { DateTime } from "luxon";
 import Config from "@config/general.json";
+import { DateTime } from "luxon";
 
 const lastDeployDate = new Date();
 const fromReleaseDate = new Date().setMonth(
