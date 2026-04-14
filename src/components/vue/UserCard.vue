@@ -70,7 +70,12 @@
     </div>
   </div>
   <div v-else class="grid place-items-center">
-    <a class="link" @click="handleLogin">Sei disconnesso. Vai al Login.</a>
+    <div v-if="isLoading" class="flex w-full justify-center">
+        <div class="skeleton h-120 w-full max-w-full"></div>
+    </div>
+    <div v-else>
+          <a class="link" @click="handleLogin">Sei disconnesso. Vai al Login.</a>
+    </div>
   </div>
 </template>
 
@@ -82,8 +87,9 @@ import UserInfo from "@src/components/vue/UserInfo.vue";
 import UserUpdate from "@src/components/vue/UserUpdate.vue";
 import { isLogged, userInfo, loadUser } from "@src/lib/authStore";
 import { formatDate } from "@src/lib/utils";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 
+const isLoading = ref(true);
 const $isLogged = useStore(isLogged);
 const $userInfo = useStore(userInfo);
 
@@ -94,7 +100,9 @@ const handleUpdate = async () => {
   await loadUser();
 };
 
-onMounted(() => {
+onMounted(async () => {
   document.addEventListener("loggedIn", handleUpdate);
+  await loadUser();
+  isLoading.value = false;
 });
 </script>
