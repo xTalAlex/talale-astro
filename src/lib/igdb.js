@@ -73,25 +73,8 @@ export async function authenticate() {
 export function authenticated() {
   return (
     authToken.lastAuth != null &&
-    Date.now() < authToken.expiresIn + authToken.lastAuth
+    Date.now() < authToken.expiresIn * 1000 + authToken.lastAuth
   );
-}
-
-export async function getNintendoSwitch2() {
-  const data = await fetchAPI("platforms", {
-    method: "POST",
-    headers: {
-      "Client-ID": API_CLIENT,
-      Authorization: "Bearer " + authToken.accessToken,
-    },
-    body: `
-            fields *;
-            where name = "Nintendo Switch 2";
-            limit 1;
-        `,
-  });
-
-  return data?.[0] ?? null;
 }
 
 export async function getConsole(name) {
@@ -109,6 +92,10 @@ export async function getConsole(name) {
   });
 
   return data?.[0] ?? null;
+}
+
+export async function getNintendoSwitch2() {
+  return await getConsole("Nintendo Switch 2");
 }
 
 export async function getGameStatuses() {

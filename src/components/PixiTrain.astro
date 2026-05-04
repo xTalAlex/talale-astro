@@ -214,13 +214,13 @@
     app.ticker.add((time: PIXI.Ticker) => {
       const dx = time.deltaTime * 2;
 
-      trees.forEach((tree) => {
+      for (const tree of trees) {
         tree.x -= dx;
 
         if (tree.x <= -(treeWidth / 2 + spacing)) {
           tree.x += count * (treeWidth + spacing) + spacing * 3;
         }
-      });
+      }
     });
   }
 
@@ -255,13 +255,13 @@
     app.ticker.add((time: PIXI.Ticker) => {
       const dx = time.deltaTime * 6;
 
-      planks.forEach((plank) => {
+      for (const plank of planks) {
         plank.x -= dx;
 
         if (plank.x <= -(plankWidth + plankGap)) {
           plank.x += plankCount * (plankWidth + plankGap) + plankGap * 1.5;
         }
-      });
+      }
     });
 
     const railHeight = trackHeight / 2;
@@ -551,12 +551,12 @@
     app.ticker.add((time: PIXI.Ticker) => {
       const dt = time.deltaTime * 0.01;
 
-      groups.forEach((group) => {
+      for (const group of groups) {
         group.tick = (group.tick + dt) % 1;
         group.x = baseX - Math.pow(group.tick, 2) * 400;
         group.y = baseY - group.tick * 200;
         group.scale.set(Math.pow(group.tick, 0.75));
-      });
+      }
     });
   }
 </script>

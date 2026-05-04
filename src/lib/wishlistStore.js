@@ -4,11 +4,15 @@ import { userInfo, isLogged } from "./authStore";
 
 export const isWishlistOpen = atom(false);
 
+const localStoredWishlist = localStorage.getItem("wishlist");
+
 export const wishlist = map(
-  JSON.parse(localStorage.getItem("wishlist")) ?? {
-    items: [],
-    updatedAt: null,
-  },
+  localStoredWishlist
+    ? JSON.parse(localStoredWishlist)
+    : {
+        items: [],
+        updatedAt: null,
+      },
 );
 
 /**

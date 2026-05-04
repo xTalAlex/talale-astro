@@ -123,8 +123,5 @@ const { post, readingTime, previousPost, nextPost } = Astro.props;
 </ProseLayout>
 
 <script>
-  const wpReadingTimeElements = document.getElementsByClassName(
-    "estimated-reading-time",
-  );
-  Array.from(wpReadingTimeElements).forEach((item) => item.remove());
+  document.querySelectorAll(".estimated-reading-time").forEach((item) => item.remove());
 </script>

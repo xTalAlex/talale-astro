@@ -50,6 +50,7 @@ export const updateUserWishlist = async (userId, wishlistData) => {
  */
 export const getRankings = async () => {
   const rankings = await prisma.ranking.findMany({
+    take: 10,
     orderBy: [{ streakRecord: "desc" }, { curStreak: "desc" }],
     include: { user: { select: { name: true, email: true } } },
   });

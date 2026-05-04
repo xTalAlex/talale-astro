@@ -5,8 +5,9 @@ import MinesweeperRanking from "@src/components/vue/MinesweeperRanking.vue";
 import { Icon } from "astro-icon/components";
 
 const boardSize = 10;
-var table = new Array(boardSize);
-for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
+const table = new Array(boardSize)
+  .fill(null)
+  .map(() => new Array(boardSize).fill(0));
 ---
 
 <div class="">
@@ -67,9 +68,9 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
   var gameOver = false;
   var checkedCtr = 0;
   var bombs = new Array(0);
-  var table = new Array(boardSize);
-  for (var i = 0; i < table.length; i++)
-    table[i] = new Array(boardSize).fill(0);
+  var table = new Array(boardSize)
+    .fill(null)
+    .map(() => new Array(boardSize).fill(0));
   const colorsTable = {
     0: "text-transparent",
     1: "text-info",
@@ -90,9 +91,9 @@ for (var i = 0; i < table.length; i++) table[i] = new Array(boardSize).fill(0);
     gameOver = false;
     checkedCtr = 0;
     bombs = new Array(0);
-    table = new Array(boardSize);
-    for (var i = 0; i < table.length; i++)
-      table[i] = new Array(boardSize).fill(0);
+    table = new Array(boardSize)
+      .fill(null)
+      .map(() => new Array(boardSize).fill(0));
     cells.forEach((cell) => {
       cell.innerHTML = "";
       cell.classList.remove(

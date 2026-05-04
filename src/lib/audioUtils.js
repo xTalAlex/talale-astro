@@ -53,11 +53,14 @@ function autoCorrelate(buffer, sampleRate, threshold = 0.2) {
 
   // Create a new array of the sums of offsets to do the autocorrelation
   // For each potential offset, calculate the sum of each buffer value times its offset value
-  var c = new Array(SIZE).fill(0);
+  var c = new Float32Array(SIZE);
   for (let i = 0; i < SIZE; i++) {
-    for (let j = 0; j < SIZE - i; j++) {
-      c[i] = c[i] + buffer[j] * buffer[j + i];
+    let sum = 0;
+    const limit = SIZE - i;
+    for (let j = 0; j < limit; j++) {
+      sum += buffer[j] * buffer[j + i];
     }
+    c[i] = sum;
   }
 
   // Find the last index where that value is greater than the next one (the dip)
