@@ -5,9 +5,7 @@ import MinesweeperRanking from "@src/components/vue/MinesweeperRanking.vue";
 import { Icon } from "astro-icon/components";
 
 const boardSize = 10;
-const table = new Array(boardSize)
-  .fill(null)
-  .map(() => new Array(boardSize).fill(0));
+const boardIndices = Array.from({ length: boardSize }, (_, i) => i);
 ---
 
 <div class="">
@@ -15,10 +13,10 @@ const table = new Array(boardSize)
     <div class="">
       <div class="border-accent relative flex border-4">
         {
-          table.map((_col, colId) => {
+          boardIndices.map((colId) => {
             return (
               <div class="text-neutral-content">
-                {table.map((_row, rowId) => {
+                {boardIndices.map((rowId) => {
                   return (
                     <div
                       class="minesweeper-cell border-neutral-content hover:border-accent z-10 grid h-8 w-8 cursor-pointer place-items-center border-2 text-center font-black shadow-inner select-none active:shadow-none md:h-10 md:w-10"
@@ -68,9 +66,7 @@ const table = new Array(boardSize)
   var gameOver = false;
   var checkedCtr = 0;
   var bombs = new Array(0);
-  var table = new Array(boardSize)
-    .fill(null)
-    .map(() => new Array(boardSize).fill(0));
+  var table = new Array(boardSize * boardSize).fill(0);
   const colorsTable = {
     0: "text-transparent",
     1: "text-info",
@@ -91,9 +87,7 @@ const table = new Array(boardSize)
     gameOver = false;
     checkedCtr = 0;
     bombs = new Array(0);
-    table = new Array(boardSize)
-      .fill(null)
-      .map(() => new Array(boardSize).fill(0));
+    table = new Array(boardSize * boardSize).fill(0);
     cells.forEach((cell) => {
       cell.innerHTML = "";
       cell.classList.remove(
@@ -121,7 +115,7 @@ const table = new Array(boardSize)
       var id = Math.floor(Math.random() * (boardSize * boardSize));
       if (bombs.indexOf(id) === -1) {
         bombs.push(id);
-        table[getCoordinates(id).col][getCoordinates(id).row] = "X";
+        table[id] = "X";
       }
     }
   };
@@ -133,10 +127,12 @@ const table = new Array(boardSize)
         getCoordinates(id).row,
         boardSize,
       );
-      cells.forEach(
-        (cell) =>
-          table[cell.col][cell.row] != "X" && table[cell.col][cell.row]++,
-      );
+      cells.forEach((cell) => {
+        const idx = cell.col * boardSize + cell.row;
+        if (table[idx] !== "X") {
+          table[idx] = (table[idx] as number) + 1;
+        }
+      });
     });
   };
 
@@ -144,14 +140,13 @@ const table = new Array(boardSize)
 
   const checkCell = (id: number) => {
     var cell = document.getElementById(String(id));
-    var coordinates = getCoordinates(id);
     if (
       gameOver ||
       document.getElementById(String(id))?.innerHTML != "" ||
       !cell
     )
       return;
-    if (table[coordinates.col][coordinates.row] == "X") {
+    if (table[id] == "X") {
       cell.innerHTML = `<img class="h-5 w-5 md:h-6 md:w-6" src='${electrode}'/>`;
       gameOver = true;
       electrodeCry.play();
@@ -160,28 +155,27 @@ const table = new Array(boardSize)
       showBombs(id);
       return;
     } else {
-      cell.innerHTML = table[coordinates.col][coordinates.row];
+      cell.innerHTML = table[id] as string;
       cell.classList.add(
-        table[coordinates.col][coordinates.row] > 3
+        (table[id] as number) > 3
           ? colorsTable[3]
-          : colorsTable[
-              table[coordinates.col][coordinates.row] as 0 | 1 | 2 | 3
-            ],
+          : colorsTable[table[id] as 0 | 1 | 2 | 3],
       );
     }
     checkedCtr++;
     cell.classList.remove("bg-gray-400");
     cell.classList.add("bg-gray-200");
     checkWin();
-    if (table[coordinates.col][coordinates.row] == 0) {
+    if (table[id] == 0) {
+      var coordinates = getCoordinates(id);
       adjacentCells(coordinates.col, coordinates.row, boardSize).forEach(
         (cell) => {
+          const adjId = cell.col * boardSize + cell.row;
           if (
-            document.getElementById(String(cell.col * boardSize + cell.row))
-              ?.innerHTML == "" &&
-            table[cell.col][cell.row] != "X"
+            document.getElementById(String(adjId))?.innerHTML == "" &&
+            table[adjId] != "X"
           ) {
-            checkCell(cell.col * boardSize + cell.row);
+            checkCell(adjId);
           }
         },
       );
