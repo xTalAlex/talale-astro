@@ -111,6 +111,15 @@ import Layout from "@src/layouts/Layout.astro";
 
       this.shade = shade;
       this.history = [];
+
+      this.colors = [];
+      if (this.offsprings) {
+        for (let i = 0; i < 21; i++) {
+          this.colors.push("hsl(" + this.shade + ",100%," + i + "%)");
+        }
+      } else {
+        this.color = "hsl(" + this.shade + ",100%,50%)";
+      }
     }
     update(delta) {
       if (this.dead) return;
@@ -150,16 +159,12 @@ import Layout from "@src/layouts/Layout.astro";
       else if (this.offsprings) {
         for (let i = 0; this.history.length > i; i++) {
           let point = this.history[i];
-          ctx.beginPath();
-          ctx.fillStyle = "hsl(" + this.shade + ",100%," + i + "%)";
-          ctx.arc(point.x, point.y, 1, 0, PI2, false);
-          ctx.fill();
+          ctx.fillStyle = this.colors[i];
+          ctx.fillRect(point.x - 1, point.y - 1, 2, 2);
         }
       } else {
-        ctx.beginPath();
-        ctx.fillStyle = "hsl(" + this.shade + ",100%,50%)";
-        ctx.arc(this.x, this.y, 1, 0, PI2, false);
-        ctx.fill();
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.x - 1, this.y - 1, 2, 2);
       }
     }
   }
