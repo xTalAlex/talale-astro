@@ -115,10 +115,10 @@ import Layout from "@src/layouts/Layout.astro";
       this.colors = [];
       if (this.offsprings) {
         for (let i = 0; i < 21; i++) {
-          this.colors.push("hsl(" + this.shade + ",100%," + i + "%)");
+          this.colors.push(`hsl(${this.shade},100%,${i}%)`);
         }
       } else {
-        this.color = "hsl(" + this.shade + ",100%,50%)";
+        this.color = `hsl(${this.shade},100%,50%)`;
       }
     }
     update(delta) {
