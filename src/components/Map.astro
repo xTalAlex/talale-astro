@@ -4,7 +4,7 @@ import Config from "@src/config/general.json";
 import { Image } from "astro:assets";
 ---
 
-<a href={Config.googleMaps.url} target="_blank" rel="noreferrer">
+<a href={Config.googleMaps.url} target="_blank" rel="noopener noreferrer">
   <Image
     class="h-full w-full object-cover object-left-top grayscale transition delay-200 duration-1000 ease-out group-hover:grayscale-0 hover:grayscale-0"
     src={mapsScreen}
