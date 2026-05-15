@@ -21,6 +21,10 @@ const canvas = {
 function autoCorrelate(buffer, sampleRate, threshold = 0.2) {
   // Perform a quick root-mean-square to see if we have enough signal
   var SIZE = buffer.length;
+  if (SIZE === 0) {
+    return -1;
+  }
+
   var sumOfSquares = 0;
   for (var i = 0; i < SIZE; i++) {
     var val = buffer[i];
@@ -50,6 +54,10 @@ function autoCorrelate(buffer, sampleRate, threshold = 0.2) {
   // Trim the buffer to these ranges and update SIZE.
   buffer = buffer.slice(r1, r2);
   SIZE = buffer.length;
+
+  if (SIZE < 4) {
+    return -1;
+  }
 
   // Create a new array of the sums of offsets to do the autocorrelation
   // For each potential offset, calculate the sum of each buffer value times its offset value

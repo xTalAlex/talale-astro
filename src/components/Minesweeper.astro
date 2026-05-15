@@ -139,13 +139,8 @@ const boardIndices = Array.from({ length: boardSize }, (_, i) => i);
   init();
 
   const checkCell = (id: number) => {
-    var cell = document.getElementById(String(id));
-    if (
-      gameOver ||
-      document.getElementById(String(id))?.innerHTML != "" ||
-      !cell
-    )
-      return;
+    var cell = cells[id] as HTMLElement;
+    if (gameOver || !cell || cell.innerHTML != "") return;
     if (table[id] == "X") {
       cell.innerHTML = `<img class="h-5 w-5 md:h-6 md:w-6" src='${electrode}'/>`;
       gameOver = true;
@@ -171,10 +166,7 @@ const boardIndices = Array.from({ length: boardSize }, (_, i) => i);
       adjacentCells(coordinates.col, coordinates.row, boardSize).forEach(
         (cell) => {
           const adjId = cell.col * boardSize + cell.row;
-          if (
-            document.getElementById(String(adjId))?.innerHTML == "" &&
-            table[adjId] != "X"
-          ) {
+          if (cells[adjId]?.innerHTML == "" && table[adjId] != "X") {
             checkCell(adjId);
           }
         },
@@ -188,7 +180,7 @@ const boardIndices = Array.from({ length: boardSize }, (_, i) => i);
     refresh.disabled = true;
     var remainingBombs = bombs.filter((id) => id != excludeId);
     remainingBombs.forEach((id, i) => {
-      let cell = document.getElementById(String(id));
+      let cell = cells[id] as HTMLElement;
       setTimeout(() => {
         cell &&
           (cell.innerHTML = `<img class="h-5 w-5 md:h-6 md:w-6" src='${electrode}'/>`);

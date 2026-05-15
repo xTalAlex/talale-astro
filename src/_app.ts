@@ -1,4 +1,2 @@
 import type { App } from "vue";
-export default (_app: App) => {
-  //app.use();
-};
+export default (_app: App) => {};
