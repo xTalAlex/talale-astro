@@ -31,7 +31,7 @@
   "igdb": {
     "console": "Nintendo Switch 2",
     "dateFromNMonths": -3,
-    "dateToNMonths": 3,
+    "dateToNMonths": 4,
     "gamesPerPage": 18
   },
   "netlifyStatusBadgeUrl": "https://api.netlify.com/api/v1/badges/3185917a-f914-4861-b074-275c43b204ef/deploy-status"
