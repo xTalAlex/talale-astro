@@ -5,9 +5,12 @@
       "name": "Standard",
       "description": "Siti vetrina, blog e landing page.",
       "info": "Acconto da stabilire",
-      "amount": 750,
+      "amount": 1500,
       "plus": true,
-      "features": ["CMS custom o Wordpress", "Fino a 10 pagine"],
+      "features": [
+        "CMS custom o Wordpress",
+        "Fino a 5 pagine"
+      ],
       "includesBaseServices": true,
       "supportMonthsIncluded": 3
     },
@@ -15,7 +18,7 @@
       "name": "ECommerce / Custom",
       "description": "Soluzioni per negozi online, aziende e startup.",
       "info": "Acconto da stabilire",
-      "amount": 2000,
+      "amount": 4000,
       "plus": true,
       "features": [
         "CMS custom",
