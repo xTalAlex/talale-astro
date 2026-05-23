@@ -129,22 +129,22 @@ See [Known Issues → Keystatic Limitations](#keystatic-limitations) for current
 
 ### JavaScript Events
 
-| Event                       | Description                   | Parameters                               |
-| --------------------------- | ----------------------------- | ---------------------------------------- |
-| `requestLogin`              | Trigger login flow            | -                                        |
-| `attemptLogin`              | Attempt login with credentials| `method`, `email`, `password`            |
-| `loginError`                | Login failed                  | `message`                                |
-| `requestLogout`             | Trigger logout flow           | -                                        |
-| `loggedIn`                  | User logged in successfully   | -                                        |
-| `loggedOut`                 | User logged out successfully  | -                                        |
-| `requestPasswordReset`      | Request password reset email  | `email`                                  |
-| `passwordResetError`        | Password reset failed         | `message`                                |
-| `openModal`                 | Open modal dialog             | `title`, `body`, `image`                 |
-| `notify`                    | Show notification             | `title`, `message`, `style`              |
-| `tawktoLoaded`              | Tawkto script loaded          | -                                        |
-| `startVideoRecording`       | Trigger video recording       | -                                        |
-| `videoRecorded`             | Video recording completed     | `shareUrl`, `thumbnailUrl`, `embedUrl`   |
-| `videoRecorderStatusChange` | Video recorder status changed | `newStatus`                              |
+| Event                       | Description                    | Parameters                             |
+| --------------------------- | ------------------------------ | -------------------------------------- |
+| `requestLogin`              | Trigger login flow             | -                                      |
+| `attemptLogin`              | Attempt login with credentials | `method`, `email`, `password`          |
+| `loginError`                | Login failed                   | `message`                              |
+| `requestLogout`             | Trigger logout flow            | -                                      |
+| `loggedIn`                  | User logged in successfully    | -                                      |
+| `loggedOut`                 | User logged out successfully   | -                                      |
+| `requestPasswordReset`      | Request password reset email   | `email`                                |
+| `passwordResetError`        | Password reset failed          | `message`                              |
+| `openModal`                 | Open modal dialog              | `title`, `body`, `image`               |
+| `notify`                    | Show notification              | `title`, `message`, `style`            |
+| `tawktoLoaded`              | Tawkto script loaded           | -                                      |
+| `startVideoRecording`       | Trigger video recording        | -                                      |
+| `videoRecorded`             | Video recording completed      | `shareUrl`, `thumbnailUrl`, `embedUrl` |
+| `videoRecorderStatusChange` | Video recorder status changed  | `newStatus`                            |
 
 ## 🗺️ Roadmap
 
@@ -167,7 +167,6 @@ Current pain points with the [Keystatic](https://keystatic.com) integration that
 - **No custom file names** — uploaded media files keep their original names; there is no built-in way to enforce a custom naming convention (e.g. slug-based).
 - **No per-collection preview images** — the collection list view does not support a thumbnail/preview image field for entries.
 - **RichEditor stored as JSON** — the new `fields.mdx`/`fields.markdoc` rich editors persist content as JSON; the legacy `fields.document` field is deprecated and structured content cannot be authored as plain Markdown.
-
 
 ---
 
