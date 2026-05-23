@@ -51,16 +51,21 @@ const portfolioLinks = [
           <a href="/#contacts" class="text-primary uppercase">{Config.cta}</a>
         </li>
         <li>
-          <a> Portfolio </a>
-          <ul class="">
-            {
-              portfolioLinks.map((link) => (
-                <li>
-                  <a href={link.href}>{link.label}</a>
-                </li>
-              ))
-            }
-          </ul>
+          <details>
+            <summary>Portfolio</summary>
+            <ul class="">
+              {
+                portfolioLinks.map((link) => (
+                  <li>
+                    <a href={link.href}>{link.label}</a>
+                  </li>
+                ))
+              }
+            </ul>
+          </details>
+        </li>
+        <li>
+          <a href="/restyling">Restyling</a>
         </li>
         <li>
           <a href="/#prices">Prezzi</a>
@@ -109,6 +114,7 @@ const portfolioLinks = [
           }
         </ul>
       </li>
+      <li><a href="/restyling">Restyling</a></li>
       <li><a href="/#prices">Prezzi</a></li>
     </ul>
   </div>
