@@ -1,0 +1,39 @@
+---
+import Config from "@src/config/freelance.json";
+import { Icon } from "astro-icon/components";
+
+const redFlags = Config.redFlags;
+---
+
+<div class="py-20">
+  <div class="hidden w-full items-center gap-10 opacity-20 sm:flex">
+    <div class="flex-none font-bold uppercase">Diagnosi</div>
+    <div class="w-full">
+      <div class="bg-neutral-content h-0.5 w-full"></div>
+    </div>
+  </div>
+  <h2 class="mt-6 text-3xl font-bold uppercase md:text-4xl">
+    I 6 segnali che il tuo sito web va rifatto
+  </h2>
+  <p class="mt-4 text-lg opacity-80">
+    Se qualcuno di questi punti ti suona familiare, è
+    ora di considerare un restyling.
+  </p>
+
+  <div class="mt-12 grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
+    {
+      redFlags.map((signal: { icon: string; title: string; description: string }) => (
+        <div class="card bg-base-200 shadow-md transition hover:shadow-xl">
+          <div class="card-body">
+            <Icon
+              class="stroke-secondary text-primary size-8"
+              name={`pixelarticons:${signal.icon}`}
+            />
+            <h3 class="card-title text-xl">{signal.title}</h3>
+            <p class="opacity-90">{signal.description}</p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>

@@ -1,0 +1,28 @@
+---
+import Config from "@src/config/freelance.json";
+---
+
+<section id="faq" class="py-20">
+  <div class="hidden w-full items-center gap-10 opacity-20 sm:flex">
+    <div class="flex-none font-bold uppercase">FAQ</div>
+    <div class="w-full">
+      <div class="bg-neutral-content h-0.5 w-full"></div>
+    </div>
+  </div>
+  <h2 class="mt-6 text-3xl font-bold uppercase md:text-4xl">
+    Domande frequenti
+  </h2>
+  <div class="join join-vertical mt-10 w-full space-y-2">
+    {
+      Config.faq.map((faqItem) => (
+        <div class="join-item collapse-plus bg-base-200 collapse">
+          <input type="radio" name="restyling-faq" />
+          <div class="collapse-title text-lg font-bold">{faqItem.question}</div>
+          <div class="collapse-content">
+            <p class="py-4 opacity-90">{faqItem.answer}</p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

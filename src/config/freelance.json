@@ -8,7 +8,7 @@
       "amount": 1500,
       "plus": true,
       "features": [
-        "CMS custom o Wordpress",
+        "CMS custom",
         "Fino a 5 pagine"
       ],
       "includesBaseServices": true,
@@ -104,42 +104,131 @@
       "url": "https://alpinejs.dev/"
     }
   ],
+  "redFlags": [
+    {
+      "icon": "speed-slow",
+      "title": "È lento",
+      "description": "Caricamento sopra i 3 secondi, animazioni a scatti, immagini pesanti non ottimizzate. Google penalizza i siti lenti nei risultati di ricerca e i visitatori abbandonano."
+    },
+    {
+      "icon": "device-tablet",
+      "title": "Non si adatta ai cellulari",
+      "description": "Oggi più del 70% del traffico è da mobile. Se la navigazione non è ottimizzata per schermi piccoli, stai perdendo la maggior parte dei potenziali clienti."
+    },
+    {
+      "icon": "search",
+      "title": "Non viene trovato su Google",
+      "description": "URL rotti, meta tag mancanti, struttura HTML obsoleta, nessuna integrazione con Search Console. Senza SEO il sito è invisibile."
+    },
+    {
+      "icon": "shield",
+      "title": "Non è conforme al GDPR",
+      "description": "Cookie banner assente o non a norma, nessuna privacy/cookie policy aggiornata, moduli senza consenso. È un rischio legale concreto."
+    },
+    {
+      "icon": "image-multiple",
+      "title": "Lo stile è datato",
+      "description": "Grafica anni 2010, font datati, foto stock riciclate. Il sito è il tuo biglietto da visita: se sembra vecchio, non ispira fiducia."
+    },
+    {
+      "icon": "coin",
+      "title": "Non porta clienti",
+      "description": "Niente call-to-action chiare, moduli di contatto nascosti o complicati, nessun tracciamento delle conversioni. Il sito esiste, ma non funziona."
+    }
+  ],
   "features": [
     {
       "title": "Tema Custom e Responsive",
-      "description": "Il tuo sito web sarà la tua identità online e offrirà un'esperienza di navigazione ottimale per tutti i tuoi clienti su tutti i dispositivi."
+      "shortLabel": "Custom Design",
+      "highlightInRestyling": true,
+      "description": "Un design su misura che riflette la tua identità e garantisce un'esperienza di navigazione ottimale su tutti i dispositivi, da desktop a mobile."
     },
     {
       "title": "Funzionalità ad hoc e integrazione API",
+      "shortLabel": "Funzionalità custom",
       "description": "Automatizza processi, ottimizza l'esperienza utente e offri nuovi servizi ai tuoi clienti."
     },
     {
       "title": "Informazioni e moduli di contatto",
+      "shortLabel": "Moduli di contatto",
       "description": "Fornisci ai tuoi utenti tutte le informazioni di cui hanno bisogno e facilita il contatto con la tua azienda grazie a moduli di contatto personalizzati e intuitivi. Raccogli i dati necessari per rispondere alle loro esigenze in modo efficiente e tempestivo."
     },
     {
       "title": "Branding e Logo wordmark",
+      "shortLabel": "Branding & Logo",
       "description": "Crea un'immagine aziendale distintiva e coerente per tutti i tuoi canali di comunicazione. Se non hai ancora un logo, la sua realizzazione è inclusa, insieme alla scelta dei font, dei colori e altre linee guida grafiche."
     },
     {
-      "title": "Ricerca immagini stock",
-      "description": "Arricchisci i tuoi contenuti e cattura l'attenzione dei visitatori con foto, illustrazioni, vettori e video."
+      "title": "Astrazione e migrazione dati",
+      "shortLabel": "Migrazione Dati",
+      "highlightInRestyling": true,
+      "description": "Progettazione delle strutture dati per organizzare in modo coerente i contenuti e le informazioni aziendali (pagine, articoli, prodotti, clienti, ordini) e migrazione da piattaforme esistenti."
     },
     {
       "title": "Integrazione Tag Google",
+      "shortLabel": "Google Analytics",
+      "highlightInRestyling": true,
       "description": "Monitora il traffico, le conversioni e il comportamento degli utenti sul tuo sito web. Ottieni dati e insights preziosi per ottimizzare le tue strategie di marketing e migliorare i risultati della tua attività."
     },
     {
       "title": "Ottimizzazione SEO & Performance",
+      "shortLabel": "Ottimizzazione SEO",
+      "highlightInRestyling": true,
       "description": "Migliora la visibilità online del tuo sito web con una strategia SEO by design. Aumenta il traffico organico, la velocità di caricamento e l'usabilità, favorendo il posizionamento tra i primi risultati nelle ricerche Google."
     },
     {
       "title": "Cookie Policy compliant e GDPR",
+      "shortLabel": "Conformità GDPR",
+      "highlightInRestyling": true,
       "description": "Gestisci i cookie in modo conforme al GDPR con le soluzioni di Iubenda e strumenti simili, oppure integrando i documenti del tuo legale di fiducia."
     },
     {
       "title": "Gestione Hosting, Dominio (HTTPS) e Email",
+      "shortLabel": "Hosting & Dominio",
+      "highlightInRestyling": true,
       "description": "Dalla registrazione del dominio all'attivazione di caselle email personalizzate, mi occupo di tutto quello che serve per garantirti un servizio di hosting sicuro, efficiente e performante. Il tuo sito web sarà sempre online e raggiungibile, con la massima protezione SSL (HTTPS)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Quanto costa un sito web?",
+      "answer": "Dipende dalla complessità: numero di pagine, funzionalità, integrazioni con servizi esterni. Per dare un riferimento, il pacchetto Standard parte da 1500€ per siti vetrina, aziendali e blog fino a 5 pagine. Per ECommerce e progetti custom il pacchetto parte da 4000€. Hosting e dominio non sono inclusi."
+    },
+    {
+      "question": "Quanto tempo serve per realizzare un sito web?",
+      "answer": "Da 2 a 6 settimane a partire dall'acconto, in base alla complessità del progetto, al numero di pagine e di revisioni richieste. Le tempistiche le concordiamo sempre prima di iniziare."
+    },
+    {
+      "question": "Cosa significa sito web custom?",
+      "answer": "Significa che il sito è scritto su misura per le tue esigenze, senza dipendere da template, page builder o plugin di terze parti. Risultato: caricamenti più veloci, codice più pulito, maggiore sicurezza e un design davvero unico, non riconducibile a un tema riciclato."
+    },
+    {
+      "question": "Come funziona la collaborazione?",
+      "answer": "Si parte sempre con una chiamata o un incontro per capire obiettivi, contenuti e tempistiche. Si concorda un budget iniziale di riferimento e, con l'acconto, parte lo sviluppo: procede in modo iterativo, con avanzamenti condivisi regolarmente per raccogliere feedback e raffinare le scelte strada facendo. Il lancio avviene dopo la tua approvazione finale."
+    },
+    {
+      "question": "Si perde il posizionamento Google rifacendo un sito?",
+      "answer": "No, se la migrazione è gestita bene. Si mappa la struttura del vecchio sito sulla nuova e si gestiscono correttamente i collegamenti dai vecchi URL verso le nuove pagine. È uno dei passaggi più delicati e va affrontato con metodo."
+    },
+    {
+      "question": "Gestisci anche le campagne Google Ads?",
+      "answer": "Sì, è uno dei servizi che offro attivamente: setup degli account, creazione di campagne search e display, ottimizzazione continua basata sui dati. La gestione è inclusa nel pacchetto Assistenza & Ads mensile."
+    },
+    {
+      "question": "Cosa si intende per lead generation?",
+      "answer": "Un flusso strutturato di contatti qualificati che arrivano sul sito e si trasformano in richieste concrete. In pratica: landing page ottimizzate per la conversione, campagne Google Ads mirate e SEO on-page per attirare il pubblico giusto. Tutto misurabile con dati reali, non con percezioni."
+    },
+    {
+      "question": "Devo cambiare hosting per avere un sito performante?",
+      "answer": "Se l'hosting attuale è obsoleto o sottodimensionato, consiglio di migrare verso soluzioni moderne come Netlify o DigitalOcean. La migrazione la gestisco senza interruzione del servizio."
+    },
+    {
+      "question": "Posso gestire i contenuti in autonomia?",
+      "answer": "Sì. A seconda del progetto integro un CMS custom (Filament per Laravel, Decap o Keystatic per Astro) oppure un'area amministrativa su misura. La formazione all'utilizzo è inclusa."
+    },
+    {
+      "question": "Possiamo incontrarci di persona?",
+      "answer": "La sede è a Vedano Olona (VA) ma lavoro da remoto con clienti in tutta Italia. Per progetti in provincia di Varese sono disponibile anche per incontri in presenza; per il resto, chiamate online e condivisione schermo in tempo reale."
     }
   ]
 }

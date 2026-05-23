@@ -1,0 +1,70 @@
+---
+import lighthouseImage from "@src/assets/images/lighthouse-test.png";
+import Config from "@src/config/freelance.json";
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+
+const tags = Config.features
+  .filter((feature) => feature.highlightInRestyling)
+  .map((feature) => feature.shortLabel);
+---
+
+<div class="py-20">
+  <h2
+    class="text-center text-3xl font-bold uppercase md:text-4xl"
+    id="restyling"
+  >
+    Rinnova il tuo sito web.
+  </h2>
+  <p class="mt-4 text-center text-lg opacity-80">
+    Veloce, su misura e pensato per durare nel tempo.
+  </p>
+
+  <div class="mt-12 py-4 grid gap-8 lg:grid-cols-2 lg:items-stretch">
+    <ul class="grid grid-cols-2 gap-3">
+      {
+        tags.map((tag) => (
+          <li class="bg-base-200 flex flex-col items-start gap-3 rounded-lg p-3 shadow-sm sm:flex-row">
+            <Icon
+              class="stroke-secondary text-primary mt-0.5 size-5 flex-none"
+              name="pixelarticons:check"
+            />
+            <div>
+              <div class="font-bold">{tag}</div>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div
+      class="from-primary/50 to-secondary/50 rounded-xl bg-linear-to-r p-6 shadow-md"
+    >
+      <div class="flex flex-col items-start gap-4 sm:flex-row">
+        <Icon
+          class="mt-1 size-10 flex-none"
+          name="pixelarticons:trending-up"
+        />
+        <div>
+          <div class="text-xl font-bold uppercase">
+            Confronto prima-dopo incluso
+          </div>
+          <p class="mt-2 opacity-90">
+            Report finale con punteggi
+            <strong>Lighthouse e PageSpeed</strong>:
+            risultati misurabili che certificano i miglioramenti ottenuti.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="card shadow-primary ring-primary mx-auto mt-12 max-w-lg overflow-hidden shadow-md ring-2"
+  >
+    <Image
+      src={lighthouseImage}
+      alt="Punteggi Lighthouse di un sito ottimizzato"
+    />
+  </div>
+</div>

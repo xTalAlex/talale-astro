@@ -1,5 +1,12 @@
 import { config, fields, collection, singleton } from "@keystatic/core";
 
+const pixelartIconDescription = (
+  <>
+    <a href="https://icon-sets.iconify.design/pixelarticons/?keyword=pixel"
+       target="_blank" rel="noreferrer">pixelarticons</a>
+  </>
+);
+
 export default config({
   storage: import.meta.env.DEV
     ? { kind: "local" }
@@ -272,6 +279,7 @@ export default config({
             }),
             icon: fields.text({
               label: "Icona",
+              description: pixelartIconDescription,
             }),
           }),
           {
@@ -304,6 +312,15 @@ export default config({
             title: fields.text({
               label: "Titolo",
             }),
+            shortLabel: fields.text({
+              label: "Etichetta breve",
+              description:
+                "Versione sintetica del titolo usata nei tag della sezione Restyling.",
+            }),
+            highlightInRestyling: fields.checkbox({
+              label: "Mostra nella sezione Restyling",
+              defaultValue: false,
+            }),
             description: fields.text({
               label: "Descrizione",
               multiline: true,
@@ -312,6 +329,42 @@ export default config({
           {
             label: "Features",
             itemLabel: (props) => props.fields.title.value || "Feature",
+          },
+        ),
+        faq: fields.array(
+          fields.object({
+            question: fields.text({
+              label: "Domanda",
+            }),
+            answer: fields.text({
+              label: "Risposta",
+              multiline: true,
+            }),
+          }),
+          {
+            label: "FAQ",
+            itemLabel: (props) => props.fields.question.value || "Domanda",
+          },
+        ),
+        redFlags: fields.array(
+          fields.object({
+            icon: fields.text({
+              label: "Icona",
+              description: pixelartIconDescription,
+            }),
+            title: fields.text({
+              label: "Titolo",
+            }),
+            description: fields.text({
+              label: "Descrizione",
+              multiline: true,
+            }),
+          }),
+          {
+            label: "Red Flags",
+            description:
+              "Segnali che indicano la necessità di un restyling del sito",
+            itemLabel: (props) => props.fields.title.value || "Red Flag",
           },
         ),
       },

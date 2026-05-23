@@ -1,0 +1,31 @@
+---
+import Audit from "@src/components/partials/restyling/Audit.astro";
+import Faq from "@src/components/partials/restyling/Faq.astro";
+import Hero from "@src/components/partials/restyling/Hero.astro";
+import Highlights from "@src/components/partials/restyling/Highlights.astro";
+import RedFlags from "@src/components/partials/restyling/RedFlags.astro";
+import CTA from "@src/components/partials/services/CTA.astro";
+import Layout from "@src/layouts/Layout.astro";
+
+const title = "Ristrutturazione Siti Web";
+const description =
+  "Restyling artigianale di siti web esistenti: tecnologie moderne, ottimizzazione SEO e custom design. Freelance a Varese.";
+---
+
+<Layout {title} {description}>
+  <div
+    class="container w-full max-w-5xl overflow-hidden px-5 md:mx-auto lg:overflow-visible"
+  >
+    <Hero {title} {description} />
+
+    <RedFlags />
+
+    <Highlights />
+
+    <Audit />
+
+    <Faq />
+  </div>
+
+  <CTA />
+</Layout>

@@ -1,0 +1,50 @@
+---
+interface Props {
+  title: string;
+  description: string;
+}
+
+import heroImage from "@src/assets/images/mascotte-restyling.png";
+import { Image } from "astro:assets";
+
+const { title, description } = Astro.props;
+---
+
+<div class="pb-72 md:pb-72 lg:pb-32">
+  <div class="relative">
+    <div class="my-10 max-w-xl md:ml-10 lg:ml-0">
+      <h1 class="py-12 text-4xl font-bold sm:text-5xl">
+        {title}
+      </h1>
+      <h2 class="max-w-md text-2xl">
+        {description}
+      </h2>
+
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a
+          href="/#contacts"
+          class="btn btn-primary btn-lg font-bold uppercase"
+          id="restyling-hero-cta"
+        >
+          Preventivo gratuito
+        </a>
+      </div>
+    </div>
+
+    <div
+      class="absolute -right-10 -bottom-56 -z-10 md:right-0 md:-bottom-64 lg:-bottom-16"
+    >
+      <div class="relative h-64 md:h-80">
+        <div
+          class="from-primary to-secondary absolute inset-0 -z-10 animate-pulse bg-linear-to-br opacity-40 blur-3xl"
+        >
+        </div>
+        <Image
+          class="h-full w-auto object-contain"
+          src={heroImage}
+          alt={title}
+        />
+      </div>
+    </div>
+  </div>
+</div>
