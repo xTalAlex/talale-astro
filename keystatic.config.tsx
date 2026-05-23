@@ -21,7 +21,7 @@ export default config({
     },
     navigation: {
       Content: ["projects"],
-      Settings: ["general", "freelance", "llmsContext"],
+      Settings: ["general", "freelance", "llmsContext", "ads"],
     },
   },
 
@@ -297,6 +297,36 @@ export default config({
           description:
             "Copy editoriale incluso in llms.txt: posizionamento, cliente ideale, contesto per LLM e motori AI.",
         }),
+      },
+    }),
+
+    ads: singleton({
+      label: "Google Ads",
+      path: "src/data/ads",
+      format: { data: "json" },
+      schema: {
+        categories: fields.array(
+          fields.object({
+            name: fields.text({
+              label: "Nome categoria",
+              validation: { isRequired: true },
+            }),
+            description: fields.text({
+              label: "Descrizione",
+              multiline: true,
+            }),
+            keywords: fields.text({
+              label: "Keywords",
+              description:
+                "Una keyword per riga. Usa le virgolette per la corrispondenza a frase (\"keyword\") o le parentesi quadre per quella esatta ([keyword]). Pronto per copia/incolla nella textarea di Google Ads.",
+              multiline: true,
+            }),
+          }),
+          {
+            label: "Gruppi di keywords",
+            itemLabel: (props) => props.fields.name.value || "Categoria",
+          },
+        ),
       },
     }),
 

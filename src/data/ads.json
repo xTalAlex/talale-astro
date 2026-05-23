@@ -1,0 +1,24 @@
+{
+  "categories": [
+    {
+      "name": "Sviluppo Custom & Tecnico",
+      "description": "Ideale per annunci che parlano di codice pulito, niente template e alte prestazioni.",
+      "keywords": "\"sviluppatore web custom\"\n\"sviluppatore siti web ottimizzati\"\n\"programmatore siti web\"\n\"sviluppatore siti web\"\n\"ristrutturazione siti web\"\n\"restyling sito web\""
+    },
+    {
+      "name": "Intento Commerciale & Aziende",
+      "description": "Ideale per annunci focalizzati su soluzioni professionali e richieste di contatto.",
+      "keywords": "\"realizzazione siti web aziendali\"\n\"preventivo realizzazione sito web\"\n\"realizzazione siti per aziende\"\n\"gestione siti web professionali\""
+    },
+    {
+      "name": "Pacchetto Sito + Lead Generation",
+      "description": "Ideale per annunci (e la relativa Landing Page) che uniscono la creazione del sito alla gestione delle campagne Google.",
+      "keywords": "\"realizzazione sito web e campagne google\"\n\"sito web per lead generation\"\n\"sviluppo landing page e campagne ads\"\n\"realizzazione sito web e web marketing\"\n\"consulente web marketing e sviluppo\""
+    },
+    {
+      "name": "Blacklist (Parole chiave escluse)",
+      "description": "Da incollare nella sezione 'Parole chiave escluse' di Google Ads a corrispondenza generica (senza virgolette).",
+      "keywords": "agenzia\nagenzie\nazienda\naziende\nvetrina\ncosti\nprezzo\neconomico\ngratis\nlow cost\nwordpress\nwp\nelementor\nwix\nshopify\njoomla\nprestashop\nfai da te\ntemplate\ntema"
+    }
+  ]
+}
