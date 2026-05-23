@@ -21,9 +21,11 @@ _Personal website & portfolio built with modern web technologies_
 - [Features](#-features)
 - [Development](#-development)
 - [Coding Conventions](#-coding-conventions)
+- [Content Management](#-content-management)
 - [Analytics Events](#-analytics-events)
 - [Custom Events](#-custom-events)
 - [Roadmap](#-roadmap)
+- [Known Issues](#-known-issues)
 
 ## 🛠️ Tech Stack
 
@@ -36,7 +38,7 @@ _Personal website & portfolio built with modern web technologies_
 - **Analytics:** Google Analytics
 - **Deployment:** Netlify
 - **Testing:** Vitest, Cypress
-- **CMS:** Decap CMS (NetlifyCMS)
+- **Headless CMS:** [Keystatic](https://keystatic.com) — local + GitHub-backed content editing via [`keystatic.config.tsx`](./keystatic.config.tsx), mounted at `/keystatic`
 
 ## ✨ Features
 
@@ -96,7 +98,20 @@ npm run prisma       # Run Prisma CLI commands
 | HTML IDs                         | `kebab-case`      | `user-profile`  |
 | JS Events                        | `camelCase`       | `requestLogin`  |
 
-## 📊 Analytics Events
+## � Content Management
+
+Long-form content (projects, site settings, ads, LLM context) is managed through [Keystatic](https://keystatic.com), mounted as an Astro integration and accessible at [`/keystatic`](http://localhost:4321/keystatic) during local development.
+
+- **Configuration:** [`keystatic.config.tsx`](./keystatic.config.tsx) defines collections (`projects`) and singletons (`general`, `freelance`, `llmsContext`, `ads`).
+- **Storage:**
+  - Local (`kind: "local"`) in development — edits write directly to files under `src/content/` and `src/config/`.
+  - GitHub (`kind: "github"`) in production — edits open commits/PRs against `xTalAlex/talale-astro`.
+- **Media:** uploads are written to `public/uploads/` and referenced via `/uploads/...` public paths.
+- **Authoring formats:** project bodies use Markdown (`format: { contentField: "content" }`); structured fields use Keystatic's typed fields API.
+
+See [Known Issues → Keystatic Limitations](#keystatic-limitations) for current caveats.
+
+## �📊 Analytics Events
 
 ### Google Analytics Events
 
@@ -141,6 +156,18 @@ npm run prisma       # Run Prisma CLI commands
 - [ ] **IGDB backend API** - Handle operations via API endpoints
 - [ ] **AI chatbot** - For example for project estimates
 - [ ] **Digimon API** - For fun
+
+## ⚠️ Known Issues
+
+### Keystatic Limitations
+
+Current pain points with the [Keystatic](https://keystatic.com) integration that may require workarounds or future migration:
+
+- **No media gallery** — uploaded assets cannot be browsed or reused across entries from a centralized library.
+- **No custom file names** — uploaded media files keep their original names; there is no built-in way to enforce a custom naming convention (e.g. slug-based).
+- **No per-collection preview images** — the collection list view does not support a thumbnail/preview image field for entries.
+- **RichEditor stored as JSON** — the new `fields.mdx`/`fields.markdoc` rich editors persist content as JSON; the legacy `fields.document` field is deprecated and structured content cannot be authored as plain Markdown.
+
 
 ---
 
