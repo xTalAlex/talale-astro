@@ -70,6 +70,19 @@ const slugify = (text) => {
     .replace(/--+/g, "-");
 };
 
+const stripHtml = (input) => {
+  if (!input) return "";
+  return String(input)
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+};
+
+const formatPrice = (price) => {
+  const suffix = price?.amountInfo ? price.amountInfo : "";
+  return `${price?.amount ?? 0}€${suffix}`;
+};
+
 export {
   lastDeployDate,
   fromReleaseDate,
@@ -79,4 +92,6 @@ export {
   delayFunction,
   toTrimmedAlphanumeric,
   slugify,
+  stripHtml,
+  formatPrice,
 };

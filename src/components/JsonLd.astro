@@ -1,0 +1,99 @@
+---
+import FreelanceConfig from "@src/config/freelance.json";
+import GeneralConfig from "@src/config/general.json";
+
+const siteUrl = GeneralConfig.url;
+const personId = `${siteUrl}/#person`;
+const businessId = `${siteUrl}/#business`;
+const websiteId = `${siteUrl}/#website`;
+
+const person = {
+  "@type": "Person",
+  "@id": personId,
+  name: GeneralConfig.title,
+  url: siteUrl,
+  email: `mailto:${GeneralConfig.email}`,
+  jobTitle: GeneralConfig.jobTitle,
+  birthDate: String(GeneralConfig.birthYear),
+  sameAs: [GeneralConfig.social.github, GeneralConfig.googleMaps.url],
+};
+
+const offers = FreelanceConfig.prices.map((p) => ({
+  "@type": "Offer",
+  itemOffered: {
+    "@type": "Service",
+    name: p.name,
+    description: p.description,
+  },
+}));
+
+const business = {
+  "@type": "ProfessionalService",
+  "@id": businessId,
+  name: GeneralConfig.googleMaps.title,
+  alternateName: GeneralConfig.title,
+  url: siteUrl,
+  description: GeneralConfig.description,
+  slogan: GeneralConfig.motto,
+  email: `mailto:${GeneralConfig.email}`,
+  taxID: FreelanceConfig.piva,
+  vatID: `IT${FreelanceConfig.piva}`,
+  founder: { "@id": personId },
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: GeneralConfig.address.streetAddress,
+    addressLocality: GeneralConfig.address.addressLocality,
+    addressRegion: GeneralConfig.address.addressRegion,
+    postalCode: GeneralConfig.address.postalCode,
+    addressCountry: GeneralConfig.address.addressCountry,
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: GeneralConfig.geo.latitude,
+    longitude: GeneralConfig.geo.longitude,
+  },
+  areaServed: GeneralConfig.areaServed.map((name) => ({
+    "@type": "AdministrativeArea",
+    name,
+  })),
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Servizi di sviluppo e gestione siti web",
+    itemListElement: offers,
+  },
+  sameAs: [GeneralConfig.googleMaps.url, GeneralConfig.social.github],
+};
+
+const website = {
+  "@type": "WebSite",
+  "@id": websiteId,
+  url: siteUrl,
+  name: GeneralConfig.title,
+  description: GeneralConfig.description,
+  inLanguage: "it-IT",
+  publisher: { "@id": personId },
+};
+
+const faqPage = {
+  "@type": "FAQPage",
+  mainEntity: FreelanceConfig.faq.map((entry) => ({
+    "@type": "Question",
+    name: entry.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: entry.answer,
+    },
+  })),
+};
+
+const graph = {
+  "@context": "https://schema.org",
+  "@graph": [person, business, website, faqPage],
+};
+---
+
+<script
+  type="application/ld+json"
+  is:inline
+  set:html={JSON.stringify(graph)}
+/>

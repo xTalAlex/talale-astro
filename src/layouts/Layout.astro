@@ -17,6 +17,7 @@ import Alert from "@src/components/Alert.astro";
 import BackToTop from "@src/components/BackToTop.astro";
 import Footer from "@src/components/Footer.astro";
 import IubendaCookieSolution from "@src/components/IubendaCookieSolution.astro";
+import JsonLd from "@src/components/JsonLd.astro";
 import LoginModal from "@src/components/LoginModal.astro";
 import Navbar from "@src/components/Navbar.astro";
 import TawktoWidget from "@src/components/TawktoWidget.astro";
@@ -81,6 +82,8 @@ const openGraph = {
       openGraph={openGraph}
       noindex={noindex}
     />
+
+    <JsonLd />
 
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 

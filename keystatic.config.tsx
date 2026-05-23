@@ -21,7 +21,7 @@ export default config({
     },
     navigation: {
       Content: ["projects"],
-      Settings: ["general", "freelance"],
+      Settings: ["general", "freelance", "llmsContext"],
     },
   },
 
@@ -114,6 +114,14 @@ export default config({
           label: "Biografia",
           multiline: true,
         }),
+        jobTitle: fields.text({
+          label: "Ruolo professionale",
+          description: "Es. Sviluppatore Web Freelance. Usato per JSON-LD e llms.txt.",
+        }),
+        birthYear: fields.integer({
+          label: "Anno di nascita",
+          description: "Usato come birthDate nello schema Person (JSON-LD).",
+        }),
         email: fields.text({
           label: "Email",
           validation: {
@@ -123,6 +131,65 @@ export default config({
         waUrl: fields.url({
           label: "Whatsapp URL",
         }),
+        address: fields.object(
+          {
+            streetAddress: fields.text({
+              label: "Indirizzo",
+              description: "Via e numero civico",
+            }),
+            addressLocality: fields.text({
+              label: "Città",
+            }),
+            addressRegion: fields.text({
+              label: "Provincia",
+              description: "Sigla a 2 lettere (es. VA)",
+            }),
+            postalCode: fields.text({
+              label: "CAP",
+            }),
+            addressCountry: fields.text({
+              label: "Paese",
+              description: "Codice ISO a 2 lettere (es. IT)",
+            }),
+          },
+          {
+            label: "Sede",
+            description: "Indirizzo della sede, usato per JSON-LD e llms.txt.",
+          },
+        ),
+        geo: fields.object(
+          {
+            latitude: fields.number({
+              label: "Latitudine",
+            }),
+            longitude: fields.number({
+              label: "Longitudine",
+            }),
+          },
+          {
+            label: "Coordinate geografiche",
+            description: "Usate per lo schema GeoCoordinates (JSON-LD).",
+          },
+        ),
+        areaServed: fields.array(
+          fields.text({ label: "Area" }),
+          {
+            label: "Aree servite",
+            description: "Elenco delle aree geografiche servite.",
+            itemLabel: (props) => props.value,
+          },
+        ),
+        social: fields.object(
+          {
+            github: fields.url({
+              label: "GitHub",
+            }),
+          },
+          {
+            label: "Social",
+            description: "Profili social, usati come sameAs nel JSON-LD.",
+          },
+        ),
         googleMaps: fields.object(
           {
             title: fields.text({
@@ -214,6 +281,21 @@ export default config({
         netlifyStatusBadgeUrl: fields.url({
           label: "Deploy Status Badge URL",
           description: "Netlify deploy status badge URL",
+        }),
+      },
+    }),
+
+    llmsContext: singleton({
+      label: "Contesto per LLM",
+      path: "src/data/markdown/llms-context",
+      format: { contentField: "content" },
+      entryLayout: "content",
+      schema: {
+        content: fields.markdoc({
+          label: "Contenuto",
+          extension: "md",
+          description:
+            "Copy editoriale incluso in llms.txt: posizionamento, cliente ideale, contesto per LLM e motori AI.",
         }),
       },
     }),

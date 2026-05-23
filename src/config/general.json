@@ -6,8 +6,29 @@
   "description": "Siti web su misura per distinguersi dalla concorrenza. Creazione, ristrutturazione e gestione di Siti Aziendali, ECommerce, Blog, Siti Vetrina, Applicazioni Web e Gestionali per qualunque tipo di attività.",
   "cta": "Contattami",
   "biography": "Nato nel 1993, abito in provincia di Varese, laureato in Informatica Musicale.<br>Quando non sono impegnato a scrivere codice, mi piace dedicarmi a musica e videogiochi: interessi che alimentano mente, spirito, creatività e immaginazione.",
+  "jobTitle": "Sviluppatore Web Freelance",
+  "birthYear": 1993,
   "email": "info@talale.it",
   "waUrl": "https://wa.me/3485650564?text=Ciao%2C%20ho%20bisogno%20di%20un%20sito%20web",
+  "address": {
+    "streetAddress": "Via Nino Bixio 2",
+    "addressLocality": "Vedano Olona",
+    "addressRegion": "VA",
+    "postalCode": "21040",
+    "addressCountry": "IT"
+  },
+  "geo": {
+    "latitude": 45.7725927,
+    "longitude": 8.887267
+  },
+  "areaServed": [
+    "Provincia di Varese",
+    "Lombardia",
+    "Italia"
+  ],
+  "social": {
+    "github": "https://github.com/xTalAlex"
+  },
   "googleMaps": {
     "title": "Creazione Siti Web e ECommerce - Alessandro Talamona",
     "url": "https://www.google.com/maps/place/Creazione+Siti+Web+e+ECommerce+-+Alessandro+Talamona/@45.7726887,8.8838888,16z/data=!4m6!3m5!1s0x290fd78780394b75:0xd42195a7fbeb044b!8m2!3d45.7725927!4d8.887267!16s%2Fg%2F11rq11rj3d?hl=it&entry=tts"
