@@ -19,12 +19,21 @@ import Config from "@src/config/general.json";
   var gcCta = document.currentScript.dataset.gcCta;
   (function () {
     var target = document.currentScript;
+    var parent = target.parentElement;
     window.addEventListener("load", function () {
       calendar.schedulingButton.load({
         url: gcUrl,
         color: "#ff972a",
         label: gcCta,
         target,
+      });
+      parent?.addEventListener("click", function (e) {
+        var el = e.target && e.target.closest
+          ? e.target.closest("button, a")
+          : null;
+        if (el && window.gtag) {
+          window.gtag("event", "calendar_open", {});
+        }
       });
     });
   })();

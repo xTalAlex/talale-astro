@@ -120,7 +120,8 @@ See [Known Issues → Keystatic Limitations](#keystatic-limitations) for current
 | `form_submit`              | Form submission tracking                | `form_name`: `messagebox` \| `tawkto_offline_form` |
 | `chat_start`               | Tawkto chat message sent                | -                                                  |
 | `calendar_meeting_created` | Google Calendar booking via Zapier      | -                                                  |
-| `contact_link_click`       | Contact button clicks (WhatsApp, Email) | Class: `ga-contact-link`                           |
+| `calendar_open`            | Click on the Google Calendar scheduling button (micro-conversion) | -                       |
+| `contact_link_click`       | Contact button clicks (WhatsApp, Email) | `contact_method`: `whatsapp` \| `email` \| `other` |
 | `game_won`                 | Minesweeper game won                    | -                                                  |
 | `game_lost`                | Minesweeper game lost                   | -                                                  |
 | `radio_play`               | Radio station played                    | -                                                  |
