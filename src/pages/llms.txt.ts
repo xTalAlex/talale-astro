@@ -62,7 +62,7 @@ ${stack}
 
 - Email: [${GeneralConfig.email}](mailto:${GeneralConfig.email})
 - WhatsApp: [scrivimi su WhatsApp](${GeneralConfig.waUrl})
-- Prenota una call: [Google Calendar](${GeneralConfig.googleCalendar.url})
+- Prenota una telefonata: [Google Calendar](${GeneralConfig.googleCalendar.url})
 - Sede: ${address}
 - Maps: [${GeneralConfig.googleMaps.title}](${GeneralConfig.googleMaps.url})
 - GitHub: [${GeneralConfig.social.github}](${GeneralConfig.social.github})

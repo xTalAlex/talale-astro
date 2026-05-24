@@ -129,7 +129,7 @@ export default config({
           },
         }),
         waUrl: fields.url({
-          label: "Whatsapp URL",
+          label: "WhatsApp URL",
         }),
         address: fields.object(
           {
