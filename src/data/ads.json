@@ -1,24 +1,39 @@
 {
   "categories": [
     {
-      "name": "Sviluppo Custom & Tecnico",
-      "description": "Ideale per annunci che parlano di codice pulito, niente template e alte prestazioni.",
-      "keywords": "\"sviluppatore web custom\"\n\"sviluppatore siti web ottimizzati\"\n\"programmatore siti web\"\n\"sviluppatore siti web\"\n\"ristrutturazione siti web\"\n\"restyling sito web\""
+      "name": "AG1 — Restyling / Ristrutturazione",
+      "description": "Alto intent, lead di qualità. Landing dedicata /restyling. Bid CPC max suggerito: €2.50. Phrase match.",
+      "keywords": "\"restyling sito web\"\n\"ristrutturazione sito web\""
     },
     {
-      "name": "Intento Commerciale & Aziende",
-      "description": "Ideale per annunci focalizzati su soluzioni professionali e richieste di contatto.",
-      "keywords": "\"realizzazione siti web aziendali\"\n\"preventivo realizzazione sito web\"\n\"realizzazione siti per aziende\"\n\"gestione siti web professionali\""
+      "name": "AG2 — Ecommerce",
+      "description": "Servizi ecommerce, alto valore commessa. Bid CPC max suggerito: €2.50. Phrase match.",
+      "keywords": "\"preventivo creazione ecommerce\"\n\"creazione siti web ecommerce\"\n\"sito web con ecommerce\"\n\"sito per ecommerce\"\n\"sviluppatore ecommerce\"\n\"ecommerce con gestionale\"\n\"creazione siti ecommerce\"\n\"sviluppo siti ecommerce\"\n\"creazione ecommerce varese\"\n\"realizzazione siti web ecommerce\"\n\"realizzazione siti web e gestione ecommerce\""
     },
     {
-      "name": "Pacchetto Sito + Lead Generation",
-      "description": "Ideale per annunci (e la relativa Landing Page) che uniscono la creazione del sito alla gestione delle campagne Google.",
-      "keywords": "\"realizzazione sito web e campagne google\"\n\"sito web per lead generation\"\n\"sviluppo landing page e campagne ads\"\n\"realizzazione sito web e web marketing\"\n\"consulente web marketing e sviluppo\""
+      "name": "AG3 — Geo Varese",
+      "description": "Generiche localizzate sulla provincia core (VA). Permette ad copy con 'Varese' nel titolo per CTR boost. Bid CPC max suggerito: €2.20. Phrase match.",
+      "keywords": "\"preventivo sito web varese\"\n\"creazione siti web varese\"\n\"sviluppatore web varese\"\n\"siti web varese\"\n\"realizzazione siti web varese\"\n\"creazione sito internet varese\"\n\"realizzazione siti web professionali varese\"\n\"creazione siti varese\"\n\"siti web aggiornabili varese\""
+    },
+    {
+      "name": "AG4 — Custom / SEO / Su misura",
+      "description": "Qualifica alta, clienti con esigenze specifiche. Bid CPC max suggerito: €2.30. Phrase match.",
+      "keywords": "\"sito web ottimizzato seo\"\n\"creazione sito web personalizzato\"\n\"sito web su misura\""
+    },
+    {
+      "name": "AG5 — Servizi generici",
+      "description": "Keyword ampie e generiche. Bid CPC max RIDOTTO a €1.80 per evitare che cannibalizzino il budget degli AG di valore. Phrase match.",
+      "keywords": "\"ho bisogno di un sito web\"\n\"mi serve un sito web\"\n\"preventivo sito web\"\n\"siti web aziendali\"\n\"creazione e gestione siti web\"\n\"sviluppatore web freelance\"\n\"creazione siti web\"\n\"sviluppo siti web\"\n\"sviluppatori siti web\"\n\"sviluppatore web\"\n\"progettazione sito web\"\n\"realizzazione siti web\"\n\"progettazione e realizzazione siti web\""
+    },
+    {
+      "name": "AG6 — Lombardia",
+      "description": "Geo troppo ampia per il budget iniziale (€10-15/day). Da riattivare in Fase 2 solo se aumenta il budget e gli AG core saturano l'impression share. Bid CPC max suggerito se riattivato: €1.50. Phrase match.",
+      "keywords": "\"creazione siti internet lombardia\"\n\"realizzazione siti web lombardia\""
     },
     {
       "name": "Blacklist (Parole chiave escluse)",
       "description": "Da incollare nella sezione 'Parole chiave escluse' di Google Ads a corrispondenza generica (senza virgolette).",
-      "keywords": "agenzia\nagenzie\nazienda\naziende\nvetrina\ncosti\nprezzo\neconomico\ngratis\nlow cost\nwordpress\nwp\nelementor\nwix\nshopify\njoomla\nprestashop\nfai da te\ntemplate\ntema"
+      "keywords": "economico\nlow cost\nwordpress\nwp\nelementor\nwix\nshopify\njoomla\nprestashop\nfai da te\ntemplate\ncorso\ncorsi\ntutorial\nguida\ncome diventare\ncome fare\nstipendio\nguadagno\nquanto guadagna\nsalary\nlavoro\nassumere\ncerchiamo\ncurriculum\ngratis\ngratuito\ngratuita\ncos'è\ncosa è\ndifferenza\nmigliore\nmiglior\ntop\nclassifica\nrecensione\nrecensioni\nopinioni\ntasse\ninps\npartita iva\nforfettario\nbootcamp\narcheologici\nstorici\nturistici\nindustriali\nreligiosi\nprezzo\nprezzi\ncosto\ncosti\nofferta\nesempio\nesempi\ngratuiti\ngratuite\naudit\nvalutare\nvendere il sito\nfreelance cerco\nlombardia"
     }
   ]
 }
