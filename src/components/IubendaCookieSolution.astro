@@ -1,10 +1,13 @@
 ---
+import Config from "@src/config/general.json";
+
 export interface Props {
   siteId: string;
   policyId: string;
 }
 
 const { siteId, policyId } = Astro.props;
+const logoUrl = `${Config.url}/icon.png`;
 ---
 
 <script
@@ -12,21 +15,24 @@ const { siteId, policyId } = Astro.props;
   type="text/javascript"
   data-site-id={siteId}
   data-policy-id={policyId}
+  data-logo={logoUrl}
 >
   var _iub = _iub || [];
+  var _iubSiteId = document.currentScript.dataset.siteId;
+  var _iubPolicyId = document.currentScript.dataset.policyId;
+  var _iubLogo = document.currentScript.dataset.logo;
   _iub.csConfiguration = {
     countryDetection: true,
     floatingPreferencesButtonColor: "#00000000",
     floatingPreferencesButtonDisplay: "anchored-center-left",
     gdprAppliesGlobally: false,
     perPurposeConsent: true,
-    siteId: document.currentScript.dataset.siteId,
+    siteId: _iubSiteId,
     whitelabel: false,
-    cookiePolicyId: document.currentScript.dataset.policyId,
+    cookiePolicyId: _iubPolicyId,
     lang: "it",
     cookiePolicyUrl:
-      "https://www.iubenda.com/privacy-policy/" +
-      document.currentScript.dataset.policyId,
+      "https://www.iubenda.com/privacy-policy/" + _iubPolicyId,
     banner: {
       acceptButtonCaptionColor: "#FFFFFF",
       acceptButtonColor: "#010436",
@@ -39,17 +45,25 @@ const { siteId, policyId } = Astro.props;
       customizeButtonDisplay: true,
       explicitWithdrawal: true,
       listPurposes: true,
+      logo: _iubLogo,
       position: "bottom",
       rejectButtonDisplay: true,
       theme: "autumn-neutral",
       textColor: "#010436",
     },
   };
+  _iub.csLangConfiguration = {
+    it: {
+      cookiePolicyId: _iubPolicyId,
+      cookiePolicyUrl:
+        "https://www.iubenda.com/privacy-policy/" + _iubPolicyId,
+    },
+  };
 </script>
 <script
   is:inline
   type="text/javascript"
-  src={`//cs.iubenda.com/sync/${siteId}.js`}></script>
+  src={`https://cs.iubenda.com/autoblocking/${siteId}.js`}></script>
 <script
   is:inline
   type="text/javascript"

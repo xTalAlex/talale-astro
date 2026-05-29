@@ -114,25 +114,23 @@ const openGraph = {
 
     {
       GOOGLE_ANALYTICS_ID && (
-        <script
-          is:inline
-          class="_iub_cs_activate"
-          type={typeOptinScript}
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
-          data-cookieconsent="statistics"
-          data-iub-purposes="4"
-        />
+        <>
+          <script
+            is:inline
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
+          />
+          <script is:inline data-gaid={GOOGLE_ANALYTICS_ID}>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", document.currentScript.dataset.gaid);
+          </script>
+        </>
       )
     }
-    <script is:inline data-gaid={GOOGLE_ANALYTICS_ID}>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", document.currentScript.dataset.gaid);
-    </script>
 
     <script src="@src/lib/authManager.ts"></script>
   </head>
