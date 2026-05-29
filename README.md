@@ -119,9 +119,9 @@ See [Known Issues → Keystatic Limitations](#keystatic-limitations) for current
 | -------------------------- | ----------------------------------------------------------------- | -------------------------------------------------- |
 | `generate_lead`            | Form submission tracking                                          | `form_name`: `messagebox` \| `tawkto_offline_form` |
 | `chat_start`               | Tawkto chat message sent                                          | -                                                  |
-| `calendar_meeting_created` | Google Calendar booking via Zapier                                | -                                                  |
+| `calendar_meeting_created` | Google Calendar booking — sent **server-side via Zapier** (GA4 Measurement Protocol), not from the browser | -                                                  |
 | `calendar_open`            | Click on the Google Calendar scheduling button (micro-conversion) | -                                                  |
-| `contact_link_click`       | Contact button clicks (WhatsApp, Email)                           | `contact_method`: `whatsapp` \| `email` \| `other` |
+| `contact_link_click`       | Contact button clicks (WhatsApp, Email)                           | `contact_method`: `whatsapp` \| `email`            |
 | `game_won`                 | Minesweeper game won                                              | -                                                  |
 | `game_lost`                | Minesweeper game lost                                             | -                                                  |
 | `radio_play`               | Radio station played                                              | -                                                  |
