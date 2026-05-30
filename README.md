@@ -121,7 +121,7 @@ See [Known Issues → Keystatic Limitations](#keystatic-limitations) for current
 | `chat_start`               | Tawkto chat message sent                                          | -                                                  |
 | `calendar_meeting_created` | Google Calendar booking — sent **server-side via Zapier** (GA4 Measurement Protocol), not from the browser | -                                                  |
 | `calendar_open`            | Click on the Google Calendar scheduling button (micro-conversion) | -                                                  |
-| `contact_link_click`       | Contact button clicks (WhatsApp, Email)                           | `contact_method`: `whatsapp` \| `email`            |
+| `contact_link_click`       | Contact button clicks (WhatsApp, Email) — split into derived events `whatsapp_click` and `email_click` in Google Analytics | `contact_method`: `whatsapp` \| `email`            |
 | `game_won`                 | Minesweeper game won                                              | -                                                  |
 | `game_lost`                | Minesweeper game lost                                             | -                                                  |
 | `radio_play`               | Radio station played                                              | -                                                  |
