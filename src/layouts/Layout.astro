@@ -120,14 +120,18 @@ const openGraph = {
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
           />
-          <script is:inline data-gaid={GOOGLE_ANALYTICS_ID}>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() {
-              dataLayer.push(arguments);
-            }
-            gtag("js", new Date());
-            gtag("config", document.currentScript.dataset.gaid);
-          </script>
+          <script
+            is:inline
+            data-gaid={GOOGLE_ANALYTICS_ID}
+            set:html={`
+              window.dataLayer = window.dataLayer || [];
+              function gtag() {
+                dataLayer.push(arguments);
+              }
+              gtag("js", new Date());
+              gtag("config", document.currentScript.dataset.gaid);
+            `}
+          />
         </>
       )
     }
