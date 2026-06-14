@@ -1,6 +1,5 @@
 // fontsource packages are CSS-only, no TypeScript exports
-declare module "@fontsource/chakra-petch";
-declare module "@fontsource/vt323";
+declare module "@fontsource/*";
 
 // simple-parallax-js ships types only for the React module, not the vanilla submodule.
 // No @types package exists. This manual declaration is the standard TypeScript solution.
