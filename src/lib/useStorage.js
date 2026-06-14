@@ -14,28 +14,27 @@ export function useStorage(key, defaultVal = null) {
   watch(val, write, { deep: true });
 
   function read() {
-    if (typeof window === "undefined" || !window.localStorage) {
-      return null;
+    let result = null;
+
+    if (typeof window !== "undefined" && window.localStorage) {
+      try {
+        const item = window.localStorage.getItem(key);
+        result = item ? JSON.parse(item) : null;
+      } catch (error) {
+        console.warn(`Error reading localStorage key "${key}":`, error);
+      }
     }
 
-    try {
-      const item = window.localStorage.getItem(key);
-      return item ? JSON.parse(item) : null;
-    } catch (error) {
-      console.warn(`Error reading localStorage key "${key}":`, error);
-      return null;
-    }
+    return result;
   }
 
   function write() {
-    if (typeof window === "undefined" || !window.localStorage) {
-      return;
-    }
-
-    if (val.value == null) {
-      window.localStorage.removeItem(key);
-    } else {
-      window.localStorage.setItem(key, JSON.stringify(val.value));
+    if (typeof window !== "undefined" && window.localStorage) {
+      if (val.value == null) {
+        window.localStorage.removeItem(key);
+      } else {
+        window.localStorage.setItem(key, JSON.stringify(val.value));
+      }
     }
   }
 
