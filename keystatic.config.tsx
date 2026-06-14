@@ -1,11 +1,7 @@
 import { config, fields, collection, singleton } from "@keystatic/core";
 
-const pixelartIconDescription = (
-  <>
-    <a href="https://icon-sets.iconify.design/pixelarticons/?keyword=pixel"
-       target="_blank" rel="noreferrer">pixelarticons</a>
-  </>
-);
+const pixelartIconDescription =
+  "https://icon-sets.iconify.design/pixelarticons/?keyword=pixel";
 
 export default config({
   storage: import.meta.env.DEV

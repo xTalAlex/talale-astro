@@ -76,7 +76,7 @@ import { Image } from "astro:assets";
   ) as HTMLElement;
 
   var response = await fetch("/searchindex.json");
-  const data = await response.json();
+  const data: Array<Record<string, unknown>> = await response.json();
   const fuse = new Fuse(data, searchOptions);
 
   const search = async () => {

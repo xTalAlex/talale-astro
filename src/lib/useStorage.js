@@ -1,5 +1,11 @@
 import { ref, watch } from "vue";
 
+/**
+ * @template T
+ * @param {string} key
+ * @param {T} [defaultVal]
+ * @returns {import('vue').Ref<T | null>}
+ */
 export function useStorage(key, defaultVal = null) {
   let storedVal = read();
   let val;
