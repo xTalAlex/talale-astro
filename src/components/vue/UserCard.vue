@@ -71,10 +71,10 @@
   </div>
   <div v-else class="grid place-items-center">
     <div v-if="isLoading" class="flex w-full justify-center">
-        <div class="skeleton h-120 w-full max-w-full"></div>
+      <div class="skeleton h-120 w-full max-w-full"></div>
     </div>
     <div v-else>
-          <a class="link" @click="handleLogin">Sei disconnesso. Vai al Login.</a>
+      <a class="link" @click="handleLogin">Sei disconnesso. Vai al Login.</a>
     </div>
   </div>
 </template>

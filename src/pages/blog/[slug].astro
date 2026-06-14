@@ -123,5 +123,7 @@ const { post, readingTime, previousPost, nextPost } = Astro.props;
 </ProseLayout>
 
 <script>
-  document.querySelectorAll(".estimated-reading-time").forEach((item) => item.remove());
+  document
+    .querySelectorAll(".estimated-reading-time")
+    .forEach((item) => item.remove());
 </script>

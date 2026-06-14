@@ -21,11 +21,7 @@
     "latitude": 45.7725927,
     "longitude": 8.887267
   },
-  "areaServed": [
-    "Provincia di Varese",
-    "Lombardia",
-    "Italia"
-  ],
+  "areaServed": ["Provincia di Varese", "Lombardia", "Italia"],
   "social": {
     "github": "https://github.com/xTalAlex"
   },

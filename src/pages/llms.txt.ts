@@ -20,7 +20,9 @@ export const GET: APIRoute = () => {
     .map((f) => `- **${f.title}**: ${f.description}`)
     .join("\n");
 
-  const stack = FreelanceConfig.frameworks.map((f) => `- [${f.name}](${f.url})`).join("\n");
+  const stack = FreelanceConfig.frameworks
+    .map((f) => `- [${f.name}](${f.url})`)
+    .join("\n");
 
   const supportServices = FreelanceConfig.supportServices
     .map((s) => `- ${s.name}`)

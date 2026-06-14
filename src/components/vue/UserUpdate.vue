@@ -169,7 +169,10 @@ const isValueChanged = computed(() => {
   let changed = false;
   switch (choice.value) {
     case "password":
-      changed = formData.value.currentPassword && formData.value.password && formData.value.passwordConfirm;
+      changed =
+        formData.value.currentPassword &&
+        formData.value.password &&
+        formData.value.passwordConfirm;
       break;
     case "delete":
       changed = formData.value.deleteConfirm === "sudo delete";

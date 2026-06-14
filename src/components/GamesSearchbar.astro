@@ -88,10 +88,10 @@ import { Image } from "astro:assets";
       if (res.length) {
         html = res
           .map(
-            (item) => 
+            (item) =>
               `<a href="/nintendo-switch/${getPageNumberByRef(item.refIndex)}#${item.item.slug}">
                   <div class="m-1 whitespace-nowrap badge badge-lg badge-primary font-semibold badge-outline">${item.item.name}</div>    
-              </a>`
+              </a>`,
           )
           .join("");
       } else {

@@ -7,10 +7,7 @@
       "info": "Acconto da stabilire",
       "amount": 1500,
       "plus": true,
-      "features": [
-        "CMS custom",
-        "Fino a 5 pagine"
-      ],
+      "features": ["CMS custom", "Fino a 5 pagine"],
       "includesBaseServices": true,
       "supportMonthsIncluded": 3
     },

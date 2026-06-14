@@ -65,7 +65,12 @@ const { game } = Astro.props as { game: NormalizedGame };
     <h2 class="card-title text-base">
       {
         game.url && (
-          <a href={game.url} class="link" target="_blank" rel="noopener noreferrer">
+          <a
+            href={game.url}
+            class="link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {game.name}
             <span>
               {game.platforms?.length == 1 && (
