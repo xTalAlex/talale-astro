@@ -1,9 +1,10 @@
 ---
-import ProseLayout from "@src/layouts/ProseLayout.astro";
+import "@src/assets/css/iubenda.css";
+import Layout from "@src/layouts/Layout.astro";
 ---
 
-<ProseLayout title="Privacy Policy" description="Privacy Policy" noindex={true}>
-  <div class="prose-strong:text-black bg-white">
+<Layout title="Privacy Policy" description="Privacy Policy" noindex={true}>
+  <div class="grid place-items-center overflow-x-auto px-4 py-16">
     <a
       href="https://www.iubenda.com/privacy-policy/89896072"
       class="iubenda-white no-brand iubenda-noiframe iubenda-embed iubenda-noiframe iub-body-embed"
@@ -26,4 +27,4 @@ import ProseLayout from "@src/layouts/ProseLayout.astro";
       })(window, document);
     </script>
   </div>
-</ProseLayout>
+</Layout>
