@@ -16,7 +16,6 @@ import "animate.css";
 import Alert from "@src/components/Alert.astro";
 import BackToTop from "@src/components/BackToTop.astro";
 import Footer from "@src/components/Footer.astro";
-import IubendaCookieSolution from "@src/components/IubendaCookieSolution.astro";
 import JsonLd from "@src/components/JsonLd.astro";
 import LoginModal from "@src/components/LoginModal.astro";
 import Navbar from "@src/components/Navbar.astro";
@@ -39,8 +38,7 @@ const {
 const {
   IUBENDA_SITE_ID,
   IUBENDA_POLICY_ID,
-  GOOGLE_SEARCH_CONSOLE_ID,
-  GOOGLE_ANALYTICS_ID,
+  GOOGLE_TAG_MANAGER_ID,
   TAWKTO_WIDGET_URL,
 } = import.meta.env;
 
@@ -95,44 +93,15 @@ const openGraph = {
     />
 
     {
-      IUBENDA_SITE_ID && IUBENDA_POLICY_ID && (
-        <IubendaCookieSolution
-          siteId={IUBENDA_SITE_ID}
-          policyId={IUBENDA_POLICY_ID}
-        />
-      )
-    }
-
-    {
-      GOOGLE_SEARCH_CONSOLE_ID && (
-        <meta
-          name="google-site-verification"
-          content={GOOGLE_SEARCH_CONSOLE_ID}
-        />
-      )
-    }
-
-    {
-      GOOGLE_ANALYTICS_ID && (
-        <>
-          <script
-            is:inline
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}`}
-          />
-          <script
-            is:inline
-            data-gaid={GOOGLE_ANALYTICS_ID}
-            set:html={`
-              window.dataLayer = window.dataLayer || [];
-              function gtag() {
-                dataLayer.push(arguments);
-              }
-              gtag("js", new Date());
-              gtag("config", document.currentScript.dataset.gaid);
-            `}
-          />
-        </>
+      GOOGLE_TAG_MANAGER_ID && (
+        <script data-gtmid={GOOGLE_TAG_MANAGER_ID}>
+          (function(w,d,s,l,i){
+            w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+            var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+            j.async=true;
+            j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer',document.currentScript.dataset.gtmid);
+        </script>
       )
     }
 
