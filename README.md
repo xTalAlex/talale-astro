@@ -115,16 +115,53 @@ See [Known Issues → Keystatic Limitations](#keystatic-limitations) for current
 
 ### Google Analytics Events
 
-| Event                      | Description                                                       | Parameters                                         |
-| -------------------------- | ----------------------------------------------------------------- | -------------------------------------------------- |
-| `generate_lead`            | Form submission tracking                                          | `form_name`: `messagebox` \| `tawkto_offline_form` |
-| `chat_start`               | Tawkto chat message sent                                          | -                                                  |
-| `calendar_meeting_created` | Google Calendar booking — sent **server-side via Zapier** (GA4 Measurement Protocol), not from the browser | -                                                  |
-| `calendar_open`            | Click on the Google Calendar scheduling button (micro-conversion) | -                                                  |
+| Event                      | Description                                                                                                                | Parameters                                         |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| `generate_lead`            | Form submission tracking                                                                                                   | `form_name`: `messagebox` \| `tawkto_offline_form` |
+| `chat_start`               | Tawkto chat message sent                                                                                                   | -                                                  |
+| `calendar_meeting_created` | Google Calendar booking — sent **server-side via Zapier** (GA4 Measurement Protocol), not from the browser                 | -                                                  |
+| `calendar_open`            | Click on the Google Calendar scheduling button (micro-conversion)                                                          | -                                                  |
 | `contact_link_click`       | Contact button clicks (WhatsApp, Email) — split into derived events `whatsapp_click` and `email_click` in Google Analytics | `contact_method`: `whatsapp` \| `email`            |
-| `game_won`                 | Minesweeper game won                                              | -                                                  |
-| `game_lost`                | Minesweeper game lost                                             | -                                                  |
-| `radio_play`               | Radio station played                                              | -                                                  |
+| `game_won`                 | Minesweeper game won                                                                                                       | -                                                  |
+| `game_lost`                | Minesweeper game lost                                                                                                      | -                                                  |
+| `radio_play`               | Radio station played                                                                                                       | `radio_name`                                       |
+
+#### GTM Setup
+
+1. **Data Layer Variables** — create one DLV per parameter key:
+
+   | Data Layer Variable Name | GTM Variable Name        |
+   | ------------------------ | ------------------------ |
+   | `form_name`              | `DLV - form_name`        |
+   | `contact_method`         | `DLV - contact_method`   |
+   | `radio_name`             | `DLV - radio_name`       |
+
+2. **Trigger** — Custom Event with regex matching enabled:
+   ```
+   generate_lead|chat_start|calendar_open|contact_link_click|game_won|game_lost|radio_play
+   ```
+3. **GA4 Event Tag** — event name `{{Event}}`, parameters:
+
+   | Parameter name    | Value                      |
+   | ----------------- | -------------------------- |
+   | `form_name`       | `{{DLV - form_name}}`      |
+   | `contact_method`  | `{{DLV - contact_method}}` |
+   | `radio_name`      | `{{DLV - radio_name}}`     |
+
+   Triggered by the catch-all trigger above. Missing parameters resolve to `undefined` and are omitted by GA4 automatically.
+
+#### Adding a new event
+
+1. Push the event from the component via `window.dataLayerPush({ event: "my_new_event" })`.
+2. Add the event name to the trigger regex (Step 2).
+3. Add a row to the table above and verify in GTM Preview / GA4 DebugView.
+
+#### Adding a new parameter
+
+1. Add the parameter to the `dataLayerPush()` call in the component.
+2. Create a DLV in GTM for the new key (Step 1).
+3. Add the parameter to the GA4 Event tag (Step 3).
+4. Update the table above.
 
 ## 🎯 Custom Events
 
