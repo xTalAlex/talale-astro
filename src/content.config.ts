@@ -12,15 +12,15 @@ const projectCollection = defineCollection({
     base: "./src/content/projects",
   }),
   schema: z.object({
-      thumb: z.string().optional(),
-      title: z.string(),
-      pubDate: z.date(),
-      description: z.string(),
-      link: z.url(),
-      gallery: z.array(z.string()).optional(),
-      portfolio: z.boolean().optional(),
-      featured: z.boolean().optional(),
-    }),
+    thumb: z.string().optional(),
+    title: z.string(),
+    pubDate: z.date(),
+    description: z.string(),
+    link: z.url(),
+    gallery: z.array(z.string()).optional(),
+    portfolio: z.boolean().optional(),
+    featured: z.boolean().optional(),
+  }),
 });
 
 export const collections = {

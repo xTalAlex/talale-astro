@@ -1,9 +1,9 @@
 /* Fix layout iubenda policy: removes overflowing white background */
 
 #iub-legalDoc .container > footer {
-    box-shadow: none !important;
-    clip-path: none !important;
+  box-shadow: none !important;
+  clip-path: none !important;
 }
 #iub-legalDoc .pre-footer {
-    box-shadow: none !important;
+  box-shadow: none !important;
 }

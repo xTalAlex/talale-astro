@@ -16,6 +16,7 @@ import "animate.css";
 import Alert from "@src/components/Alert.astro";
 import BackToTop from "@src/components/BackToTop.astro";
 import Footer from "@src/components/Footer.astro";
+import GoogleTagManager from "@src/components/GoogleTagManager.astro";
 import JsonLd from "@src/components/JsonLd.astro";
 import LoginModal from "@src/components/LoginModal.astro";
 import Navbar from "@src/components/Navbar.astro";
@@ -94,14 +95,7 @@ const openGraph = {
 
     {
       GOOGLE_TAG_MANAGER_ID && (
-        <script data-gtmid={GOOGLE_TAG_MANAGER_ID}>
-          (function(w,d,s,l,i){
-            w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
-            var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
-            j.async=true;
-            j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer',document.currentScript.dataset.gtmid);
-        </script>
+        <GoogleTagManager gtmId={GOOGLE_TAG_MANAGER_ID} />
       )
     }
 
