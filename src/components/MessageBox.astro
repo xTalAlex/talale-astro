@@ -92,10 +92,10 @@ const { IUBENDA_POLICY_ID } = import.meta.env;
     };
 
     const trackGoogleEvent = () => {
-      window.gtag &&
-        window.gtag("event", "generate_lead", {
-          form_name: "messagebox",
-        });
+      window.dataLayerPush({
+        event: "generate_lead",
+        form_name: "messagebox",
+      });
     };
 
     const handleError = () => {

@@ -23,4 +23,10 @@ const { gtmId } = Astro.props;
     "dataLayer",
     document.currentScript.dataset.gtmid,
   );
+
+  // Custom function to push data to the dataLayer
+  window.dataLayerPush = function (data) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(data);
+  };
 </script>

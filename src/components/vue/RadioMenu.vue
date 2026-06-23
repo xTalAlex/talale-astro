@@ -236,10 +236,10 @@ function setVolume() {
 }
 
 function trackGoogleEvent() {
-  window.gtag &&
-    window.gtag("event", "radio_play", {
-      radio_name: lastRadioStation.value?.name,
-    });
+  window.dataLayerPush({
+    event: "radio_play",
+    radio_name: lastRadioStation.value?.name,
+  });
 }
 
 onMounted(() => {

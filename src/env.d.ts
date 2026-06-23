@@ -3,7 +3,8 @@
 
 // Global browser APIs extended by third-party scripts
 interface Window {
-  gtag?: (...args: unknown[]) => void;
+  dataLayer?: Record<string, unknown>[];
+  dataLayerPush?: (data: Record<string, unknown>) => void;
   notify?: (message: string, data: unknown, type: string) => void;
   Tawk_API?: Record<string, unknown>;
   Tawk_LoadStart?: Date;

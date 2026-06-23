@@ -33,13 +33,13 @@ const { class: className = "", ...dataAttrs } = Astro.props;
   };
 
   window.Tawk_API.onOfflineSubmit = function (_data) {
-    window.gtag &&
-      window.gtag("event", "generate_lead", {
-        form_name: "tawkto_offline_form",
-      });
+    window.dataLayerPush({
+      event: "generate_lead",
+      form_name: "tawkto_offline_form",
+    });
   };
   window.Tawk_API.onChatStarted = function () {
-    window.gtag && window.gtag("event", "chat_start", {});
+    window.dataLayerPush({event: "chat_start"});
   };
 
   (function () {

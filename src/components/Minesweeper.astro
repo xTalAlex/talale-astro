@@ -146,7 +146,7 @@ const boardIndices = Array.from({ length: boardSize }, (_, i) => i);
       gameOver = true;
       electrodeCry.play();
       storeResult(false);
-      trackGoogleEvent("game_lost");
+      window.dataLayerPush({event: "game_lost"});
       showBombs(id);
       return;
     } else {
@@ -194,7 +194,7 @@ const boardIndices = Array.from({ length: boardSize }, (_, i) => i);
       gameOver = true;
       itemFoundFanfare.play();
       storeResult(true);
-      trackGoogleEvent("game_won");
+      window.dataLayerPush({event: "game_won"});
       fire(0.25, {
         spread: 26,
         startVelocity: 55,
@@ -269,9 +269,5 @@ const boardIndices = Array.from({ length: boardSize }, (_, i) => i);
         })
         .catch((error) => console.error(error));
     }
-  };
-
-  const trackGoogleEvent = (eventName: string, eventParams: object = {}) => {
-    window.gtag && window.gtag("event", eventName, eventParams);
   };
 </script>

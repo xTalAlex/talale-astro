@@ -14,7 +14,7 @@ import Config from "@src/config/general.json";
         target="_blank"
         rel="noopener noreferrer"
         id="wa-btn"
-        onclick="window.gtag && window.gtag('event','contact_link_click',{contact_method:'whatsapp'})"
+        onclick="window.dataLayerPush({event:'contact_link_click',contact_method:'whatsapp'})"
       >
         <svg
           role="img"
@@ -38,7 +38,7 @@ import Config from "@src/config/general.json";
         target="_blank"
         rel="noopener noreferrer"
         id="mail-btn"
-        onclick="window.gtag && window.gtag('event','contact_link_click',{contact_method:'email'})"
+        onclick="window.dataLayerPush({event:'contact_link_click',contact_method:'email'})"
       >
         <svg
           aria-label="Email"
