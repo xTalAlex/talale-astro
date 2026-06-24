@@ -1,7 +1,6 @@
 /**
  *  Rate limit is 4 requests per second
  *
- *  @todo search endpoint
  *  @todo character + mug shot
  **/
 
@@ -127,6 +126,12 @@ export async function getNintendoSwitch2() {
 
 export async function getGameStatuses() {
   const data = await fetchAPI("game_statuses", "fields *;");
+
+  return data ?? [];
+}
+
+export async function search(query) {
+  const data = await fetchAPI("search", query);
 
   return data ?? [];
 }
