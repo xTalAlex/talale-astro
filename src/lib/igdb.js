@@ -1,8 +1,5 @@
 /**
  *  Rate limit is 4 requests per second
- *
- *  @todo search endpoint
- *  @todo character + mug shot
  **/
 
 const API_URL = import.meta.env.IGDB_ENDPOINT ?? "https://api.igdb.com/v4";
@@ -127,6 +124,24 @@ export async function getNintendoSwitch2() {
 
 export async function getGameStatuses() {
   const data = await fetchAPI("game_statuses", "fields *;");
+
+  return data ?? [];
+}
+
+export async function getCharacters(query) {
+  const data = await fetchAPI("characters", query);
+
+  return data ?? [];
+}
+
+export async function getCharacterMugShots(query) {
+  const data = await fetchAPI("character_mug_shots", query);
+
+  return data ?? [];
+}
+
+export async function search(query) {
+  const data = await fetchAPI("search", query);
 
   return data ?? [];
 }
